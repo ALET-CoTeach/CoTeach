@@ -7,7 +7,6 @@ const middleware = require('./middleware');
 
 // Imports for version 1 of the api
 const adminRoutes = require('./api/v1/routes/admin');
-const tenantRoutes = require('./api/v1/routes/tenant');
 
 // Environment variables
 require('dotenv').config();
@@ -56,7 +55,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/admin', adminRoutes);
-app.use('/api/v1tenants', tenantRoutes);
 
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);
