@@ -124,3 +124,4 @@ module.export.getOneByEmail = (email) =>
     } catch (err) {
       reject(err);
     }
+  });
