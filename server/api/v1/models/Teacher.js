@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const { schoolSchema } = require('./School.js');
-
 const teacherSchema  = new Schema(
   {
     firstname: {
@@ -24,8 +22,8 @@ const teacherSchema  = new Schema(
       type: String,
       required: true,
     },
-    school: {
-      type: schoolSchema,
+    schoolId: {
+      type: String,
       required: true,
     },
     password: {

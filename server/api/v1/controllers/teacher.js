@@ -36,7 +36,7 @@ module.exports.updateOne = (teacherId, updateData) =>
         lastname,
         email,
         phone,
-        school,
+        schoolId: school._id,
       };
 
       const updatedTeacher = await Teacher.findOneAndUpdate(
@@ -129,7 +129,7 @@ module.exports.register = (req, res) => {
           lastname,
           email,
           phone,
-          school,
+          schoolId : school._id,
           password: hash,
         });
 
