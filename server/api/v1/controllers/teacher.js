@@ -1,49 +1,6 @@
-const Teacher = require("../models/Teacher");
-
-module.exports.createOne = (teacherData) =>
-  new Promise(async (resolve, reject) => {
-    // Destruct teacherData
-    const {
-      firstname,
-      lastname,
-      email,
-      phone,
-      schoolName,
-    } = teacherData;
-
-    try {
-
-      // Returns a single document from unique email
-      const teacher = await Teacher.findOne({ email });
-      if (!teacher) {
-        // Check if school exists
-        const school = await School.findOne({ name: schoolName });
-
-        if (!school) {
-          // Runs if school does not exist
-          reject(new Error("School does not exist on database"));
-        }
-
-        // Creates new Teacher Object
-        const newTeacher = new Teacher({
-          firstname,
-          lastname,
-          email,
-          phone,
-          school,
-        });
-
-        // Saves teacher object to database
-        const savedTeacher = await newTeacher.save();
-        resolve(savedTeacher);
-      } else {
-        // Runs if account already exits
-        reject(new Error("Teacher already exists"));
-      }
-    } catch (err) {
-      reject(err);
-    }
-  });
+const Teacher = require('../models/Teacher');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 module.exports.deleteOne = (teacherId) =>
   new Promise(async (resolve, reject) => {
@@ -125,3 +82,131 @@ module.export.getOneByEmail = (email) =>
       reject(err);
     }
   });
+
+module.exports.register = (req, res) => {
+  // Destruct request body
+  const {
+    firstname,
+    lastname,
+    email,
+    phone,
+    schoolName,
+    password,
+  } = req.body;
+
+  // Returns a single document from unique email
+  Teacher.findOne({ email })
+    .exec()
+    .then((teacher) => {
+      // Checks if account already exits
+      if (teacher !== null) {
+        return res.status(409).json({
+          message: 'Account already exists',
+        });
+      }
+      // Hashes password for security
+      bcrypt.hash(password, 10, (err, hash) => {
+        if (err) {
+          return res.status(500).json({
+            error: err,
+          });
+        }
+
+        // Check if school exists
+        const school = await School.findOne({ name: schoolName });
+
+        if (!school) {
+          // Runs if school does not exist
+          res.status(500).json({
+            error: 'School does not exist on the database',
+          });
+        }
+
+        // Creates new Teacher Object
+        const newTeacher = new Teacher({
+          firstname,
+          lastname,
+          email,
+          phone,
+          school,
+          password: hash,
+        });
+
+        // Saves teacher object to database
+        newTeacher
+          .save()
+          .then((result) => {
+            console.log(result);
+            res.status(201).json({
+              message: 'Teacher account created',
+            });
+          })
+          .catch((saveErr) => {
+            console.log(saveErr);
+            res.status(500).json({
+              error: saveErr,
+            });
+          });
+      });
+    });
+};
+
+module.exports.access = (req, res) => {
+  // Destruct req.body
+  const { email, password } = req.body;
+
+  // Find single teacher user from unique email
+  Teacher.findOne({ email })
+    .exec()
+    .then((teacher) => {
+      if (!teacher) {
+        return res.status(401).json({
+          message: 'Auth failed',
+        });
+      }
+      bcrypt.compare(password, teacher.password, (err, result) => {
+        if (err) {
+          return res.status(401).json({
+            message: 'Auth failed',
+          });
+        }
+
+        if (result) {
+          const token = jwt.sign(
+            {
+              email: teacher.email,
+              teacherId: teacher._id,
+            },
+            process.env.JWT_TEACHER_KEY,
+            {
+              expiresIn: '1h',
+            },
+          );
+          return res.status(200).json({
+            message: 'Auth successful',
+            token,
+          });
+        }
+        res.status(401).json({
+          message: 'Auth failed',
+        });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });
+};
+
+module.exports.deauth = (res, req) => {
+  try {
+    req.headers.authentication = null;
+    req.teacherData = null;
+  } catch (err) {
+    return res.status(401).json({
+      message: 'De-authentication (Sign Out) failed',
+    });
+  }
+};

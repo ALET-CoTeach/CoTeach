@@ -3,7 +3,7 @@ const AdminController = require('../controllers/admin');
 
 const router = Router();
 
-router.post('/register', AdminController.create);
+router.post('/register', AdminController.register);
 router.post('/signin', AdminController.access);
 
 module.exports = router;

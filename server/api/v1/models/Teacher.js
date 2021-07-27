@@ -28,6 +28,10 @@ const teacherSchema  = new Schema(
       type: schoolSchema,
       required: true,
     },
+    password: {
+      type: String,
+      required: true,
+    },
   },
   {
     // Mongoose will create a "createdAt" and "updatedAt" properties to schema 😀

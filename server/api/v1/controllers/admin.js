@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
 
-module.exports.create = (req, res) => {
+module.exports.register = (req, res) => {
   // Destruct request body
   const { name, email, password } = req.body;
 
