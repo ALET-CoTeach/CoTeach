@@ -10,7 +10,7 @@ const teacherSchema  = new Schema(
       type: String,
       required: true,
     },
-    lasstname: {
+    lastname: {
       type: String,
       required: true,
     },

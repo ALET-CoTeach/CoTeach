@@ -1,39 +1,36 @@
 const Teacher = require("../models/Teacher");
-const Address = require("../models/Address");
 
 module.exports.createOne = (teacherData) =>
   new Promise(async (resolve, reject) => {
     // Destruct teacherData
     const {
-      name,
+      firstname,
+      lastname,
       email,
       phone,
-      line1,
-      towncity,
-      county,
-      postcode,
-      customerId,
+      schoolName,
     } = teacherData;
 
     try {
+
       // Returns a single document from unique email
       const teacher = await Teacher.findOne({ email });
       if (!teacher) {
-        // Creates new Address Object for Teacher
-        const address = new Address({
-          line1,
-          towncity,
-          county,
-          postcode,
-        });
+        // Check if school exists
+        const school = await School.findOne({ name: schoolName });
+
+        if (!school) {
+          // Runs if school does not exist
+          reject(new Error("School does not exist on database"));
+        }
 
         // Creates new Teacher Object
         const newTeacher = new Teacher({
-          name,
+          firstname,
+          lastname,
           email,
           phone,
-          address,
-          customerId,
+          school,
         });
 
         // Saves teacher object to database
@@ -62,27 +59,27 @@ module.exports.updateOne = (teacherId, updateData) =>
   new Promise(async (resolve, reject) => {
     try {
       const {
-        name,
+        firstname,
+        lastname,
         email,
         phone,
-        line1,
-        towncity,
-        county,
-        postcode,
+        schoolName,
       } = updateData;
 
-      const address = {
-        line1,
-        towncity,
-        county,
-        postcode,
-      };
+      // Check if school exists
+      const school = await School.findOne({ name: schoolName });
+
+      if (!school) {
+        // Runs if school does not exist
+        reject(new Error("School does not exist on database"));
+      }
 
       const update = {
-        name,
+        firstname,
+        lastname,
         email,
         phone,
-        address,
+        school,
       };
 
       const updatedTeacher = await Teacher.findOneAndUpdate(
@@ -118,3 +115,12 @@ module.exports.getOne = (teacherId) =>
       reject(err);
     }
   });
+
+module.export.getOneByEmail = (email) => 
+  new Promise(async (resolve, reject) => {
+    try {
+      const teacher = await Teacher.findOne({ email });
+      resolve(teacher);
+    } catch (err) {
+      reject(err);
+    }
