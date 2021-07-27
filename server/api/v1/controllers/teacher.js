@@ -113,14 +113,15 @@ module.exports.register = (req, res) => {
         }
 
         // Check if school exists
-        const school = await School.findOne({ name: schoolName });
+        const school = School.findOne({ name: schoolName }, (err, school) => {
+          if (!school) {
+            // Runs if school does not exist
+            res.status(500).json({
+              error: 'School does not exist on the database',
+            });
+          }
+        });
 
-        if (!school) {
-          // Runs if school does not exist
-          res.status(500).json({
-            error: 'School does not exist on the database',
-          });
-        }
 
         // Creates new Teacher Object
         const newTeacher = new Teacher({
