@@ -178,7 +178,7 @@ module.exports.access = (req, res) => {
               email: slt.email,
               sltId: slt._id,
             },
-            process.env.JWT_TEACHER_KEY,
+            process.env.JWT_SLT_KEY,
             {
               expiresIn: '1h',
             },

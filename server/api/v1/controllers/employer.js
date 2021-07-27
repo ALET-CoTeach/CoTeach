@@ -178,7 +178,7 @@ module.exports.access = (req, res) => {
               email: employer.email,
               employerId: employer._id,
             },
-            process.env.JWT_TEACHER_KEY,
+            process.env.JWT_EMPLOYER_KEY,
             {
               expiresIn: '1h',
             },
