@@ -1,0 +1,10 @@
+NODE_ENV=development
+PORT=5000
+LOCAL_DATABASE_URL=mongodb://localhost/coteach
+REMOTE_DATABASE_URL=uriforclouddatabase
+CORS_ORIGIN_CLIENT=http://localhost:3000
+CORS_ORIGIN_SERVER=http://localhost:5000
+JWT_ADMIN_KEY=key1
+JWT_TEACHER_KEY=key2
+JWT_SLT_KEY=key3
+JWT_EMPLOYER_KEY=key4
