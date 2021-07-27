@@ -1,0 +1,22 @@
+{
+  "name": "coteach-backend",
+  "version": "1.0.0",
+  "description": "Back-end ExpressJS server for CoTeach Web Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.23.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.20",
+    "morgan": "^1.10.0"
+  },
+  "author": "Samson Nagamani <samson.nagamani@pm.me>",
+  "license": "GPL-3.0"
+}
