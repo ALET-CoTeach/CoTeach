@@ -5,8 +5,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const middleware = require('./middleware');
 
-// Imports for version 1 of the api
-const adminRoutes = require('./api/v1/routes/admin');
 
 // Environment variables
 require('dotenv').config();
@@ -23,6 +21,12 @@ mongoose.connect(process.env.REMOTE_DATABASE_URL, {
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: false,
+}).catch((err) => {
+  console.log(err);
+});
+
+mongoose.connection.on('error', (err) => {
+  console.log(err);
 });
 
 app.use(morgan('common'));
@@ -54,7 +58,16 @@ app.get('/', (req, res) => {
   });
 });
 
+// Imports for version 1 of the api
+const adminRoutes = require('./api/v1/routes/admin');
+const employerRoutes = require('./api/v1/routes/employer');
+const sltRoutes = require('./api/v1/routes/slt');
+const teacherRoutes = require('./api/v1/routes/teacher');
+
 app.use('/api/v1/admin', adminRoutes);
+app.use('/api/v1/employer', employerRoutes);
+app.use('/api/v1/slt', sltRoutes);
+app.use('/api/v1/teacher', teacherRoutes);
 
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);
