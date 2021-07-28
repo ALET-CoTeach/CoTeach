@@ -73,7 +73,7 @@ function AddLessonModalStepsTeacherform(){
         }}
       >
         <Button type="primary" htmlType="submit">
-          Submit
+          Save
         </Button>
       </Form.Item>
     </Form>

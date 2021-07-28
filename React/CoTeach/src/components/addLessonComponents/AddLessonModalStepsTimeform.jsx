@@ -58,7 +58,7 @@ function AddLessonModalStepsTimeform(){
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Submit
+            Save
           </Button>
         </Form.Item>
       </Form>

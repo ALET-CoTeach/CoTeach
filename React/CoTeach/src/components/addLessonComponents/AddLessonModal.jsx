@@ -6,6 +6,7 @@ import { Modal, Button } from 'antd';
 import AddLessonModalSteps from './AddLessonModalSteps';
 
 function AddLessonModal(){
+
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -16,9 +17,11 @@ function AddLessonModal(){
         title="Add Lesson"
         centered
         visible={visible}
-        onOk={() => setVisible(false)}
+        //onOk={() => setVisible(false)}
         onCancel={() => setVisible(false)}
         width={1000}
+        footer={[
+        ]}
       >
         <AddLessonModalSteps />
       </Modal>

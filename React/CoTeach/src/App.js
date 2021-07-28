@@ -8,7 +8,6 @@ function App() {
         <Navigation />
         <Switch>
           <Route path="/" exact component={() => <Home />} />
-          <Route path="/about" exact component={() => <About />} />
           <Route path="/addLesson" exact component={() => <AddLesson />} />
         </Switch>
         <Footer />
