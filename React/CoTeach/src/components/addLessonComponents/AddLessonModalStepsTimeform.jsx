@@ -33,12 +33,12 @@ function AddLessonModalStepsTimeform(){
       >
         <Form.Item required label="Prefered Term" name="term">
           <Radio.Group>
-            <Radio.Button value="10">T1</Radio.Button>
-            <Radio.Button value="11">T2</Radio.Button>
-            <Radio.Button value="12">T3</Radio.Button>
-            <Radio.Button value="13">T4</Radio.Button>
-            <Radio.Button value="13">T5</Radio.Button>
-            <Radio.Button value="13">T6</Radio.Button>
+            <Radio.Button value="t1">T1</Radio.Button>
+            <Radio.Button value="t2">T2</Radio.Button>
+            <Radio.Button value="t3">T3</Radio.Button>
+            <Radio.Button value="t4">T4</Radio.Button>
+            <Radio.Button value="t5">T5</Radio.Button>
+            <Radio.Button value="t6">T6</Radio.Button>
           </Radio.Group>
         </Form.Item>
         <Form.Item required label="Prefered Day" name="day">
