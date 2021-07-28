@@ -1,82 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import '../../index.css';
-import { Form, Input, Button } from 'antd';
+import {
+  Form,
+  Button,
+  Radio,
+  Select,
+} from 'antd';
 
 function AddLessonModalStepsTimeform(){
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
+  const [form] = Form.useForm();
+  const [requiredMark, setRequiredMarkType] = useState('optional');
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  const onRequiredTypeChange = ({ requiredMarkValue }) => {
+    setRequiredMarkType(requiredMarkValue);
   };
-
   return (
-    <Form
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="Subject"
-        name="subject"
-        rules={[
-          {
-            required: true,
-            message: 'Please input the subject!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Lesson Title"
-        name="lesson_title"
-        rules={[
-          {
-            required: true,
-            message: 'Please input the lesson title!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Lesson Details"
-        name="lesson_details"
-        rules={[
-          {
-            required: true,
-            message: 'Please input the lesson details!',
-          },
-        ]}
-      >
-        <Input.TextArea />
-      </Form.Item>
-
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
+    <>
+      <Form
+        labelCol={{
+          span: 4,
         }}
+        wrapperCol={{
+          span: 14,
+        }}
+        initialValues={{
+          requiredMarkValue: requiredMark,
+        }}
+        requiredMark={requiredMark}
+        layout="horizontal"
+        onValuesChange={onRequiredTypeChange}
       >
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item required label="Prefered Term" name="term">
+          <Radio.Group>
+            <Radio.Button value="10">T1</Radio.Button>
+            <Radio.Button value="11">T2</Radio.Button>
+            <Radio.Button value="12">T3</Radio.Button>
+            <Radio.Button value="13">T4</Radio.Button>
+            <Radio.Button value="13">T5</Radio.Button>
+            <Radio.Button value="13">T6</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item required label="Prefered Day" name="day">
+          <Select>
+            <Select.Option value="mon">Monday</Select.Option>
+            <Select.Option value="tues">Tuesday</Select.Option>
+            <Select.Option value="wed">Wednesday</Select.Option>
+            <Select.Option value="thurs">Thursday</Select.Option>
+            <Select.Option value="fri">Friday</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item required label="Prefered Time" name="time">
+          <Radio.Group>
+            <Radio.Button value="am">AM</Radio.Button>
+            <Radio.Button value="pm">PM</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 
