@@ -3,8 +3,10 @@ import 'antd/dist/antd.css';
 import '../../index.css';
 import { Steps, Button, message} from 'antd';
 
+import AddLessonModalStepsTeacherform from './AddLessonModalStepsTeacherform';
 import AddLessonModalStepsSchoolform from './AddLessonModalStepsSchoolform';
-import AddLessonModalStepsLessonForm from './AddLessonModalStepsLessonform';
+import AddLessonModalStepsLessonform from './AddLessonModalStepsLessonform';
+import AddLessonModalStepsTimeform from './AddLessonModalStepsTimeform';
 
 const { Step } = Steps;
 
@@ -15,15 +17,15 @@ const steps = [
   },
   {
     title: 'Lesson',
-    content: <AddLessonModalStepsLessonForm />,
+    content: <AddLessonModalStepsLessonform />,
   },
   {
     title: 'Time',
-    content: 'Third-content',
+    content: <AddLessonModalStepsTimeform />,
   },
   {
     title: 'Teacher',
-    content: 'Last-content',
+    content: <AddLessonModalStepsTeacherform />,
   },
 ];
 

@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import '../../index.css';
 import { Form, Input, Button } from 'antd';
 
-function AddLessonModalStepsLessonForm(){
+function AddLessonModalStepsTimeform(){
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -80,4 +80,4 @@ function AddLessonModalStepsLessonForm(){
   );
 };
 
-export default AddLessonModalStepsLessonForm;
+export default AddLessonModalStepsTimeform;
