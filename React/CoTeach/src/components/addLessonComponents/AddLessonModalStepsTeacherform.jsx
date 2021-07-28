@@ -28,12 +28,12 @@ function AddLessonModalStepsTeacherform(){
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Subject"
-        name="subject"
+        label="Teacher's First Name"
+        name="teacher_firstname"
         rules={[
           {
             required: true,
-            message: 'Please input the subject!',
+            message: "Please input the teacher's first name!",
           },
         ]}
       >
@@ -41,12 +41,12 @@ function AddLessonModalStepsTeacherform(){
       </Form.Item>
 
       <Form.Item
-        label="Lesson Title"
-        name="lesson_title"
+        label="Teacher's Last Name"
+        name="teacher_lastname"
         rules={[
           {
             required: true,
-            message: 'Please input the lesson title!',
+            message: "Please input the teacher's last name!",
           },
         ]}
       >
@@ -54,16 +54,16 @@ function AddLessonModalStepsTeacherform(){
       </Form.Item>
 
       <Form.Item
-        label="Lesson Details"
-        name="lesson_details"
+        label="Teacher's Email"
+        name="teacher_email"
         rules={[
           {
             required: true,
-            message: 'Please input the lesson details!',
+            message: "Please input the teacher's email!",
           },
         ]}
       >
-        <Input.TextArea />
+        <Input />
       </Form.Item>
 
       <Form.Item

@@ -46,7 +46,7 @@ function AddLessonModalStepsLessonform(){
         rules={[
           {
             required: true,
-            message: 'Please input the lesson title!',
+            message: "Please input the lesson's title!",
           },
         ]}
       >
@@ -59,7 +59,7 @@ function AddLessonModalStepsLessonform(){
         rules={[
           {
             required: true,
-            message: 'Please input the lesson details!',
+            message: "Please input the lesson's details!",
           },
         ]}
       >
