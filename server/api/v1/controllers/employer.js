@@ -170,11 +170,6 @@ module.exports.access = (req, res) => {
       });
     }
 
-    if (employer !== null) {
-      return res.status(401).json({
-        message: 'Auth failed',
-      });
-    }
     bcrypt.compare(password, employer.password, (err, result) => {
       if (err) {
         return res.status(401).json({
