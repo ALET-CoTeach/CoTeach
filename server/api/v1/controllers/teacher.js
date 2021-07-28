@@ -73,7 +73,7 @@ module.exports.getOne = (teacherId) =>
     }
   });
 
-module.export.getOneByEmail = (email) => 
+module.exports.getOneByEmail = (email) => 
   new Promise(async (resolve, reject) => {
     try {
       const teacher = await Teacher.findOne({ email });

@@ -73,7 +73,7 @@ module.exports.getOne = (sltId) =>
     }
   });
 
-module.export.getOneByEmail = (email) => 
+module.exports.getOneByEmail = (email) => 
   new Promise(async (resolve, reject) => {
     try {
       const slt = await SLT.findOne({ email });
