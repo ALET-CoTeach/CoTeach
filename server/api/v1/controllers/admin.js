@@ -7,46 +7,52 @@ module.exports.register = (req, res) => {
   const { name, email, password } = req.body;
 
   // Returns a single document from unique email
-  Admin.findOne({ email })
-    .exec()
-    .then((admin) => {
-      // Checks if account already exits
-      if (admin !== null) {
-        return res.status(409).json({
-          message: 'Account already exists',
+  Admin.findOne({ email }, (err, admin) => {
+    if (err) {
+      return res.status(500).json({
+        error: err,
+      });
+    }
+    
+    console.log(admin);
+    // Checks if account already exits
+    if (admin !== null) {
+      return res.status(409).json({
+        message: 'Account already exists',
+      });
+    }
+
+    // Hashes password for security
+    bcrypt.hash(password, 10, (err, hash) => {
+      if (err) {
+        return res.status(500).json({
+          error: err,
         });
       }
-      // Hashes password for security
-      bcrypt.hash(password, 10, (err, hash) => {
-        if (err) {
-          return res.status(500).json({
-            error: err,
-          });
-        }
-        // Creates new Admin object
-        const newAdmin = new Admin({
-          name,
-          email,
-          password: hash,
-        });
-
-        // Saves admin object to database
-        newAdmin
-          .save()
-          .then((result) => {
-            console.log(result);
-            res.status(201).json({
-              message: 'Admin account created',
-            });
-          })
-          .catch((saveErr) => {
-            console.log(saveErr);
-            res.status(500).json({
-              error: saveErr,
-            });
-          });
+      // Creates new Admin object
+      const newAdmin = new Admin({
+        name,
+        email,
+        password: hash,
       });
+
+      // Saves admin object to database
+      newAdmin
+        .save()
+        .then((result) => {
+          console.log(result);
+          res.status(201).json({
+            message: 'Admin account created',
+          });
+        })
+        .catch((saveErr) => {
+          console.log(saveErr);
+          res.status(500).json({
+            error: saveErr,
+          });
+        });
     });
+  })
 };
 
 module.exports.access = (req, res) => {
@@ -54,48 +60,41 @@ module.exports.access = (req, res) => {
   const { email, password } = req.body;
 
   // Find single admin user from unique email
-  Admin.findOne({ email })
-    .exec()
-    .then((admin) => {
-      if (!admin) {
+  Admin.findOne({ email }, (err, admin) => {
+    if (err) {
+      return res.status(500).json({
+        error: err,
+      });
+    }
+
+    bcrypt.compare(password, admin.password, (err, result) => {
+      if (err) {
         return res.status(401).json({
           message: 'Auth failed',
         });
       }
-      bcrypt.compare(password, admin.password, (err, result) => {
-        if (err) {
-          return res.status(401).json({
-            message: 'Auth failed',
-          });
-        }
 
-        if (result) {
-          const token = jwt.sign(
-            {
-              email: admin.email,
-              adminId: admin._id,
-            },
-            process.env.JWT_ADMIN_KEY,
-            {
-              expiresIn: '1h',
-            },
-          );
-          return res.status(200).json({
-            message: 'Auth successful',
-            token,
-          });
-        }
-        res.status(401).json({
-          message: 'Auth failed',
+      if (result) {
+        const token = jwt.sign(
+          {
+            email: admin.email,
+            adminId: admin._id,
+          },
+          process.env.JWT_ADMIN_KEY,
+          {
+            expiresIn: '1h',
+          },
+        );
+        return res.status(200).json({
+          message: 'Auth successful',
+          token,
         });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        error: err,
+      }
+      res.status(401).json({
+        message: 'Auth failed',
       });
     });
+  })
 };
 
 module.exports.deauth = (res, req) => {

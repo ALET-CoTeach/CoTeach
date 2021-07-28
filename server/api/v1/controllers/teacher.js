@@ -73,7 +73,7 @@ module.exports.getOne = (teacherId) =>
     }
   });
 
-module.export.getOneByEmail = (email) => 
+module.exports.getOneByEmail = (email) => 
   new Promise(async (resolve, reject) => {
     try {
       const teacher = await Teacher.findOne({ email });
@@ -95,61 +95,67 @@ module.exports.register = (req, res) => {
   } = req.body;
 
   // Returns a single document from unique email
-  Teacher.findOne({ email })
-    .exec()
-    .then((teacher) => {
-      // Checks if account already exits
-      if (teacher !== null) {
-        return res.status(409).json({
-          message: 'Account already exists',
+  Teacher.findOne({ email }, (err, teacher) => {
+
+    if (err) {
+      return res.status(500).json({
+        error: err,
+      });
+    }
+
+    // Checks if account already exits
+    if (teacher !== null) {
+      return res.status(409).json({
+        message: 'Account already exists',
+      });
+    }
+
+    // Hashes password for security
+    bcrypt.hash(password, 10, (err, hash) => {
+      if (err) {
+        return res.status(500).json({
+          error: err,
         });
       }
-      // Hashes password for security
-      bcrypt.hash(password, 10, (err, hash) => {
-        if (err) {
-          return res.status(500).json({
-            error: err,
+
+      // Check if school exists
+      const school = School.findOne({ name: schoolName }, (err, school) => {
+        if (!school) {
+          // Runs if school does not exist
+          res.status(500).json({
+            error: 'School does not exist on the database',
           });
         }
-
-        // Check if school exists
-        const school = School.findOne({ name: schoolName }, (err, school) => {
-          if (!school) {
-            // Runs if school does not exist
-            res.status(500).json({
-              error: 'School does not exist on the database',
-            });
-          }
-        });
-
-
-        // Creates new Teacher Object
-        const newTeacher = new Teacher({
-          firstname,
-          lastname,
-          email,
-          phone,
-          schoolId : school._id,
-          password: hash,
-        });
-
-        // Saves teacher object to database
-        newTeacher
-          .save()
-          .then((result) => {
-            console.log(result);
-            res.status(201).json({
-              message: 'Teacher account created',
-            });
-          })
-          .catch((saveErr) => {
-            console.log(saveErr);
-            res.status(500).json({
-              error: saveErr,
-            });
-          });
       });
+
+
+      // Creates new Teacher Object
+      const newTeacher = new Teacher({
+        firstname,
+        lastname,
+        email,
+        phone,
+        schoolId : school._id,
+        password: hash,
+      });
+
+      // Saves teacher object to database
+      newTeacher
+        .save()
+        .then((result) => {
+          console.log(result);
+          res.status(201).json({
+            message: 'Teacher account created',
+          });
+        })
+        .catch((saveErr) => {
+          console.log(saveErr);
+          res.status(500).json({
+            error: saveErr,
+          });
+        });
     });
+  });
 };
 
 module.exports.access = (req, res) => {
@@ -157,48 +163,41 @@ module.exports.access = (req, res) => {
   const { email, password } = req.body;
 
   // Find single teacher user from unique email
-  Teacher.findOne({ email })
-    .exec()
-    .then((teacher) => {
-      if (!teacher) {
+  Teacher.findOne({ email }, (err, teacher) => {
+    if (err) {
+      return res.status(500).json({
+        error: err,
+      });
+    }
+
+    bcrypt.compare(password, teacher.password, (err, result) => {
+      if (err) {
         return res.status(401).json({
           message: 'Auth failed',
         });
       }
-      bcrypt.compare(password, teacher.password, (err, result) => {
-        if (err) {
-          return res.status(401).json({
-            message: 'Auth failed',
-          });
-        }
 
-        if (result) {
-          const token = jwt.sign(
-            {
-              email: teacher.email,
-              teacherId: teacher._id,
-            },
-            process.env.JWT_TEACHER_KEY,
-            {
-              expiresIn: '1h',
-            },
-          );
-          return res.status(200).json({
-            message: 'Auth successful',
-            token,
-          });
-        }
-        res.status(401).json({
-          message: 'Auth failed',
+      if (result) {
+        const token = jwt.sign(
+          {
+            email: teacher.email,
+            teacherId: teacher._id,
+          },
+          process.env.JWT_TEACHER_KEY,
+          {
+            expiresIn: '1h',
+          },
+        );
+        return res.status(200).json({
+          message: 'Auth successful',
+          token,
         });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        error: err,
+      }
+      res.status(401).json({
+        message: 'Auth failed',
       });
     });
+  })
 };
 
 module.exports.deauth = (res, req) => {

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const teacherSchema  = new Schema(
+const teacherSchema = new Schema(
   {
     firstname: {
       type: String,
