@@ -18,6 +18,7 @@ import MainTable from './addLessonComponents/Table/MainTable';
 import AddLessonModal from './addLessonComponents/Modal/Modal';
 import BookedTable from './addLessonComponents/Table/BookedTable';
 import PendingTable from './addLessonComponents/Table/PendingTable';
+import CalendarComponent from './addLessonComponents/Calendar/Calendar';
 
 const { Content, Footer, Sider } = Layout;
 
