@@ -14,12 +14,10 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 
-import AddLessonModal from './addLessonComponents/Modal/Modal';
-import TableComponent from './addLessonComponents/Table/Table';
 import MainTable from './addLessonComponents/Table/MainTable';
+import AddLessonModal from './addLessonComponents/Modal/Modal';
 import BookedTable from './addLessonComponents/Table/BookedTable';
 import PendingTable from './addLessonComponents/Table/PendingTable';
-import Navigation from './Navigation';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -31,7 +29,7 @@ function AddLesson() {
       </Sider>
       <Layout className="site-layout">
         <Content className="addLesson-content">
-          <div className="site-layout-background" style={{ padding: 24, textAlign: 'center' }}>
+          <div className="site-layout-background">
             <span className="addLesson-table-title">Pending Lessons</span>
             <PendingTable />
             <span className="addLesson-table-title">Booked Lessons</span>
