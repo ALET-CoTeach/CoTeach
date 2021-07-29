@@ -237,6 +237,7 @@ const columns = [
 const data = [
   {
     key: '1',
+    date: '',
     term: 'Term 1',
     day: 'Monday',
     time: 'AM',
@@ -248,6 +249,7 @@ const data = [
   },
   {
     key: '2',
+    date: '',
     term: 'Term 1',
     day: 'Friday　　　　　',
     time: 'PM',
@@ -259,6 +261,7 @@ const data = [
   },
   {
     key: '3',
+    date: '',
     term: 'Term 3',
     day: 'Wednesday',
     time: 'PM',
