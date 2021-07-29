@@ -1,5 +1,5 @@
 import React from 'react';
-import 'antd/dist/antd.dark.css';
+import 'antd/dist/antd.css';
 import '../index.css';
 import { Layout, Collapse } from 'antd';
 import {
