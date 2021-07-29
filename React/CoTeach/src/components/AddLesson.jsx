@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.dark.css';
 import '../index.css';
 import { Layout, Collapse } from 'antd';
 import {
