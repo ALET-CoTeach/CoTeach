@@ -3,9 +3,9 @@ import 'antd/dist/antd.css';
 import '../../index.css';
 import { Modal, Button } from 'antd';
 
-import AddLessonModalSteps from './AddLessonModalSteps';
+import StepsComponent from './Modal/Steps';
 
-function AddLessonModal(){
+function ModalComponent(){
 
   const [visible, setVisible] = useState(false);
   return (
@@ -23,10 +23,10 @@ function AddLessonModal(){
         footer={[
         ]}
       >
-        <AddLessonModalSteps />
+        <StepsComponent />
       </Modal>
     </>
   );
 };
 
-export default AddLessonModal;
+export default ModalComponent;

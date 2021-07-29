@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import '../../index.css';
+import '../../../../index.css';
 import {
   Form,
   Button,
@@ -9,7 +9,7 @@ import {
 } from 'antd';
 
 
-function AddLessonModalStepsSchoolform() {
+function Schoolform() {
   const [form] = Form.useForm();
   const [requiredMark, setRequiredMarkType] = useState('optional');
 
@@ -61,4 +61,4 @@ function AddLessonModalStepsSchoolform() {
   );
 };
 
-export default AddLessonModalStepsSchoolform;
+export default Schoolform;

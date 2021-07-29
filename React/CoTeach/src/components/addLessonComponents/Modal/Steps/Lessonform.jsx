@@ -1,9 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import '../../index.css';
+import '../../../../index.css';
 import { Form, Input, Button } from 'antd';
 
-function AddLessonModalStepsLessonform(){
+function Lessonform(){
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -80,4 +80,4 @@ function AddLessonModalStepsLessonform(){
   );
 };
 
-export default AddLessonModalStepsLessonform;
+export default Lessonform;

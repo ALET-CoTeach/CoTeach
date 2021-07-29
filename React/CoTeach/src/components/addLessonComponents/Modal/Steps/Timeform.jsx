@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import '../../index.css';
+import '../../../../index.css';
 import {
   Form,
   Button,
@@ -8,7 +8,7 @@ import {
   Select,
 } from 'antd';
 
-function AddLessonModalStepsTimeform(){
+function Timeform(){
   const [form] = Form.useForm();
   const [requiredMark, setRequiredMarkType] = useState('optional');
 
@@ -66,4 +66,4 @@ function AddLessonModalStepsTimeform(){
   );
 };
 
-export default AddLessonModalStepsTimeform;
+export default Timeform;
