@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navigation, Footer, Home, About, AddLesson, Login } from "./components";
-import LoginPage from "./components/LoginPage";
+import { Navigation, Footer, Home, About, AddLesson, LoginPage } from "./components";
 function App() {
   return (
     <div className="App">
