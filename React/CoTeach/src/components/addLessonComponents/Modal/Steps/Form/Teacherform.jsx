@@ -1,9 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import '../../../../index.css';
+import '../../../../../index.css';
 import { Form, Input, Button } from 'antd';
 
-function Lessonform(){
+function Teacherform(){
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -28,12 +28,12 @@ function Lessonform(){
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Subject"
-        name="subject"
+        label="Teacher's First Name"
+        name="teacher_firstname"
         rules={[
           {
             required: true,
-            message: 'Please input the subject!',
+            message: "Please input the teacher's first name!",
           },
         ]}
       >
@@ -41,12 +41,12 @@ function Lessonform(){
       </Form.Item>
 
       <Form.Item
-        label="Lesson Title"
-        name="lesson_title"
+        label="Teacher's Last Name"
+        name="teacher_lastname"
         rules={[
           {
             required: true,
-            message: "Please input the lesson's title!",
+            message: "Please input the teacher's last name!",
           },
         ]}
       >
@@ -54,16 +54,16 @@ function Lessonform(){
       </Form.Item>
 
       <Form.Item
-        label="Lesson Details"
-        name="lesson_details"
+        label="Teacher's Email"
+        name="teacher_email"
         rules={[
           {
             required: true,
-            message: "Please input the lesson's details!",
+            message: "Please input the teacher's email!",
           },
         ]}
       >
-        <Input.TextArea />
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -80,4 +80,4 @@ function Lessonform(){
   );
 };
 
-export default Lessonform;
+export default Teacherform;

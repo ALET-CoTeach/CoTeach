@@ -12,6 +12,30 @@ code {
     monospace;
 }
 
+.navbar{
+  position: 'fixed';
+  z-index: 10000;
+  width: 100%;
+}
+
+.sidebar{
+  overflow: 'auto';
+  height: '100vh';
+  position: 'fixed';
+  left: 0;
+}
+
+.addLesson-content{
+  
+}
+
+.addLesson-table-title{
+  font-weight: bold;
+  font-size: large;
+  padding: 10px;
+  float: left;
+}
+
 .steps-container {
   margin-left: 24px;
 }

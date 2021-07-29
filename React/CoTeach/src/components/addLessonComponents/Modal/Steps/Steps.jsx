@@ -1,11 +1,11 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import '../../../index.css';
+import '../../../../index.css';
 import { Steps, Button, message} from 'antd';
-import Teacherform from './Steps/Teacherform';
-import Schoolform from './Steps/Schoolform';
-import Lessonform from './Steps/Lessonform';
-import Timeform from './Steps/Timeform';
+import Teacherform from './Form/Teacherform';
+import Schoolform from './Form/Schoolform';
+import Lessonform from './Form/Lessonform';
+import Timeform from './Form/Timeform';
 
 const { Step } = Steps;
 

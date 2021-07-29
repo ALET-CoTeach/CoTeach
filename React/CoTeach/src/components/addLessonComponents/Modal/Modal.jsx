@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import '../../index.css';
+import '../../../index.css';
 import { Modal, Button } from 'antd';
 
-import StepsComponent from './Modal/Steps';
+import StepsComponent from './Steps/Steps';
 
 function ModalComponent(){
 
   const [visible, setVisible] = useState(false);
   return (
     <>
-      <Button style={{ width: 200, margin: 20 }} type="primary" onClick={() => setVisible(true)}>
+      <Button style={{ width: 150, margin: 20,}} type="primary" onClick={() => setVisible(true)}>
         Add Lesson
       </Button>
       <Modal

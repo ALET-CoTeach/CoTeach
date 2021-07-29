@@ -3,7 +3,9 @@ import 'antd/dist/antd.css';
 import React from 'react';
 import { Menu } from 'antd';
 import { Link, withRouter } from "react-router-dom";
-import { HomeOutlined, BookOutlined, SettingsOutlined } from '@ant-design/icons';
+import { HomeOutlined, BookOutlined, SettingOutlined } from '@ant-design/icons';
+
+const { SubMenu } = Menu;
 
 function Navigation(props) {
   state = {
@@ -17,22 +19,27 @@ function Navigation(props) {
 
   const { current } = this.state;
   return (
-    <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
+    <Menu className="navbar" onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
       <Menu.Item key="home" icon={<HomeOutlined />}>
-        <div class={`nav-item  ${props.location.pathname === "/" ? "active" : ""}`}>
-          <Link class="nav-link" to="/">
-            Home
-            <span class="sr-only">(current)</span>
-          </Link>
-        </div>
+        <Link to="/">
+          Home
+        </Link>
       </Menu.Item>
       <Menu.Item key="addLesson" icon={<BookOutlined />}>
-        <div class={`nav-item  ${props.location.pathname === "/addLesson" ? "active" : ""}`} >
-          <Link class="nav-link" to="/addLesson">
-            Add Lesson
-          </Link>
-        </div>
+        <Link to="/addLesson">
+          Add Lesson
+        </Link>
       </Menu.Item>
+      <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Navigation Three - Submenu">
+          <Menu.ItemGroup title="Item 1">
+            <Menu.Item key="setting:1">Option 1</Menu.Item>
+            <Menu.Item key="setting:2">Option 2</Menu.Item>
+          </Menu.ItemGroup>
+          <Menu.ItemGroup title="Item 2">
+            <Menu.Item key="setting:3">Option 3</Menu.Item>
+            <Menu.Item key="setting:4">Option 4</Menu.Item>
+          </Menu.ItemGroup>
+      </SubMenu>
     </Menu>
   );
 }
