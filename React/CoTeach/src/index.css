@@ -32,14 +32,10 @@ code {
   padding-left: 24px;
   padding-top: 10px;
   overflow: 'initial';
-  text-align: center;
 }
 
 .addLesson-table-title{
-  font-weight: bold;
   font-size: large;
-  padding: 10px;
-  float: left;
 }
 
 .steps-container {
