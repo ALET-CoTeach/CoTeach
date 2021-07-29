@@ -1,35 +1,34 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import '../../index.css';
+import '../../../../index.css';
 import { Steps, Button, message} from 'antd';
-
-import AddLessonModalStepsTeacherform from './AddLessonModalStepsTeacherform';
-import AddLessonModalStepsSchoolform from './AddLessonModalStepsSchoolform';
-import AddLessonModalStepsLessonform from './AddLessonModalStepsLessonform';
-import AddLessonModalStepsTimeform from './AddLessonModalStepsTimeform';
+import Teacherform from './Form/Teacherform';
+import Schoolform from './Form/Schoolform';
+import Lessonform from './Form/Lessonform';
+import Timeform from './Form/Timeform';
 
 const { Step } = Steps;
 
 const steps = [
   {
     title: 'School',
-    content: <AddLessonModalStepsSchoolform />,
+    content: <Schoolform />,
   },
   {
     title: 'Lesson',
-    content: <AddLessonModalStepsLessonform />,
+    content: <Lessonform />,
   },
   {
     title: 'Time',
-    content: <AddLessonModalStepsTimeform />,
+    content: <Timeform />,
   },
   {
     title: 'Teacher',
-    content: <AddLessonModalStepsTeacherform />,
+    content: <Teacherform />,
   },
 ];
 
-function AddLessonModalSteps(){
+function StepsComponent(){
   const [current, setCurrent] = React.useState(0);
 
   const next = () => {
@@ -72,4 +71,4 @@ function AddLessonModalSteps(){
   );
 };
 
-export default AddLessonModalSteps;
+export default StepsComponent;

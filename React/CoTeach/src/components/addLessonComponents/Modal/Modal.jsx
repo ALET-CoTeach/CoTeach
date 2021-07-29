@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import '../../index.css';
+import '../../../index.css';
 import { Modal, Button } from 'antd';
 
-import AddLessonModalSteps from './AddLessonModalSteps';
+import StepsComponent from './Steps/Steps';
 
-function AddLessonModal(){
+function ModalComponent(){
 
   const [visible, setVisible] = useState(false);
   return (
     <>
-      <Button style={{ width: 200, margin: 20 }} type="primary" onClick={() => setVisible(true)}>
+      <Button style={{ width: 150, margin: 20,}} type="primary" onClick={() => setVisible(true)}>
         Add Lesson
       </Button>
       <Modal
@@ -23,10 +23,10 @@ function AddLessonModal(){
         footer={[
         ]}
       >
-        <AddLessonModalSteps />
+        <StepsComponent />
       </Modal>
     </>
   );
 };
 
-export default AddLessonModal;
+export default ModalComponent;

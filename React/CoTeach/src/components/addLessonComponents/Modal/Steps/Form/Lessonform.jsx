@@ -1,9 +1,9 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import '../../index.css';
+import '../../../../../index.css';
 import { Form, Input, Button } from 'antd';
 
-function AddLessonModalStepsTeacherform(){
+function Lessonform(){
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -28,12 +28,12 @@ function AddLessonModalStepsTeacherform(){
       onFinishFailed={onFinishFailed}
     >
       <Form.Item
-        label="Teacher's First Name"
-        name="teacher_firstname"
+        label="Subject"
+        name="subject"
         rules={[
           {
             required: true,
-            message: "Please input the teacher's first name!",
+            message: 'Please input the subject!',
           },
         ]}
       >
@@ -41,12 +41,12 @@ function AddLessonModalStepsTeacherform(){
       </Form.Item>
 
       <Form.Item
-        label="Teacher's Last Name"
-        name="teacher_lastname"
+        label="Lesson Title"
+        name="lesson_title"
         rules={[
           {
             required: true,
-            message: "Please input the teacher's last name!",
+            message: "Please input the lesson's title!",
           },
         ]}
       >
@@ -54,16 +54,16 @@ function AddLessonModalStepsTeacherform(){
       </Form.Item>
 
       <Form.Item
-        label="Teacher's Email"
-        name="teacher_email"
+        label="Lesson Details"
+        name="lesson_details"
         rules={[
           {
             required: true,
-            message: "Please input the teacher's email!",
+            message: "Please input the lesson's details!",
           },
         ]}
       >
-        <Input />
+        <Input.TextArea />
       </Form.Item>
 
       <Form.Item
@@ -80,4 +80,4 @@ function AddLessonModalStepsTeacherform(){
   );
 };
 
-export default AddLessonModalStepsTeacherform;
+export default Lessonform;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import '../../index.css';
+import '../../../../../index.css';
 import {
   Form,
   Button,
@@ -8,7 +8,7 @@ import {
   Select,
 } from 'antd';
 
-function AddLessonModalStepsTimeform(){
+function Timeform(){
   const [form] = Form.useForm();
   const [requiredMark, setRequiredMarkType] = useState('optional');
 
@@ -31,7 +31,7 @@ function AddLessonModalStepsTimeform(){
         layout="horizontal"
         onValuesChange={onRequiredTypeChange}
       >
-        <Form.Item required label="Prefered Term" name="term">
+        <Form.Item required label="Preferred Term" name="term">
           <Radio.Group>
             <Radio.Button value="t1">T1</Radio.Button>
             <Radio.Button value="t2">T2</Radio.Button>
@@ -41,7 +41,7 @@ function AddLessonModalStepsTimeform(){
             <Radio.Button value="t6">T6</Radio.Button>
           </Radio.Group>
         </Form.Item>
-        <Form.Item required label="Prefered Day" name="day">
+        <Form.Item required label="Preferred Day" name="day">
           <Select>
             <Select.Option value="mon">Monday</Select.Option>
             <Select.Option value="tues">Tuesday</Select.Option>
@@ -50,7 +50,7 @@ function AddLessonModalStepsTimeform(){
             <Select.Option value="fri">Friday</Select.Option>
           </Select>
         </Form.Item>
-        <Form.Item required label="Prefered Time" name="time">
+        <Form.Item required label="Preferred Time" name="time">
           <Radio.Group>
             <Radio.Button value="am">AM</Radio.Button>
             <Radio.Button value="pm">PM</Radio.Button>
@@ -66,4 +66,4 @@ function AddLessonModalStepsTimeform(){
   );
 };
 
-export default AddLessonModalStepsTimeform;
+export default Timeform;
