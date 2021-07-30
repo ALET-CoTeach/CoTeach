@@ -28,7 +28,10 @@ const steps = [
   },
 ];
 
-function StepsComponent(){
+function StepsComponent(props){
+
+  const{handleOk} = props;
+
   const [current, setCurrent] = React.useState(0);
 
   const next = () => {
@@ -56,7 +59,7 @@ function StepsComponent(){
             </Button>
           )}
           {current === steps.length - 1 && (
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>
+            <Button type="primary" onClick={handleOk,  () => message.success('Processing complete!')}>
               Done
             </Button>
           )}
