@@ -237,7 +237,7 @@ class BookedTable extends Component {
   render() {
     return (
       <>
-        <Table pagination={false} columns={columns} dataSource={data} onChange={onChange}/>
+        <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} className="bookedtable"/>
       </>
     );
   };

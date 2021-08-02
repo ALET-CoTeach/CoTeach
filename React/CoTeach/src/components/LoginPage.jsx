@@ -4,7 +4,12 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Card, Image, Form, Input, Button, Checkbox, Radio } from 'antd';
 
-
+const validateMessages = {
+  required: '${label} is required!',
+  types: {
+    email: '${label} is not a valid email!',
+  },
+};
 
 class LoginPage extends React.Component {
     render() {
@@ -26,6 +31,7 @@ class LoginPage extends React.Component {
                             // wrapperCol={{
                             //     span: 16
                             // }}
+                            validateMessages={validateMessages}
                             initialValues={{
                                 remember: true
                             }}
@@ -38,14 +44,14 @@ class LoginPage extends React.Component {
                               </Radio.Group>
                             </Form.Item>
                             <Form.Item
-                                label="Username"
-                                name="username"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: "Please input your username!"
-                                    }
-                                ]}
+                              required
+                              name={['user', 'email']}
+                              label="Email"
+                              rules={[
+                                {
+                                  type: 'email',
+                                },
+                              ]}
                             >
                                 <Input />
                             </Form.Item>
@@ -80,7 +86,6 @@ class LoginPage extends React.Component {
                                     span: 16
                                 }}
                             >
-                                
                                 <Button type="primary" htmlType="submit">
                                     Submit
                                 </Button>
