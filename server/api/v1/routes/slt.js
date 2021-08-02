@@ -6,6 +6,7 @@ const router = Router();
 
 router.post('/register', checkSLTAuth,  SLTController.register);
 router.post('/signin', SLTController.access);
+router.post('/signout', checkSLTAuth, SLTController.deauth);
 
 module.exports = router;
 

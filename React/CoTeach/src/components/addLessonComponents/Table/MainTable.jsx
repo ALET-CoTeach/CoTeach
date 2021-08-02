@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import '../../../index.css';
 import { Table } from 'antd';
@@ -67,7 +67,7 @@ const columns = [
       {
         text: 'Computing',
         value: 'Computing',
-        },
+      },
       {
         text: 'Engineering',
         value: 'Engineering',
@@ -305,12 +305,14 @@ function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
 
-function MainTable(){
-    return(
-        <>
+class MainTable extends Component {
+  render() {
+    return (
+      <>
         <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} />
-        </>
-    )
+      </>
+    );
+  };
 }
 
 export default MainTable;

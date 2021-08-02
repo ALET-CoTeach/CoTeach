@@ -1,0 +1,34 @@
+.LoginBody {
+    background-image: url('../assets/Login-bckg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+    .LoginBody {
+        background-image: url('../assets/backg1275.svg');
+    }
+  }
+
+.cardPadding {
+    padding-left: 1%;
+    padding-top: 2%;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }

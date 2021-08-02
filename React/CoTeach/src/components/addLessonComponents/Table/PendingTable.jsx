@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import '../../../index.css';
 import { Table } from 'antd';
@@ -277,12 +277,14 @@ function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
 
-function PendingTable(){
-    return(
-        <>
+class PendingTable extends Component {
+  render() {
+    return (
+      <>
         <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} />
-        </>
-    )
+      </>
+    );
+  };
 }
 
 export default PendingTable;

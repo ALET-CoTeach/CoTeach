@@ -30,14 +30,14 @@ function Navigation(props) {
           Add Lesson
         </Link>
       </Menu.Item>
-      <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Navigation Three - Submenu">
-          <Menu.ItemGroup title="Item 1">
-            <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
+      <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Work In Progress">
+          <Menu.ItemGroup title="Dashboards">
+            <Menu.Item key="setting:1"><Link to="statistics">Lesson Statistics</Link></Menu.Item>
+            <Menu.Item key="setting:2"><Link to="/">Social Media Statistics</Link></Menu.Item>
           </Menu.ItemGroup>
-          <Menu.ItemGroup title="Item 2">
-            <Menu.Item key="setting:3">Option 3</Menu.Item>
-            <Menu.Item key="setting:4">Option 4</Menu.Item>
+          <Menu.ItemGroup title="Accounts">
+            <Menu.Item key="setting:3"><Link to="register">Register</Link></Menu.Item>
+            <Menu.Item key="setting:4"><Link to="login">Login</Link></Menu.Item>
           </Menu.ItemGroup>
       </SubMenu>
     </Menu>

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 
-function Footer() {
-  return (
+class Footer extends Component {
+  render() {
     <div className="footer">
       <footer class="py-5 bg-dark fixed-bottom">
         <div class="container">
@@ -10,8 +10,8 @@ function Footer() {
           </p>
         </div>
       </footer>
-</div>
-  );
+    </div>
+  };
 }
 
 export default Footer;

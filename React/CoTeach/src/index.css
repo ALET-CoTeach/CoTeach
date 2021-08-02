@@ -32,14 +32,10 @@ code {
   padding-left: 24px;
   padding-top: 10px;
   overflow: 'initial';
-  text-align: center;
 }
 
 .addLesson-table-title{
-  font-weight: bold;
   font-size: large;
-  padding: 10px;
-  float: left;
 }
 
 .steps-container {
@@ -65,4 +61,8 @@ code {
   background-color: rgba(255,255,255,0.04);
   color: rgba(255,255,255,0.65);
   padding-top: 80px;
+}
+
+.bookedtable{
+  background-color: lightskyblue;
 }

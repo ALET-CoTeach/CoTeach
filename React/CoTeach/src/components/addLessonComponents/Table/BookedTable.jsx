@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import '../../../index.css';
 import { Table } from 'antd';
@@ -67,7 +67,7 @@ const columns = [
       {
         text: 'Computing',
         value: 'Computing',
-        },
+      },
       {
         text: 'Engineering',
         value: 'Engineering',
@@ -229,16 +229,18 @@ const data = [
   },
 ];
 
-function onChange(pagination,filters, sorter, extra) {
+function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
 
-function BookedTable(){
-    return(
-        <>
-        <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} />
-        </>
-    )
+class BookedTable extends Component {
+  render() {
+    return (
+      <>
+        <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} className="bookedtable"/>
+      </>
+    );
+  };
 }
 
 export default BookedTable;
