@@ -16,11 +16,11 @@ const LessonRequestSchema = new Schema(
             type: String,
             require: true,
         },
-        LessonTitle: {
+        lessonTitle: {
             type: String,
             require: true,
         },
-        LessonDetails: {
+        lessonDetails: {
             type: String,
             require: true,
         },
@@ -45,6 +45,6 @@ const LessonRequestSchema = new Schema(
     },
 );
 
-const LessonRequest = mongoose.model('LessonRequest',LessonRequestSchema );
+const LessonRequest = mongoose.model('LessonRequest', LessonRequestSchema );
 
 module.exports = LessonRequest;
