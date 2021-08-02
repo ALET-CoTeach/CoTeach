@@ -2,6 +2,7 @@ export { default as Home } from "./Home";
 export { default as Footer } from "./Footer";
 export { default as AddLesson } from "./AddLesson";
 export { default as LoginPage } from "./LoginPage";
+export { default as RegisterPage } from "./RegisterPage";
 export { default as StatisticsPage } from "./Statistics";
 export { default as Navigation } from "./Navigation";
 

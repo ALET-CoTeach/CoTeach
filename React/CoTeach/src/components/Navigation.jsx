@@ -36,7 +36,7 @@ function Navigation(props) {
             <Menu.Item key="setting:2"><Link to="/">Social Media Statistics</Link></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Accounts">
-            <Menu.Item key="setting:3"><Link to="/">Register</Link></Menu.Item>
+            <Menu.Item key="setting:3"><Link to="register">Register</Link></Menu.Item>
             <Menu.Item key="setting:4"><Link to="login">Login</Link></Menu.Item>
           </Menu.ItemGroup>
       </SubMenu>
