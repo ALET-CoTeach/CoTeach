@@ -15,31 +15,17 @@ module.exports.createOne = (socialMediaPostData) =>
     } = socialMediaPostData;
 
     try {
-      // Returns a single document from unique email
-      const socialMediaPost = await SocialMediaPost.findOne({ email });
-      if (!socialMediaPost) {
-        // Creates new Address Object for SocialMediaPost
-        const address = new Address({
-          line1,
-          towncity,
-          county,
-          postcode,
-        });
-
+      const newSocialMediaPost = new SocialMediaPost({
         // Creates new SocialMediaPost Object
-        const newSocialMediaPost = new SocialMediaPost({
-          name,
-          email,
-          address,
-        });
+        image,
+        caption,
+        teacherId,
+        schoolId,
+      });
 
-        // Saves socialMediaPost object to database
-        const savedSocialMediaPost = await newSocialMediaPost.save();
-        resolve(savedSocialMediaPost);
-      } else {
-        // Runs if account already exits
-        reject(new Error("SocialMediaPost already exists"));
-      }
+      // Saves socialMediaPost object to database
+      const savedSocialMediaPost = await newSocialMediaPost.save();
+      resolve(savedSocialMediaPost);
     } catch (err) {
       reject(err);
     }
@@ -59,31 +45,24 @@ module.exports.updateOne = (socialMediaPostId, updateData) =>
   new Promise(async (resolve, reject) => {
     try {
       const {
-        name,
-        email,
-        line1,
-        towncity,
-        county,
-        postcode,
+        image,
+        caption,
+        teacherId,
+        schoolId,
       } = updateData;
 
-      const address = {
-        line1,
-        towncity,
-        county,
-        postcode,
-      };
-
       const update = {
-        name,
-        email,
-        address,
+        image,
+        caption,
+        teacherId,
+        schoolId,
       };
 
       const updatedSocialMediaPost = await SocialMediaPost.findOneAndUpdate(
         { _id: socialMediaPostId },
         update,
         {
+          // Returns the new document after update is made
           new: true,
         }
       );
