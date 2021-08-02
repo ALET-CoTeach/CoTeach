@@ -25,6 +25,8 @@ const LessonRequestSchema = new Schema(
             require: true,
         },
         term: {
+            typ: String,
+            require: true,
             
         },
         preferredDay: {
