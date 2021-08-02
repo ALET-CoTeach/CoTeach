@@ -6,6 +6,7 @@ const router = Router();
 
 router.post('/register', checkEmployerAuth, EmployerController.register);
 router.post('/signin', EmployerController.access);
+router.post('/signout', checkEmployerAuth, EmployerController.deauth);
 
 module.exports = router;
 
