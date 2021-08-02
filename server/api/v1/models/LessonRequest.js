@@ -6,40 +6,51 @@ const LessonRequestSchema = new Schema(
     {
         schoolid: {
             type: String,
-            require: true,
+            required: true,
         },
         year: {
             type: Number,
-            require: true,
+            required: true,
         },
         subject: {
             type: String,
-            require: true,
+            required: true,
         },
         lessonTitle: {
             type: String,
-            require: true,
+            required: true,
         },
         lessonDetails: {
             type: String,
-            require: true,
+            required: true,
         },
         term: {
-            typ: String,
-            require: true,
-            
+            type: String,
+            required: true,
         },
         preferredDay: {
             type: String,
-            require: true,
+            required: true,
         },
         preferredTime: {
             type: String,
-            require: true
+            required: true
         },
         teacherId: {
             type: String,
-            require: true,
+            required: true,
+        },
+        startDate: {
+            type: Date,
+            required: false,
+        },
+        endDate: {
+            type: Date,
+            required: false,
+        },
+        employerId: {
+            type: String,
+            required: false,
         }
     },
     {
@@ -47,6 +58,6 @@ const LessonRequestSchema = new Schema(
     },
 );
 
-const LessonRequest = mongoose.model('LessonRequest', LessonRequestSchema );
+const LessonRequest = mongoose.model('LessonRequest', LessonRequestSchema);
 
 module.exports = LessonRequest;
