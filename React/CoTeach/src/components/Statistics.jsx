@@ -48,7 +48,7 @@ class StatisticsPage extends Component {
                                             <Card>
                                                 <Statistic
                                                     title="Active"
-                                                    value={11.28}
+                                                    value={4.97}
                                                     precision={2}
                                                     valueStyle={{ color: '#3f8600' }}
                                                     prefix={<ArrowUpOutlined />}
@@ -60,7 +60,7 @@ class StatisticsPage extends Component {
                                             <Card>
                                                 <Statistic
                                                     title="Idle"
-                                                    value={9.3}
+                                                    value={1.37}
                                                     precision={2}
                                                     valueStyle={{ color: '#cf1322' }}
                                                     prefix={<ArrowDownOutlined />}
@@ -75,7 +75,7 @@ class StatisticsPage extends Component {
                                             <Card>
                                                 <Statistic
                                                     title="Active"
-                                                    value={11.28}
+                                                    value={15.81}
                                                     precision={2}
                                                     valueStyle={{ color: '#3f8600' }}
                                                     prefix={<ArrowUpOutlined />}
@@ -85,7 +85,7 @@ class StatisticsPage extends Component {
                                         </Col>
                                         <Col span={6}>
                                             <Card>
-                                                <Statistic title="Feedback" value={1128} prefix={<LikeOutlined />} />
+                                                <Statistic title="Feedback" value={5973} prefix={<LikeOutlined />} />
                                             </Card>
                                         </Col>
                                     </Row>
