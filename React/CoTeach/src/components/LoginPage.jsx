@@ -2,7 +2,7 @@ import React from 'react';
 import './loginPage.css';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import { Card, Image, Form, Input, Button, Checkbox } from 'antd';
+import { Card, Image, Form, Input, Button, Checkbox, Radio } from 'antd';
 
 
 
@@ -30,6 +30,13 @@ class LoginPage extends React.Component {
                                 remember: true
                             }}
                         >
+                            <Form.Item required label="User Type" name="usertype">
+                              <Radio.Group>
+                                <Radio.Button value="SLT">SLT</Radio.Button>
+                                <Radio.Button value="Teacher">Teacher</Radio.Button>
+                                <Radio.Button value="Employer">Employer</Radio.Button>
+                              </Radio.Group>
+                            </Form.Item>
                             <Form.Item
                                 label="Username"
                                 name="username"
