@@ -178,7 +178,7 @@ module.exports.access = (req, res) => {
         const token = jwt.sign(
           {
             email: slt.email,
-            sltId: slt._id,
+            id: slt._id,
           },
           process.env.JWT_SLT_KEY,
           {

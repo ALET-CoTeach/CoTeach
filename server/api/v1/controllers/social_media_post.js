@@ -93,3 +93,44 @@ module.exports.getOne = (socialMediaPostId) =>
     }
   });
 
+module.exports.review = (res, req) => {
+  const {
+    postId: id,
+    facebookStatus: facebookStatus.toLowerCase(),
+    linkedinStatus: linkedinStatus.toLowerCase(),
+  } = req.body;
+
+  const updateData = {
+    facebookStatus,
+    linkedinStatus,
+    reviewerId: req.adminId.id || req.sltId.id,
+  }; 
+
+  // Array of valid values for facebookStatus and linkedinStatus
+  const valid = ['pending', 'approved', 'rejected', null];
+
+  // Check that statuses are valid
+  if (valid.included(facebookStatus) && valid.included(linkedinStatus)) {
+  
+    // Update SocialMediaPost document
+    SocialMediaPost.updateOne({ _id: postId }, updateData, (err, post) => { 
+      if (err) {
+        return res.status(500).json({
+          error: err,
+        });
+      }
+      
+      // Return success response with updated post attached
+      return res.status(200).json({
+        message: "SocialMediaPost document updated successfuly",
+        post,
+      });
+    }); 
+
+  } else {
+    // Respond with error message
+    return res.status(406).json({
+      message: "Error: Status values are not valid. Check for spelling error"
+    });
+  }
+};

@@ -181,7 +181,7 @@ module.exports.access = (req, res) => {
         const token = jwt.sign(
           {
             email: employer.email,
-            employerId: employer._id,
+            id: employer._id,
           },
           process.env.JWT_EMPLOYER_KEY,
           {

@@ -78,7 +78,7 @@ module.exports.access = (req, res) => {
         const token = jwt.sign(
           {
             email: admin.email,
-            adminId: admin._id,
+            id: admin._id,
           },
           process.env.JWT_ADMIN_KEY,
           {

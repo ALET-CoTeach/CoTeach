@@ -181,7 +181,7 @@ module.exports.access = (req, res) => {
         const token = jwt.sign(
           {
             email: teacher.email,
-            teacherId: teacher._id,
+            id: teacher._id,
           },
           process.env.JWT_TEACHER_KEY,
           {
