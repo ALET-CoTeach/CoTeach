@@ -96,8 +96,8 @@ module.exports.getOne = (socialMediaPostId) =>
 module.exports.review = (req, res) => {
   const {
     postId: id,
-    facebookStatus: req.body.facebookStatus.toLowerCase(),
-    linkedinStatus: req.body.linkedinStatus.toLowerCase(),
+    facebookStatus: facebookStatus.toLowerCase(),
+    linkedinStatus: linkedinStatus.toLowerCase(),
   } = req.body;
 
   const updateData = {
