@@ -93,11 +93,11 @@ module.exports.getOne = (socialMediaPostId) =>
     }
   });
 
-module.exports.review = (res, req) => {
+module.exports.review = (req, res) => {
   const {
     postId: id,
-    facebookStatus: facebookStatus.toLowerCase(),
-    linkedinStatus: linkedinStatus.toLowerCase(),
+    facebookStatus: req.body.facebookStatus.toLowerCase(),
+    linkedinStatus: req.body.linkedinStatus.toLowerCase(),
   } = req.body;
 
   const updateData = {
