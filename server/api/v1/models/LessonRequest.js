@@ -51,6 +51,10 @@ const LessonRequestSchema = new Schema(
         employerId: {
             type: String,
             required: false,
+        },
+        companyId: {
+            type: String,
+            required: false,
         }
     },
     {
