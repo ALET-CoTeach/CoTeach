@@ -2,6 +2,20 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Navigation, Home, AddLesson, LoginPage, StatisticsPage, RegisterPage } from "./components";
 
+// FAQ
+
+// About
+
+// User Profiles for Coordinators
+
+// Search by Teacher
+
+// Search by Employer
+
+// Upload Resources
+
+// Profile for schools
+
 class App extends React.Component {
   render() {
     return (

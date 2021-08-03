@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import '../../../index.css';
 import { Table } from 'antd';
+import styles from "./table-style.css";
 
 const columns = [
   {
@@ -309,7 +310,7 @@ class MainTable extends Component {
   render() {
     return (
       <>
-        <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} />
+        <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} className="styles.thead" />
       </>
     );
   };
