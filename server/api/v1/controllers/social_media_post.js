@@ -134,7 +134,7 @@ module.exports.review = (req, res) => {
     });
   }
 };
-
+//
 module.exports.postFacebook = (req, res) => {
   const { postId: id } = req.body;
   SocialMediaPost.findOne({ _id: postId }, (err, post) => {
@@ -164,8 +164,61 @@ module.exports.postFacebook = (req, res) => {
   });
 };
 
+module.exports.updateFacebook = (req, res) => {
+  const { postId: id } = req.body;
+  SocialMediaPost.findOne({ _id: postId }, (err, post) => {
+    if (err) {
+      return res.status(500).json({
+        error: err,
+      });
+    }
+
+    if (post.facebookStatus === 'approved') {
+      const url = `https://graph.facebook.com/${page_post_id}?message=${post.caption}&access_token=${process.env.FACEBOOK_TOKEN}`
+      axios.post(url,
+        {
+          method: "post"
+        })
+        .then((response) => {
+          res.status(201).json({
+            message: "updated post successfully",
+          });
+        })
+        .catch((err) => {
+          return res.status(500).json({
+            error: err,
+          });
+        });
+    }
+  });
+}
+
+
 module.exports.deleteFacebook = (req, res) => {
   const { postId: id } = req.body;
+  SocialMediaPost.findOne({ _id: postId }, (err, post) => {
+    if (err) {
+      return res.status(500).json({
+        error: err,
+      });
+    }
 
-
+    if (post.facebookStatus === 'approved') {
+      const url = `https://graph.facebook.com/${PHOTO_ID}?access_token=${process.env.FACEBOOK_TOKEN}`
+      axios.post(url,
+        {
+          method: "delete"
+        })
+        .then((response) => {
+          res.status(201).json({
+            message: "deleted post successfully",
+          });
+        })
+        .catch((err) => {
+          return res.status(500).json({
+            error: err,
+          });
+        });
+    }
+  });
 }
