@@ -15,7 +15,8 @@
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.20",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12"
   },
   "author": "Samson Nagamani <samson.nagamani@pm.me>",
   "license": "GPL-3.0"
