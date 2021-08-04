@@ -11,7 +11,6 @@ class UTCProfiles extends React.Component {
         return (
             <Layout>
                 <Sider className="sidebar">
-                    <AddLessonModal />
                 </Sider>
                 <Layout className="site-layout">
                     <Content className="addLesson-content">
