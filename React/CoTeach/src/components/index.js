@@ -1,4 +1,5 @@
 export { default as Home } from "./Home";
+export { default as About } from "./About";
 export { default as Footer } from "./Footer";
 export { default as AddLesson } from "./AddLesson";
 export { default as LoginPage } from "./LoginPage";
@@ -19,7 +20,7 @@ export { default as ModalComponent } from "./addLessonComponents/Modal/Modal";
 export { default as StepsComponent } from "./addLessonComponents/Modal/Steps/Steps";
 
 //addLesson Calendar
-export { default as CalendarComponent } from "./addLessonComponents/Calendar/Calendar"
+export { default as CalendarComponent } from "./addLessonComponents/Calendar/Calendar";
 
 //addLesson Forms
 export { default as Timeform } from "./addLessonComponents/Modal/Steps/Form/Timeform";

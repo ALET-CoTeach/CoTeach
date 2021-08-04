@@ -1,6 +1,5 @@
 import React from 'react';
 import './loginPage.css';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Card, Image, Form, Input, Button, Checkbox, Radio } from 'antd';
 

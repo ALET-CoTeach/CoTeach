@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navigation, Home, AddLesson, LoginPage, StatisticsPage, RegisterPage } from "./components";
+import { Navigation, Home, About, AddLesson, LoginPage, StatisticsPage, RegisterPage } from "./components";
 
 // FAQ
 
@@ -24,6 +24,7 @@ class App extends React.Component {
           <Navigation />
           <Switch>
             <Route path="/" exact component={() => <Home />} />
+            <Route path="/about" exact component={() => <About />} />
             <Route path="/addLesson" exact component={() => <AddLesson />} />
             <Route path="/login" exact component={() => <LoginPage />} />
             <Route path="/register" exact component={() => <RegisterPage />} />
