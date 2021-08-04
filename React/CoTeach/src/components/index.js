@@ -14,6 +14,12 @@ export { default as TableComponent } from "./addLessonComponents/Table/Table";
 export { default as BookedTable } from "./addLessonComponents/Table/BookedTable";
 export { default as PendingTable } from "./addLessonComponents/Table/PendingTable";
 
+//LoginPageComponents
+export { default as LoginTabs } from "./LoginPageComponents/LoginTabs";
+export { default as TeacherForm } from "./LoginPageComponents/Forms/TeacherForm";
+export { default as SLTForm } from "./LoginPageComponents/Forms/SLTForm";
+export { default as EmployerForm } from "./LoginPageComponents/Forms/EmployerForm";
+
 //addLesson Modal
 export { default as ModalComponent } from "./addLessonComponents/Modal/Modal";
 
