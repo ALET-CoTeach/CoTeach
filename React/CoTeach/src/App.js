@@ -16,8 +16,10 @@ import { Navigation, Home, About, AddLesson, LoginPage, StatisticsPage, Register
 
 // Profile for schools
 
-class App extends React.Component {
-  render() {
+var isLoggedIn = true;
+
+function App() {
+  if (isLoggedIn){
     return (
       <div className="App">
         <Router>
@@ -33,7 +35,8 @@ class App extends React.Component {
         </Router>
       </div>
     );
-  };
+  }
+  return <LoginPage />;
 };
 
 export default App;
