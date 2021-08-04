@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navigation, Home, About, AddLesson, LoginPage, StatisticsPage, RegisterPage } from "./components";
+import { Navigation, Home, About, AddLesson, LoginPage, StatisticsPage, RegisterPage, UTCProfiles } from "./components";
 
 // FAQ
 
@@ -31,6 +31,7 @@ function App() {
             <Route path="/login" exact component={() => <LoginPage />} />
             <Route path="/register" exact component={() => <RegisterPage />} />
             <Route path="/statistics" exact component={() => <StatisticsPage />} />
+            <Route path="/UTCProfiles" exact component={() => <UTCProfiles /> } />
           </Switch>
         </Router>
       </div>

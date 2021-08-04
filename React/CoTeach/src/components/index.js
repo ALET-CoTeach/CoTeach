@@ -6,6 +6,7 @@ export { default as LoginPage } from "./LoginPage";
 export { default as RegisterPage } from "./RegisterPage";
 export { default as StatisticsPage } from "./Statistics";
 export { default as Navigation } from "./Navigation";
+export { default as UTCProfiles } from './UTCProfiles';
 
 //addLesson Tables
 export { default as MainTable } from "./addLessonComponents/Table/MainTable";
