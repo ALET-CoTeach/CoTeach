@@ -50,9 +50,6 @@ class UTCProfiles extends React.Component {
                     <Content className="addLesson-content">
                         <div className="site-layout-background">
 
-<<<<<<< Updated upstream
-                            <div>CONTENT HERE</div>
-=======
                             <div>
                                 <>
                                     <List size="large"
@@ -171,7 +168,6 @@ class UTCProfiles extends React.Component {
                                 </>
 
                             </div>
->>>>>>> Stashed changes
 
                         </div>
                     </Content>
