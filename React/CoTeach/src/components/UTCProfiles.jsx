@@ -15,7 +15,7 @@ class UTCProfiles extends React.Component {
                 <Layout className="site-layout">
                     <Content className="addLesson-content">
                         <div className="site-layout-background">
-                            
+
                             <div>CONTENT HERE</div>
 
                         </div>
