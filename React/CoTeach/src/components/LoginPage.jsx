@@ -1,7 +1,9 @@
 import React from 'react';
 import './loginPage.css';
 import 'antd/dist/antd.css';
-import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col } from 'antd';
+import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Icon } from 'antd';
+import coTeach from 'url:~/src/assets/CoTeach-Logo-Blue.svg';
+
 
 const validateMessages = {
     required: '${label} is required!',
@@ -13,43 +15,38 @@ const validateMessages = {
 class LoginPage extends React.Component {
     render() {
         return (
-            <div className="LoginBody cardAlignment">
+            <div className="LoginBody ">
 
                 <Row type="flex" align="bottom">
-                    <Col className="gutter-row" md={2}
+                    <Col className="gutter-row" lg={2} sm={24}
                     />
-                    <Col className="gutter-row" md={8}>
-                        <div>
-                            <Card style={{ width: "90%", height: "70%", boxShadow: "5px 8px 24px 5px rgba(0, 0, 0, 0.2)" }}>
+                    <Col className="gutter-row" lg={8} sm={24} xs={24}>
+                        <div className="cardAlignment cardPadding">
+                            <Card className="cardStyling" style={{  boxShadow: "5px 8px 24px 5px rgba(0, 0, 0, 0.2)" }}>
                                 <h1 className="centerText">CoTeach Sign In</h1>
-                                {/* <Image
-                            width="30%"
-                            src="https://image.flaticon.com/icons/png/512/481/481078.png"
-                        /> */}
 
                                 <Form
                                     name="basic"
                                     type="flex"
                                     justify="center"
                                     align="middle"
-
-                                    // labelCol={{
-                                    //     span: 8
-                                    // }}
-                                    // wrapperCol={{
-                                    //     span: 16
-                                    // }}
                                     validateMessages={validateMessages}
                                     initialValues={{
                                         remember: true
                                     }}
                                 >
+                                    <div>
+                                        <img src={coTeach}  width="30%" />
+                                    </div>
+
                                     <Form.Item name="usertype">
-                                        <Radio.Group>
+                                        <div className="radioPadding">
+                                        <Radio.Group size="middle">
                                             <Radio.Button value="Teacher">Teacher</Radio.Button>
-                                            <Radio.Button value="Coordinator">Coordinator</Radio.Button>
-                                            <Radio.Button value="Employer">Employer</Radio.Button>
+                                            <Radio.Button value="Coordinator">Employer</Radio.Button>
+                                            <Radio.Button value="Employer">Coordinator</Radio.Button>
                                         </Radio.Group>
+                                        </div>
                                     </Form.Item>
                                     <Form.Item
                                         //   required
@@ -61,7 +58,7 @@ class LoginPage extends React.Component {
                                             },
                                         ]}
                                     >
-                                        <Input placeholder="Email" />
+                                        <Input placeholder="Email" size="large" />
                                     </Form.Item>
 
                                     <Form.Item
@@ -74,7 +71,7 @@ class LoginPage extends React.Component {
                                             }
                                         ]}
                                     >
-                                        <Input.Password placeholder="Password" />
+                                        <Input.Password placeholder="Password" size="large"/>
                                     </Form.Item>
 
                                     <Form.Item
@@ -94,8 +91,8 @@ class LoginPage extends React.Component {
                                             // span: 16
                                         }}
                                     >
-                                        <Button type="primary" htmlType="submit">
-                                            Submit
+                                        <Button block type="primary" htmlType="submit" size="large">
+                                            Sign In
                                         </Button>
 
                                     </Form.Item>
