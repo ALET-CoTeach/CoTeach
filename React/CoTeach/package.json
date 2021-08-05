@@ -1,12 +1,14 @@
 {
-  "name": "intro-to-ant-design",
+  "name": "coteach-react-app",
   "version": "0.1.0",
-  "description": "",
+  "description": "Improving the automation of industry communications for ALET schools.",
+  "author": "Abdullah Shah <AbdullahShahUK@outlook.com>",
+  "proxy": "http://localhost:3001",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "cross-env PORT=3000 parcel index.html",
     "build": "parcel build index.html"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "dependencies": {
     "antd": "^4.16.9",
     "react": "^16.13.1",
@@ -14,8 +16,10 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@parcel/transformer-image": "^2.0.0-beta.2",
     "@parcel/transformer-less": "^2.0.0-beta.2",
     "babel-preset-nano-react-app": "^0.1.0",
+    "cross-env": "^7.0.3",
     "parcel": "^2.0.0-alpha.3.2"
   },
   "babel": {

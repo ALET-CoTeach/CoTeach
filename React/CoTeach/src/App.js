@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navigation, Home, About, AddLesson, LoginPage, StatisticsPage, RegisterPage } from "./components";
+import { Navigation, Home, Users, About, AddLesson, LoginPage, StatisticsPage, RegisterPage, UTCProfiles, LessonBooking } from "./components";
 
 // FAQ
 
@@ -16,24 +16,30 @@ import { Navigation, Home, About, AddLesson, LoginPage, StatisticsPage, Register
 
 // Profile for schools
 
-class App extends React.Component {
-  render() {
+var isLoggedIn = true;
+
+function App() {
+  if (isLoggedIn){
     return (
       <div className="App">
         <Router>
           <Navigation />
           <Switch>
             <Route path="/" exact component={() => <Home />} />
+            <Route path="/users" exact component={() => <Users />} />
             <Route path="/about" exact component={() => <About />} />
             <Route path="/addLesson" exact component={() => <AddLesson />} />
             <Route path="/login" exact component={() => <LoginPage />} />
             <Route path="/register" exact component={() => <RegisterPage />} />
             <Route path="/statistics" exact component={() => <StatisticsPage />} />
+            <Route path="/UTCProfiles" exact component={() => <UTCProfiles /> } />
+            <Route path="/LessonBooking" exact component={() => <LessonBooking /> } />
           </Switch>
         </Router>
       </div>
     );
-  };
+  }
+  return <LoginPage />;
 };
 
 export default App;
