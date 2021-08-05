@@ -27,11 +27,11 @@ export class LessonBooking extends Component {
                                 <Panel className="addLesson-table-title" header="Your Bookings" key="1">
 
                                 </Panel>
-                                <Panel className="addLesson-table-title" header="All Booked Lessons" key="2">
-
-                                </Panel>
-                                <Panel className="addLesson-table-title" header="All Lessons" key="3">
+                                <Panel className="addLesson-table-title" header="All Lessons" key="2">
                                     <AllLessons />
+                                </Panel>
+                                <Panel className="addLesson-table-title" header="All Booked Lessons" key="3">
+
                                 </Panel>
                             </Collapse>
 

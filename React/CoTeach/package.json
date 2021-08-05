@@ -24,7 +24,8 @@
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.20",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-highlight-words": "^0.17.0"
   },
   "devDependencies": {
     "@parcel/transformer-image": "^2.0.0-beta.2",
