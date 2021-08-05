@@ -6,6 +6,8 @@ import { Layout, Collapse } from 'antd';
 
 //All Table Imports 
 import AllLessons from './BookingLessonComponents/Table/AllLessons';
+import YourBookings from './BookingLessonComponents/Table/YourBookings';
+import AllBookedLessons from './BookingLessonComponents/Table/AllBookedLessons';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -17,7 +19,7 @@ export class LessonBooking extends Component {
         return (
             <Layout>
                 <Sider className="sidebar">
-                    
+
                 </Sider>
                 <Layout className="site-layout">
                     <Content className="bookingLesson-content">
@@ -25,13 +27,13 @@ export class LessonBooking extends Component {
 
                             <Collapse bordered={false} defaultActiveKey={['1', '2', '3']} ghost>
                                 <Panel className="addLesson-table-title" header="Your Bookings" key="1">
-
+                                    <YourBookings />
                                 </Panel>
-                                <Panel className="addLesson-table-title" header="All Lessons" key="2">
+                                <Panel className="addLesson-table-title" header="All Available Lessons" key="2">
                                     <AllLessons />
                                 </Panel>
                                 <Panel className="addLesson-table-title" header="All Booked Lessons" key="3">
-
+                                    <AllBookedLessons />
                                 </Panel>
                             </Collapse>
 
