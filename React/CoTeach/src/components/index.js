@@ -1,4 +1,5 @@
 export { default as Home } from "./Home";
+export { default as Users } from "./Users";
 export { default as About } from "./About";
 export { default as Footer } from "./Footer";
 export { default as AddLesson } from "./AddLesson";
