@@ -17,7 +17,7 @@ export class LessonBooking extends Component {
         return (
             <Layout>
                 <Sider className="sidebar">
-
+                    
                 </Sider>
                 <Layout className="site-layout">
                     <Content className="bookingLesson-content">
