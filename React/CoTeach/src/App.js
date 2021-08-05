@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navigation, Home, Users, About, AddLesson, LoginPage, StatisticsPage, RegisterPage, UTCProfiles, LessonBooking } from "./components";
+import { Navigation, Home, Users, About, AddLesson, LoginPage, StatisticsPage, RegisterPage, UTCProfiles, LessonBooking, LandingPage } from "./components";
 
 // FAQ
 
@@ -34,6 +34,7 @@ function App() {
             <Route path="/statistics" exact component={() => <StatisticsPage />} />
             <Route path="/utcprofiles" exact component={() => <UTCProfiles /> } />
             <Route path="/lessonbooking" exact component={() => <LessonBooking /> } />
+            <Route path="/LandingPage" exact component={() => <LandingPage />}  />
           </Switch>
         </Router>
       </div>

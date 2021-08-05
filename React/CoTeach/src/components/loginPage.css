@@ -9,6 +9,15 @@
     width: 100%;
 }
 
+.LandingBody {
+    background-image: url('../assets/Landing-Page-Long-Dark.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
 
 
 .cardStyling {
