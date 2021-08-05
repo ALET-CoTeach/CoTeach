@@ -35,12 +35,14 @@ function Users() {
         });
     }, []);
 
-    //if (!users) return null;
+    if (!users) return null;
+
+    console.log(users)
 
     return(
         <div>
             <h1 style={{ textAlign: "center", }}> Users From Test Backend </h1>
-            <div>{users.body}</div>
+            <div>{users}</div>
         </div>
     );
 }
