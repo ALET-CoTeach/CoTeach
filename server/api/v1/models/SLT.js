@@ -30,6 +30,11 @@ const sltSchema  = new Schema(
       type: String,
       required: true,
     },
+    Coordinator: {
+      type: Boolean,
+      required: true,
+      default: false,
+    }
   },
   {
     // Mongoose will create a "createdAt" and "updatedAt" properties to schema 😀
