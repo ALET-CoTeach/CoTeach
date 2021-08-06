@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const LessonRequestSchema = new Schema(
     {
-        schoolid: {
+        schoolId: {
             type: String,
             required: true,
         },

@@ -20,7 +20,6 @@ const sltSchema  = new Schema(
     },
     phone: {
       type: String,
-      required: true,
     },
     schoolId: {
       type: String,

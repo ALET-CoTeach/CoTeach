@@ -19,6 +19,10 @@ const companySchema = new Schema({
     type: addressSchema,
     required: true,
   },
+  website: {
+    type: String,
+    required: true,
+  }
 }, {
   // Mongoose will create a "createdAt" and "updatedAt" properties to schema 😀
   timestamps: true,
