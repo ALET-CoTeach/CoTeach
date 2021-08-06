@@ -9,22 +9,39 @@
     width: 100%;
 }
 
-@media only screen and (max-width: 1000px) {
-    .LoginBody {
-        background-image: url('../assets/backg1275.svg');
-    }
-  }
+.LandingBody {
+    background-image: url('../assets/Landing-Page-Long-Dark.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+
+.cardStyling {
+    width: "90%";
+    height: "70%";
+}
+
 
 .cardPadding {
-    padding-left: 1%;
-    padding-top: 2%;
+    padding-left: 0%;
+    padding-top: 8%;
+}
+
+.cardAlignment {
+    justify-content: left;
+    vertical-align: middle;
+    padding-top: 12%;
 }
 
 .centerText {
     text-align: center;
 }
 
-.center {
+.Cardcenter {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -32,3 +49,58 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
+
+.logoPadding {
+    padding-bottom: 5%;
+}
+
+.radioPadding {
+    padding-top: 3%;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .LoginBody {
+        background-image: url('../assets/backg1275.svg');
+    }
+
+    .cardAlignment {
+        justify-content: center;
+        display: block;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .cardPadding {
+        padding-left: 0%;
+        padding-top: 5%;
+    }
+
+    .cardStyling {
+        width: "10%";
+        height: "10%";
+    }
+  }
+
+
+@media only screen and (max-width: 575px) {
+.LoginBody {
+    background-image: url('../assets/backg1275.svg');
+}
+
+.cardAlignment {
+    justify-content: center;
+    display: block;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.cardPadding {
+    padding-left: 0%;
+}
+
+.cardStyling {
+    width: "100%";
+    height: "100%";
+}
+}

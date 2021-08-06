@@ -1,22 +1,45 @@
 {
-  "name": "intro-to-ant-design",
+  "name": "coteach-react-app",
+  "proxy": "http://localhost:3001",
   "version": "0.1.0",
-  "description": "",
+  "description": "Improving the automation of industry communications for ALET schools.",
+  "author": "Abdullah Shah <AbdullahShahUK@outlook.com>",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "cross-env PORT=3000 parcel index.html",
+    "dev": "run-p server start",
+    "server": "node-env-run server/server.js --exec nodemon | pino-colada",
     "build": "parcel build index.html"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "dependencies": {
     "antd": "^4.16.9",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "http-proxy-middleware": "^2.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.20",
+    "morgan": "^1.10.0",
+    "react-highlight-words": "^0.17.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@parcel/transformer-image": "^2.0.0-beta.2",
     "@parcel/transformer-less": "^2.0.0-beta.2",
     "babel-preset-nano-react-app": "^0.1.0",
-    "parcel": "^2.0.0-alpha.3.2"
+    "body-parser": "^1.19.0",
+    "cross-env": "^7.0.3",
+    "express-pino-logger": "^6.0.0",
+    "node-env-run": "^4.0.2",
+    "nodemon": "^2.0.12",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.0.0-alpha.3.2",
+    "pino-colada": "^2.1.0"
   },
   "babel": {
     "presets": [
