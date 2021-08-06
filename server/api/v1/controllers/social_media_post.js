@@ -173,23 +173,6 @@ module.exports.updateFacebook = (req, res) => {
       });
     }
 
-    if (post.facebookStatus === 'approved') {
-      const url = `https://graph.facebook.com/${page_post_id}?message=${post.caption}&access_token=${process.env.FACEBOOK_TOKEN}`
-      axios.post(url,
-        {
-          method: "post"
-        })
-        .then((response) => {
-          res.status(201).json({
-            message: "updated post successfully",
-          });
-        })
-        .catch((err) => {
-          return res.status(500).json({
-            error: err,
-          });
-        });
-    }
   });
 }
 
@@ -201,24 +184,8 @@ module.exports.deleteFacebook = (req, res) => {
       return res.status(500).json({
         error: err,
       });
-    }
-
-    if (post.facebookStatus === 'approved') {
-      const url = `https://graph.facebook.com/${PHOTO_ID}?access_token=${process.env.FACEBOOK_TOKEN}`
-      axios.post(url,
-        {
-          method: "delete"
-        })
-        .then((response) => {
-          res.status(201).json({
-            message: "deleted post successfully",
-          });
-        })
-        .catch((err) => {
-          return res.status(500).json({
-            error: err,
-          });
-        });
+  
+      
     }
   });
 }
