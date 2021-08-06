@@ -20,7 +20,6 @@ const employerSchema  = new Schema(
     },
     phone: {
       type: String,
-      required: true,
     },
     companyId: {
       type: String,

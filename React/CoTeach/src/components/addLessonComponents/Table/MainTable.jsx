@@ -310,7 +310,7 @@ class MainTable extends Component {
   render() {
     return (
       <>
-        <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} className="styles.thead" />
+        <Table columns={columns} dataSource={data} onChange={onChange} className="styles.thead" />
       </>
     );
   };

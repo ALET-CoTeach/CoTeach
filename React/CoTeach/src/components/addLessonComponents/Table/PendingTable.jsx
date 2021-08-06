@@ -281,7 +281,7 @@ class PendingTable extends Component {
   render() {
     return (
       <>
-        <Table pagination={false} columns={columns} dataSource={data} onChange={onChange}/>
+        <Table columns={columns} dataSource={data} onChange={onChange}/>
       </>
     );
   };

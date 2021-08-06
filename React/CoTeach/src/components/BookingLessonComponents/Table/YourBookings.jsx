@@ -74,7 +74,7 @@ const data = [
     },
 ]
 
-class AllBookedLessons extends React.Component {
+class YourBookings extends React.Component {
     state = {
         searchText: '',
         searchColumn: '',
@@ -329,4 +329,4 @@ class AllBookedLessons extends React.Component {
 
 }
 
-export default AllBookedLessons;
+export default YourBookings;
