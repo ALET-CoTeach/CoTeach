@@ -205,7 +205,7 @@ class YourBookings extends React.Component {
                 title: 'Lesson Title',
                 dataIndex: 'lesson',
                 key: 'lesson',
-                ...this.getColumnSearchProps('teacherName'),
+                ...this.getColumnSearchProps('lesson'),
             },
             {
                 title: 'Teacher Name',
