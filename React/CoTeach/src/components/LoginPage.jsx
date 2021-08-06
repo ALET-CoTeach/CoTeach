@@ -38,8 +38,8 @@ class LoginPage extends React.Component {
                         >
                             <Form.Item required label="User Type" name="usertype">
                               <Radio.Group>
-                                <Radio.Button value="SLT">SLT</Radio.Button>
-                                <Radio.Button value="Teacher">Teacher</Radio.Button>
+                              <Radio.Button value="Teacher">Teacher</Radio.Button>
+                                <Radio.Button value="Coordinator">Coordinator</Radio.Button>
                                 <Radio.Button value="Employer">Employer</Radio.Button>
                               </Radio.Group>
                             </Form.Item>
