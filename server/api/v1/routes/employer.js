@@ -1,12 +1,12 @@
 const { Router } = require('express');
 const EmployerController = require('../controllers/employer');
-const checkEmployerAuth = require('../middleware/check_employer_auth');
+const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
-router.post('/register', checkEmployerAuth, EmployerController.register);
+router.post('/register', requiredRoles(['employer']), EmployerController.register);
 router.post('/signin', EmployerController.access);
-router.post('/signout', checkEmployerAuth, EmployerController.deauth);
+router.post('/signout', requiredRoles(['employer']), EmployerController.deauth);
 
 module.exports = router;
 
