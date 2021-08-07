@@ -20,6 +20,10 @@ const socialMediaPostSchema  = new Schema(
       type: String,
       required: true,
     },
+    lessonId: {
+      type: String,
+      required: true,
+    },
     reviewerId: {
       type: String,
     },

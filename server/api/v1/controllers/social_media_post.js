@@ -136,7 +136,7 @@ module.exports.review = (req, res) => {
 };
 //
 module.exports.postFacebook = (req, res) => {
-  const { postId: id } = req.body;
+  const { id:postId} = req.body;
   SocialMediaPost.findOne({ _id: postId }, (err, post) => {
     if (err) {
       return res.status(500).json({
@@ -146,10 +146,7 @@ module.exports.postFacebook = (req, res) => {
 
     if (post.facebookStatus === 'approved'){
       const url = `https://graph.facebook.com/v11.0/105175718455172/photos?url=${post.image}&message=${post.caption}&access_token=${process.env.FACEBOOK_TOKEN}`
-      axios.post(url,
-        {
-          method: "post"
-        })
+      axios.post(url)
         .then((response) => {
           res.status(201).json({
             message: "Posted to Facebook successfully",
@@ -164,28 +161,6 @@ module.exports.postFacebook = (req, res) => {
   });
 };
 
-module.exports.updateFacebook = (req, res) => {
-  const { postId: id } = req.body;
-  SocialMediaPost.findOne({ _id: postId }, (err, post) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
-      });
-    }
-
-  });
-}
 
 
-module.exports.deleteFacebook = (req, res) => {
-  const { postId: id } = req.body;
-  SocialMediaPost.findOne({ _id: postId }, (err, post) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
-      });
-  
-      
-    }
-  });
-}
+
