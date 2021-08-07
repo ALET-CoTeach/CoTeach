@@ -116,4 +116,15 @@ module.exports.getOne = (lessonRequestId) =>
     }
   });
 
+module.exports.getAllBySchool = (schoolId) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const lessonRequests = await LessonRequests.find({ schoolId });
+      resolve(lessonRequests);
+    } catch (err) {
+      reject(err);
+    }
+  });
+
+
 
