@@ -106,8 +106,8 @@ module.exports.updateOne = (companyId, updateData) =>
 module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
-      const companys = await Company.find({});
-      resolve(companys);
+      const companies = await Company.find({});
+      resolve({ companies });
     } catch (err) {
       reject(err);
     }
@@ -116,8 +116,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (companyId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const company = await Company.findOne({ _id: companyId });
-      resolve(company);
+      const company = await Company.findOneById(companyId);
+
+      if (!company) {
+        resolve({ message: "Company does not exist in database" });
+      }
+
+      resolve({ message: "Company successfully found", company });
     } catch (err) {
       reject(err);
     }

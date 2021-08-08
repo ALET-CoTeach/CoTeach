@@ -86,7 +86,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const socialMediaPosts = await SocialMediaPost.find({});
-      resolve(socialMediaPosts);
+      resolve({ socialMediaPosts });
     } catch (err) {
       reject(err);
     }
@@ -95,8 +95,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (socialMediaPostId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const socialMediaPost = await SocialMediaPost.findOne({ _id: socialMediaPostId });
-      resolve(socialMediaPost);
+      const socialMediaPost = await SocialMediaPost.findOneById(socialMediaPostId);
+
+      if (!socialMediaPost) {
+        resolve({ message: "SocialMediaPost does not exist in database" });
+      }
+
+      resolve({ message: "SocialMediaPost successfully found", socialMediaPost });
     } catch (err) {
       reject(err);
     }

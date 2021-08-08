@@ -66,7 +66,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const employers = await Employer.find({});
-      resolve(employers);
+      resolve({ employers });
     } catch (err) {
       reject(err);
     }
@@ -75,8 +75,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (employerId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const employer = await Employer.findOne({ _id: employerId });
-      resolve(employer);
+      const employer = await Employer.findOneById(employerId);
+
+      if (!employer) {
+        resolve({ message: "Employer does not exist in database" });
+      }
+
+      resolve({ message: "Employer successfully found", employer });
     } catch (err) {
       reject(err);
     }

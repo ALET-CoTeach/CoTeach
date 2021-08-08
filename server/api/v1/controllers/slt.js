@@ -66,7 +66,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const slts = await SLT.find({});
-      resolve(slts);
+      resolve({ slts });
     } catch (err) {
       reject(err);
     }
@@ -75,8 +75,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (sltId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const slt = await SLT.findOne({ _id: sltId });
-      resolve(slt);
+      const slt = await SLT.findOneById(sltId);
+
+      if (!slt) {
+        resolve({ message: "SLT does not exist in database" });
+      }
+
+      resolve({ message: "SLT successfully found", slt });
     } catch (err) {
       reject(err);
     }

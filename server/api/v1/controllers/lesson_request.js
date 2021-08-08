@@ -109,7 +109,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const lessonRequests = await LessonRequest.find({});
-      resolve(lessonRequests);
+      resolve({ lessonRequests });
     } catch (err) {
       reject(err);
     }
@@ -118,8 +118,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (lessonRequestId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const lessonRequest = await LessonRequest.findOne({ _id: lessonRequestId });
-      resolve(lessonRequest);
+      const lessonRequest = await LessonRequest.findOneById(lessonRequestId);
+
+      if (!lessonRequest) {
+        resolve({ message: "LessonRequest does not exist in database" });
+      }
+
+      resolve({ message: "LessonRequest successfully found", lessonRequest });
     } catch (err) {
       reject(err);
     }

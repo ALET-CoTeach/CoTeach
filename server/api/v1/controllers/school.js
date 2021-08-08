@@ -107,7 +107,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const schools = await School.find({});
-      resolve(schools);
+      resolve({ schools });
     } catch (err) {
       reject(err);
     }
@@ -116,8 +116,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (schoolId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const school = await School.findOne({ _id: schoolId });
-      resolve(school);
+      const school = await School.findOneById(schoolId);
+
+      if (!school) {
+        resolve({ message: "School does not exist in database" });
+      }
+
+      resolve({ message: "School successfully found", school });
     } catch (err) {
       reject(err);
     }
