@@ -85,15 +85,19 @@ module.exports.updateOne = (schoolId, updateData) =>
         address,
       };
 
-      const updatedSchool = await School.findOneAndUpdate(
-        { _id: schoolId },
+      const updatedSchool = await School.findByIdAndUpdate(
+        schoolId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedSchool);
-      resolve(updatedSchool);
+
+      if (!updatedSchool) {
+        resolve({ message: "School document was never created or has been deleted" });
+      }
+
+      resolve({ message: "School has succesfully been update", school: updatedSchool });
     } catch (err) {
       reject(err);
     }

@@ -87,15 +87,19 @@ module.exports.updateOne = (lessonRequestId, updateData) =>
         address,
       };
 
-      const updatedLessonRequest = await LessonRequest.findOneAndUpdate(
-        { _id: lessonRequestId },
+      const updatedLessonRequest = await LessonRequest.findByIdAndUpdate(
+        lessonRequestId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedLessonRequest);
-      resolve(updatedLessonRequest);
+
+      if (!updatedLessonRequest) {
+        resolve({ message: "LessonRequest was never created or has been deleted" });
+      }
+
+      resolve({ message: "LessonRequest has been successfully updated", lessonRequest: updatedLessonRequest });
     } catch (err) {
       reject(err);
     }

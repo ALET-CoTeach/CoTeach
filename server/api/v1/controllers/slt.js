@@ -44,15 +44,19 @@ module.exports.updateOne = (sltId, updateData) =>
         schoolId: school._id,
       };
 
-      const updatedSLT = await SLT.findOneAndUpdate(
-        { _id: sltId },
+      const updatedSLT = await SLT.findByIdAndUpdate(
+        sltId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedSLT);
-      resolve(updatedSLT);
+
+      if (!updatedSLT) {
+        resolve({ message: "SLT document was never creator or has been deleted "});
+      }
+
+      resolve({ message: "SLT has successfully been updated", slt: updatedSLT });
     } catch (err) {
       reject(err);
     }

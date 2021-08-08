@@ -53,11 +53,10 @@ module.exports.updateOne = (teacherId, updateData) =>
       );
 
       if (!updatedTeacher) {
-        resolve({ message: "Teacher document either was never created or has been deleted" });
+        resolve({ message: "Teacher document was never created or has been deleted" });
       }
 
-      console.log(updatedTeacher);
-      resolve(updatedTeacher);
+      resolve({ message: "Teacher has successfully been updated", teacher: updatedTeacher });
     } catch (err) {
       reject(err);
     }

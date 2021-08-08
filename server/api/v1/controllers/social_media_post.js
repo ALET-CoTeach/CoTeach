@@ -63,16 +63,20 @@ module.exports.updateOne = (socialMediaPostId, updateData) =>
         schoolId,
       };
 
-      const updatedSocialMediaPost = await SocialMediaPost.findOneAndUpdate(
-        { _id: socialMediaPostId },
+      const updatedSocialMediaPost = await SocialMediaPost.findByIdAndUpdate(
+        socialMediaPostId,
         update,
         {
           // Returns the new document after update is made
           new: true,
         }
       );
-      console.log(updatedSocialMediaPost);
-      resolve(updatedSocialMediaPost);
+
+      if (!updatedSocialMediaPost) {
+        resolve({ message: "SocialMediaPost document was never created or has never been deleted" }); 
+      }
+
+      resolve({ message: "SocialMediaPost has successfully been updated", socialMediaPost: updatedSocialMediaPost });
     } catch (err) {
       reject(err);
     }

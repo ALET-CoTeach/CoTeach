@@ -44,15 +44,19 @@ module.exports.updateOne = (employerId, updateData) =>
         companyId: company._id,
       };
 
-      const updatedEmployer = await Employer.findOneAndUpdate(
-        { _id: employerId },
+      const updatedEmployer = await Employer.findByIdAndUpdate(
+        employerId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedEmployer);
-      resolve(updatedEmployer);
+
+      if (!updatedTeacher) {
+        resolve({ message: "Employer has successfully been updated" });
+      }
+
+      resolve({ message: "Employer has successfully been updated", employer: updatedEmployer });
     } catch (err) {
       reject(err);
     }

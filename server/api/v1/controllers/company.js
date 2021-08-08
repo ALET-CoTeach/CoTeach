@@ -85,15 +85,19 @@ module.exports.updateOne = (companyId, updateData) =>
         address,
       };
 
-      const updatedCompany = await Company.findOneAndUpdate(
-        { _id: companyId },
+      const updatedCompany = await Company.findByIdAndUpdate(
+        companyId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedCompany);
-      resolve(updatedCompany);
+
+      if (!updatedCompany) {
+        resolve({ message: "Company document was never created or has been deleted" });
+      }
+
+      resolve({ message: "Company has successfully been updated", company: updatedCompany });
     } catch (err) {
       reject(err);
     }
