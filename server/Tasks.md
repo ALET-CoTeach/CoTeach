@@ -5,9 +5,8 @@
 - [ ] Make sure all taken lesson requests are visible to all companies, companies can see other companies lesson requests
 - [ ] Teachers cannot see lesson requests from other schools
 - [ ] SLT can only see lesson requests from the school they work at
-- [ ] Add a lessonId field to the SocialMediaPost model
-- [x] Check that for each LessonRequest by authenticated teacher has a corresponding SocialMediaPost
-- [ ] Employers can view other employers lesson requests from the same company
+- [x] Add a lessonId field to the SocialMediaPost model
+- [ ] Check that for each LessonRequest by authenticated teacher has a corresponding SocialMediaPost
 - [ ] Admins can create SLT and Teacher accounts from the front-end, Create suitable controllers and routes to do this
 
 
