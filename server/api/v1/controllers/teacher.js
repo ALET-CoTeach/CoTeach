@@ -83,6 +83,32 @@ module.exports.getOneByEmail = (email) =>
     }
   });
 
+module.exports.checkForMissingPosts = (teacherId) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      // Get all lesson requests by a teacher
+      const lessonRequests = await LessonRequest.find({ teacherId });
+
+      // Empty array for LessonRequest id's with no corresponding SocialMediaPost
+      let noMatches = [];
+      
+      // Checks for atleast one SocialMediaPost for a specific lessonId
+      lessonRequests.forEach(async (lessonRequest) => {
+        // Null when no document found
+        const socialMediaPost = await SocialMediaPost.findOne({ lessonId: lessonRequest._id });
+       
+        // Adds LessonRequest id to array if no social media post found
+        if (!socialMediaPost) {
+          noMatches.push(lessonRequest._id);
+        }
+      });
+
+      resolve(noMatches);
+    } catch (err) {
+      reject(err);
+    }
+  });
+
 module.exports.register = (req, res) => {
   // Destruct request body
   const {
