@@ -95,7 +95,7 @@ module.exports.getOne = (socialMediaPostId) =>
 
 module.exports.review = (req, res) => {
   const {
-    postId: id,
+    id: postId,
     facebookStatus,
     linkedinStatus,
   } = req.body;
