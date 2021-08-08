@@ -5,7 +5,12 @@ const jwt = require('jsonwebtoken');
 module.exports.deleteOne = (teacherId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const teacher = await Teacher.deleteOne({ _id: teacherId });
+      const teacher = await Teacher.findOneAndDelete(teacherId);
+      
+      if (!teacher) {
+        resolve({ message: "Teacher document never existed or has already been deleted" }); 
+      }
+
       resolve({ message: "Teacher successfuly deleted", teacher });
     } catch (err) {
       reject(err);
