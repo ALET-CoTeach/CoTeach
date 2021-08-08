@@ -48,7 +48,12 @@ module.exports.createOne = (schoolData) =>
 module.exports.deleteOne = (schoolId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const school = await School.deleteOne({ _id: schoolId });
+      const school = await School.findByIdAndDelete(schoolId);
+
+      if (!school) {
+        resolve({ message: "School document never existed or has already been deleted" });
+      }
+
       resolve({ message: "School successfuly deleted", school });
     } catch (err) {
       reject(err);

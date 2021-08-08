@@ -50,7 +50,12 @@ module.exports.createOne = (req, res) => {
 module.exports.deleteOne = (lessonRequestId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const lessonRequest = await LessonRequest.deleteOne({ _id: lessonRequestId });
+      const lessonRequest = await LessonRequest.findByIdAndDelete(lessonRequestId);
+
+      if (!lessonRequest) {
+        resolve({ message: "LessonRequest document never existed or has already been deleted" });
+      }
+
       resolve({ message: "LessonRequest successfuly deleted", lessonRequest });
     } catch (err) {
       reject(err);

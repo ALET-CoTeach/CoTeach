@@ -34,7 +34,12 @@ module.exports.createOne = (socialMediaPostData) =>
 module.exports.deleteOne = (socialMediaPostId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const socialMediaPost = await SocialMediaPost.deleteOne({ _id: socialMediaPostId });
+      const socialMediaPost = await SocialMediaPost.findByIdAndDelete(socialMediaPostId);
+
+      if (!socialMediaPost) {
+        resolve({ message: "SocialMediaPost document never existed or has already been deleted" });
+      }
+
       resolve({ message: "SocialMediaPost successfuly deleted", socialMediaPost });
     } catch (err) {
       reject(err);

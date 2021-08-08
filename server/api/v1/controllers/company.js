@@ -48,7 +48,12 @@ module.exports.createOne = (companyData) =>
 module.exports.deleteOne = (companyId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const company = await Company.deleteOne({ _id: companyId });
+      const company = await Company.findByIdAndDelete(companyId);
+
+      if (!company) {
+        resolve({ message: "Company document never existed or has already been deleted" });
+      }
+
       resolve({ message: "Company successfuly deleted", company });
     } catch (err) {
       reject(err);
