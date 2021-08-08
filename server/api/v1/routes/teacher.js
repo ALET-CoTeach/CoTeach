@@ -20,5 +20,18 @@ router.delete('/:teacherId', requiredRoles(['admin', 'slt']), (req, res) => {
     });
 });  
 
-module.exports = router;
+router.put('/:teacherId', requiredRoles(['admin', 'slt']), (req, res) => {
+  const { teacherId } = req.params;
 
+  const updateData = req.body;
+
+  TeacherController.updateOne(teacherId, updateData)
+    .then((jsonResponse) => {
+      res.status(500).json(jsonResponse);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err }); 
+    });
+}); 
+
+module.exports = router;

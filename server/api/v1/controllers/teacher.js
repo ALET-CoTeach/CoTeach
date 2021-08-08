@@ -44,13 +44,18 @@ module.exports.updateOne = (teacherId, updateData) =>
         schoolId: school._id,
       };
 
-      const updatedTeacher = await Teacher.findOneAndUpdate(
-        { _id: teacherId },
+      const updatedTeacher = await Teacher.findByIdAndUpdate(
+        teacherId,
         update,
         {
           new: true,
         }
       );
+
+      if (!updatedTeacher) {
+        resolve({ message: "Teacher document either was never created or has been deleted" });
+      }
+
       console.log(updatedTeacher);
       resolve(updatedTeacher);
     } catch (err) {
