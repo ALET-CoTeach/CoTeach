@@ -4,7 +4,7 @@ const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
-router.post('/'. requiredRoled(), (req, res) => {
+router.post('/'. requiredRoles(['admin']), (req, res) => {
   const companyData = req.body;
 
   CompanyController.createOne(companyData)

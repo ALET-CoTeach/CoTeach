@@ -4,6 +4,18 @@ const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
+router.post('/'. requiredRole(['admin']), (req, res) => {
+  const schoolData = req.body;
+
+  SchoolController.createOne(schoolData)
+    .then((jsonResponse) => {
+      res.status(jsonResponse.status).json(jsonResponse);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err });
+    });
+});
+
 router.delete('/:schoolId', requiredRoles(['admin']), (req, res) => {
   const { schoolId } = req.params;
 
