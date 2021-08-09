@@ -83,6 +83,11 @@
     margin-top: 8%;
 }
 
+.ProfileHeight {
+    height: 100%;
+    width: 100%;
+}
+
 [data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
 .site-collapse-custom-collapse .site-collapse-custom-panel {
   margin-bottom: 24px;
