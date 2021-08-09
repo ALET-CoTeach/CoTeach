@@ -4,9 +4,9 @@ const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
-router.post('/register', requiredRoles(['employer']), EmployerController.register);
+router.post('/register', requiredRoles(['admin']), EmployerController.register);
 router.post('/signin', EmployerController.access);
-router.post('/signout', requiredRoles(['employer']), EmployerController.deauth);
+router.post('/signout', requiredRoles(['admin']), EmployerController.deauth);
 
 router.delete('/:employerId', requiredRoles(['admin']), (req, res) => {
   const { employerId } = req.params;

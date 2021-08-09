@@ -16,6 +16,16 @@ router.post('/'. requiredRoles(['admin', 'slt', 'teacher']), (req, res) => {
     });
 });
 
+router.get('/', requiredRoles(['admin', 'slt']), (req, res) => {
+  SocialMediaPostController.getAll()
+    .then((jsonResponse) => {
+      res.status(200).json(jsonResponse);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err });
+    });
+});
+
 router.delete('/:socialMediaPostId', requiredRoles(['admin']), (req, res) => {
   const { socialMediaPostId } = req.params;
 

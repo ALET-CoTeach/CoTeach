@@ -16,6 +16,16 @@ router.post('/'. requiredRoles(['admin', 'slt', 'teacher']), (req, res) => {
     });
 });
 
+router.get('/', requiredRoles(['admin', 'slt', 'employer']), (req, res) => {
+  LessonRequestController.getAll()
+    .then((jsonResponse) => {
+      res.status(200).json(jsonResponse);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err });
+    });
+});
+
 router.delete('/:lessonRequestId', requiredRoles(['admin']), (req, res) => {
   const { lessonRequestId } = req.params;
 
