@@ -29,7 +29,7 @@ const sltSchema  = new Schema(
       type: String,
       required: true,
     },
-    Coordinator: {
+    coordinator: {
       type: Boolean,
       required: true,
       default: false,
