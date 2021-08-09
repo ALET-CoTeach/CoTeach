@@ -11,7 +11,6 @@ module.exports.createOne = (schoolData) =>
       towncity,
       county,
       postcode,
-      customerId,
     } = schoolData;
 
     try {
@@ -35,10 +34,18 @@ module.exports.createOne = (schoolData) =>
 
         // Saves school object to database
         const savedSchool = await newSchool.save();
-        resolve(savedSchool);
+        resolve({ 
+          message: "School successfully created and stored on database",
+          school: savedSchool,
+          status: 201,
+        });
       } else {
         // Runs if account already exits
-        reject(new Error("School already exists"));
+        resolve({
+          message: "School already stored on database",
+          school,
+          status: 200,
+        });
       }
     } catch (err) {
       reject(err);

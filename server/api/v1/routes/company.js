@@ -43,4 +43,3 @@ router.put('/:companyId', requiredRoles(['admin']), (req, res) => {
 });
 
 module.exports = router;
-
