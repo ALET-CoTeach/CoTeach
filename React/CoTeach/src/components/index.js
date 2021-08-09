@@ -8,6 +8,7 @@ export { default as RegisterPage } from "./RegisterPage";
 export { default as StatisticsPage } from "./Statistics";
 export { default as Navigation } from "./Navigation";
 export { default as UTCProfiles } from './UTCProfiles';
+export { default as UTCProfilesTwo } from './UTCProfiles2';
 export { default as LessonBooking } from './LessonBooking';
 export { default as LandingPage } from './LandingPage';
 
