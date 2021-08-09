@@ -16,6 +16,16 @@ router.post('/'. requiredRoles(['admin']), (req, res) => {
     });
 });
 
+router.get('/', requiredRoles(['admin', 'slt', 'employer']), (req, res) => {
+  CompanyController.getAll()
+    .then((jsonResponse) => {
+      res.status(200).json(jsonResponse);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err });
+    });
+});
+
 router.delete('/:companyId', requiredRoles(['admin']), (req, res) => {
   const { companyId } = req.params;
 
