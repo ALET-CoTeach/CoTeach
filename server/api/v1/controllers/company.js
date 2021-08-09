@@ -1,7 +1,6 @@
 const Company = require("../models/Company");
 const Address = require("../models/Address");
 
-mdou
 module.exports.createOne = (companyData) =>
   new Promise(async (resolve, reject) => {
     // Destruct companyData
