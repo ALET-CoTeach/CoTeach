@@ -17,17 +17,17 @@ router.delete('/:schoolId', requiredRoles(['admin']), (req, res) => {
 });
 
 router.put('/:schoolId', requiredRoles(['admin']), (req, res) => {
-    const { schoolId } = req.params;
+  const { schoolId } = req.params;
 
-    const updateData = req.body;
+  const updateData = req.body;
 
-    SchoolController.updateOne(schoolId, updateData)
-        .then((jsonResponse) => {
-            res.status(500).json(jsonResponse);
-        })
-        .catch((err) => {
-            res.status(500).json({ error: err });
-        });
+  SchoolController.updateOne(schoolId, updateData)
+    .then((jsonResponse) => {
+      res.status(500).json(jsonResponse);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err });
+    });
 });
 
 module.exports = router;

@@ -17,17 +17,17 @@ router.delete('/:socialMediaPostId', requiredRoles(['admin']), (req, res) => {
 });
 
 router.put('/:socialMediaPostId', requiredRoles(['admin']), (req, res) => {
-    const { socialMediaPostId } = req.params;
+  const { socialMediaPostId } = req.params;
 
-    const updateData = req.body;
+  const updateData = req.body;
 
-    SocialMediaPostController.updateOne(socialMediaPostId, updateData)
-        .then((jsonResponse) => {
-            res.status(500).json(jsonResponse);
-        })
-        .catch((err) => {
-            res.status(500).json({ error: err });
-        });
+  SocialMediaPostController.updateOne(socialMediaPostId, updateData)
+    .then((jsonResponse) => {
+      res.status(500).json(jsonResponse);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err });
+    });
 });
 
 module.exports = router;
