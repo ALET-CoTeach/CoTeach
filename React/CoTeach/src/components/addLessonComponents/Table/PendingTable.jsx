@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
+import './Modal/TableModal';
 import 'antd/dist/antd.css';
 import '../../../index.css';
-import { Table } from 'antd';
+import { Table, Space } from 'antd';
+import TableModal from './Modal/TableModal';
+
+const Wrapper = (props) => {
+  return (
+    <div>
+      {props.children}
+    </div>
+  );
+}
 
 const columns = [
   {
@@ -231,7 +241,15 @@ const columns = [
     sorter: (a, b) => a.year - b.year,
     sortDirections: ['ascend', 'descend'],
   },
-
+  {
+    render: (text, row) => (
+      <div>
+        <span>{row.term} </span>
+        <span>{row.day} </span>
+        <span>{row.year}</span>
+      </div>
+    ),
+  },
 ];
 
 const data = [
@@ -281,7 +299,7 @@ class PendingTable extends Component {
   render() {
     return (
       <>
-        <Table columns={columns} dataSource={data} onChange={onChange}/>
+        <Table columns={columns} dataSource={data} onChange={onChange} />
       </>
     );
   };
