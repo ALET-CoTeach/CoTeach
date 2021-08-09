@@ -11,7 +11,6 @@ module.exports.createOne = (companyData) =>
       towncity,
       county,
       postcode,
-      customerId,
     } = companyData;
 
     try {
@@ -35,10 +34,18 @@ module.exports.createOne = (companyData) =>
 
         // Saves company object to database
         const savedCompany = await newCompany.save();
-        resolve(savedCompany);
+        resolve({ 
+          message: "Company successfully created and stored on database",
+          company: savedCompany,
+          status: 201,
+        });
       } else {
         // Runs if account already exits
-        reject(new Error("Company already exists"));
+        resolve({
+          message: "Company already stored on database",
+          company,
+          status: 200,
+        });
       }
     } catch (err) {
       reject(err);

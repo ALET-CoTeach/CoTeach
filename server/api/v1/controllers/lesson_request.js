@@ -44,7 +44,16 @@ module.exports.createOne = (req, res) => {
   });
 
   // Saves lessonRequest object to database
-  const savedLessonRequest = await newLessonRequest.save();
+  newLessonRequest.save((err, lessonRequest) => {
+    if (err) {
+      res.status(500).json({ error: err }); 
+    }
+
+    res.status(201).json({
+      message: "LessonRequest successfully created and stored on database",
+      lessonRequest,
+    })
+  });
 };
 
 module.exports.deleteOne = (lessonRequestId) =>
