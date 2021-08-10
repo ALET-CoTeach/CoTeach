@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css';
 import { Layout, Collapse, Drawer, List, Avatar, Divider, Col, Row, Card } from 'antd';
-import '../components/loginPage.css';
+import './loginPage.css';
 
 import UTCHeathrowLogo from 'url:~/src/assets/BlueLogos/UTC-Heathrow-Logo.svg';
 import BicesterTechnology from 'url:~/src/assets/BlueLogos/Bicester-Tchnology-Studio-Logo.svg';

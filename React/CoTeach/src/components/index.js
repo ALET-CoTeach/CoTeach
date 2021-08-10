@@ -1,43 +1,48 @@
-export { default as Home } from "./Home";
-export { default as Users } from "./Users";
-export { default as About } from "./About";
-export { default as Footer } from "./Footer";
-export { default as AddLesson } from "./AddLesson";
-export { default as LoginPage } from "./LoginPage";
-export { default as RegisterPage } from "./RegisterPage";
-export { default as StatisticsPage } from "./Statistics";
-export { default as Navigation } from "./Navigation";
-export { default as UTCProfiles } from './UTCProfiles';
-export { default as UTCProfilesTwo } from './UTCProfiles2';
-export { default as LessonBooking } from './LessonBooking';
-export { default as LandingPage } from './LandingPage';
+export { default as Home } from "./Home/Home";
+export { default as About } from "./About/About";
+export { default as Footer } from "./Footer/Footer";
+export { default as AddLesson } from "./AddLesson/AddLesson";
+export { default as LoginPage } from "./LoginPage/LoginPage";
+export { default as RegisterPage } from "./RegisterPage/RegisterPage";
+export { default as StatisticsPage } from "./Statistics/Statistics";
+export { default as UTCProfiles } from './Profiles/CoordinatorProfiles/UTCProfiles';
+export { default as UTCProfilesTwo } from './Profiles/CoordinatorProfiles/UTCProfiles2';
+export { default as LessonBooking } from './LessonBooking/LessonBooking';
+export { default as LandingPage } from './LandingPage/LandingPage';
+
+//
+export { default as Navigation } from "./Navigation/Navigation";
+export { default as Toolbar } from "./Navigation/Toolbar/Toolbar";
+
+//
+export { default as SchoolProfile } from "./Profiles/School/School";
 
 //addLesson Tables
-export { default as MainTable } from "./addLessonComponents/Table/MainTable";
-export { default as TableComponent } from "./addLessonComponents/Table/Table";
-export { default as BookedTable } from "./addLessonComponents/Table/BookedTable";
-export { default as PendingTable } from "./addLessonComponents/Table/PendingTable";
+export { default as MainTable } from "./AddLesson/Table/MainTable";
+export { default as TableComponent } from "./AddLesson/Table/Table";
+export { default as BookedTable } from "./AddLesson/Table/BookedTable";
+export { default as PendingTable } from "./AddLesson/Table/PendingTable";
 
 //addLesson Tables Modal
-export { default as TableModal } from "./addLessonComponents/Table/Modal/TableModal";
+export { default as TableModal } from "./AddLesson/Table/Modal/TableModal";
 
 //LoginPageComponents
-export { default as LoginTabs } from "./LoginPageComponents/LoginTabs";
-export { default as TeacherForm } from "./LoginPageComponents/Forms/TeacherForm";
-export { default as SLTForm } from "./LoginPageComponents/Forms/SLTForm";
-export { default as EmployerForm } from "./LoginPageComponents/Forms/EmployerForm";
+export { default as LoginTabs } from "./LoginPage/Tabs/LoginTabs";
+export { default as TeacherForm } from "./LoginPage/Tabs/Forms/TeacherForm";
+export { default as SLTForm } from "./LoginPage/Tabs/Forms/SLTForm";
+export { default as EmployerForm } from "./LoginPage/Tabs/Forms/EmployerForm";
 
 //addLesson Modal
-export { default as ModalComponent } from "./addLessonComponents/Modal/Modal";
+export { default as ModalComponent } from "./AddLesson/Modal/Modal";
 
 //addLesson Steps
-export { default as StepsComponent } from "./addLessonComponents/Modal/Steps/Steps";
+export { default as StepsComponent } from "./AddLesson/Modal/Steps/Steps";
 
 //addLesson Calendar
-export { default as CalendarComponent } from "./addLessonComponents/Calendar/Calendar";
+export { default as CalendarComponent } from "./AddLesson/Calendar/Calendar";
 
 //addLesson Forms
-export { default as Timeform } from "./addLessonComponents/Modal/Steps/Form/Timeform";
-export { default as Lessonform} from "./addLessonComponents/Modal/Steps/Form/Lessonform";
-export { default as Schoolform } from "./addLessonComponents/Modal/Steps/Form/Schoolform";
-export { default as Teacherform } from "./addLessonComponents/Modal/Steps/Form/Teacherform";
+export { default as Timeform } from "./AddLesson/Modal/Steps/Form/Timeform";
+export { default as Lessonform} from "./AddLesson/Modal/Steps/Form/Lessonform";
+export { default as Schoolform } from "./AddLesson/Modal/Steps/Form/Schoolform";
+export { default as Teacherform } from "./AddLesson/Modal/Steps/Form/Teacherform";

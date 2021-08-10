@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import 'antd/dist/antd.css';
-import '../index.css';
+import '../../index.css';
 import { Statistic, Card, Row, Col, Layout } from 'antd';
 import { ArrowUpOutlined, ArrowDownOutlined, LikeOutlined } from '@ant-design/icons';
 

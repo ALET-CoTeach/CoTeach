@@ -1,9 +1,10 @@
-import '../index.css';
+import '../../index.css';
 import 'antd/dist/antd.css';
 import React from 'react';
-import { Menu } from 'antd';
+import { Menu, Badge, Switch } from 'antd';
 import { Link, withRouter } from "react-router-dom";
-import { HomeOutlined, BookOutlined, SettingOutlined } from '@ant-design/icons';
+import { HomeOutlined, BookOutlined, SettingOutlined, BellOutlined } from '@ant-design/icons';
+import Toolbar from './Toolbar/Toolbar';
 
 const { SubMenu } = Menu;
 
@@ -19,18 +20,19 @@ function Navigation(props) {
 
   const { current } = this.state;
   return (
-    <Menu className="navbar" onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
-      <Menu.Item key="home" icon={<HomeOutlined />}>
-        <Link to="/">
-          Home
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="addLesson" icon={<BookOutlined />}>
-        <Link to="/addLesson">
-          Add Lesson
-        </Link>
-      </Menu.Item>
-      <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Work In Progress">
+    <div>
+      <Menu className="navbar" onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
+        <Menu.Item key="home" icon={<HomeOutlined />}>
+          <Link to="/">
+            Home
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="addLesson" icon={<BookOutlined />}>
+          <Link to="/addLesson">
+            Add Lesson
+          </Link>
+        </Menu.Item>
+        <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Work In Progress">
           <Menu.ItemGroup title="Dashboards">
             <Menu.Item key="setting:1"><Link to="statistics">Lesson Statistics</Link></Menu.Item>
             <Menu.Item key="setting:2"><Link to="/">Social Media Statistics</Link></Menu.Item>
@@ -47,8 +49,15 @@ function Navigation(props) {
           <Menu.ItemGroup title="Table Dashboards">
             <Menu.Item key="setting:8"><Link to="LessonBooking">Lesson Booking (employer)</Link></Menu.Item>
           </Menu.ItemGroup>
-      </SubMenu>
-    </Menu>
+        </SubMenu>
+        <Menu.Item key="notifications">
+          <Badge count={5}>
+            <Toolbar/>
+          </Badge>
+          {/* <span style={{ paddingLeft: '10px' }}>Notifications</span> */}
+        </Menu.Item>
+      </Menu>
+    </div>
   );
 }
 
