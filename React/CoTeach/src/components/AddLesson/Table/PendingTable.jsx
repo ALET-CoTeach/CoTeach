@@ -241,15 +241,15 @@ const columns = [
     sorter: (a, b) => a.year - b.year,
     sortDirections: ['ascend', 'descend'],
   },
-  {
-    render: (text, row) => (
-      <div>
-        <span>{row.term} </span>
-        <span>{row.day} </span>
-        <span>{row.year}</span>
-      </div>
-    ),
-  },
+  // {
+  //   render: (text, row) => (
+  //     <div>
+  //       <span>{row.term} </span>
+  //       <span>{row.day} </span>
+  //       <span>{row.year}</span>
+  //     </div>
+  //   ),
+  // },
 ];
 
 const data = [

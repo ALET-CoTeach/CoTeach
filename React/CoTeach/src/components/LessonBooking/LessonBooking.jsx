@@ -9,6 +9,9 @@ import AllLessons from './Table/AllLessons';
 import YourBookings from './Table/YourBookings';
 import AllBookedLessons from './Table/AllBookedLessons';
 
+// Calendar Import
+import LessonBookingCalendar from './Calendar/LessonBookingCalendar';
+
 const { Content, Footer, Sider } = Layout;
 
 const { Panel } = Collapse;
@@ -19,7 +22,7 @@ export class LessonBooking extends Component {
         return (
             <Layout>
                 <Sider className="sidebar">
-
+                    {/* <LessonBookingCalendar /> */}
                 </Sider>
                 <Layout className="site-layout">
                     <Content className="bookingLesson-content">
