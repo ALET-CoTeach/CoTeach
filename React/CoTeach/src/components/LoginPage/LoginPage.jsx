@@ -3,7 +3,7 @@ import './loginPage.css';
 import 'antd/dist/antd.css';
 import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Icon } from 'antd';
 import coTeach from 'url:~/src/assets/CoTeach-Logo-Blue.svg';
-import LoginTabs from './LoginPageComponents/LoginTabs';
+import LoginTabs from './Tabs/LoginTabs';
 
 const validateMessages = {
     required: '${label} is required!',

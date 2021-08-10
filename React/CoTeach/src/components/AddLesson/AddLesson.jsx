@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import '../index.css';
+import '../../index.css';
 import { Layout, Collapse } from 'antd';
 import {
   AppstoreOutlined,
@@ -13,11 +13,11 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 
-import MainTable from './addLessonComponents/Table/MainTable';
-import AddLessonModal from './addLessonComponents/Modal/Modal';
-import BookedTable from './addLessonComponents/Table/BookedTable';
-import PendingTable from './addLessonComponents/Table/PendingTable';
-import CalendarComponent from './addLessonComponents/Calendar/Calendar';
+import MainTable from './Table/MainTable';
+import AddLessonModal from './Modal/Modal';
+import BookedTable from './Table/BookedTable';
+import PendingTable from './Table/PendingTable';
+import CalendarComponent from './Calendar/Calendar';
 
 const { Content, Footer, Sider } = Layout;
 

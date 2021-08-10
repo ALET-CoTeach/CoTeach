@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import '../components/loginPage.css';
+import './Grid/LogoGrid/loginPage.css';
 import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Icon, Collapse, Link, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 import CoTeachWords from 'url:~/src/assets/CoTeachWords.svg';
 import EducationBulletPoints from 'url:~/src/assets/EducationBullets.svg';
 import WhatIsCoTeach from 'url:~/src/assets/What-Is-CoTeach.svg';
-import IndustryLogos from './LandingPageComponents/industryLogos.jsx';
+import IndustryLogos from './Grid/LogoGrid/industryLogos.jsx';
 
 
 const { Panel } = Collapse;

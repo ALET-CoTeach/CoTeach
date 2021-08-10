@@ -1,5 +1,5 @@
 .LoginBody {
-    background-image: url('../assets/Login-bckg.svg');
+    background-image: url('../../../assets/Login-bckg.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -10,7 +10,7 @@
 }
 
 .LandingBody {
-    background-image: url('../assets/Landing-Page-Double-Blob.svg');
+    background-image: url('../../../assets/Landing-Page-Double-Blob.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -110,11 +110,11 @@
 
 @media only screen and (max-width: 1000px) {
     .LoginBody {
-        background-image: url('../assets/backg1275.svg');
+        background-image: url('../../../assets/backg1275.svg');
     }
 
     .LandingBody {
-        background-image: url('../assets/LandingPage-Mobile-View.svg');
+        background-image: url('../../../assets/LandingPage-Mobile-View.svg');
     }
 
     .cardAlignment {
@@ -140,14 +140,13 @@
     }
   }
 
-
 @media only screen and (max-width: 575px) {
 .LoginBody {
-    background-image: url('../assets/backg1275.svg');
+    background-image: url('../../../assets/backg1275.svg');
 }
 
 .LandingBody {
-    background-image: url('../assets/LandingPage-Mobile-View.svg');
+            background-image: url('../../../assets/LandingPage-Mobile-View.svg');
 }
 
 .cardAlignment {
@@ -165,8 +164,6 @@
     width: "100%";
     height: "100%";
 }
-
-
 
 /* .coTeachPadding {
     padding-left: 0%;

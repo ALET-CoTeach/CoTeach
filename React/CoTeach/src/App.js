@@ -2,10 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Navigation, Home, Users, About, AddLesson, LoginPage, StatisticsPage, RegisterPage, UTCProfiles, UTCProfilesTwo, LessonBooking, LandingPage } from "./components";
 
-// FAQ
-
-// About
-
 // User Profiles for Coordinators
 
 // Search by Teacher

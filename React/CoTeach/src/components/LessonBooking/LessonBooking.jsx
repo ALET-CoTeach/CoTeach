@@ -5,9 +5,9 @@ import { Layout, Collapse } from 'antd';
 
 
 //All Table Imports 
-import AllLessons from './BookingLessonComponents/Table/AllLessons';
-import YourBookings from './BookingLessonComponents/Table/YourBookings';
-import AllBookedLessons from './BookingLessonComponents/Table/AllBookedLessons';
+import AllLessons from './Table/AllLessons';
+import YourBookings from './Table/YourBookings';
+import AllBookedLessons from './Table/AllBookedLessons';
 
 const { Content, Footer, Sider } = Layout;
 
