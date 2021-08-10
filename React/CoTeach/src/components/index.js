@@ -5,11 +5,17 @@ export { default as AddLesson } from "./AddLesson/AddLesson";
 export { default as LoginPage } from "./LoginPage/LoginPage";
 export { default as RegisterPage } from "./RegisterPage/RegisterPage";
 export { default as StatisticsPage } from "./Statistics/Statistics";
-export { default as Navigation } from "./Navigation/Navigation";
 export { default as UTCProfiles } from './Profiles/CoordinatorProfiles/UTCProfiles';
 export { default as UTCProfilesTwo } from './Profiles/CoordinatorProfiles/UTCProfiles2';
 export { default as LessonBooking } from './LessonBooking/LessonBooking';
 export { default as LandingPage } from './LandingPage/LandingPage';
+
+//
+export { default as Navigation } from "./Navigation/Navigation";
+export { default as Toolbar } from "./Navigation/Toolbar/Toolbar";
+
+//
+export { default as SchoolProfile } from "./Profiles/School/School";
 
 //addLesson Tables
 export { default as MainTable } from "./AddLesson/Table/MainTable";
