@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const SocialMediaPostController = require('../controllers/socialMediaPost');
+const SocialMediaPostController = require('../controllers/social_media_post');
 const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
