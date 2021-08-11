@@ -88,14 +88,14 @@ class UTCProfilesTwo extends React.Component {
         const schoolProfiles = {}
         return (
             <div >
-                <Layout style={{ height: "100%" }}>
+                <Layout style={{ paddingTop: 45 }}>
                     <Sider className="sidebar">
                     </Sider>
                     <Layout className="site-layout">
                         <Content className="addLesson-content" width="100%">
                             <div className="site-layout-background">
 
-                                <div style={{ height: "100%" }}>
+                                <div>
                                     <>
                                         <List
                                             grid={{

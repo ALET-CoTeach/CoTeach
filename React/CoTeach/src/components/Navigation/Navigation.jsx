@@ -21,7 +21,7 @@ function Navigation(props) {
   const { current } = this.state;
   return (
     <div>
-      <Menu className="navbar" onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
+      <Menu className="navbar" onClick={this.handleClick} selectedKeys={[current]} mode="horizontal" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <Menu.Item key="home" icon={<HomeOutlined />}>
           <Link to="/">
             Home

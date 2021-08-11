@@ -20,7 +20,7 @@ const { Panel } = Collapse;
 export class LessonBooking extends Component {
     render() {
         return (
-            <Layout>
+            <Layout style={{ paddingTop: 45 }}>
                 <Sider className="sidebar">
                     {/* <LessonBookingCalendar /> */}
                 </Sider>
