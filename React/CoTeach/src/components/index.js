@@ -15,7 +15,7 @@ export { default as TeacherDashboard } from "./Dashboard/TeacherDashboard";
 export { default as EmployerDashboard } from "./Dashboard/EmployerDashboard";
 export { default as CoordinatorDashboard } from "./Dashboard/CoordinatorDashboard";
 
-// Nav
+// Navigation
 export { default as Navigation } from "./Navigation/Navigation";
 export { default as Toolbar } from "./Navigation/Toolbar/Toolbar";
 
