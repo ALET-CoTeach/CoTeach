@@ -1,4 +1,3 @@
-export { default as Home } from "./Home/Home";
 export { default as About } from "./About/About";
 export { default as Footer } from "./Footer/Footer";
 export { default as AddLesson } from "./AddLesson/AddLesson";
@@ -10,11 +9,17 @@ export { default as UTCProfilesTwo } from './Profiles/CoordinatorProfiles/UTCPro
 export { default as LessonBooking } from './LessonBooking/LessonBooking';
 export { default as LandingPage } from './LandingPage/LandingPage';
 
-//
+// Dashboard
+export { default as Dashboard } from "./Dashboard/Dashboard";
+export { default as TeacherDashboard } from "./Dashboard/TeacherDashboard";
+export { default as EmployerDashboard } from "./Dashboard/EmployerDashboard";
+export { default as CoordinatorDashboard } from "./Dashboard/CoordinatorDashboard";
+
+// Nav
 export { default as Navigation } from "./Navigation/Navigation";
 export { default as Toolbar } from "./Navigation/Toolbar/Toolbar";
 
-//
+// Profiles
 export { default as SchoolProfile } from "./Profiles/School/School";
 
 //addLesson Tables
