@@ -9,7 +9,7 @@ const { Content, Footer, Sider } = Layout;
 class StatisticsPage extends Component {
     render() {
         return (
-            <Layout>
+            <Layout style={{ paddingTop: 45 }}>
                 <Sider className="sidebar">
                     <p></p>
                 </Sider>

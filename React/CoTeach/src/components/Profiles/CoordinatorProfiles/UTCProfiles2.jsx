@@ -89,9 +89,14 @@ class UTCProfilesTwo extends React.Component {
         return (
             <div >
                 <Layout style={{ paddingTop: 45 }}>
-                    <Sider className="sidebar">
+                    <Sider className="sidebar" style={{
+                        overflow: 'auto',
+                        height: '100vh',
+                        position: 'fixed',
+                        left: 0,
+                    }}>
                     </Sider>
-                    <Layout className="site-layout">
+                    <Layout className="site-layout" style={{ marginLeft: 200 }}>
                         <Content className="addLesson-content" width="100%">
                             <div className="site-layout-background">
 
