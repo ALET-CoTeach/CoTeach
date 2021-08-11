@@ -42,12 +42,11 @@ function Navigation(props) {
             <Menu.Item key="setting:4"><Link to="login">Login</Link></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Profiles">
-            <Menu.Item key="setting:5"><Link to="UTCProfiles">UTC Profiles</Link></Menu.Item>
-            <Menu.Item key="setting:6"><Link to="UTCProfilesTwo">UTC Profiles 2</Link></Menu.Item>
-            <Menu.Item key="setting:7"><Link to="LandingPage">Landing Page</Link></Menu.Item>
+            <Menu.Item key="setting:5"><Link to="UTCProfilesTwo">UTC Profiles 2</Link></Menu.Item>
+            <Menu.Item key="setting:6"><Link to="LandingPage">Landing Page</Link></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Table Dashboards">
-            <Menu.Item key="setting:8"><Link to="LessonBooking">Lesson Booking (employer)</Link></Menu.Item>
+            <Menu.Item key="setting:7"><Link to="LessonBooking">Lesson Booking (employer)</Link></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="notifications">
