@@ -1,22 +1,17 @@
-.LoginBody {
-    background-image: url('../../../assets/Login-bckg.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-}
-
 .LandingBody {
-    background-image: url('../../../assets/Landing-Page-Double-Blob.svg');
+    background-image: url('../../../../assets/Landing-Page-Long-Trousers.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 330%;
+    height: 400%;
     width: 100%;
     position: absolute;
+}
+
+.HeadingBlue {
+    font-size: 300%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1D71B8;
 }
 
 
@@ -37,11 +32,6 @@
     padding-top: 12%;
 }
 
-/* .coTeachAlignment {
-    justify-content: left;
-    vertical-align: middle;
-    padding-top: 35%;
-} */
 
 .coTeachPadding {
     padding-left: 0%;
@@ -65,19 +55,9 @@
     padding-bottom: 5%;
 }
 
-.radioPadding {
-    padding-top: 3%;
-}
-
 .coTeachWordsPadding {
     padding-top: 5%;
 }
-
-/* br {
-    display: block;
-    content: "";
-    margin-top: 20%;
-} */
 
 .landingGaps {
     margin-top: 8%;
@@ -90,18 +70,18 @@
 
 [data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
 .site-collapse-custom-collapse .site-collapse-custom-panel {
-  margin-bottom: 24px;
+  margin-bottom: 1px;
   overflow: hidden;
-  background: #d6d6d6;
+  background:  #ccdfeb;
+  /* #ccdfeb */
   border: 0px;
   border-radius: 2px;
-  border-color: white;
+  color: white;
 }
   [data-theme="dark"] .site-collapse-custom-collapse .site-collapse-custom-panel {
     background: rgba(255,255,255,0.04);
     border: 0px;
   }
-
 .ant-collapse-content {
     background-color: #ececec;
     color: black;
@@ -109,12 +89,17 @@
 
 
 @media only screen and (max-width: 1000px) {
-    .LoginBody {
-        background-image: url('../../../assets/backg1275.svg');
+    .LandingBody {
+        background-image: url('../../../../assets/LandingPage-Mobile.svg');
     }
 
-    .LandingBody {
-        background-image: url('../../../assets/LandingPage-Mobile-View.svg');
+    .coTeachWordsPadding {
+        padding-top: 2%;
+    }
+
+    .coTeachPadding {
+        padding-left: 0%;
+        padding-top: 5%;
     }
 
     .cardAlignment {
@@ -140,13 +125,16 @@
     }
   }
 
+
 @media only screen and (max-width: 575px) {
-.LoginBody {
-    background-image: url('../../../assets/backg1275.svg');
+.LandingBody {
+    background-image: url('../../../../assets/LandingPage-Mobile.svg');
 }
 
-.LandingBody {
-            background-image: url('../../../assets/LandingPage-Mobile-View.svg');
+.HeadingBlue {
+    font-size: 200%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1D71B8;
 }
 
 .cardAlignment {
@@ -164,10 +152,4 @@
     width: "100%";
     height: "100%";
 }
-
-/* .coTeachPadding {
-    padding-left: 0%;
-    padding-top: 25%;
-    margin-left: 15%;
-} */
 }

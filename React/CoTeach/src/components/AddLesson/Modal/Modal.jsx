@@ -31,7 +31,7 @@ function ModalComponent() {
   return (
     <>
       <Button style={{ width: 150, margin: 20, }} type="primary" onClick={() => setVisible(true)}>
-        Add Lesson
+        Add Request
       </Button>
       <Modal
         title="Add Lesson"

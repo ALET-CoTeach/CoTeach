@@ -19,7 +19,8 @@ const data = [
         lesson: "Network Topologies",
         subject: 'Computer Science',
         course: 'A Level',
-        year: 12,
+        year: '12',
+        activityType: 'Lesson',
     },
     {
         key: '2',
@@ -31,7 +32,8 @@ const data = [
         lesson: "App Development",
         subject: 'Computing',
         course: 'BTEC Level 3',
-        year: 13,
+        year: '13',
+        activityType: 'Pipeline Programme',
     },
     {
         key: '3',
@@ -43,7 +45,8 @@ const data = [
         lesson: "Web Development",
         subject: 'Computing',
         course: 'BTEC Level 3',
-        year: 13,
+        year: '13',
+        activityType: 'Work Placement',
     },
     {
         key: '4',
@@ -55,7 +58,8 @@ const data = [
         lesson: "Design using CAD",
         subject: 'Engineering',
         course: 'BTEC Level 3',
-        year: 12,
+        year: '12',
+        activityType: 'Workshop',
     },
     {
         key: '5',
@@ -67,7 +71,8 @@ const data = [
         lesson: "Binary",
         subject: 'Computer Science',
         course: 'GCSE',
-        year: 10,
+        year: '10',
+        activityType: 'Project',
     },
 ];
 
@@ -278,6 +283,34 @@ class AllLessons extends React.Component {
                 ...this.getColumnSearchProps('lesson'),
             },
             {
+                title: 'Type',
+                dataIndex: 'activityType',
+                key: 'activityType',
+                filters: [
+                    {
+                        text: 'Lesson',
+                        value: 'Lesson',
+                    },
+                    {
+                        text: 'Workshop',
+                        value: 'Workshop',
+                    },
+                    {
+                        text: 'Project',
+                        value: 'Project',
+                    },
+                    {
+                        text: 'Work Placement',
+                        value: 'Work Placement',
+                    },
+                    {
+                        text: 'Pipeline Programme',
+                        value: 'Pipeline Programme',
+                    },
+                ],
+                onFilter: (value, record) => record.activityType.indexOf(value) === 0,
+            },
+            {
                 title: 'Teacher Name',
                 dataIndex: 'teacherName',
                 key: 'teacherName',
@@ -357,37 +390,37 @@ class AllLessons extends React.Component {
                 key: 'year',
                 filters: [
                     {
-                        text: 7,
-                        value: 7,
+                        text: '7',
+                        value: '7',
                     },
                     {
-                        text: 8,
-                        value: 8,
+                        text: '8',
+                        value: '8',
                     },
                     {
-                        text: 9,
-                        value: 9,
+                        text: '9',
+                        value: '9',
                     },
                     {
-                        text: 10,
-                        value: 10,
+                        text: '10',
+                        value: '10',
                     },
                     {
-                        text: 11,
-                        value: 11,
+                        text: '11',
+                        value: '11',
                     },
                     {
-                        text: 12,
-                        value: 12,
+                        text: '12',
+                        value: '12',
                     },
                     {
-                        text: 13,
-                        value: 13,
+                        text: '13',
+                        value: '13',
                     },
                 ],
                 onFilter: (value, record) => record.year.indexOf(value) === 0,
-                sorter: (a, b) => a.year - b.year,
-                sortDirections: ['ascend', 'descend'],
+                // sorter: (a, b) => a.year - b.year,
+                // sortDirections: ['ascend', 'descend'],
             },
         ];
         return (

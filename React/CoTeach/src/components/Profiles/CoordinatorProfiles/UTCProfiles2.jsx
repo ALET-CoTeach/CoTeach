@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css';
 import { Layout, Collapse, Drawer, List, Avatar, Divider, Col, Row, Card } from 'antd';
-import './loginPage.css';
+import './CoordinatorProfile.css';
 
 import UTCHeathrowLogo from 'url:~/src/assets/BlueLogos/UTC-Heathrow-Logo.svg';
 import BicesterTechnology from 'url:~/src/assets/BlueLogos/Bicester-Tchnology-Studio-Logo.svg';
@@ -88,14 +88,23 @@ class UTCProfilesTwo extends React.Component {
         const schoolProfiles = {}
         return (
             <div >
-                <Layout style={{ height: "100%" }}>
-                    <Sider className="sidebar">
+                <Layout style={{ paddingTop: 45 }}>
+                    <Sider className="sidebar" style={{
+                        overflow: 'auto',
+                        height: '100vh',
+                        position: 'fixed',
+                        left: 0,
+                    }}>
                     </Sider>
-                    <Layout className="site-layout">
+                    <Layout className="site-layout" style={{ marginLeft: 200 }}>
                         <Content className="addLesson-content" width="100%">
                             <div className="site-layout-background">
 
-                                <div style={{ height: "100%" }}>
+                                <div>
+                                    <h1  className="centerText">Coordinator Contact Information</h1>
+                                </div>
+
+                                <div>
                                     <>
                                         <List
                                             grid={{

@@ -20,11 +20,16 @@ const { Panel } = Collapse;
 export class LessonBooking extends Component {
     render() {
         return (
-            <Layout>
-                <Sider className="sidebar">
+            <Layout style={{ paddingTop: 45 }}>
+                <Sider className="sidebar" style={{
+                    overflow: 'auto',
+                    height: '100vh',
+                    position: 'fixed',
+                    left: 0,
+                }}>
                     {/* <LessonBookingCalendar /> */}
                 </Sider>
-                <Layout className="site-layout">
+                <Layout className="site-layout" style={{ marginLeft: 200 }}>
                     <Content className="bookingLesson-content">
                         <div className="site-layout-background">
 
@@ -39,7 +44,6 @@ export class LessonBooking extends Component {
                                     <AllBookedLessons />
                                 </Panel>
                             </Collapse>
-
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>ALET CoTeach 2021</Footer>
