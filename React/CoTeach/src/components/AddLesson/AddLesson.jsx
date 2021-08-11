@@ -2,22 +2,11 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import '../../index.css';
 import { Layout, Collapse } from 'antd';
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UserOutlined,
-  UploadOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
 
 import MainTable from './Table/MainTable';
 import AddLessonModal from './Modal/Modal';
 import BookedTable from './Table/BookedTable';
 import PendingTable from './Table/PendingTable';
-import CalendarComponent from './Calendar/Calendar';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -26,11 +15,16 @@ const { Panel } = Collapse;
 class AddLesson extends Component {
   render() {
     return (
-      <Layout>
-        <Sider className="sidebar">
+      <Layout style={{ paddingTop: 45 }}>
+        <Sider className="sidebar" style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+        }}>
           <AddLessonModal />
         </Sider>
-        <Layout className="site-layout">
+        <Layout className="site-layout" style={{ marginLeft: 200 }}>
           <Content className="addLesson-content">
             <div className="site-layout-background">
               <Collapse bordered={false} defaultActiveKey={['1', '2', '3']} ghost>
