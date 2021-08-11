@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import './Grid/LogoGrid/loginPage.css';
 import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Icon, Collapse, Link, Statistic } from 'antd';
 import 'antd/dist/antd.css';
+import './Grid/LogoGrid/loginPage.css';
 import CoTeachWords from 'url:~/src/assets/CoTeachWords.svg';
 import EducationBulletPoints from 'url:~/src/assets/EducationBullets.svg';
 import WhatIsCoTeach from 'url:~/src/assets/What-Is-CoTeach.svg';
 import IndustryLogos from './Grid/LogoGrid/industryLogos.jsx';
+import CoTeachMotto from 'url:~/src/assets/CoTeachMotto.svg';
 
 
 const { Panel } = Collapse;
@@ -28,7 +29,7 @@ export class LandingPage extends Component {
                                         </Col>
 
                                         <Col lg={24} sm={24}>
-                                            <img src={EducationBulletPoints} width="70%" />
+                                            <img src={CoTeachMotto} width="70%" />
                                         </Col>
 
                                         <Col lg={24} sm={24}>
@@ -188,8 +189,9 @@ export class LandingPage extends Component {
 
                                                     <Collapse
                                                         accordion
+                                                        className="site-collapse-custom-collapse"
                                                     >
-                                                        <Panel header="What are CoTeach's Goals?" key="1" >
+                                                        <Panel header="What are CoTeach's Goals?" key="1" className="site-collapse-custom-panel">
                                                             <Row>
                                                                 <Col lg={6}>
                                                                     <Card>
@@ -213,24 +215,26 @@ export class LandingPage extends Component {
                                                                 </Col>
                                                             </Row>
                                                         </Panel>
-                                                        <Panel header="What is CoTeach?" key="2" >
+                                                        <Panel header="What is CoTeach?" key="2" className="site-collapse-custom-panel">
                                                             <img src={CoTeachWords} width="80%" />
                                                             <p>All information about are schools and coordinators can be found here</p>
                                                         </Panel>
-                                                        <Panel header="Where Can I find information about the schools?" key="3" >
+                                                        <Panel header="Where Can I find information about the schools?" key="3" className="site-collapse-custom-panel">
                                                             <p>text</p>
                                                         </Panel>
 
-                                                        <Panel header="This is panel header 4" key="4" >
+                                                        <Panel header="This is panel header 4" key="4" className="site-collapse-custom-panel">
                                                             <p>text</p>
                                                         </Panel>
-                                                        <Panel header="This is panel header 5" key="5" >
+                                                        <Panel header="This is panel header 5" key="5" className="site-collapse-custom-panel">
                                                             <p>text</p>
                                                         </Panel>
-                                                        <Panel header="This is panel header 6" key="6" >
+                                                        <Panel header="This is panel header 6" key="6" className="site-collapse-custom-panel">
                                                             <p>text</p>
                                                         </Panel>
                                                     </Collapse>
+
+                                                    
                                                 </Card>
 
 

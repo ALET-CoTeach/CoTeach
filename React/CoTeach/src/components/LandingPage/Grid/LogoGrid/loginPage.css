@@ -96,18 +96,18 @@
 
 [data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
 .site-collapse-custom-collapse .site-collapse-custom-panel {
-  margin-bottom: 24px;
+  margin-bottom: 1px;
   overflow: hidden;
-  background: #d6d6d6;
+  background:  #ccdfeb;
+  /* #ccdfeb */
   border: 0px;
   border-radius: 2px;
-  border-color: white;
+  color: white;
 }
   [data-theme="dark"] .site-collapse-custom-collapse .site-collapse-custom-panel {
     background: rgba(255,255,255,0.04);
     border: 0px;
   }
-
 .ant-collapse-content {
     background-color: #ececec;
     color: black;
