@@ -8,4 +8,4 @@ function EmployerDashboard() {
     )
 }
 
-export default EmployerDashboard
+export default EmployerDashboard;

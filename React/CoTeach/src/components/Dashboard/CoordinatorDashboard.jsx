@@ -8,4 +8,4 @@ function CoordinatorDashboard() {
     )
 }
 
-export default CoordinatorDashboard
+export default CoordinatorDashboard;
