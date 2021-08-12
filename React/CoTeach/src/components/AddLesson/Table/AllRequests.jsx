@@ -8,13 +8,13 @@ const columns = [
   {
     title: 'Booked Date',
     dataIndex: 'date',
-    // specify the condition of filtering result
-    // here is that finding the name started with `value`
     onFilter: (value, record) => record.date.indexOf(value) === 0,
-
-    // Sorts terms by comparing the 6th charater of the word.
     sorter: (a, b) => a.date.charAt(5) - b.date.charAt(5),
     sortDirections: ['ascend', 'descend'],
+  },
+  {
+    title: 'Booked By',
+    dataIndex: 'organisation',
   },
   {
     title: 'School',
@@ -56,6 +56,10 @@ const columns = [
   {
     title: 'Lesson',
     dataIndex: 'lesson',
+  },
+  {
+    title: 'Teacher Name',
+    dataIndex: 'teacherName',
   },
   {
     title: 'Type',
@@ -127,8 +131,6 @@ const columns = [
       },
     ],
     onFilter: (value, record) => record.subject.indexOf(value) === 0,
-    //sorter: (a, b) => a.day.length - b.day.length,
-    //sortDirections: ['ascend', 'descend'],
   },
   {
     title: 'Course Type',
@@ -208,6 +210,8 @@ const data = [
     course: 'A Level',
     year: '12',
     activityType: 'Lesson',
+    organisation: 'Microsoft',
+    teacherName: 'Robert Bradley'
   },
   {
     key: '2',
@@ -221,6 +225,8 @@ const data = [
     course: 'BTEC Level 3',
     year: '13',
     activityType: 'Work Placement',
+    organisation: 'Cisco',
+    teacherName: 'David McArthur'
   },
   {
     key: '3',
@@ -234,6 +240,8 @@ const data = [
     course: 'BTEC Level 3',
     year: '13',
     activityType: 'Workshop',
+    organisation: 'Oracle',
+    teacherName: 'Colin Fox'
   },
   {
     key: '4',
@@ -247,6 +255,8 @@ const data = [
     course: 'BTEC Level 3',
     year: '12',
     activityType: 'Workshop',
+    organisation: 'IBM',
+    teacherName: 'Ian Scott'
   },
   {
     key: '5',
@@ -260,6 +270,8 @@ const data = [
     course: 'GCSE',
     year: '10',
     activityType: 'Lesson',
+    organisation: 'Thales',
+    teacherName: 'Robert Bradley'
   },
   {
     key: '6',
@@ -273,6 +285,8 @@ const data = [
     course: 'A Level',
     year: '13',
     activityType: 'Project',
+    organisation: 'KPMG',
+    teacherName: 'David McArthur'
   },
   {
     key: '7',
@@ -286,6 +300,8 @@ const data = [
     course: 'A-Level',
     year: '13',
     activityType: 'Lesson',
+    organisation: 'Cisco',
+    teacherName: 'Robert Bradley'
   },
   {
     key: '8',
@@ -299,6 +315,8 @@ const data = [
     course: 'GCSE',
     year: '11',
     activityType: 'Lesson',
+    organisation: 'BBC',
+    teacherName: 'Nicola Gibson'
   },
   {
     key: '9',
@@ -312,6 +330,8 @@ const data = [
     course: 'BTEC Level 3',
     year: '12',
     activityType: 'Workshop',
+    organisation: 'Royal Navy',
+    teacherName: 'Martin Thomas'
   },
   {
     key: '10',
@@ -325,6 +345,8 @@ const data = [
     course: 'BTEC Level 3',
     year: '12',
     activityType: 'Lesson',
+    organisation: 'Microsoft',
+    teacherName: 'Colin Fox'
   },
   {
     key: '11',
@@ -338,6 +360,8 @@ const data = [
     course: 'GCSE',
     year: '10',
     activityType: 'Workshop',
+    organisation: 'Sage',
+    teacherName: 'Robert Bradley'
   },
   {
     key: '12',
@@ -351,6 +375,8 @@ const data = [
     course: 'GCSE',
     year: '11',
     activityType: 'Lesson',
+    organisation: 'Thales',
+    teacherName: 'David McArthur'
   },
 ];
 
