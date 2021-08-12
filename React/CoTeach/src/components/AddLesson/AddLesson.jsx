@@ -3,6 +3,8 @@ import 'antd/dist/antd.css';
 import '../../index.css';
 import { Layout, Collapse } from 'antd';
 
+import { InfoCircleOutlined } from '@ant-design/icons';
+
 import MainTable from './Table/MainTable';
 import AddLessonModal from './Modal/Modal';
 import BookedTable from './Table/BookedTable';
