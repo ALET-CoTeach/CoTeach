@@ -13,7 +13,7 @@ export class LoginTabs extends Component {
         return (
             <>
                 <br />
-                <Tabs defaultActiveKey="1" centered size="large">
+                <Tabs defaultActiveKey="1" centered size="50%">
                     <TabPane tab="Teacher" key="1">
                         <TeacherForm />
                     </TabPane>

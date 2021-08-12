@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './loginPage.css';
+import './LandingPage.css';
 import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Icon, Collapse, Link, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 
