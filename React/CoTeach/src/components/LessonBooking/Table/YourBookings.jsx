@@ -396,7 +396,7 @@ class YourBookings extends React.Component {
                 filters: [
                     {
                         text: 'A-Level',
-                        value: 'A-Level',
+                        value: 'A Level',
                     },
                     {
                         text: 'BTEC Level 3',

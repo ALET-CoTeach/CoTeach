@@ -20,6 +20,7 @@ const data = [
         course: 'A Level',
         year: '12',
         activityType: 'Lesson',
+        organisation: 'Cisco',
     },
     {
         key: '2',
@@ -34,6 +35,7 @@ const data = [
         course: 'BTEC Level 3',
         year: '13',
         activityType: 'Workshop',
+        organisation: 'Microsoft',
     },
     {
         key: '3',
@@ -48,6 +50,7 @@ const data = [
         course: 'BTEC Level 3',
         year: '13',
         activityType: 'Project',
+        organisation: 'Microsoft',
     },
     {
         key: '4',
@@ -62,6 +65,7 @@ const data = [
         course: 'BTEC Level 3',
         year: '12',
         activityType: 'Work Placement',
+        organisation: 'AWE',
     },
     {
         key: '5',
@@ -76,6 +80,7 @@ const data = [
         course: 'GCSE',
         year: '10',
         activityType: 'Pipeline Programme',
+        organisation: 'IBM',
     },
 ]
 
@@ -169,6 +174,12 @@ class AllBookedLessons extends React.Component {
                 title: 'Date',
                 dataIndex: 'date',
                 key: 'date',
+            },
+            {
+                title: 'Booked By',
+                dataIndex: 'organisation',
+                key: 'organisation',
+                ...this.getColumnSearchProps('organisation'),
             },
             {
                 title: 'School',
@@ -297,7 +308,7 @@ class AllBookedLessons extends React.Component {
                 filters: [
                     {
                         text: 'A-Level',
-                        value: 'A-Level',
+                        value: 'A Level',
                     },
                     {
                         text: 'BTEC Level 3',

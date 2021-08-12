@@ -193,7 +193,7 @@ class AllLessons extends React.Component {
                     },
                 ],
                 onFilter: (value, record) => record.term.indexOf(value) === 0,
-                sorter: (a, b) => a.term.charAt(5) - b.term.charAt(5),
+                sorter: (a, b) => a.term.charAt(1) - b.term.charAt(1),
                 sortDirections: ['ascend', 'descend'],
             },
             {
@@ -367,7 +367,7 @@ class AllLessons extends React.Component {
                 filters: [
                     {
                         text: 'A-Level',
-                        value: 'A-Level',
+                        value: 'A Level',
                     },
                     {
                         text: 'BTEC Level 3',

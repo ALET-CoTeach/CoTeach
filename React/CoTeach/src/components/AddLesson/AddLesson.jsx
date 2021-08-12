@@ -35,7 +35,7 @@ class AddLesson extends Component {
                 <Panel className="addLesson-table-title" header="Your Fulfilled Requests" key="2">
                   <FulfilledRequests />
                 </Panel>
-                <Panel className="addLesson-table-title" header="All Requests" key="3">
+                <Panel className="addLesson-table-title" header="All Fulfilled Requests" key="3">
                   <AllRequests />
                 </Panel>
               </Collapse>
