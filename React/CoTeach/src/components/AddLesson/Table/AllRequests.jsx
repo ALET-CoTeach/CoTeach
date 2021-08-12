@@ -358,7 +358,7 @@ function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
 
-class MainTable extends Component {
+class AllRequests extends Component {
   render() {
     return (
       <>
@@ -368,4 +368,4 @@ class MainTable extends Component {
   };
 }
 
-export default MainTable;
+export default AllRequests;

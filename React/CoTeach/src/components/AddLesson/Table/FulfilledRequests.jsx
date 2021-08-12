@@ -7,51 +7,51 @@ const columns = [
   {
     title: 'Booked Date',
     dataIndex: 'date',
-    // specify the condition of filtering result
-    // here is that finding the name started with `value`
     onFilter: (value, record) => record.date.indexOf(value) === 0,
-
-    // Sorts terms by comparing the 6th charater of the word.
     sorter: (a, b) => a.date.charAt(5) - b.date.charAt(5),
     sortDirections: ['ascend', 'descend'],
   },
   {
-    title: 'School',
-    dataIndex: 'school',
-    filters: [
-      {
-        text: 'UTCR',
-        value: 'UTCR',
-      },
-      {
-        text: 'UTCO',
-        value: 'UTCO',
-      },
-      {
-        text: 'UTCH',
-        value: 'UTCH',
-      },
-      {
-        text: 'UTCS',
-        value: 'UTCS',
-      },
-      {
-        text: 'TGS',
-        value: 'TGS',
-      },
-      {
-        text: 'TBS',
-        value: 'TBS',
-      },
-      {
-        text: 'BTS',
-        value: 'BTS',
-      },
-    ],
-    onFilter: (value, record) => record.school.indexOf(value) === 0,
-    //sorter: (a, b) => a.school.length - b.school.length,
-    //sortDirections: ['ascend', 'descend'],
+    title: 'Booked By',
+    dataIndex: 'organisation',
   },
+  // {
+  //   title: 'School',
+  //   dataIndex: 'school',
+  //   filters: [
+  //     {
+  //       text: 'UTCR',
+  //       value: 'UTCR',
+  //     },
+  //     {
+  //       text: 'UTCO',
+  //       value: 'UTCO',
+  //     },
+  //     {
+  //       text: 'UTCH',
+  //       value: 'UTCH',
+  //     },
+  //     {
+  //       text: 'UTCS',
+  //       value: 'UTCS',
+  //     },
+  //     {
+  //       text: 'TGS',
+  //       value: 'TGS',
+  //     },
+  //     {
+  //       text: 'TBS',
+  //       value: 'TBS',
+  //     },
+  //     {
+  //       text: 'BTS',
+  //       value: 'BTS',
+  //     },
+  //   ],
+  //   onFilter: (value, record) => record.school.indexOf(value) === 0,
+  //   //sorter: (a, b) => a.school.length - b.school.length,
+  //   //sortDirections: ['ascend', 'descend'],
+  // },
   {
     title: 'Lesson',
     dataIndex: 'lesson',
@@ -207,6 +207,7 @@ const data = [
     course: 'A Level',
     year: '12',
     activityType: 'Lesson',
+    organisation: 'Microsoft',
   },
   {
     key: '2',
@@ -220,6 +221,7 @@ const data = [
     course: 'BTEC Level 3',
     year: '13',
     activityType: 'Workshop',
+    organisation: 'Cisco',
   },
   {
     key: '3',
@@ -233,6 +235,7 @@ const data = [
     course: 'BTEC Level 3',
     year: '13',
     activityType: 'Work Placement',
+    organisation: 'IBM',
   },
   {
     key: '4',
@@ -246,6 +249,7 @@ const data = [
     course: 'BTEC Level 3',
     year: '12',
     activityType: 'Lesson',
+    organisation: 'Thales',
   },
   {
     key: '5',
@@ -259,6 +263,7 @@ const data = [
     course: 'GCSE',
     year: '10',
     activityType: 'Lesson',
+    organisation: 'Microsoft',
   },
   {
     key: '6',
@@ -272,6 +277,7 @@ const data = [
     course: 'A Level',
     year: '13',
     activityType: 'Workshop',
+    organisation: 'Oracle',
   },
 ];
 
@@ -279,7 +285,7 @@ function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
 
-class BookedTable extends Component {
+class FulfilledRequests extends Component {
   render() {
     return (
       <>
@@ -289,4 +295,4 @@ class BookedTable extends Component {
   };
 }
 
-export default BookedTable;
+export default FulfilledRequests;

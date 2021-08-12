@@ -105,43 +105,43 @@ const columns = [
     ],
     onFilter: (value, record) => record.time.indexOf(value) === 0,
   },
-  {
-    title: 'School',
-    dataIndex: 'school',
-    filters: [
-      {
-        text: 'UTCR',
-        value: 'UTCR',
-      },
-      {
-        text: 'UTCO',
-        value: 'UTCO',
-      },
-      {
-        text: 'UTCH',
-        value: 'UTCH',
-      },
-      {
-        text: 'UTCS',
-        value: 'UTCS',
-      },
-      {
-        text: 'TGS',
-        value: 'TGS',
-      },
-      {
-        text: 'TBS',
-        value: 'TBS',
-      },
-      {
-        text: 'BTS',
-        value: 'BTS',
-      },
-    ],
-    onFilter: (value, record) => record.school.indexOf(value) === 0,
-    //sorter: (a, b) => a.school.length - b.school.length,
-    //sortDirections: ['ascend', 'descend'],
-  },
+  // {
+  //   title: 'School',
+  //   dataIndex: 'school',
+  //   filters: [
+  //     {
+  //       text: 'UTCR',
+  //       value: 'UTCR',
+  //     },
+  //     {
+  //       text: 'UTCO',
+  //       value: 'UTCO',
+  //     },
+  //     {
+  //       text: 'UTCH',
+  //       value: 'UTCH',
+  //     },
+  //     {
+  //       text: 'UTCS',
+  //       value: 'UTCS',
+  //     },
+  //     {
+  //       text: 'TGS',
+  //       value: 'TGS',
+  //     },
+  //     {
+  //       text: 'TBS',
+  //       value: 'TBS',
+  //     },
+  //     {
+  //       text: 'BTS',
+  //       value: 'BTS',
+  //     },
+  //   ],
+  //   onFilter: (value, record) => record.school.indexOf(value) === 0,
+  //   //sorter: (a, b) => a.school.length - b.school.length,
+  //   //sortDirections: ['ascend', 'descend'],
+  // },
   {
     title: 'Lesson',
     dataIndex: 'lesson',
@@ -338,7 +338,7 @@ function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
 
-class PendingTable extends Component {
+class UnbookedRequests extends Component {
   render() {
     return (
       <>
@@ -348,4 +348,4 @@ class PendingTable extends Component {
   };
 }
 
-export default PendingTable;
+export default UnbookedRequests;

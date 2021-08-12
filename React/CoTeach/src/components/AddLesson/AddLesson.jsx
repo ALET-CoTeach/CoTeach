@@ -3,12 +3,11 @@ import 'antd/dist/antd.css';
 import '../../index.css';
 import { Layout, Collapse } from 'antd';
 
-import { InfoCircleOutlined } from '@ant-design/icons';
+import AllRequests from './Table/AllRequests';
+import FulfilledRequests from './Table/FulfilledRequests';
+import UnbookedRequests from './Table/UnbookedRequests';
 
-import MainTable from './Table/MainTable';
 import AddLessonModal from './Modal/Modal';
-import BookedTable from './Table/BookedTable';
-import PendingTable from './Table/PendingTable';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -30,14 +29,14 @@ class AddLesson extends Component {
           <Content className="addLesson-content">
             <div className="site-layout-background">
               <Collapse bordered={false} defaultActiveKey={['1', '2', '3']} ghost>
-                <Panel className="addLesson-table-title" header="Pending Lessons" key="1">
-                  <PendingTable />
+                <Panel className="addLesson-table-title" header="Unbooked Requests" key="1">
+                  <UnbookedRequests />
                 </Panel>
-                <Panel className="addLesson-table-title" header="Booked Lessons" key="2">
-                  <BookedTable />
+                <Panel className="addLesson-table-title" header="Your Fulfilled Requests" key="2">
+                  <FulfilledRequests />
                 </Panel>
-                <Panel className="addLesson-table-title" header="All Lessons" key="3">
-                  <MainTable />
+                <Panel className="addLesson-table-title" header="All Requests" key="3">
+                  <AllRequests />
                 </Panel>
               </Collapse>
             </div>

@@ -23,10 +23,10 @@ export { default as Toolbar } from "./Navigation/Toolbar/Toolbar";
 export { default as SchoolProfile } from "./Profiles/School/School";
 
 //addLesson Tables
-export { default as MainTable } from "./AddLesson/Table/MainTable";
+export { default as MainTable } from "./AddLesson/Table/AllRequests";
 export { default as TableComponent } from "./AddLesson/Table/Table";
-export { default as BookedTable } from "./AddLesson/Table/BookedTable";
-export { default as PendingTable } from "./AddLesson/Table/PendingTable";
+export { default as BookedTable } from "./AddLesson/Table/FulfilledRequests";
+export { default as UnbookedRequests } from "./AddLesson/Table/UnbookedRequests";
 
 //addLesson Tables Modal
 export { default as TableModal } from "./AddLesson/Table/Modal/TableModal";

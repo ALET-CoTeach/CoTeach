@@ -101,7 +101,8 @@ class UTCProfilesTwo extends React.Component {
                             <div className="site-layout-background">
 
                                 <div>
-                                    <h1  className="centerText">Coordinator Contact Information</h1>
+                                    <h1  className="centerText HeadingBlue"><b>Coordinator Contact Information</b></h1>
+                                    <p className="centerText">On this page, you will find all contact details for both the school and coordinator.</p>
                                 </div>
 
                                 <div>
@@ -122,6 +123,7 @@ class UTCProfilesTwo extends React.Component {
 
                                                 >
                                                     <Card
+                                                        className="centerText"
                                                         title={item.title}
                                                         key={item.id}
                                                         actions={[
