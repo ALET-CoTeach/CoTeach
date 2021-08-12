@@ -5,7 +5,7 @@ import { Layout, Collapse } from 'antd';
 class CoordinatorEntries extends Component {
     render() {
         return (
-            <div>
+            <div style={{ paddingTop: 50 }}>
                 <h1>Coordinator Entries Page</h1>
             </div>
         );
