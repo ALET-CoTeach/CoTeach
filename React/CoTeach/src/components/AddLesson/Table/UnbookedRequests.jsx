@@ -15,8 +15,6 @@ const Wrapper = (props) => {
   );
 }
 
-
-
 const data = [
   {
     key: '1',
@@ -325,7 +323,7 @@ class UnbookedRequests extends React.Component {
         filters: [
           {
             text: 'A-Level',
-            value: 'A-Level',
+            value: 'A Level',
           },
           {
             text: 'BTEC Level 3',
