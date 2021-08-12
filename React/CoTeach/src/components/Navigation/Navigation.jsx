@@ -47,6 +47,7 @@ function Navigation(props) {
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Table Dashboards">
             <Menu.Item key="setting:7"><Link to="LessonBooking">Lesson Booking (employer)</Link></Menu.Item>
+            <Menu.Item key="setting:8"><Link to="CoordinatorEntries">Coordinator Entries</Link></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="notifications">

@@ -8,6 +8,7 @@ export { default as UTCProfiles } from './Profiles/CoordinatorProfiles/UTCProfil
 export { default as UTCProfilesTwo } from './Profiles/CoordinatorProfiles/UTCProfiles2';
 export { default as LessonBooking } from './LessonBooking/LessonBooking';
 export { default as LandingPage } from './LandingPage/LandingPage';
+export { default as CoordinatorEntries } from "./CoordinatorEntries/CoordinatorEntries";
 
 // Dashboard
 export { default as Dashboard } from "./Dashboard/Dashboard";
@@ -27,6 +28,9 @@ export { default as MainTable } from "./AddLesson/Table/AllRequests";
 export { default as TableComponent } from "./AddLesson/Table/Table";
 export { default as BookedTable } from "./AddLesson/Table/FulfilledRequests";
 export { default as UnbookedRequests } from "./AddLesson/Table/UnbookedRequests";
+
+//Coordinator Entries page 
+
 
 //addLesson Tables Modal
 export { default as TableModal } from "./AddLesson/Table/Modal/TableModal";
