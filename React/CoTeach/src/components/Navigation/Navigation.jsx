@@ -51,6 +51,7 @@ function Navigation(props) {
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Post Creation / Verification">
           <Menu.Item key="setting:9"><Link to="TeacherPostCreationPage">Teacher Post Creation</Link></Menu.Item>
+          <Menu.Item key="setting:10"><Link to="CoordinatorPostVerificationPage">Post Review Page</Link></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="notifications">

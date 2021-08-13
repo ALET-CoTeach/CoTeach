@@ -14,7 +14,9 @@ import { SchoolProfile,
   LessonBooking, 
   LandingPage, 
   CoordinatorEntries,
-  TeacherPostCreationPage } from "./components";
+  TeacherPostCreationPage,
+  CoordinatorPostVerificationPage,  
+} from "./components";
 
 // User Profiles for Coordinators
 
@@ -49,6 +51,7 @@ function App() {
             <Route path="/UTCProfilesTwo" exact component={() => <UTCProfilesTwo />}  />
             <Route path="/CoordinatorEntries" exact component={() => <CoordinatorEntries />}  />
             <Route path="/TeacherPostCreationPage" exact component={() => <TeacherPostCreationPage />}  />
+            <Route path="/CoordinatorPostVerificationPage" exact component={() => <CoordinatorPostVerificationPage />}  />
           </Switch>
         </Router>
       </div>

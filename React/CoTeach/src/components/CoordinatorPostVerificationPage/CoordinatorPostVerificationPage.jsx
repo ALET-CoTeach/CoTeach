@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Layout, Collapse } from 'antd';
-import PostCreationTable from './Tables/PostCreationTable';
 import styles from './Tables/table-style.css';
-import CreatePostModal from './Modals/CreatePostModal';
+
+import PostVerificationTable from './Tables/PostVerificationTable';
 
 const { Content, Footer, Sider } = Layout;
 
 const { Panel } = Collapse;
 
-class TeacherPostCreationPage extends Component {
+class CoordinatorPostVerificationPage extends Component {
     render() {
         return (
             <div>
@@ -24,16 +24,17 @@ class TeacherPostCreationPage extends Component {
                     <Layout className="site-layout" style={{ marginLeft: 200 }}>
                         <Content className="addLesson-content">
                             <div className="site-layout-background">
-                                <h1 className="centerText HeadingGrey">Post Creation Page</h1>
-                                <PostCreationTable />
+                                <h1 className="centerText HeadingGrey">Post Verification Page</h1>
+                                <PostVerificationTable />
                             </div>
                         </Content>
                         <Footer style={{ textAlign: 'center' }}>ALET CoTeach 2021</Footer>
                     </Layout>
                 </Layout>
             </div>
+                    
         );
     }
 }
 
-export default TeacherPostCreationPage;
+export default CoordinatorPostVerificationPage;
