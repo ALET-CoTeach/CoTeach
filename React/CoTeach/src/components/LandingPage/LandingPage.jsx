@@ -7,6 +7,7 @@ import EducationBulletPoints from 'url:~/src/assets/EducationBullets.svg';
 import WhatIsCoTeach from 'url:~/src/assets/What-Is-CoTeach.svg';
 import IndustryLogos from './Grid/LogoGrid/industryLogos.jsx';
 import CoTeachMotto from 'url:~/src/assets/CoTeachMotto.svg';
+import { LinkedinOutlined, FacebookOutlined } from '@ant-design/icons';
 
 
 const { Panel } = Collapse;
@@ -19,23 +20,51 @@ export class LandingPage extends Component {
                 <div className="wrapper">
                     <div className="FAQMargin">
                         <Row gutter={[8, 48]} type="flex" align="bottom">
-                            <Col lg={2} sm={2}
+                            <Col lg={1} sm={1}
                             />
                             <Col lg={8} sm={24} xs={24}>
                                 <div className="coTeachPadding">
                                     <Row gutter={[8, 24]} type="flex">
                                         <Col lg={24} sm={24}>
-                                            <img src={CoTeachWords} width="80%" />
+                                            <img src={CoTeachWords} width="100%" />
                                         </Col>
 
                                         <Col lg={24} sm={24}>
-                                            <img src={CoTeachMotto} width="70%" />
+                                            <img src={CoTeachMotto} width="90%" />
                                         </Col>
 
                                         <Col lg={24} sm={24}>
-                                            <Button type="primary" size="large" href="/login">
-                                                Sign In
-                                            </Button>
+                                            <p><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                            </i></p>
+                                        </Col>
+
+                                        <Col lg={24} sm={24}>
+                                            <Row>
+                                            <Col lg={12} sm={12}>
+                                                <Button type="primary" size="large" href="/login" block>
+                                                    Sign In
+                                                </Button>
+                                            </Col>
+                                            <Col lg={2} sm={2}>
+                                            
+                                            </Col>
+                                            <Col lg={1} sm={1}>
+                                                <Button type="primary" shape="square" size="large" icon={<LinkedinOutlined  style={{ fontSize: '150%'}}/>}>
+                                                </Button>
+                                            </Col>
+                                            <Col lg={2} sm={2}>
+                                            </Col>
+
+                                            <Col lg={1} sm={1}>
+                                                <Button type="primary" shape="square" size="large" icon={<FacebookOutlined   style={{ fontSize: '150%'}}/>}>
+                                                </Button>
+                                            </Col>
+                                            </Row>
+                                           
+
                                         </Col>
                                     </Row>
                                 </div>
@@ -234,7 +263,7 @@ export class LandingPage extends Component {
                                                         </Panel>
                                                     </Collapse>
 
-                                                    
+
                                                 </Card>
 
 

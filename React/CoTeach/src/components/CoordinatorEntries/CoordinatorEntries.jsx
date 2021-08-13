@@ -34,7 +34,7 @@ class CoordinatorEntries extends Component {
                         <Content className="bookingLesson-content">
                             <div className="site-layout-background">
 
-                                <Collapse bordered={false} defaultActiveKey={['1']} ghost>
+                                <Collapse bordered={false} defaultActiveKey={['1','2']} ghost>
 
                                     <Panel className="addLesson-table-title" header="All Booked Requests" key="1">
                                             <AllBookedRequests />
