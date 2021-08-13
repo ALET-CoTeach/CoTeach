@@ -9,6 +9,7 @@ export { default as UTCProfilesTwo } from './Profiles/CoordinatorProfiles/UTCPro
 export { default as LessonBooking } from './LessonBooking/LessonBooking';
 export { default as LandingPage } from './LandingPage/LandingPage';
 export { default as CoordinatorEntries } from "./CoordinatorEntries/CoordinatorEntries";
+export { default as TeacherPostCreationPage } from './TeacherPostCreationPage/TeacherPostCreationPage';
 
 // Dashboard
 export { default as Dashboard } from "./Dashboard/Dashboard";

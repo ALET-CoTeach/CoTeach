@@ -49,6 +49,9 @@ function Navigation(props) {
             <Menu.Item key="setting:7"><Link to="LessonBooking">Lesson Booking (employer)</Link></Menu.Item>
             <Menu.Item key="setting:8"><Link to="CoordinatorEntries">Coordinator Entries</Link></Menu.Item>
           </Menu.ItemGroup>
+          <Menu.ItemGroup title="Post Creation / Verification">
+          <Menu.Item key="setting:9"><Link to="TeacherPostCreationPage">Teacher Post Creation</Link></Menu.Item>
+          </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="notifications">
           <Badge count={5}>

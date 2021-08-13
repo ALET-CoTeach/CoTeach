@@ -1,6 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { SchoolProfile, Navigation, Dashboard, Users, About, AddLesson, LoginPage, StatisticsPage, RegisterPage, UTCProfiles, UTCProfilesTwo, LessonBooking, LandingPage, CoordinatorEntries } from "./components";
+import { SchoolProfile, 
+  Navigation, 
+  Dashboard, 
+  Users, 
+  About, 
+  AddLesson, 
+  LoginPage, 
+  StatisticsPage, 
+  RegisterPage, 
+  UTCProfiles, 
+  UTCProfilesTwo, 
+  LessonBooking, 
+  LandingPage, 
+  CoordinatorEntries,
+  TeacherPostCreationPage } from "./components";
 
 // User Profiles for Coordinators
 
@@ -34,6 +48,7 @@ function App() {
             <Route path="/LandingPage" exact component={() => <LandingPage />}  />
             <Route path="/UTCProfilesTwo" exact component={() => <UTCProfilesTwo />}  />
             <Route path="/CoordinatorEntries" exact component={() => <CoordinatorEntries />}  />
+            <Route path="/TeacherPostCreationPage" exact component={() => <TeacherPostCreationPage />}  />
           </Switch>
         </Router>
       </div>
