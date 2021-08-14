@@ -7,6 +7,7 @@ import UpcomingBookings from './DashboardComponents/UpcomingBookings';
 import StudentFeedback from './DashboardComponents/StudentFeedback';
 import PendingPostCreation from './DashboardComponents/PendingPostCreation';
 import PostCreationProgressFluid from './DashboardComponents/PostCreationProgressFluid';
+import UpcomingActivitiesSteps from './DashboardComponents/UpcomingActivitiesSteps';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -30,7 +31,8 @@ function TeacherDashboard() {
                             <Col lg={13}>
                                 <Card style={{  boxShadow: "2px 4px 6px 2px rgba(0, 0, 0, 0.2)" }}>
                                     <h1 className="SubHeadingGrey centerText">Upcoming Activities</h1>
-                                    <UpcomingBookings />
+                                    {/* <UpcomingBookings /> */}
+                                    <UpcomingActivitiesSteps />
                                 </Card>
                             </Col>
 

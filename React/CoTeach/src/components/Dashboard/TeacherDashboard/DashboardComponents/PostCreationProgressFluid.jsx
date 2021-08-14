@@ -9,6 +9,7 @@ const PostCreationProgressFluid = () => {
       distance: 8,
     },
     wave: { length: 128 },
+    theme: { styleSheet: { brandColor: '#8CC63B' } },
   };
   return <Liquid {...config} />;
 };
