@@ -13,10 +13,10 @@ export { default as TeacherPostCreationPage } from './TeacherPostCreationPage/Te
 export { default as CoordinatorPostVerificationPage } from './CoordinatorPostVerificationPage/CoordinatorPostVerificationPage';
 
 // Dashboard
-export { default as Dashboard } from "./Dashboard/Dashboard";
-export { default as TeacherDashboard } from "./Dashboard/TeacherDashboard";
-export { default as EmployerDashboard } from "./Dashboard/EmployerDashboard";
-export { default as CoordinatorDashboard } from "./Dashboard/CoordinatorDashboard";
+// export { default as Dashboard } from "./Dashboard/Dashboard";
+export { default as TeacherDashboard } from './Dashboard/TeacherDashboard/TeacherDashboard';
+// export { default as EmployerDashboard } from "./Dashboard/EmployerDashboard";
+// export { default as CoordinatorDashboard } from "./Dashboard/CoordinatorDashboard";
 
 // Navigation
 export { default as Navigation } from "./Navigation/Navigation";

@@ -1,8 +1,10 @@
 import React from 'react';
 import  { Redirect } from 'react-router-dom';
-import TeacherDashboard from './TeacherDashboard';
-import EmployerDashboard from './EmployerDashboard';
-import CoordinatorDashboard from './CoordinatorDashboard';
+
+
+// import TeacherDashboard from './TeacherDashboard';
+// import EmployerDashboard from './EmployerDashboard';
+// import CoordinatorDashboard from './CoordinatorDashboard';
 
 var loggedInUserType = 'Teacher';
 
@@ -10,7 +12,7 @@ function Dashboard() {
     if (loggedInUserType == 'Teacher'){
         return (
             <div>
-                <TeacherDashboard />
+                {/* <TeacherDashboard /> */}
             </div>
         );
     }
@@ -18,7 +20,7 @@ function Dashboard() {
     else if (loggedInUserType == 'Employer'){
         return (
             <div>
-                <EmployerDashboard />
+                {/* <EmployerDashboard /> */}
             </div>
         );
     }
@@ -26,7 +28,7 @@ function Dashboard() {
     else if (loggedInUserType == 'Coordinator'){
         return (
             <div>
-                <CoordinatorDashboard />
+                {/* <CoordinatorDashboard /> */}
             </div>
         );
     }
@@ -34,7 +36,7 @@ function Dashboard() {
     else {
         return (
             <div>
-                <Redirect to='/LandingPage' />
+                {/* <Redirect to='/LandingPage' /> */}
             </div>
         )
     }

@@ -23,7 +23,7 @@ function Navigation(props) {
     <div>
       <Menu className="navbar" onClick={this.handleClick} selectedKeys={[current]} mode="horizontal" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <Menu.Item key="home" icon={<HomeOutlined />}>
-          <Link to="/">
+          <Link to="LandingPage">
             Home
           </Link>
         </Menu.Item>
@@ -52,6 +52,9 @@ function Navigation(props) {
           <Menu.ItemGroup title="Post Creation / Verification">
           <Menu.Item key="setting:9"><Link to="TeacherPostCreationPage">Teacher Post Creation</Link></Menu.Item>
           <Menu.Item key="setting:10"><Link to="CoordinatorPostVerificationPage">Post Review Page</Link></Menu.Item>
+          </Menu.ItemGroup>
+          <Menu.ItemGroup title="Dashboards">
+          <Menu.Item key="setting:11"><Link to="TeacherDashboard">Teacher Dashboard</Link></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="notifications">

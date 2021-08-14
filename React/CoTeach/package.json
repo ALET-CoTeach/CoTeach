@@ -12,6 +12,7 @@
   },
   "license": "GPL-3.0",
   "dependencies": {
+    "@ant-design/charts": "^1.2.7",
     "antd": "^4.16.9",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.0",

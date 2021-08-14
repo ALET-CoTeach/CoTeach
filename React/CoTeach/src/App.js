@@ -15,7 +15,8 @@ import { SchoolProfile,
   LandingPage, 
   CoordinatorEntries,
   TeacherPostCreationPage,
-  CoordinatorPostVerificationPage,  
+  CoordinatorPostVerificationPage, 
+  TeacherDashboard, 
 } from "./components";
 
 // User Profiles for Coordinators
@@ -37,7 +38,7 @@ function App() {
         <Router>
           <Navigation />
           <Switch>
-            <Route path="/" exact component={() => <Dashboard />} />
+            <Route path="/" exact component={() => <LandingPage />} />
             <Route path="/users" exact component={() => <Users />} />
             <Route path="/about" exact component={() => <About />} />
             <Route path="/addLesson" exact component={() => <AddLesson />} />
@@ -52,6 +53,7 @@ function App() {
             <Route path="/CoordinatorEntries" exact component={() => <CoordinatorEntries />}  />
             <Route path="/TeacherPostCreationPage" exact component={() => <TeacherPostCreationPage />}  />
             <Route path="/CoordinatorPostVerificationPage" exact component={() => <CoordinatorPostVerificationPage />}  />
+            <Route path="/TeacherDashboard" exact component={() => <TeacherDashboard />}  />
           </Switch>
         </Router>
       </div>
