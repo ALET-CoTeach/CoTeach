@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import '../../index.css';
 import { Statistic, Card, Row, Col, Layout } from 'antd';
 import { ArrowUpOutlined, ArrowDownOutlined, LikeOutlined } from '@ant-design/icons';
+import StudentFeedback from "./StudentFeedback";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -69,9 +70,9 @@ class StatisticsPage extends Component {
                                             </Card>
                                         </Col>
                                     </Row>
-                                    <br/>
-                                    <Row gutter={16}>
-                                    <Col span={18}>
+                                    <br />
+                                    <Row gutter={16, 16}>
+                                        <Col span={18}>
                                             <Card>
                                                 <Statistic
                                                     title="Active"
@@ -89,6 +90,16 @@ class StatisticsPage extends Component {
                                             </Card>
                                         </Col>
                                     </Row>
+
+                                    <Row style={{ paddingTop:"2%" }}>
+                                        <Col span={24}>
+                                            <Card>
+                                                <StudentFeedback />
+                                            </Card>
+                                        </Col>
+                                    </Row>
+
+
                                 </div>
                             </div>
                         </div>
