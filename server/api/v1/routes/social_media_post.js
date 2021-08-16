@@ -4,7 +4,7 @@ const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
-router.post('/'. requiredRoles(['admin', 'slt', 'teacher']), (req, res) => {
+router.post('/', requiredRoles(['admin', 'slt', 'teacher']), (req, res) => {
   const socialMediaPostData = req.body;
 
   SocialMediaPostController.createOne(socialMediaPostData)
