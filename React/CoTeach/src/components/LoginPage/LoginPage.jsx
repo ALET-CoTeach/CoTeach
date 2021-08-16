@@ -21,8 +21,11 @@ class LoginPage extends React.Component {
                     />
                     <Col className="gutter-row" lg={8} sm={24} xs={24}>
                         <div className="cardAlignment cardPadding">
-                            <Card className="cardStyling" style={{  boxShadow: "5px 8px 24px 5px rgba(0, 0, 0, 0.2)" }}>
+                            <Card className="cardStyling" style={{ boxShadow: "5px 8px 24px 5px rgba(0, 0, 0, 0.2)" }}>
                                 <h1 className="centerText">CoTeach Sign In</h1>
+                                <div align="center">
+                                    <img src={coTeach} width="30%" />
+                                </div>
                                 <Form
                                     name="basic"
                                     type="flex"
@@ -33,9 +36,6 @@ class LoginPage extends React.Component {
                                         remember: true
                                     }}
                                 >
-                                    <div>
-                                        <img src={coTeach}  width="30%" />
-                                    </div>
                                     <LoginTabs />
                                 </Form>
                             </Card>

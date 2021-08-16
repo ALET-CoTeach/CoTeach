@@ -5,6 +5,7 @@ import { Input, Form, Button, Checkbox } from "antd";
 function SLTForm() {
     return (
         <div>
+            slt
             <Form.Item
                 //   required
                 name={['user', 'email']}
