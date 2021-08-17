@@ -5,7 +5,6 @@ import { Input, Form, Button, Checkbox } from "antd";
 function TeacherForm() {
     return (
         <div>
-            teacher
             <Form.Item
                 //   required
                 name="email"

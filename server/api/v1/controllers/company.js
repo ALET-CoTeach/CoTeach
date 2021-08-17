@@ -7,6 +7,7 @@ module.exports.createOne = (companyData) =>
     const {
       name,
       email,
+      website,
       line1,
       towncity,
       county,
@@ -29,6 +30,7 @@ module.exports.createOne = (companyData) =>
         const newCompany = new Company({
           name,
           email,
+          website,
           address,
         });
 
@@ -73,6 +75,7 @@ module.exports.updateOne = (companyId, updateData) =>
       const {
         name,
         email,
+        website,
         line1,
         towncity,
         county,
@@ -89,6 +92,7 @@ module.exports.updateOne = (companyId, updateData) =>
       const update = {
         name,
         email,
+        website,
         address,
       };
 

@@ -25,13 +25,13 @@ module.exports.updateOne = (employerId, updateData) =>
         lastname,
         email,
         phone,
-        schoolName,
+        companyName,
       } = updateData;
 
       // Check if school exists
-      const school = await School.findOne({ name: schoolName });
+      const company = await Company.findOne({ name: companyName });
 
-      if (!school) {
+      if (!company) {
         // Runs if school does not exist
         reject(new Error("School does not exist on database"));
       }

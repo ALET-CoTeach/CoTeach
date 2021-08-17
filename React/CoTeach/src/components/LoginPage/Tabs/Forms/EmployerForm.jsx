@@ -5,7 +5,6 @@ import { Input, Form, Button, Checkbox } from "antd";
 function EmployerForm() {
     return (
         <div>
-            employer
             <Form.Item
                 //   required
                 name="email"
