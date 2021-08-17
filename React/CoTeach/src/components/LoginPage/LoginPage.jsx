@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Icon } from 'antd';
 import coTeach from 'url:~/src/assets/CoTeach-Logo-Blue.svg';
 import LoginTabs from './Tabs/LoginTabs';
+import axios from 'axios';
 
 const validateMessages = {
     required: '${label} is required!',
@@ -12,10 +13,35 @@ const validateMessages = {
     },
 };
 
+const BASE_URI = process.env.BASE_API_URI;
+
 class LoginPage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            authLevel: "teacher"
+        };
+    }
+
+    changeAuthLevel = (value) => {
+        this.setState({ authLevel: value });
+    }
+
+    handleSubmit = async (values) => {
+        const { email, password } = values;
+        const res = await axios.post(`${BASE_URI}/${this.state.authLevel}/signin`, {
+            email,
+            password,
+        });
+
+        console.log(res);
+    }
+
+
     render() {
         return (
-            <div className="LoginBody ">
+            <div className="LoginBody">
                 <Row type="flex" align="bottom">
                     <Col className="gutter-row" lg={2} sm={24}
                     />
@@ -32,11 +58,12 @@ class LoginPage extends React.Component {
                                     initialValues={{
                                         remember: true
                                     }}
+                                    onFinish={this.handleSubmit}
                                 >
                                     <div>
                                         <img src={coTeach}  width="30%" />
                                     </div>
-                                    <LoginTabs />
+                                    <LoginTabs changeAuthLevel={this.changeAuthLevel} />
                                 </Form>
                             </Card>
                         </div>

@@ -7,6 +7,8 @@ module.exports.createOne = (schoolData) =>
     const {
       name,
       email,
+      phone,
+      website,
       line1,
       towncity,
       county,
@@ -29,6 +31,8 @@ module.exports.createOne = (schoolData) =>
         const newSchool = new School({
           name,
           email,
+          phone,
+          website,
           address,
         });
 
@@ -73,6 +77,8 @@ module.exports.updateOne = (schoolId, updateData) =>
       const {
         name,
         email,
+        phone,
+        website,
         line1,
         towncity,
         county,
@@ -89,6 +95,8 @@ module.exports.updateOne = (schoolId, updateData) =>
       const update = {
         name,
         email,
+        phone,
+        website,
         address,
       };
 

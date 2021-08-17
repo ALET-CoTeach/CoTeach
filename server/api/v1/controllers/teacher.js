@@ -1,4 +1,5 @@
 const Teacher = require('../models/Teacher');
+const School = require('../models/School');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -159,39 +160,39 @@ module.exports.register = (req, res) => {
       }
 
       // Check if school exists
-      const school = School.findOne({ name: schoolName }, (err, school) => {
+      School.findOne({ name: schoolName }, (err, school) => {
+        // TODO check for error
         if (!school) {
           // Runs if school does not exist
           res.status(500).json({
             error: 'School does not exist on the database',
           });
         }
-      });
 
+        // Creates new Teacher Object
+        const newTeacher = new Teacher({
+          firstname,
+          lastname,
+          email,
+          phone,
+          schoolId: school._id,
+          password: hash,
+        });
 
-      // Creates new Teacher Object
-      const newTeacher = new Teacher({
-        firstname,
-        lastname,
-        email,
-        phone,
-        schoolId : school._id,
-        password: hash,
-      });
-
-      // Saves teacher object to database
-      newTeacher
-        .save()
-        .then((result) => {
-          console.log(result);
-          res.status(201).json({
-            message: 'Teacher account created',
-          });
-        })
-        .catch((saveErr) => {
-          console.log(saveErr);
-          res.status(500).json({
-            error: saveErr,
+        // Saves teacher object to database
+        newTeacher
+          .save()
+          .then((result) => {
+            console.log(result);
+            res.status(201).json({
+              message: 'Teacher account created',
+            });
+          })
+          .catch((saveErr) => {
+            console.log(saveErr);
+            res.status(500).json({
+              error: saveErr,
+            });
           });
         });
     });

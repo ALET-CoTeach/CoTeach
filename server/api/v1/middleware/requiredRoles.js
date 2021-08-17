@@ -6,7 +6,10 @@ module.exports = (roles) => {
     let isVerified = false;
 
     roles.forEach((role) => {
-      jwt.verify(token, process.env[`JWT_${role}_KEY}`], (err, decoded) => {
+      jwt.verify(token, process.env[`JWT_${role.toUpperCase()}_KEY`], (err, decoded) => {
+        console.log(role);
+        console.log(process.env[`JWT_${role.toUpperCase()}_KEY`]);
+        console.log(token, decoded);
         if (!err) {
           isVerified = true;
         }

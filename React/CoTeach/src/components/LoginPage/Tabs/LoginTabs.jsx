@@ -9,11 +9,30 @@ import EmployerForm from "./Forms/EmployerForm";
 const { TabPane } = Tabs;
 
 export class LoginTabs extends Component {
+
+    constructor(props) {
+        super(props)
+    }
+
+    handleChange = (key) => {
+        if (key === "1") {
+            this.props.changeAuthLevel("teacher")
+        } else if (key === "2") {
+            this.props.changeAuthLevel("slt")
+        } else if (key === "3") {
+            this.props.changeAuthLevel("employer")
+        }
+    }
+
     render() {
         return (
             <>
                 <br />
-                <Tabs defaultActiveKey="1" centered size="50%">
+                <Tabs
+                    defaultActiveKey="1"
+                    centered size="50%"
+                    onChange={this.handleChange}
+                >
                     <TabPane tab="Teacher" key="1">
                         <TeacherForm />
                     </TabPane>
@@ -21,7 +40,7 @@ export class LoginTabs extends Component {
                         < SLTForm />
                     </TabPane>
                     <TabPane tab="Employer" key="3">
-                        < EmployerForm /> 
+                        < EmployerForm />
                     </TabPane>
                 </Tabs>
             </>

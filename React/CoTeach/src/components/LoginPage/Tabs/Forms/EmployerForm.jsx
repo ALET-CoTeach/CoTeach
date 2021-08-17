@@ -7,7 +7,7 @@ function EmployerForm() {
         <div>
             <Form.Item
                 //   required
-                name={['user', 'email']}
+                name="email"
                 //   label="Email"
                 rules={[
                     {

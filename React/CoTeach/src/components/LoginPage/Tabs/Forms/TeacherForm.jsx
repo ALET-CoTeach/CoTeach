@@ -7,7 +7,7 @@ function TeacherForm() {
         <div>
             <Form.Item
                 //   required
-                name={['user', 'email']}
+                name="email"
                 //   label="Email"
                 rules={[
                     {
