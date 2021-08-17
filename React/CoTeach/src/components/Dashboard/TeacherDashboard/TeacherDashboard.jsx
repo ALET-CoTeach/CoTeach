@@ -26,24 +26,22 @@ function TeacherDashboard() {
                     <div className="site-layout-background">
                         <h1 className="HeadingGrey centerText">Dashboard</h1>
 
-                        <Row>
+                        <Row justify="space-around">
 
-                            <Col lg={13}>
+                            <Col lg={18}>
                                 <Card style={{  boxShadow: "2px 4px 6px 2px rgba(0, 0, 0, 0.2)" }}>
-                                    <h1 className="SubHeadingGrey centerText">Upcoming Activities</h1>
-                                    {/* <UpcomingBookings /> */}
-                                    <UpcomingActivitiesSteps />
+                                    <h1 className="SubHeadingGrey centerText">Overall Student Feedback</h1>
+                                    <StudentFeedback />
                                 </Card>
                             </Col>
 
-                            <Col lg={1} />
 
-                            <Col lg={10}>
-                                <Row gutter={[16, 16]}>
+                            <Col lg={5}>
+                                <Row gutter={[5, 16]}>
                                     <Col lg={24}>
                                         <Card style={{  boxShadow: "2px 4px 6px 2px rgba(0, 0, 0, 0.2)" }}>
-                                            <h1 className="SubHeadingGrey centerText">Overall Student Feedback</h1>
-                                            <StudentFeedback />
+                                            <h1 className="SubHeadingGrey centerText">Upcoming Activities </h1>
+                                            <UpcomingActivitiesSteps />
                                         </Card>
                                     </Col>
 
