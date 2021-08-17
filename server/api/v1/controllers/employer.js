@@ -10,7 +10,7 @@ module.exports.deleteOne = (employerId) =>
       if (!employer) {
         resolve({ message: "Employer document never existed or has already been deleted" });
       }
-
+        
       resolve({ message: "Employer successfuly deleted", employer });
     } catch (err) {
       reject(err);
