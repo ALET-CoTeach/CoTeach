@@ -7,11 +7,11 @@ module.exports.createOne = (companyData) =>
     const {
       name,
       email,
+      website,
       line1,
       towncity,
       county,
       postcode,
-      customerId,
     } = companyData;
 
     try {
@@ -30,15 +30,24 @@ module.exports.createOne = (companyData) =>
         const newCompany = new Company({
           name,
           email,
+          website,
           address,
         });
 
         // Saves company object to database
         const savedCompany = await newCompany.save();
-        resolve(savedCompany);
+        resolve({ 
+          message: "Company successfully created and stored on database",
+          company: savedCompany,
+          status: 201,
+        });
       } else {
         // Runs if account already exits
-        reject(new Error("Company already exists"));
+        resolve({
+          message: "Company already stored on database",
+          company,
+          status: 200,
+        });
       }
     } catch (err) {
       reject(err);
@@ -48,7 +57,12 @@ module.exports.createOne = (companyData) =>
 module.exports.deleteOne = (companyId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const company = await Company.deleteOne({ _id: companyId });
+      const company = await Company.findByIdAndDelete(companyId);
+
+      if (!company) {
+        resolve({ message: "Company document never existed or has already been deleted" });
+      }
+
       resolve({ message: "Company successfuly deleted", company });
     } catch (err) {
       reject(err);
@@ -61,6 +75,7 @@ module.exports.updateOne = (companyId, updateData) =>
       const {
         name,
         email,
+        website,
         line1,
         towncity,
         county,
@@ -77,18 +92,23 @@ module.exports.updateOne = (companyId, updateData) =>
       const update = {
         name,
         email,
+        website,
         address,
       };
 
-      const updatedCompany = await Company.findOneAndUpdate(
-        { _id: companyId },
+      const updatedCompany = await Company.findByIdAndUpdate(
+        companyId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedCompany);
-      resolve(updatedCompany);
+
+      if (!updatedCompany) {
+        resolve({ message: "Company document was never created or has been deleted" });
+      }
+
+      resolve({ message: "Company has successfully been updated", company: updatedCompany });
     } catch (err) {
       reject(err);
     }
@@ -97,8 +117,8 @@ module.exports.updateOne = (companyId, updateData) =>
 module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
-      const companys = await Company.find({});
-      resolve(companys);
+      const companies = await Company.find({});
+      resolve({ companies });
     } catch (err) {
       reject(err);
     }
@@ -107,8 +127,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (companyId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const company = await Company.findOne({ _id: companyId });
-      resolve(company);
+      const company = await Company.findOneById(companyId);
+
+      if (!company) {
+        resolve({ message: "Company does not exist in database" });
+      }
+
+      resolve({ message: "Company successfully found", company });
     } catch (err) {
       reject(err);
     }

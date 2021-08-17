@@ -5,7 +5,12 @@ const jwt = require('jsonwebtoken');
 module.exports.deleteOne = (employerId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const employer = await Employer.deleteOne({ _id: employerId });
+      const employer = await Employer.findByIdAndDelete(employerId);
+
+      if (!employer) {
+        resolve({ message: "Employer document never existed or has already been deleted" });
+      }
+        
       resolve({ message: "Employer successfuly deleted", employer });
     } catch (err) {
       reject(err);
@@ -20,13 +25,13 @@ module.exports.updateOne = (employerId, updateData) =>
         lastname,
         email,
         phone,
-        schoolName,
+        companyName,
       } = updateData;
 
       // Check if school exists
-      const school = await School.findOne({ name: schoolName });
+      const company = await Company.findOne({ name: companyName });
 
-      if (!school) {
+      if (!company) {
         // Runs if school does not exist
         reject(new Error("School does not exist on database"));
       }
@@ -39,15 +44,19 @@ module.exports.updateOne = (employerId, updateData) =>
         companyId: company._id,
       };
 
-      const updatedEmployer = await Employer.findOneAndUpdate(
-        { _id: employerId },
+      const updatedEmployer = await Employer.findByIdAndUpdate(
+        employerId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedEmployer);
-      resolve(updatedEmployer);
+
+      if (!updatedTeacher) {
+        resolve({ message: "Employer has successfully been updated" });
+      }
+
+      resolve({ message: "Employer has successfully been updated", employer: updatedEmployer });
     } catch (err) {
       reject(err);
     }
@@ -57,7 +66,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const employers = await Employer.find({});
-      resolve(employers);
+      resolve({ employers });
     } catch (err) {
       reject(err);
     }
@@ -66,8 +75,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (employerId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const employer = await Employer.findOne({ _id: employerId });
-      resolve(employer);
+      const employer = await Employer.findOneById(employerId);
+
+      if (!employer) {
+        resolve({ message: "Employer does not exist in database" });
+      }
+
+      resolve({ message: "Employer successfully found", employer });
     } catch (err) {
       reject(err);
     }

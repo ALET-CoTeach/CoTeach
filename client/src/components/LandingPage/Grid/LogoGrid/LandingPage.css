@@ -1,0 +1,155 @@
+.LandingBody {
+    background-image: url('../../../../assets/Landing-Page-Long-Trousers.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 400%;
+    width: 100%;
+    position: absolute;
+}
+
+.HeadingBlue {
+    font-size: 300%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1D71B8;
+}
+
+
+.cardStyling {
+    width: "90%";
+    height: "70%";
+}
+
+
+.cardPadding {
+    padding-left: 0%;
+    padding-top: 8%;
+}
+
+.cardAlignment {
+    justify-content: left;
+    vertical-align: middle;
+    padding-top: 12%;
+}
+
+
+.coTeachPadding {
+    padding-left: 0%;
+    padding-top: 25%;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.Cardcenter {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+.logoPadding {
+    padding-bottom: 5%;
+}
+
+.coTeachWordsPadding {
+    padding-top: 5%;
+}
+
+.landingGaps {
+    margin-top: 8%;
+}
+
+.ProfileHeight {
+    height: 100%;
+    width: 100%;
+}
+
+[data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
+.site-collapse-custom-collapse .site-collapse-custom-panel {
+  margin-bottom: 1px;
+  overflow: hidden;
+  background:  #ccdfeb;
+  /* #ccdfeb */
+  border: 0px;
+  border-radius: 2px;
+  color: white;
+}
+  [data-theme="dark"] .site-collapse-custom-collapse .site-collapse-custom-panel {
+    background: rgba(255,255,255,0.04);
+    border: 0px;
+  }
+.ant-collapse-content {
+    background-color: #ececec;
+    color: black;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .LandingBody {
+        background-image: url('../../../../assets/LandingPage-Mobile.svg');
+    }
+
+    .coTeachWordsPadding {
+        padding-top: 2%;
+    }
+
+    .coTeachPadding {
+        padding-left: 0%;
+        padding-top: 5%;
+    }
+
+    .cardAlignment {
+        justify-content: center;
+        display: block;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .cardPadding {
+        padding-left: 0%;
+        padding-top: 5%;
+    }
+
+    .cardStyling {
+        width: "10%";
+        height: "10%";
+    }
+
+    .FAQMargin {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+  }
+
+
+@media only screen and (max-width: 575px) {
+.LandingBody {
+    background-image: url('../../../../assets/LandingPage-Mobile.svg');
+}
+
+.HeadingBlue {
+    font-size: 200%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1D71B8;
+}
+
+.cardAlignment {
+    justify-content: center;
+    display: block;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.cardPadding {
+    padding-left: 0%;
+}
+
+.cardStyling {
+    width: "100%";
+    height: "100%";
+}
+}

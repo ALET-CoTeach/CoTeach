@@ -25,7 +25,11 @@ module.exports.createOne = (socialMediaPostData) =>
 
       // Saves socialMediaPost object to database
       const savedSocialMediaPost = await newSocialMediaPost.save();
-      resolve(savedSocialMediaPost);
+      resolve({ 
+        message: "SocialMediaPost successfully created and stored on database",
+        socialMediaPost: savedSocialMediaPost,
+        status: 201,
+      });
     } catch (err) {
       reject(err);
     }
@@ -34,7 +38,12 @@ module.exports.createOne = (socialMediaPostData) =>
 module.exports.deleteOne = (socialMediaPostId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const socialMediaPost = await SocialMediaPost.deleteOne({ _id: socialMediaPostId });
+      const socialMediaPost = await SocialMediaPost.findByIdAndDelete(socialMediaPostId);
+
+      if (!socialMediaPost) {
+        resolve({ message: "SocialMediaPost document never existed or has already been deleted" });
+      }
+
       resolve({ message: "SocialMediaPost successfuly deleted", socialMediaPost });
     } catch (err) {
       reject(err);
@@ -58,16 +67,20 @@ module.exports.updateOne = (socialMediaPostId, updateData) =>
         schoolId,
       };
 
-      const updatedSocialMediaPost = await SocialMediaPost.findOneAndUpdate(
-        { _id: socialMediaPostId },
+      const updatedSocialMediaPost = await SocialMediaPost.findByIdAndUpdate(
+        socialMediaPostId,
         update,
         {
           // Returns the new document after update is made
           new: true,
         }
       );
-      console.log(updatedSocialMediaPost);
-      resolve(updatedSocialMediaPost);
+
+      if (!updatedSocialMediaPost) {
+        resolve({ message: "SocialMediaPost document was never created or has never been deleted" }); 
+      }
+
+      resolve({ message: "SocialMediaPost has successfully been updated", socialMediaPost: updatedSocialMediaPost });
     } catch (err) {
       reject(err);
     }
@@ -77,7 +90,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const socialMediaPosts = await SocialMediaPost.find({});
-      resolve(socialMediaPosts);
+      resolve({ socialMediaPosts });
     } catch (err) {
       reject(err);
     }
@@ -86,8 +99,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (socialMediaPostId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const socialMediaPost = await SocialMediaPost.findOne({ _id: socialMediaPostId });
-      resolve(socialMediaPost);
+      const socialMediaPost = await SocialMediaPost.findOneById(socialMediaPostId);
+
+      if (!socialMediaPost) {
+        resolve({ message: "SocialMediaPost does not exist in database" });
+      }
+
+      resolve({ message: "SocialMediaPost successfully found", socialMediaPost });
     } catch (err) {
       reject(err);
     }
@@ -95,7 +113,7 @@ module.exports.getOne = (socialMediaPostId) =>
 
 module.exports.review = (req, res) => {
   const {
-    postId: id,
+    id: postId,
     facebookStatus,
     linkedinStatus,
   } = req.body;
@@ -136,7 +154,7 @@ module.exports.review = (req, res) => {
 };
 //
 module.exports.postFacebook = (req, res) => {
-  const { postId: id } = req.body;
+  const { id:postId} = req.body;
   SocialMediaPost.findOne({ _id: postId }, (err, post) => {
     if (err) {
       return res.status(500).json({
@@ -146,10 +164,7 @@ module.exports.postFacebook = (req, res) => {
 
     if (post.facebookStatus === 'approved'){
       const url = `https://graph.facebook.com/v11.0/105175718455172/photos?url=${post.image}&message=${post.caption}&access_token=${process.env.FACEBOOK_TOKEN}`
-      axios.post(url,
-        {
-          method: "post"
-        })
+      axios.post(url)
         .then((response) => {
           res.status(201).json({
             message: "Posted to Facebook successfully",
@@ -164,61 +179,6 @@ module.exports.postFacebook = (req, res) => {
   });
 };
 
-module.exports.updateFacebook = (req, res) => {
-  const { postId: id } = req.body;
-  SocialMediaPost.findOne({ _id: postId }, (err, post) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
-      });
-    }
-
-    if (post.facebookStatus === 'approved') {
-      const url = `https://graph.facebook.com/${page_post_id}?message=${post.caption}&access_token=${process.env.FACEBOOK_TOKEN}`
-      axios.post(url,
-        {
-          method: "post"
-        })
-        .then((response) => {
-          res.status(201).json({
-            message: "updated post successfully",
-          });
-        })
-        .catch((err) => {
-          return res.status(500).json({
-            error: err,
-          });
-        });
-    }
-  });
-}
 
 
-module.exports.deleteFacebook = (req, res) => {
-  const { postId: id } = req.body;
-  SocialMediaPost.findOne({ _id: postId }, (err, post) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
-      });
-    }
 
-    if (post.facebookStatus === 'approved') {
-      const url = `https://graph.facebook.com/${PHOTO_ID}?access_token=${process.env.FACEBOOK_TOKEN}`
-      axios.post(url,
-        {
-          method: "delete"
-        })
-        .then((response) => {
-          res.status(201).json({
-            message: "deleted post successfully",
-          });
-        })
-        .catch((err) => {
-          return res.status(500).json({
-            error: err,
-          });
-        });
-    }
-  });
-}

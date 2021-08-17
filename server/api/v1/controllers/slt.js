@@ -5,7 +5,12 @@ const jwt = require('jsonwebtoken');
 module.exports.deleteOne = (sltId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const slt = await SLT.deleteOne({ _id: sltId });
+      const slt = await SLT.findByIdAndDelete(sltId);
+
+      if (!slt) {
+        resolve({ message: "SLT document never existed or has already been deleted" });
+      }
+
       resolve({ message: "SLT successfuly deleted", slt });
     } catch (err) {
       reject(err);
@@ -39,15 +44,19 @@ module.exports.updateOne = (sltId, updateData) =>
         schoolId: school._id,
       };
 
-      const updatedSLT = await SLT.findOneAndUpdate(
-        { _id: sltId },
+      const updatedSLT = await SLT.findByIdAndUpdate(
+        sltId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedSLT);
-      resolve(updatedSLT);
+
+      if (!updatedSLT) {
+        resolve({ message: "SLT document was never creator or has been deleted "});
+      }
+
+      resolve({ message: "SLT has successfully been updated", slt: updatedSLT });
     } catch (err) {
       reject(err);
     }
@@ -57,7 +66,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const slts = await SLT.find({});
-      resolve(slts);
+      resolve({ slts });
     } catch (err) {
       reject(err);
     }
@@ -66,8 +75,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (sltId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const slt = await SLT.findOne({ _id: sltId });
-      resolve(slt);
+      const slt = await SLT.findOneById(sltId);
+
+      if (!slt) {
+        resolve({ message: "SLT does not exist in database" });
+      }
+
+      resolve({ message: "SLT successfully found", slt });
     } catch (err) {
       reject(err);
     }

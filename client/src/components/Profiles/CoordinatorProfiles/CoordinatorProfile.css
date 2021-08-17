@@ -1,0 +1,15 @@
+.centerText {
+    text-align: center;
+}
+
+.ProfileHeight {
+    height: 100%;
+    width: 100%;
+}
+
+.HeadingBlue {
+    font-size: 500%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1D71B8;
+}
+

@@ -4,51 +4,67 @@ const Address = require("../models/Address");
 // TODO: Write suitable functions for all methods for the LessonRequest model
 
 
-module.exports.createOne = (lessonRequestData) =>
-  new Promise(async (resolve, reject) => {
-    // Destruct lessonRequestData
-    const {
-      image,
-      caption,
-      teacherId,
-      schoolId,
-    } = lessonRequestData;
+module.exports.createOne = (req, res) => {
+  // Destruct lessonRequestData
+  let {
+    schoolId,
+    year,
+    subject,
+    lessonTitle,
+    lessonDetails,
+    term,
+    preferredDay,
+    preferredTime,
+  } = req.body; 
 
-    try {
-      // Returns a single document from unique email
-      const lessonRequest = await LessonRequest.findOne({ email });
-      if (!lessonRequest) {
-        // Creates new Address Object for LessonRequest
-        const address = new Address({
-          line1,
-          towncity,
-          county,
-          postcode,
-        });
+  // If the front-end devs first send a GET request to get a list of teachers
+  // They can create a dropbdown with all the teachers emails and names and set the value to the corresponding teacher's id
+  
+  let teacherId;
 
-        // Creates new LessonRequest Object
-        const newLessonRequest = new LessonRequest({
-          name,
-          email,
-          address,
-        });
+  // If authenticated user is not a teacher, use the teacherId from request body 
+  if (!req.teacherData) {
+    teacherId = req.body.teacherId; 
+  } else {
+    // If teacher is signed in
+    teacherId = req.teacherData.id;
+  }
 
-        // Saves lessonRequest object to database
-        const savedLessonRequest = await newLessonRequest.save();
-        resolve(savedLessonRequest);
-      } else {
-        // Runs if account already exits
-        reject(new Error("LessonRequest already exists"));
-      }
-    } catch (err) {
-      reject(err);
-    }
+  // Creates new LessonRequest Object
+  const newLessonRequest = new LessonRequest({
+    schoolId,
+    year,
+    subject,
+    lessonTitle,
+    lessonDetails,
+    term,
+    preferredDay,
+    preferredTime,
+    teacherId,
   });
+
+  // Saves lessonRequest object to database
+  newLessonRequest.save((err, lessonRequest) => {
+    if (err) {
+      res.status(500).json({ error: err }); 
+    }
+
+    res.status(201).json({
+      message: "LessonRequest successfully created and stored on database",
+      lessonRequest,
+    })
+  });
+};
 
 module.exports.deleteOne = (lessonRequestId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const lessonRequest = await LessonRequest.deleteOne({ _id: lessonRequestId });
+      const lessonRequest = await LessonRequest.findByIdAndDelete(lessonRequestId);
+
+      if (!lessonRequest) {
+        resolve({ message: "LessonRequest document never existed or has already been deleted" });
+      }
+
       resolve({ message: "LessonRequest successfuly deleted", lessonRequest });
     } catch (err) {
       reject(err);
@@ -80,15 +96,19 @@ module.exports.updateOne = (lessonRequestId, updateData) =>
         address,
       };
 
-      const updatedLessonRequest = await LessonRequest.findOneAndUpdate(
-        { _id: lessonRequestId },
+      const updatedLessonRequest = await LessonRequest.findByIdAndUpdate(
+        lessonRequestId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedLessonRequest);
-      resolve(updatedLessonRequest);
+
+      if (!updatedLessonRequest) {
+        resolve({ message: "LessonRequest was never created or has been deleted" });
+      }
+
+      resolve({ message: "LessonRequest has been successfully updated", lessonRequest: updatedLessonRequest });
     } catch (err) {
       reject(err);
     }
@@ -98,7 +118,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const lessonRequests = await LessonRequest.find({});
-      resolve(lessonRequests);
+      resolve({ lessonRequests });
     } catch (err) {
       reject(err);
     }
@@ -107,11 +127,27 @@ module.exports.getAll = () =>
 module.exports.getOne = (lessonRequestId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const lessonRequest = await LessonRequest.findOne({ _id: lessonRequestId });
-      resolve(lessonRequest);
+      const lessonRequest = await LessonRequest.findOneById(lessonRequestId);
+
+      if (!lessonRequest) {
+        resolve({ message: "LessonRequest does not exist in database" });
+      }
+
+      resolve({ message: "LessonRequest successfully found", lessonRequest });
     } catch (err) {
       reject(err);
     }
   });
+
+module.exports.getAllBySchool = (schoolId) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const lessonRequests = await LessonRequests.find({ schoolId });
+      resolve(lessonRequests);
+    } catch (err) {
+      reject(err);
+    }
+  });
+
 
 

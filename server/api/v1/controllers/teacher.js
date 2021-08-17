@@ -1,11 +1,17 @@
 const Teacher = require('../models/Teacher');
+const School = require('../models/School');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports.deleteOne = (teacherId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const teacher = await Teacher.deleteOne({ _id: teacherId });
+      const teacher = await Teacher.findByIdAndDelete(teacherId);
+      
+      if (!teacher) {
+        resolve({ message: "Teacher document never existed or has already been deleted" }); 
+      }
+
       resolve({ message: "Teacher successfuly deleted", teacher });
     } catch (err) {
       reject(err);
@@ -39,15 +45,19 @@ module.exports.updateOne = (teacherId, updateData) =>
         schoolId: school._id,
       };
 
-      const updatedTeacher = await Teacher.findOneAndUpdate(
-        { _id: teacherId },
+      const updatedTeacher = await Teacher.findByIdAndUpdate(
+        teacherId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedTeacher);
-      resolve(updatedTeacher);
+
+      if (!updatedTeacher) {
+        resolve({ message: "Teacher document was never created or has been deleted" });
+      }
+
+      resolve({ message: "Teacher has successfully been updated", teacher: updatedTeacher });
     } catch (err) {
       reject(err);
     }
@@ -57,7 +67,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const teachers = await Teacher.find({});
-      resolve(teachers);
+      resolve({ teachers });
     } catch (err) {
       reject(err);
     }
@@ -66,8 +76,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (teacherId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const teacher = await Teacher.findOne({ _id: teacherId });
-      resolve(teacher);
+      const teacher = await Teacher.findOneById(teacherId);
+
+      if (!teacher) {
+        resolve({ message: "Teacher does not exist in database" });
+      }
+
+      resolve({ message: "Teacher successfully found", teacher });
     } catch (err) {
       reject(err);
     }
@@ -78,6 +93,32 @@ module.exports.getOneByEmail = (email) =>
     try {
       const teacher = await Teacher.findOne({ email });
       resolve(teacher);
+    } catch (err) {
+      reject(err);
+    }
+  });
+
+module.exports.checkForMissingPosts = (teacherId) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      // Get all lesson requests by a teacher
+      const lessonRequests = await LessonRequest.find({ teacherId });
+
+      // Empty array for LessonRequest id's with no corresponding SocialMediaPost
+      let noMatches = [];
+      
+      // Checks for atleast one SocialMediaPost for a specific lessonId
+      lessonRequests.forEach(async (lessonRequest) => {
+        // Null when no document found
+        const socialMediaPost = await SocialMediaPost.findOne({ lessonId: lessonRequest._id });
+       
+        // Adds LessonRequest id to array if no social media post found
+        if (!socialMediaPost) {
+          noMatches.push(lessonRequest._id);
+        }
+      });
+
+      resolve(noMatches);
     } catch (err) {
       reject(err);
     }
@@ -119,39 +160,39 @@ module.exports.register = (req, res) => {
       }
 
       // Check if school exists
-      const school = School.findOne({ name: schoolName }, (err, school) => {
+      School.findOne({ name: schoolName }, (err, school) => {
+        // TODO check for error
         if (!school) {
           // Runs if school does not exist
           res.status(500).json({
             error: 'School does not exist on the database',
           });
         }
-      });
 
+        // Creates new Teacher Object
+        const newTeacher = new Teacher({
+          firstname,
+          lastname,
+          email,
+          phone,
+          schoolId: school._id,
+          password: hash,
+        });
 
-      // Creates new Teacher Object
-      const newTeacher = new Teacher({
-        firstname,
-        lastname,
-        email,
-        phone,
-        schoolId : school._id,
-        password: hash,
-      });
-
-      // Saves teacher object to database
-      newTeacher
-        .save()
-        .then((result) => {
-          console.log(result);
-          res.status(201).json({
-            message: 'Teacher account created',
-          });
-        })
-        .catch((saveErr) => {
-          console.log(saveErr);
-          res.status(500).json({
-            error: saveErr,
+        // Saves teacher object to database
+        newTeacher
+          .save()
+          .then((result) => {
+            console.log(result);
+            res.status(201).json({
+              message: 'Teacher account created',
+            });
+          })
+          .catch((saveErr) => {
+            console.log(saveErr);
+            res.status(500).json({
+              error: saveErr,
+            });
           });
         });
     });

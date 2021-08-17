@@ -20,7 +20,6 @@ const sltSchema  = new Schema(
     },
     phone: {
       type: String,
-      required: true,
     },
     schoolId: {
       type: String,
@@ -30,6 +29,11 @@ const sltSchema  = new Schema(
       type: String,
       required: true,
     },
+    coordinator: {
+      type: Boolean,
+      required: true,
+      default: false,
+    }
   },
   {
     // Mongoose will create a "createdAt" and "updatedAt" properties to schema 😀

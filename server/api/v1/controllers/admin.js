@@ -66,6 +66,7 @@ module.exports.access = (req, res) => {
         error: err,
       });
     }
+  console.log(email, password);
 
     bcrypt.compare(password, admin.password, (err, result) => {
       if (err) {

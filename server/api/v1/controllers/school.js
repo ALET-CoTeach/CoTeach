@@ -7,11 +7,12 @@ module.exports.createOne = (schoolData) =>
     const {
       name,
       email,
+      phone,
+      website,
       line1,
       towncity,
       county,
       postcode,
-      customerId,
     } = schoolData;
 
     try {
@@ -30,15 +31,25 @@ module.exports.createOne = (schoolData) =>
         const newSchool = new School({
           name,
           email,
+          phone,
+          website,
           address,
         });
 
         // Saves school object to database
         const savedSchool = await newSchool.save();
-        resolve(savedSchool);
+        resolve({ 
+          message: "School successfully created and stored on database",
+          school: savedSchool,
+          status: 201,
+        });
       } else {
         // Runs if account already exits
-        reject(new Error("School already exists"));
+        resolve({
+          message: "School already stored on database",
+          school,
+          status: 200,
+        });
       }
     } catch (err) {
       reject(err);
@@ -48,7 +59,12 @@ module.exports.createOne = (schoolData) =>
 module.exports.deleteOne = (schoolId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const school = await School.deleteOne({ _id: schoolId });
+      const school = await School.findByIdAndDelete(schoolId);
+
+      if (!school) {
+        resolve({ message: "School document never existed or has already been deleted" });
+      }
+
       resolve({ message: "School successfuly deleted", school });
     } catch (err) {
       reject(err);
@@ -61,6 +77,8 @@ module.exports.updateOne = (schoolId, updateData) =>
       const {
         name,
         email,
+        phone,
+        website,
         line1,
         towncity,
         county,
@@ -77,18 +95,24 @@ module.exports.updateOne = (schoolId, updateData) =>
       const update = {
         name,
         email,
+        phone,
+        website,
         address,
       };
 
-      const updatedSchool = await School.findOneAndUpdate(
-        { _id: schoolId },
+      const updatedSchool = await School.findByIdAndUpdate(
+        schoolId,
         update,
         {
           new: true,
         }
       );
-      console.log(updatedSchool);
-      resolve(updatedSchool);
+
+      if (!updatedSchool) {
+        resolve({ message: "School document was never created or has been deleted" });
+      }
+
+      resolve({ message: "School has succesfully been update", school: updatedSchool });
     } catch (err) {
       reject(err);
     }
@@ -98,7 +122,7 @@ module.exports.getAll = () =>
   new Promise(async (resolve, reject) => {
     try {
       const schools = await School.find({});
-      resolve(schools);
+      resolve({ schools });
     } catch (err) {
       reject(err);
     }
@@ -107,8 +131,13 @@ module.exports.getAll = () =>
 module.exports.getOne = (schoolId) =>
   new Promise(async (resolve, reject) => {
     try {
-      const school = await School.findOne({ _id: schoolId });
-      resolve(school);
+      const school = await School.findOneById(schoolId);
+
+      if (!school) {
+        resolve({ message: "School does not exist in database" });
+      }
+
+      resolve({ message: "School successfully found", school });
     } catch (err) {
       reject(err);
     }

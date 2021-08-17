@@ -1,0 +1,33 @@
+.ant-table-thead > tr > th{
+    color: white;
+    background-color: #29245C;
+    font-size: medium;
+}
+
+.ant-table-thead > tr.ant-table-thead-level-1:hover > th {
+    background-color: unset;
+}
+
+.ant-table-thead > tr :hover{
+    color: black;
+    background-color: #f8f4f4;
+}
+
+.centerText {
+    text-align: center;
+}
+
+
+.HeadingBlue {
+    font-size: 300%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #29245C;
+}
+
+.HeadingGrey {
+    font-size: 200%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #6e6e6e;
+    font-weight: 200;
+}
+
