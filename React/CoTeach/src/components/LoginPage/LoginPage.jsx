@@ -63,9 +63,6 @@ class LoginPage extends React.Component {
                                     }}
                                     onFinish={this.handleSubmit}
                                 >
-                                    <div>
-                                        <img src={coTeach}  width="30%" />
-                                    </div>
                                     <LoginTabs changeAuthLevel={this.changeAuthLevel} />
                                 </Form>
                             </Card>
