@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Steps, Button, message} from 'antd';
+import { Steps, Button, message } from 'antd';
 
 import UploadMedia from './Forms/UploadMedia';
 import PostDescription from './Forms/PostDescription';
 import YourExperience from './Forms/YourExperience';
-
 
 const { Step } = Steps;
 
@@ -24,11 +23,11 @@ const steps = [
   },
 ];
 
-function CreatePostSteps(props){
+const CreatePostSteps = (props) => {
 
-  const{handleOk} = props;
+  const { handleOk } = props;
 
-  const [current, setCurrent] = React.useState(0);
+  const [current, setCurrent] = useState(0);
 
   const next = () => {
     setCurrent(current + 1);

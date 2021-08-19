@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import '../../../index.css';
-import { Table, Space, Input, Button } from 'antd';
+import {
+  Table, Space, Input, Button,
+} from 'antd';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 
 import VerifyPostModal from '../Modals/VerifyPostModal';
-
 
 const data = [
   {
@@ -16,14 +17,14 @@ const data = [
     day: 'Monday',
     time: 'AM',
     school: 'UTCR',
-    lesson: "Flammable Elements",
+    lesson: 'Flammable Elements',
     subject: 'Chemistry',
     course: 'A Level',
     year: '12',
     activityType: 'Lesson',
     organisation: 'AWE',
     teacherName: 'Jennie Thompson',
-    postVerification: <VerifyPostModal/>,
+    postVerification: <VerifyPostModal />,
 
   },
   {
@@ -33,14 +34,14 @@ const data = [
     day: 'Friday　　　　　',
     time: 'PM',
     school: 'UTCR',
-    lesson: "App Development",
+    lesson: 'App Development',
     subject: 'Computing',
     course: 'BTEC Level 3',
     year: '13',
     activityType: 'Workshop',
     organisation: 'Cisco',
     teacherName: 'David McArthur',
-    postVerification: <VerifyPostModal/>,
+    postVerification: <VerifyPostModal />,
   },
   {
     key: '3',
@@ -49,14 +50,14 @@ const data = [
     day: 'Wednesday',
     time: 'PM',
     school: 'UTCR',
-    lesson: "Web Development",
+    lesson: 'Web Development',
     subject: 'Computing',
     course: 'BTEC Level 3',
     year: '13',
     activityType: 'Work Placement',
     organisation: 'IBM',
     teacherName: 'Colin Fox',
-    postVerification: <VerifyPostModal/>,
+    postVerification: <VerifyPostModal />,
   },
   {
     key: '4',
@@ -72,7 +73,7 @@ const data = [
     activityType: 'Lesson',
     organisation: 'Thales',
     teacherName: 'Robert Bradley',
-    postVerification: <VerifyPostModal/>,
+    postVerification: <VerifyPostModal />,
   },
   {
     key: '5',
@@ -81,14 +82,14 @@ const data = [
     day: 'Friday　　　　　',
     time: 'AM',
     school: 'UTCR',
-    lesson: "Binary",
+    lesson: 'Binary',
     subject: 'Computer Science',
     course: 'GCSE',
     year: '10',
     activityType: 'Lesson',
     organisation: 'Microsoft',
     teacherName: 'Monika Dongare',
-    postVerification: <VerifyPostModal/>,
+    postVerification: <VerifyPostModal />,
   },
   {
     key: '6',
@@ -97,51 +98,62 @@ const data = [
     day: 'Wednesday',
     time: 'PM',
     school: 'UTCR',
-    lesson: "Object Oriented Code",
+    lesson: 'Object Oriented Code',
     subject: 'Computer Science',
     course: 'A Level',
     year: '13',
     activityType: 'Workshop',
     organisation: 'Oracle',
     teacherName: 'Colin Fox',
-    postVerification: <VerifyPostModal/>,
+    postVerification: <VerifyPostModal />,
   },
 ];
 
-function onChange(pagination, filters, sorter, extra) {
-  console.log('params', pagination, filters, sorter, extra);
-}
+const PostVerificationTable = () => {
+  const [searchText, setSearchText] = useState('');
+  const [searchColumn, setSearchColumn] = useState('');
 
-class PostVerificationTable extends Component {
-  state = {
-    searchText: '',
-    searchColumn: '',
+  const onChange = (pagination, filters, sorter, extra) => {
+    console.log('params', pagination, filters, sorter, extra);
   };
 
-  getColumnSearchProps = dataIndex => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchColumn(dataIndex);
+  };
+
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({
+      setSelectedKeys, selectedKeys, confirm, clearFilters,
+    }) => (
       <div style={{ padding: 8 }}>
         <Input
-          ref={node => {
-            this.searchInput = node;
+          ref={(node) => {
+            searchInput = node;
           }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{ marginBottom: 8, display: 'block' }}
         />
         <Space>
           <Button
             type="primary"
-            onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             icon={<SearchOutlined />}
             size="small"
             style={{ width: 90 }}
           >
             Search
           </Button>
-          <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+          <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
             Reset
           </Button>
           <Button
@@ -149,10 +161,8 @@ class PostVerificationTable extends Component {
             size="small"
             onClick={() => {
               confirm({ closeDropdown: false });
-              this.setState({
-                searchText: selectedKeys[0],
-                searchedColumn: dataIndex,
-              });
+              setSearchText(selectedKeys[0]);
+              setSearchColumn(dataIndex);
             }}
           >
             Filter
@@ -160,215 +170,197 @@ class PostVerificationTable extends Component {
         </Space>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
-    onFilter: (value, record) =>
-      record[dataIndex]
-        ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
-        : '',
-    onFilterDropdownVisibleChange: visible => {
+    filterIcon: (filtered) => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    onFilter: (value, record) => (record[dataIndex]
+      ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
+      : ''),
+    onFilterDropdownVisibleChange: (visible) => {
       if (visible) {
-        setTimeout(() => this.searchInput.select(), 100);
+        setTimeout(() => searchInput.select(), 100);
       }
     },
-    render: text =>
-      this.state.searchedColumn === dataIndex ? (
-        <Highlighter
-          highlightStyle={{ backgroundColor: '#bdf6ff', padding: 0 }}
-          searchWords={[this.state.searchText]}
-          autoEscape
-          textToHighlight={text ? text.toString() : ''}
-        />
-      ) : (
-        text
-      ),
+    render: (text) => (searchColumn === dataIndex ? (
+      <Highlighter
+        highlightStyle={{ backgroundColor: '#bdf6ff', padding: 0 }}
+        searchWords={[searchText]}
+        autoEscape
+        textToHighlight={text ? text.toString() : ''}
+      />
+    ) : (
+      text
+    )),
   });
 
-  handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    this.setState({
-      searchText: selectedKeys[0],
-      searchedColumn: dataIndex,
-    });
-  };
+  const columns = [
+    {
+      title: 'Date',
+      dataIndex: 'date',
+      onFilter: (value, record) => record.date.indexOf(value) === 0,
+      // sorter: (a, b) => a.date.charAt(5) - b.date.charAt(5),
+      // sortDirections: ['ascend', 'descend'],
+    },
+    {
+      title: 'Booked By',
+      dataIndex: 'organisation',
+      ...getColumnSearchProps('organisation'),
+    },
+    {
+      title: 'Lesson',
+      dataIndex: 'lesson',
+      ...getColumnSearchProps('lesson'),
+    },
+    {
+      title: 'Teacher Name',
+      dataIndex: 'teacherName',
+      ...getColumnSearchProps('teacherName'),
+    },
+    {
+      title: 'Type',
+      dataIndex: 'activityType',
+      key: 'activityType',
+      filters: [
+        {
+          text: 'Lesson',
+          value: 'Lesson',
+        },
+        {
+          text: 'Workshop',
+          value: 'Workshop',
+        },
+        {
+          text: 'Project',
+          value: 'Project',
+        },
+        {
+          text: 'Work Placement',
+          value: 'Work Placement',
+        },
+        {
+          text: 'Pipeline Programme',
+          value: 'Pipeline Programme',
+        },
+      ],
+      onFilter: (value, record) => record.activityType.indexOf(value) === 0,
+    },
+    {
+      title: 'Subject',
+      dataIndex: 'subject',
+      filters: [
+        {
+          text: 'Computer Science',
+          value: 'Computer Science',
+        },
+        {
+          text: 'Computing',
+          value: 'Computing',
+        },
+        {
+          text: 'Engineering',
+          value: 'Engineering',
+        },
+        {
+          text: 'Biology',
+          value: 'Biology',
+        },
+        {
+          text: 'Physics',
+          value: 'Physics',
+        },
+        {
+          text: 'Chemistry',
+          value: 'Chemistry',
+        },
+        {
+          text: 'Mathematics',
+          value: 'Mathematics',
+        },
+        {
+          text: 'English Literature',
+          value: 'English Literature',
+        },
+        {
+          text: 'English Language',
+          value: 'English Language',
+        },
+      ],
+      onFilter: (value, record) => record.subject.indexOf(value) === 0,
+      // sorter: (a, b) => a.day.length - b.day.length,
+      // sortDirections: ['ascend', 'descend'],
+    },
+    {
+      title: 'Course Type',
+      dataIndex: 'course',
+      filters: [
+        {
+          text: 'A-Level',
+          value: 'A-Level',
+        },
+        {
+          text: 'BTEC Level 3',
+          value: 'BTEC Level 3',
+        },
+        {
+          text: 'BTEC Level 2',
+          value: 'BTEC Level 2',
+        },
+        {
+          text: 'GCSE',
+          value: 'GCSE',
+        },
+      ],
+      onFilter: (value, record) => record.course.indexOf(value) === 0,
+      // sorter: (a, b) => a.course.length - b.course.length,
+      // sortDirections: ['ascend', 'descend'],
+    },
+    {
+      title: 'Year',
+      dataIndex: 'year',
+      filters: [
+        {
+          text: '7',
+          value: '7',
+        },
+        {
+          text: '8',
+          value: '8',
+        },
+        {
+          text: '9',
+          value: '9',
+        },
+        {
+          text: '10',
+          value: '10',
+        },
+        {
+          text: '11',
+          value: '11',
+        },
+        {
+          text: '12',
+          value: '12',
+        },
+        {
+          text: '13',
+          value: '13',
+        },
+      ],
+      onFilter: (value, record) => record.year.indexOf(value) === 0,
+      // sorter: (a, b) => a.year - b.year,
+      // sortDirections: ['ascend', 'descend'],
+    },
+    {
+      title: 'Post Verification',
+      dataIndex: 'postVerification',
+    },
 
-  handleReset = clearFilters => {
-    clearFilters();
-    this.setState({ searchText: '' });
-  };
+  ];
 
-  render() {
-
-    const columns = [
-      {
-        title: 'Date',
-        dataIndex: 'date',
-        onFilter: (value, record) => record.date.indexOf(value) === 0,
-        // sorter: (a, b) => a.date.charAt(5) - b.date.charAt(5),
-        // sortDirections: ['ascend', 'descend'],
-      },
-      {
-        title: 'Booked By',
-        dataIndex: 'organisation',
-        ...this.getColumnSearchProps('organisation'),
-      },
-      {
-        title: 'Lesson',
-        dataIndex: 'lesson',
-        ...this.getColumnSearchProps('lesson'),
-      },
-      {
-        title: 'Teacher Name',
-        dataIndex: 'teacherName',
-        ...this.getColumnSearchProps('teacherName'),
-      },
-      {
-        title: 'Type',
-        dataIndex: 'activityType',
-        key: 'activityType',
-        filters: [
-          {
-            text: 'Lesson',
-            value: 'Lesson',
-          },
-          {
-            text: 'Workshop',
-            value: 'Workshop',
-          },
-          {
-            text: 'Project',
-            value: 'Project',
-          },
-          {
-            text: 'Work Placement',
-            value: 'Work Placement',
-          },
-          {
-            text: 'Pipeline Programme',
-            value: 'Pipeline Programme',
-          },
-        ],
-        onFilter: (value, record) => record.activityType.indexOf(value) === 0,
-      },
-      {
-        title: 'Subject',
-        dataIndex: 'subject',
-        filters: [
-          {
-            text: 'Computer Science',
-            value: 'Computer Science',
-          },
-          {
-            text: 'Computing',
-            value: 'Computing',
-          },
-          {
-            text: 'Engineering',
-            value: 'Engineering',
-          },
-          {
-            text: 'Biology',
-            value: 'Biology',
-          },
-          {
-            text: 'Physics',
-            value: 'Physics',
-          },
-          {
-            text: 'Chemistry',
-            value: 'Chemistry',
-          },
-          {
-            text: 'Mathematics',
-            value: 'Mathematics',
-          },
-          {
-            text: 'English Literature',
-            value: 'English Literature',
-          },
-          {
-            text: 'English Language',
-            value: 'English Language',
-          },
-        ],
-        onFilter: (value, record) => record.subject.indexOf(value) === 0,
-        //sorter: (a, b) => a.day.length - b.day.length,
-        //sortDirections: ['ascend', 'descend'],
-      },
-      {
-        title: 'Course Type',
-        dataIndex: 'course',
-        filters: [
-          {
-            text: 'A-Level',
-            value: 'A-Level',
-          },
-          {
-            text: 'BTEC Level 3',
-            value: 'BTEC Level 3',
-          },
-          {
-            text: 'BTEC Level 2',
-            value: 'BTEC Level 2',
-          },
-          {
-            text: 'GCSE',
-            value: 'GCSE',
-          },
-        ],
-        onFilter: (value, record) => record.course.indexOf(value) === 0,
-        // sorter: (a, b) => a.course.length - b.course.length,
-        // sortDirections: ['ascend', 'descend'],
-      },
-      {
-        title: 'Year',
-        dataIndex: 'year',
-        filters: [
-          {
-            text: '7',
-            value: '7',
-          },
-          {
-            text: '8',
-            value: '8',
-          },
-          {
-            text: '9',
-            value: '9',
-          },
-          {
-            text: '10',
-            value: '10',
-          },
-          {
-            text: '11',
-            value: '11',
-          },
-          {
-            text: '12',
-            value: '12',
-          },
-          {
-            text: '13',
-            value: '13',
-          },
-        ],
-        onFilter: (value, record) => record.year.indexOf(value) === 0,
-        // sorter: (a, b) => a.year - b.year,
-        // sortDirections: ['ascend', 'descend'],
-      },
-      {
-        title: 'Post Verification',
-        dataIndex: 'postVerification',
-      },
-    
-    ];
-
-    return (
-      <>
-        <Table columns={columns} dataSource={data} onChange={onChange} />
-      </>
-    );
-  };
-}
+  return (
+    <>
+      <Table columns={columns} dataSource={data} onChange={onChange} />
+    </>
+  );
+};
 
 export default PostVerificationTable;

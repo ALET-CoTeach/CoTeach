@@ -5,7 +5,7 @@ import { Modal, Button } from 'antd';
 
 import StepsComponent from './Steps/Steps';
 
-function ModalComponent() {
+const ModalComponent = () => {
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [modalText, setModalText] = React.useState('Content of the modal');
@@ -30,7 +30,7 @@ function ModalComponent() {
   };
   return (
     <>
-      <Button style={{ width: 150, margin: 20, }} type="primary" onClick={() => setVisible(true)}>
+      <Button style={{ width: 150, margin: 20 }} type="primary" onClick={() => setVisible(true)}>
         Add Request
       </Button>
       <Modal
@@ -43,7 +43,7 @@ function ModalComponent() {
         footer={[
         ]}
       >
-        <StepsComponent handleOk={this.handleOk}/>
+        <StepsComponent handleOk={handleOk}/>
       </Modal>
     </>
   );

@@ -42,19 +42,19 @@ function App() {
             <Route path="/" exact component={() => <LandingPage />} />
             <Route path="/users" exact component={() => <Users />} />
             <Route path="/about" exact component={() => <About />} />
-            <Route path="/addLesson" exact component={() => <AddLesson />} />
+            <Route path="/addlesson" exact component={() => <AddLesson />} />
             <Route path="/login" exact component={() => <LoginPage />} />
             <Route path="/register" exact component={() => <RegisterPage />} />
             <Route path="/statistics" exact component={() => <StatisticsPage />} />
             <Route path="/profiles/school" exact component={() => <SchoolProfile />} />
             <Route path="/utcprofiles" exact component={() => <UTCProfiles />} />
             <Route path="/lessonbooking" exact component={() => <LessonBooking />} />
-            <Route path="/LandingPage" exact component={() => <LandingPage />} />
-            <Route path="/UTCProfilesTwo" exact component={() => <UTCProfilesTwo />} />
-            <Route path="/CoordinatorEntries" exact component={() => <CoordinatorEntries />} />
-            <Route path="/TeacherPostCreationPage" exact component={() => <TeacherPostCreationPage />} />
-            <Route path="/CoordinatorPostVerificationPage" exact component={() => <CoordinatorPostVerificationPage />} />
-            <Route path="/TeacherDashboard" exact component={() => <TeacherDashboard />} />
+            <Route path="/landingpage" exact component={() => <LandingPage />} />
+            <Route path="/utcprofiles2" exact component={() => <UTCProfilesTwo />} />
+            <Route path="/coordinatorentries" exact component={() => <CoordinatorEntries />} />
+            <Route path="/teacherpostcreation" exact component={() => <TeacherPostCreationPage />} />
+            <Route path="/coordinatorpostverification" exact component={() => <CoordinatorPostVerificationPage />} />
+            <Route path="/teacherdashboard" exact component={() => <TeacherDashboard />} />
           </Switch>
         </Router>
       </div>

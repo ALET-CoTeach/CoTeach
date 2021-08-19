@@ -1,19 +1,18 @@
-import React, { Component, useState } from 'react'
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react'
 import 'antd/dist/antd.css';
 import { Modal, Button, Row, Col } from 'antd';
 import StepsVerify from './Steps/Steps';
 
 
 const VerifyPostModal = () => {
-    const [visible, setVisible] = React.useState(false);
-    const [confirmLoading, setConfirmLoading] = React.useState(false);
-    const [modalText, setModalText] = React.useState('Content of the modal');
-  
+    const [visible, setVisible] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
+
     const showModal = () => {
       setVisible(true);
     };
-  
+
     const handleOk = () => {
       setModalText('The modal will be closed after two seconds');
       setConfirmLoading(true);
@@ -22,12 +21,12 @@ const VerifyPostModal = () => {
         setConfirmLoading(false);
       }, 2000);
     };
-  
+
     const handleCancel = () => {
       console.log('Clicked cancel button');
       setVisible(false);
     };
-  
+
     return (
       <>
         <Button type="primary" onClick={showModal} block>
@@ -48,5 +47,5 @@ const VerifyPostModal = () => {
       </>
     );
   };
-  
+
 export default VerifyPostModal;

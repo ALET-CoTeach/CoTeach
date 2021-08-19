@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import '../../../../../index.css';
 import { Form, Input, Button } from 'antd';
 
-function Lessonform(){
+const Lessonform = () => {
   const onFinish = (values) => {
     console.log('Success:', values);
   };

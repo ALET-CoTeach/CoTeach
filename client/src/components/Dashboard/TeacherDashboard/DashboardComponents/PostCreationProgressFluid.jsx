@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Liquid } from '@ant-design/charts';
 
 const PostCreationProgressFluid = () => {
-  var config = {
+  const config = {
     percent: 0.69,
     outline: {
       border: 4,

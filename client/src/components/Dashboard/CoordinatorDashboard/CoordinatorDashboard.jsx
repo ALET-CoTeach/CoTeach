@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function CoordinatorDashboard() {
-    return (
-        <div>
-            Coordinator
-        </div>
-    )
+const CoordinatorDashboard = () => {
+  return (
+    <>
+      Coordinator
+    </>
+  );
 }
 
 export default CoordinatorDashboard;

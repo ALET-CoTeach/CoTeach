@@ -9,13 +9,14 @@ import {
 } from 'antd';
 
 
-function Schoolform() {
+const Schoolform = () => {
   const [form] = Form.useForm();
   const [requiredMark, setRequiredMarkType] = useState('optional');
 
   const onRequiredTypeChange = ({ requiredMarkValue }) => {
     setRequiredMarkType(requiredMarkValue);
   };
+
   return (
     <>
       <Form

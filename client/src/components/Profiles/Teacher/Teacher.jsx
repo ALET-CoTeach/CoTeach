@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-function TeacherProfile() {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+const TeacherProfile = () => (
+  <>
 
-export default TeacherProfile
+  </>
+);
+
+export default TeacherProfile;

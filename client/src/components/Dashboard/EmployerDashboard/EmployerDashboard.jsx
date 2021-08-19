@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-function EmployerDashboard() {
-    return (
-        <div>
-            Employer
-        </div>
-    )
-}
+const EmployerDashboard = () => (
+  <>
+    Employer
+  </>
+);
 
 export default EmployerDashboard;
