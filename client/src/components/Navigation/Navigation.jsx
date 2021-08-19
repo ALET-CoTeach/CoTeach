@@ -9,19 +9,19 @@ import Toolbar from './Toolbar/Toolbar';
 const { SubMenu } = Menu;
 
 function Navigation(props) {
-  state = {
-    current: 'home',
-  };
+// this.state = {
+//    current: 'home',
+//  };
 
-  handleClick = e => {
-    console.log('click ', e);
-    this.setState({ current: e.key });
-  };
+  //handleClick = e => {
+  //  console.log('click ', e);
+   // this.setState({ current: e.key });
+  //};
 
-  const { current } = this.state;
+  // const { current } = this.state;
   return (
     <div>
-      <Menu className="navbar" onClick={this.handleClick} selectedKeys={[current]} mode="horizontal" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+      <Menu className="navbar" mode="horizontal" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <Menu.Item key="home" icon={<HomeOutlined />}>
           <Link to="LandingPage">
             Home

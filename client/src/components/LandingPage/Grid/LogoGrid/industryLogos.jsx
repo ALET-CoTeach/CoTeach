@@ -1,40 +1,40 @@
 import React, { Component } from 'react'
 import './LandingPage.css';
-import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Icon, Collapse, Link, Statistic } from 'antd';
+import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Collapse, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 
-import ActivateLearning from 'url:~/src/assets/IndustryLogos/activate-learning.svg';
-import AutoDesk from 'url:~/src/assets/IndustryLogos/autodesk.svg';
-import AWE from 'url:~/src/assets/IndustryLogos/AWE.svg';
-import CGI from 'url:~/src/assets/IndustryLogos/CGI.svg';
-import Cisco from 'url:~/src/assets/IndustryLogos/Cisco.svg';
-import Creat3D from 'url:~/src/assets/IndustryLogos/Creat3D.svg';
+import ActivateLearning from '@assets/IndustryLogos/activate-learning.svg';
+import AutoDesk from '@assets/IndustryLogos/autodesk.svg';
+import AWE from '@assets/IndustryLogos/AWE.svg';
+import CGI from '@assets/IndustryLogos/CGI.svg';
+import Cisco from '@assets/IndustryLogos/Cisco.svg';
+import Creat3D from '@assets/IndustryLogos/Creat3D.svg';
 
-import Fujitsu from 'url:~/src/assets/IndustryLogos/Fujitsu.svg';
-import InnovationCatalyst from 'url:~/src/assets/IndustryLogos/innovation-catalyst.svg';
-import KBR from 'url:~/src/assets/IndustryLogos/KBR.svg';
-import KIER from 'url:~/src/assets/IndustryLogos/KIER.svg';
-import Microsoft from 'url:~/src/assets/IndustryLogos/Microsoft.svg';
-import NetworkRail from 'url:~/src/assets/IndustryLogos/Network-Rail.svg';
+import Fujitsu from '@assets/IndustryLogos/Fujitsu.svg';
+import InnovationCatalyst from '@assets/IndustryLogos/innovation-catalyst.svg';
+import KBR from '@assets/IndustryLogos/KBR.svg';
+import KIER from '@assets/IndustryLogos/KIER.svg';
+import Microsoft from '@assets/IndustryLogos/Microsoft.svg';
+import NetworkRail from '@assets/IndustryLogos/Network-Rail.svg';
 
-import OnSystems from 'url:~/src/assets/IndustryLogos/on-systems.svg';
-import OobaCreative from 'url:~/src/assets/IndustryLogos/ooba-creative.svg';
-import Oracle from 'url:~/src/assets/IndustryLogos/oracle.svg';
-import PeterBrett from 'url:~/src/assets/IndustryLogos/peter-brett.svg';
-import ProdigyLearning from 'url:~/src/assets/IndustryLogos/prodigy-learning.svg';
-import ReplySytel from 'url:~/src/assets/IndustryLogos/reply-sytel.svg';
+import OnSystems from '@assets/IndustryLogos/on-systems.svg';
+import OobaCreative from '@assets/IndustryLogos/ooba-creative.svg';
+import Oracle from '@assets/IndustryLogos/oracle.svg';
+import PeterBrett from '@assets/IndustryLogos/peter-brett.svg';
+import ProdigyLearning from '@assets/IndustryLogos/prodigy-learning.svg';
+import ReplySytel from '@assets/IndustryLogos/reply-sytel.svg';
 
-import RockwellCollins from 'url:~/src/assets/IndustryLogos/rockwell-collins.svg';
-import RoyalElectric from 'url:~/src/assets/IndustryLogos/Royal-Electric.svg';
-import RoyalNavy from 'url:~/src/assets/IndustryLogos/royal-navy.svg';
-import SalesForce from 'url:~/src/assets/IndustryLogos/salesforce.svg';
-import Sky from 'url:~/src/assets/IndustryLogos/sky.svg';
-import SSE from 'url:~/src/assets/IndustryLogos/SSE.svg';
+import RockwellCollins from '@assets/IndustryLogos/rockwell-collins.svg';
+import RoyalElectric from '@assets/IndustryLogos/Royal-Electric.svg';
+import RoyalNavy from '@assets/IndustryLogos/royal-navy.svg';
+import SalesForce from '@assets/IndustryLogos/salesforce.svg';
+import Sky from '@assets/IndustryLogos/sky.svg';
+import SSE from '@assets/IndustryLogos/SSE.svg';
 
-import Thales from 'url:~/src/assets/IndustryLogos/Thales.svg';
-import ThamesWater from 'url:~/src/assets/IndustryLogos/Thames-Water.svg';
-import Ultima from 'url:~/src/assets/IndustryLogos/ultima.svg';
-import ReadingUni from 'url:~/src/assets/IndustryLogos/uni-reading.svg';
+import Thales from '@assets/IndustryLogos/Thales.svg';
+import ThamesWater from '@assets/IndustryLogos/Thames-Water.svg';
+import Ultima from '@assets/IndustryLogos/ultima.svg';
+import ReadingUni from '@assets/IndustryLogos/uni-reading.svg';
 
 
 

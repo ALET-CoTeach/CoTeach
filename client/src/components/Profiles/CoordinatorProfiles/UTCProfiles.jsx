@@ -2,16 +2,16 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Layout, Collapse, Drawer, List, Avatar, Divider, Col, Row } from 'antd';
 
-import UTCHeathrowLogo from 'url:~/src/assets/BlueLogos/UTC-Heathrow-Logo.svg';
-import BicesterTechnology from 'url:~/src/assets/BlueLogos/Bicester-Tchnology-Studio-Logo.svg';
-import Bicester from 'url:~/src/assets/BlueLogos/Bicester-Logo.svg';
-import ThealeGreen from 'url:~/src/assets/BlueLogos/ThealeGreenLogo.svg';
-import UTCOxfordshire from 'url:~/src/assets/BlueLogos/UTC-Oxfordshire-Logo.svg';
-import UTCReading from 'url:~/src/assets/BlueLogos/UTC-Reading-Logo.svg';
-import UTCSwindon from 'url:~/src/assets/BlueLogos/UTC-Swindon-Logo.svg';
+import UTCHeathrowLogo from '@assets/BlueLogos/UTC-Heathrow-Logo.svg';
+import BicesterTechnology from '@assets/BlueLogos/Bicester-Tchnology-Studio-Logo.svg';
+import Bicester from '@assets/BlueLogos/Bicester-Logo.svg';
+import ThealeGreen from '@assets/BlueLogos/ThealeGreenLogo.svg';
+import UTCOxfordshire from '@assets/BlueLogos/UTC-Oxfordshire-Logo.svg';
+import UTCReading from '@assets/BlueLogos/UTC-Reading-Logo.svg';
+import UTCSwindon from '@assets/BlueLogos/UTC-Swindon-Logo.svg';
 
 
-import coTeach from 'url:~/src/assets/CoTeach-Logo-Blue.svg';
+import coTeach from '@assets/CoTeach-Logo-Blue.svg';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -163,7 +163,7 @@ class UTCProfiles extends React.Component {
                                             </Col>
                                         </Row>
                                         <br /><hr /><br />
-                                        
+
                                     </Drawer>
                                 </>
 

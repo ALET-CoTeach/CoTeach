@@ -3,21 +3,21 @@ import 'antd/dist/antd.css';
 import { Layout, Collapse, Drawer, List, Avatar, Divider, Col, Row, Card } from 'antd';
 import './CoordinatorProfile.css';
 
-import UTCHeathrowLogo from 'url:~/src/assets/BlueLogos/UTC-Heathrow-Logo.svg';
-import BicesterTechnology from 'url:~/src/assets/BlueLogos/Bicester-Tchnology-Studio-Logo.svg';
-import Bicester from 'url:~/src/assets/BlueLogos/Bicester-Logo.svg';
-import ThealeGreen from 'url:~/src/assets/BlueLogos/ThealeGreenLogo.svg';
-import UTCOxfordshire from 'url:~/src/assets/BlueLogos/UTC-Oxfordshire-Logo.svg';
-import UTCReading from 'url:~/src/assets/BlueLogos/UTC-Reading-Logo.svg';
-import UTCSwindon from 'url:~/src/assets/BlueLogos/UTC-Swindon-Logo.svg';
+import UTCHeathrowLogo from '@assets/BlueLogos/UTC-Heathrow-Logo.svg';
+import BicesterTechnology from '@assets/BlueLogos/Bicester-Tchnology-Studio-Logo.svg';
+import Bicester from '@assets/BlueLogos/Bicester-Logo.svg';
+import ThealeGreen from '@assets/BlueLogos/ThealeGreenLogo.svg';
+import UTCOxfordshire from '@assets/BlueLogos/UTC-Oxfordshire-Logo.svg';
+import UTCReading from '@assets/BlueLogos/UTC-Reading-Logo.svg';
+import UTCSwindon from '@assets/BlueLogos/UTC-Swindon-Logo.svg';
 
-import UTCReadingBuilding from 'url:~/src/assets/SchoolPhotos/utc-reading.jpg';
-import UTCSwindonBuidling from 'url:~/src/assets/SchoolPhotos/utc-swindon-building.jpg';
-import UTCHeathrowBuilding from 'url:~/src/assets/SchoolPhotos/utc-heathrow-building.jpg';
-import UTCOxfordBuilding from 'url:~/src/assets/SchoolPhotos/utc-oxford-building.jpg';
-import ThealeGreenBuilding from 'url:~/src/assets/SchoolPhotos/theale-green-building.png';
-import BicesterBuilding from 'url:~/src/assets/SchoolPhotos/bicester-building.jpg';
-import BicesterStudioBuilding from 'url:~/src/assets/SchoolPhotos/bicester-technology-building.jpg';
+import UTCReadingBuilding from '@assets/SchoolPhotos/utc-reading.jpg';
+import UTCSwindonBuidling from '@assets/SchoolPhotos/utc-swindon-building.jpg';
+import UTCHeathrowBuilding from '@assets/SchoolPhotos/utc-heathrow-building.jpg';
+import UTCOxfordBuilding from '@assets/SchoolPhotos/utc-oxford-building.jpg';
+import ThealeGreenBuilding from '@assets/SchoolPhotos/theale-green-building.png';
+import BicesterBuilding from '@assets/SchoolPhotos/bicester-building.jpg';
+import BicesterStudioBuilding from '@assets/SchoolPhotos/bicester-technology-building.jpg';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -206,4 +206,3 @@ class UTCProfilesTwo extends React.Component {
 }
 
 export default UTCProfilesTwo;
-

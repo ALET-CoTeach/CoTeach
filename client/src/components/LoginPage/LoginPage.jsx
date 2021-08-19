@@ -1,8 +1,8 @@
 import React from 'react';
 import './loginPage.css';
 import 'antd/dist/antd.css';
-import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Icon } from 'antd';
-import coTeach from 'url:~/src/assets/CoTeach-Logo-Blue.svg';
+import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col } from 'antd';
+import coTeach from '@assets/CoTeach-Logo-Blue.svg';
 import LoginTabs from './Tabs/LoginTabs';
 import axios from 'axios';
 
@@ -13,7 +13,7 @@ const validateMessages = {
     },
 };
 
-const BASE_URI = process.env.BASE_API_URI;
+// const BASE_URI = process.env.BASE_API_URI;
 
 class LoginPage extends React.Component {
 

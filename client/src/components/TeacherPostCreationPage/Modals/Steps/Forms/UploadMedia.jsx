@@ -24,32 +24,32 @@ class UploadMedia extends React.Component {
     //     uid: '-1',
     //     name: 'image.png',
     //     status: 'done',
-    //     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    //      'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     //   },
     //   {
     //     uid: '-2',
     //     name: 'image.png',
     //     status: 'done',
-    //     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    //      'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     //   },
     //   {
     //     uid: '-3',
     //     name: 'image.png',
     //     status: 'done',
-    //     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    //      'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     //   },
     //   {
     //     uid: '-4',
     //     name: 'image.png',
     //     status: 'done',
-    //     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    //      'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     //   },
     //   {
     //     uid: '-xxx',
     //     percent: 50,
     //     name: 'image.png',
     //     status: 'uploading',
-    //     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    //      'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     //   },
     //   {
     //     uid: '-5',
@@ -93,7 +93,7 @@ class UploadMedia extends React.Component {
           fileList={fileList}
           onPreview={this.handlePreview}
           onChange={this.handleChange}
-          
+
         >
           {fileList.length >= 8 ? null : uploadButton}
         </Upload>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Icon, Collapse, Link, Statistic } from 'antd';
+import { Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Collapse, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 import './Grid/LogoGrid/LandingPage.css';
-import CoTeachWords from 'url:~/src/assets/CoTeachWords.svg';
-import EducationBulletPoints from 'url:~/src/assets/EducationBullets.svg';
-import WhatIsCoTeach from 'url:~/src/assets/What-Is-CoTeach.svg';
+import CoTeachWords from '@assets/CoTeachWords.svg';
+import EducationBulletPoints from '@assets/EducationBullets.svg';
+import WhatIsCoTeach from '@assets/What-Is-CoTeach.svg';
 import IndustryLogos from './Grid/LogoGrid/industryLogos.jsx';
-import CoTeachMotto from 'url:~/src/assets/CoTeachMotto.svg';
+import CoTeachMotto from '@assets/CoTeachMotto.svg';
 import { LinkedinOutlined, FacebookOutlined } from '@ant-design/icons';
 
 
@@ -49,7 +49,7 @@ export class LandingPage extends Component {
                                                 </Button>
                                             </Col>
                                             <Col lg={2} sm={2}>
-                                            
+
                                             </Col>
                                             <Col lg={1} sm={1}>
                                                 <Button type="primary" shape="square" size="large" icon={<LinkedinOutlined  style={{ fontSize: '150%'}}/>}>
@@ -63,7 +63,7 @@ export class LandingPage extends Component {
                                                 </Button>
                                             </Col>
                                             </Row>
-                                           
+
 
                                         </Col>
                                     </Row>

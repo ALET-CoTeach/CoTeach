@@ -4,7 +4,7 @@ import '../../../index.css';
 import { Table, Input, Button, Space } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from "react-highlight-words";
-import styles from "./table-style.css";
+// import "./table-style.css";
 
 
 const data = [
@@ -292,7 +292,6 @@ class AllRequests extends Component {
       {
         title: 'Booked By',
         dataIndex: 'organisation',
-        ...this.getColumnSearchProps('organisation'),
       },
       {
         title: 'School',
