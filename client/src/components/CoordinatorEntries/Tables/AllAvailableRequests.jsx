@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import 'antd/dist/antd.css';
 import '../../../index.css';
 import {
@@ -80,6 +80,7 @@ const data = [
 const AllAvaiableRequests = () => {
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');
+  const searchInput = useRef(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -98,9 +99,7 @@ const AllAvaiableRequests = () => {
     }) => (
       <div style={{ padding: 8 }}>
         <Input
-          ref={(node) => {
-            searchInput = node;
-          }}
+          ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
@@ -138,11 +137,6 @@ const AllAvaiableRequests = () => {
     onFilter: (value, record) => (record[dataIndex]
       ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
       : ''),
-    onFilterDropdownVisibleChange: (visible) => {
-      if (visible) {
-        setTimeout(() => searchInput.select(), 100);
-      }
-    },
     render: (text) => (searchColumn === dataIndex ? (
       <Highlighter
         highlightStyle={{ backgroundColor: '#bdf6ff', padding: 0 }}

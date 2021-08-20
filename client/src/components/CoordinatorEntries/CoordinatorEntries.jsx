@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import {
   Layout, Collapse, Tooltip, Popover,
