@@ -1,30 +1,35 @@
+import * as actions from '../actionTypes';
+
 let lastId = 0;
 
-
 const authReducer = (state = {}, action) => {
-	switch (action.type) {
-		case 'SIGN_IN':
-			const { userId, email, token, authLevel } = action.payload;
-			return {
-				...state,
-				id: ++lastId,
-				email,
-				userId,
-				token,
-				authLevel,
-			}
+  const {
+    userId, email, token, authLevel,
+  } = action.payload;
 
-		case 'SIGN_OUT':
-			const { userId, email, token, authLevel } = action.payload;
-			return {
-				...state,
-				id: ++lastId,
-				email,
-				userId,
-				token,
-				authLevel,
-			}
-			default:
-				return state;
-	}
-}
+  switch (action.type) {
+    case actions.SIGN_IN:
+      return {
+        ...state,
+        id: ++lastId,
+        email,
+        userId,
+        token,
+        authLevel,
+      };
+
+    case actions.SIGN_OUT:
+      return {
+        ...state,
+        id: ++lastId,
+        email: '',
+        userId: '',
+        token: '',
+        authLevel: '',
+      };
+    default:
+      return state;
+  }
+};
+
+export default authReducer;

@@ -1,8 +1,8 @@
-import authReducer from './auth';
 import { combineReducers } from 'redux';
+import authReducer from './auth';
 
 const allReducers = combineReducers({
-    auth: authReducer
+  auth: authReducer,
 });
 
 export default allReducers;
