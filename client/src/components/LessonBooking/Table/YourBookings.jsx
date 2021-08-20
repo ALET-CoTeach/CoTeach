@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import 'antd/dist/antd.css';
 import '../../../index.css';
 import {
@@ -182,6 +182,7 @@ const data = [
 const YourBookings = () => {
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');
+  const searchInput = useRef(null);
 
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
@@ -204,9 +205,7 @@ const YourBookings = () => {
     }) => (
       <div style={{ padding: 8 }}>
         <Input
-          ref={(node) => {
-            searchInput = node;
-          }}
+          ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
@@ -231,10 +230,8 @@ const YourBookings = () => {
             size="small"
             onClick={() => {
               confirm({ closeDropdown: false });
-              setState({
-                searchText: selectedKeys[0],
-                searchColumn: dataIndex,
-              });
+    setSearchText(selectedKeys[0]);
+    setSearchColumn(dataIndex);
             }}
           >
             Filter
@@ -246,11 +243,6 @@ const YourBookings = () => {
     onFilter: (value, record) => (record[dataIndex]
       ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
       : ''),
-    onFilterDropdownVisibleChange: (visible) => {
-      if (visible) {
-        setTimeout(() => searchInput.select(), 100);
-      }
-    },
     render: (text) => (searchColumn === dataIndex ? (
       <Highlighter
         highlightStyle={{ backgroundColor: '#bdf6ff', padding: 0 }}
