@@ -120,7 +120,7 @@ const FulfilledRequests = () => {
     }) => (
       <div style={{ padding: 8 }}>
         <Input
-          ref={ searchInput }
+          ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
