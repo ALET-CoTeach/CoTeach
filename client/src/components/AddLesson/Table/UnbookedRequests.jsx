@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import TableModal from './Modal/TableModal';
 import 'antd/dist/antd.css';
 import '../../../index.css';
