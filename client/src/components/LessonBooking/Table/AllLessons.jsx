@@ -128,8 +128,8 @@ const AllLessons = () => {
             size="small"
             onClick={() => {
               confirm({ closeDropdown: false });
-              setSearchText(selectedKeys[0]);
-              setSearchColumn(dataIndex);
+    setSearchText(selectedKeys[0]);
+    setSearchColumn(dataIndex);
             }}
           >
             Filter
