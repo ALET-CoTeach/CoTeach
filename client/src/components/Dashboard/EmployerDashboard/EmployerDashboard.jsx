@@ -3,6 +3,11 @@ import 'antd/dist/antd.css';
 import {
   Layout, Row, Col, Card, Statistic,
 } from 'antd';
+
+
+import UpcomingEmployerActivities from './EmployerDashboardComponents/UpcomingEmployerActivites';
+import EmployerStudentFeedback from './EmployerDashboardComponents/EmployerStudentFeedback';
+
 const { Content, Footer, Sider } = Layout;
 
 const EmployerDashboard = () => (
@@ -18,32 +23,41 @@ const EmployerDashboard = () => (
     />
     <Layout className="site-layout" style={{ marginLeft: 200 }}>
       <Content className="addLesson-content">
-      <div className="site-layout-background">
+        <div className="site-layout-background">
           <h1 className="HeadingGrey centerText">Dashboard</h1>
-        
+
           <Row gutter={[16, 16]}>
             <Col lg={24}>
               <Row gutter={[16, 24]}>
                 <Col lg={5}>
                   <Row gutter={[16, 16]}>
-                  <Col lg={24}>
-                    <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                      <h1 className="SubHeadingGrey centerText">Upcoming Activities</h1>
+                    <Col lg={24}>
+                      <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
+                        <h1 className="SubHeadingGrey centerText"><a href="/LessonBooking" >Upcoming Bookings</a></h1>
+                        <UpcomingEmployerActivities />
+                      </Card>
+                    </Col>
+                    <Col lg={24}>
+                      <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
+                        <h1 className="SubHeadingGrey centerText">Your Organisation Activity</h1>
 
-                    </Card>
-                  </Col>
-                  <Col lg={24}>
-                    <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                      <h1 className="SubHeadingGrey centerText"><a href="/TeacherPostCreationPage">Pending Posts List</a></h1>
-
-                    </Card>
-                  </Col>
+                      </Card>
+                    </Col>
                   </Row>
                 </Col>
                 <Col lg={19}>
                   <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                  <h1 className="SubHeadingGrey centerText">Department Activity</h1>
-
+                    <h1 className="SubHeadingGrey centerText">Organisation Statistics</h1>
+                    <Row>
+                      <Col lg={10}>
+                        
+                      </Col>
+                      <Col lg={14}>
+                       
+                          <EmployerStudentFeedback />
+                        
+                      </Col>
+                    </Row>
                   </Card>
                 </Col>
               </Row>

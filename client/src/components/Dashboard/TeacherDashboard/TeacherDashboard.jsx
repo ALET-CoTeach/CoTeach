@@ -38,7 +38,7 @@ const TeacherDashboard = () => (
                   <Row gutter={[16, 16]}>
                   <Col lg={24}>
                     <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                      <h1 className="SubHeadingGrey centerText">Upcoming Activities</h1>
+                      <h1 className="SubHeadingGrey centerText"><a href="/addLesson">Upcoming Activities</a></h1>
                       <UpcomingActivitiesSteps />
                     </Card>
                   </Col>
