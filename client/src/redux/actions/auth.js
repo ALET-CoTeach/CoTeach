@@ -4,6 +4,7 @@ export const signIn = (data) => {
   const {
     userId, email, token, authLevel,
   } = data;
+
   return {
     type: actions.SIGN_IN,
     payload: {
