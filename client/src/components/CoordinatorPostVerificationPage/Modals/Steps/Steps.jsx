@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Steps, Button, message} from 'antd';
+import { Steps, Button, message } from 'antd';
 
 import CurrentPostContent from './Forms/CurrentPostContent';
 import SelectSocials from './Forms/SelectSocials';
@@ -18,11 +18,10 @@ const steps = [
   },
 ];
 
-function StepsVerify(props){
+const StepsVerify = (props) => {
+  const { handleOk } = props;
 
-  const{handleOk} = props;
-
-  const [current, setCurrent] = React.useState(0);
+  const [current, setCurrent] = useState(0);
 
   const next = () => {
     setCurrent(current + 1);
@@ -35,9 +34,9 @@ function StepsVerify(props){
   return (
     <>
       <div id="steps-container">
-        <br></br>
+        <br />
         <Steps current={current}>
-          {steps.map(item => (
+          {steps.map((item) => (
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
@@ -49,7 +48,13 @@ function StepsVerify(props){
             </Button>
           )}
           {current === steps.length - 1 && (
-            <Button type="primary" onClick={handleOk,  () => message.success('Processing complete!')}>
+            <Button
+              type="primary"
+              onClick={() => {
+                handleOk();
+                message.success('Processing complete!');
+              }}
+            >
               Done
             </Button>
           )}

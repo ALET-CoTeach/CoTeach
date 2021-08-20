@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import '../../../index.css';
 import { Table } from 'antd';
@@ -87,18 +87,16 @@ const data = [
   },
 ];
 
-function onChange(pagination, filters, sorter, extra) {
-  console.log('params', pagination, filters, sorter, extra);
-}
-
-class TableComponent extends Component {
-  render() {
-    return (
-      <>
-        <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} />
-      </>
-    );
+const TableComponent = () => {
+  const onChange = (pagination, filters, sorter, extra) => {
+    console.log('params', pagination, filters, sorter, extra);
   };
-}
+
+  return (
+    <>
+      <Table pagination={false} columns={columns} dataSource={data} onChange={onChange} />
+    </>
+  );
+};
 
 export default TableComponent;

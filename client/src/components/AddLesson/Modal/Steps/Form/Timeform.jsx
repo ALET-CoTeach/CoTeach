@@ -8,8 +8,7 @@ import {
   Select,
 } from 'antd';
 
-function Timeform(){
-  const [form] = Form.useForm();
+const Timeform = () => {
   const [requiredMark, setRequiredMarkType] = useState('optional');
 
   const onRequiredTypeChange = ({ requiredMarkValue }) => {

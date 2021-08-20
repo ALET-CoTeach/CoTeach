@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import '../../../../index.css';
-import { Steps, Button, message} from 'antd';
+import { Steps, Button, message } from 'antd';
 import Teacherform from './Form/Teacherform';
 import Schoolform from './Form/Schoolform';
 import Lessonform from './Form/Lessonform';
@@ -28,9 +28,8 @@ const steps = [
   },
 ];
 
-function StepsComponent(props){
-
-  const{handleOk} = props;
+const StepsComponent = (props) => {
+  const { handleOk } = props;
 
   const [current, setCurrent] = React.useState(0);
 
@@ -45,9 +44,9 @@ function StepsComponent(props){
   return (
     <>
       <div id="steps-container">
-        <br></br>
+        <br />
         <Steps current={current}>
-          {steps.map(item => (
+          {steps.map((item) => (
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
@@ -59,7 +58,13 @@ function StepsComponent(props){
             </Button>
           )}
           {current === steps.length - 1 && (
-            <Button type="primary" onClick={handleOk,  () => message.success('Processing complete!')}>
+            <Button
+              type="primary"
+              onClick={() => {
+                handleOk();
+                message.success('Processing complete!');
+              }}
+            >
               Done
             </Button>
           )}

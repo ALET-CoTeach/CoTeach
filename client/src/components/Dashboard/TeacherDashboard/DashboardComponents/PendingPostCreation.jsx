@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Table, Space, Input, Button } from 'antd';
 import Highlighter from 'react-highlight-words';
@@ -92,40 +92,50 @@ const data = [
   },
 ];
 
-function onChange(pagination, filters, sorter, extra) {
-  console.log('params', pagination, filters, sorter, extra);
-}
 
-class PendingPostCreation extends Component {
-  state = {
-    searchText: '',
-    searchColumn: '',
+const PendingPostCreation = () => {
+  const [searchText, setSearchText] = useState('');
+  const [searchColumn, setSearchColumn] = useState('');
+
+  const onChange = (pagination, filters, sorter, extra) => {
+    console.log('params', pagination, filters, sorter, extra);
   };
 
-  getColumnSearchProps = dataIndex => ({
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchColumn(dataIndex);
+  };
+
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
         <Input
           ref={node => {
-            this.searchInput = node;
+            searchInput = node;
           }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{ marginBottom: 8, display: 'block' }}
         />
         <Space>
           <Button
             type="primary"
-            onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             icon={<SearchOutlined />}
             size="small"
             style={{ width: 90 }}
           >
             Search
           </Button>
-          <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+          <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
             Reset
           </Button>
           <Button
@@ -133,10 +143,8 @@ class PendingPostCreation extends Component {
             size="small"
             onClick={() => {
               confirm({ closeDropdown: false });
-              this.setState({
-                searchText: selectedKeys[0],
-                searchedColumn: dataIndex,
-              });
+              setSearchText(selectedKeys[0]);
+              setSearchColumn(dataIndex);
             }}
           >
             Filter
@@ -151,14 +159,14 @@ class PendingPostCreation extends Component {
         : '',
     onFilterDropdownVisibleChange: visible => {
       if (visible) {
-        setTimeout(() => this.searchInput.select(), 100);
+        setTimeout(() => searchInput.select(), 100);
       }
     },
     render: text =>
-      this.state.searchedColumn === dataIndex ? (
+      searchColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{ backgroundColor: '#bdf6ff', padding: 0 }}
-          searchWords={[this.state.searchText]}
+          searchWords={[searchText]}
           autoEscape
           textToHighlight={text ? text.toString() : ''}
         />
@@ -167,20 +175,6 @@ class PendingPostCreation extends Component {
       ),
   });
 
-  handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    this.setState({
-      searchText: selectedKeys[0],
-      searchedColumn: dataIndex,
-    });
-  };
-
-  handleReset = clearFilters => {
-    clearFilters();
-    this.setState({ searchText: '' });
-  };
-
-  render() {
 
     const columns = [
       {
@@ -193,12 +187,12 @@ class PendingPostCreation extends Component {
       {
         title: 'Booked By',
         dataIndex: 'organisation',
-        ...this.getColumnSearchProps('organisation'),
+        ...getColumnSearchProps('organisation'),
       },
       {
         title: 'Lesson',
         dataIndex: 'lesson',
-        ...this.getColumnSearchProps('lesson'),
+        ...getColumnSearchProps('lesson'),
       },
       {
         title: 'Type',
@@ -265,7 +259,6 @@ class PendingPostCreation extends Component {
         // sorter: (a, b) => a.year - b.year,
         // sortDirections: ['ascend', 'descend'],
       },
-    
     ];
 
     return (
@@ -273,7 +266,6 @@ class PendingPostCreation extends Component {
         <Table columns={columns} dataSource={data} onChange={onChange} />
       </>
     );
-  };
 }
 
 export default PendingPostCreation;

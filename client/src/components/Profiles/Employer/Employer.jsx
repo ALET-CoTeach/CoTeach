@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-function EmployerProfile() {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+const EmployerProfile = () => (
+  <>
 
-export default EmployerProfile
+  </>
+);
+
+export default EmployerProfile;
