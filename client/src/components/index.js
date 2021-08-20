@@ -1,7 +1,7 @@
 export { default as About } from './About/About';
 export { default as Footer } from './Footer/Footer';
 export { default as AddLesson } from './AddLesson/AddLesson';
-export { default as LoginPage } from './LoginPage/LoginPage';
+export { default as SignInPage } from './SignInPage/SignInPage';
 export { default as RegisterPage } from './RegisterPage/RegisterPage';
 export { default as StatisticsPage } from './Statistics/Statistics';
 export { default as UTCProfiles } from './Profiles/CoordinatorProfiles/UTCProfiles';
@@ -36,11 +36,11 @@ export { default as UnbookedRequests } from './AddLesson/Table/UnbookedRequests'
 // addLesson Tables Modal
 export { default as TableModal } from './AddLesson/Table/Modal/TableModal';
 
-// LoginPageComponents
-export { default as LoginTabs } from './LoginPage/Tabs/LoginTabs';
-export { default as TeacherForm } from './LoginPage/Tabs/Forms/TeacherForm';
-export { default as SLTForm } from './LoginPage/Tabs/Forms/SLTForm';
-export { default as EmployerForm } from './LoginPage/Tabs/Forms/EmployerForm';
+// SignInPageComponents
+export { default as SignInTabs } from './SignInPage/Tabs/SignInTabs';
+export { default as TeacherForm } from './SignInPage/Tabs/Forms/TeacherForm';
+export { default as SLTForm } from './SignInPage/Tabs/Forms/SLTForm';
+export { default as EmployerForm } from './SignInPage/Tabs/Forms/EmployerForm';
 
 // addLesson Modal
 export { default as ModalComponent } from './AddLesson/Modal/Modal';

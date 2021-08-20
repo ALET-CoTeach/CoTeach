@@ -48,7 +48,7 @@ const LandingPage = () => (
                 <Col lg={24} sm={24}>
                   <Row>
                     <Col lg={12} sm={12}>
-                      <Button type="primary" size="large" href="/login" block>
+                      <Button type="primary" size="large" href="/signin" block>
                         Sign In
                       </Button>
                     </Col>

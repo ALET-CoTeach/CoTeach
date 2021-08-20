@@ -7,7 +7,7 @@ import {
   //Users,
   About,
   AddLesson,
-  LoginPage,
+  SignInPage,
   StatisticsPage,
   RegisterPage,
   UTCProfiles,
@@ -43,7 +43,7 @@ const App = () => {
             {/*  <Route path="/users" exact component={() => <Users />} />  */}
             <Route path="/about" exact component={() => <About />} />
             <Route path="/addlesson" exact component={() => <AddLesson />} />
-            <Route path="/login" exact component={() => <LoginPage />} />
+            <Route path="/signin" exact component={() => <SignInPage />} />
             <Route path="/register" exact component={() => <RegisterPage />} />
             <Route path="/statistics" exact component={() => <StatisticsPage />} />
             <Route path="/profiles/school" exact component={() => <SchoolProfile />} />

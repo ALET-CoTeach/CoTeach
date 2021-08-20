@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import './loginPage.css';
+import './signinPage.css';
 import 'antd/dist/antd.css';
 import {
   Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col,
 } from 'antd';
 import coTeach from '@assets/CoTeach-Logo-Blue.svg';
 import axios from 'axios';
-import LoginTabs from './Tabs/LoginTabs';
+import LoginTabs from './Tabs/SignInTabs';
 
 const validateMessages = {
   required: '${label} is required!',
@@ -18,7 +18,7 @@ const validateMessages = {
 // const BASE_URI = process.env.BASE_API_URI;
 const BASE_URI = 'http://localhost:5001/api/v1';
 
-const LoginPage = () => {
+const SignInPage = () => {
   const [authLevel, setAuthLevel] = useState('teacher');
 
   const changeAuthLevel = (value) => {
@@ -75,4 +75,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignInPage;

@@ -38,7 +38,7 @@ const Navigation = () => {
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Accounts">
             <Menu.Item key="setting:3"><Link to="register">Register</Link></Menu.Item>
-            <Menu.Item key="setting:4"><Link to="login">Login</Link></Menu.Item>
+            <Menu.Item key="setting:4"><Link to="signin">Sign In</Link></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Profiles">
             <Menu.Item key="setting:5"><Link to="UTCProfilesTwo">UTC Profiles 2</Link></Menu.Item>
