@@ -15,3 +15,15 @@
 .centerText {
     text-align: center;
 }
+
+.headerPadding {
+    padding-top: 1%;
+}
+
+.topPadding {
+    padding-top: 2%;
+}
+
+hr {
+    border-top: 2px dashed #8d8f8e;
+}

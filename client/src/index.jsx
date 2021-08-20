@@ -8,6 +8,7 @@ import allReducers from './redux/reducer';
 
 import App from './App';
 
+
 const store = createStore(
   allReducers,
   window.REDUX_DEVTOOLS_EXTENSION && window.REDUX_DEVTOOLS_EXTENSION(),

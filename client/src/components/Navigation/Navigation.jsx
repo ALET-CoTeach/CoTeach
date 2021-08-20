@@ -41,7 +41,7 @@ const Navigation = () => {
             <Menu.Item key="setting:4"><Link to="signin">Sign In</Link></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Profiles">
-            <Menu.Item key="setting:5"><Link to="UTCProfilesTwo">UTC Profiles 2</Link></Menu.Item>
+            <Menu.Item key="setting:5"><Link to="UTCProfiles2">UTC Profiles 2</Link></Menu.Item>
             <Menu.Item key="setting:6"><Link to="LandingPage">Landing Page</Link></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Table Dashboards">
@@ -54,6 +54,7 @@ const Navigation = () => {
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Dashboards">
             <Menu.Item key="setting:11"><Link to="TeacherDashboard">Teacher Dashboard</Link></Menu.Item>
+            <Menu.Item key="setting:12"><Link to="employerdashboard">Employer Dashboard</Link></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="notifications">

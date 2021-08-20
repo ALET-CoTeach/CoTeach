@@ -10,6 +10,8 @@ import StudentFeedback from './DashboardComponents/StudentFeedback';
 import PendingPostCreation from './DashboardComponents/PendingPostCreation';
 import PostCreationProgressFluid from './DashboardComponents/PostCreationProgressFluid';
 import UpcomingActivitiesSteps from './DashboardComponents/UpcomingActivitiesSteps';
+import DashboardDepartmentStats from './DashboardComponents/DashboardDepartmentStats';
+import StudentComments from './DashboardComponents/StudentComments';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -28,38 +30,39 @@ const TeacherDashboard = () => (
       <Content className="addLesson-content">
         <div className="site-layout-background">
           <h1 className="HeadingGrey centerText">Dashboard</h1>
-
-          <Row justify="space-around">
-
-            <Col lg={18}>
-              <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                <h1 className="SubHeadingGrey centerText">Overall Student Feedback</h1>
-                <StudentFeedback />
-              </Card>
-            </Col>
-
-            <Col lg={5}>
-              <Row gutter={[5, 16]}>
-                <Col lg={24}>
+        
+          <Row gutter={[16, 16]}>
+            <Col lg={24}>
+              <Row gutter={[16, 24]}>
+                <Col lg={5}>
+                  <Row gutter={[16, 16]}>
+                  <Col lg={24}>
+                    <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
+                      <h1 className="SubHeadingGrey centerText">Upcoming Activities</h1>
+                      <UpcomingActivitiesSteps />
+                    </Card>
+                  </Col>
+                  <Col lg={24}>
+                    <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
+                      <h1 className="SubHeadingGrey centerText"><a href="/TeacherPostCreationPage">Pending Posts List</a></h1>
+                      <PostCreationProgressFluid />
+                    </Card>
+                  </Col>
+                  </Row>
+                </Col>
+                <Col lg={19}>
                   <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                    <h1 className="SubHeadingGrey centerText">Upcoming Activities </h1>
-                    <UpcomingActivitiesSteps />
+                  <h1 className="SubHeadingGrey centerText">Department Activity</h1>
+                    <DashboardDepartmentStats />
+                    <div className="topPadding" />
+                    <hr />
+                    <h1 className="SubHeadingGrey centerText headerPadding">Student's Comments</h1>
+                    <StudentComments />
                   </Card>
                 </Col>
-
-                <Col lg={24}>
-                  <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                    <h1 className="SubHeadingGrey centerText">Pending Posts List</h1>
-                    <PostCreationProgressFluid />
-                  </Card>
-                </Col>
-
               </Row>
-
             </Col>
-
           </Row>
-
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>ALET CoTeach 2021</Footer>

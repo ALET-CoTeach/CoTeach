@@ -15,6 +15,7 @@ export { default as CoordinatorPostVerificationPage } from './CoordinatorPostVer
 // Dashboard
 export { default as Dashboard } from './Dashboard/Dashboard';
 export { default as TeacherDashboard } from './Dashboard/TeacherDashboard/TeacherDashboard';
+export { default as EmployerDashboard } from './Dashboard/EmployerDashboard/EmployerDashboard';
 // export { default as EmployerDashboard } from "./Dashboard/EmployerDashboard";
 // export { default as CoordinatorDashboard } from "./Dashboard/CoordinatorDashboard";
 
