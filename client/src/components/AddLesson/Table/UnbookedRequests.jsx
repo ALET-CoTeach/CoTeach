@@ -82,7 +82,7 @@ const UnbookedRequests = () => {
       <div style={{ padding: 8 }}>
         <Input
           ref={(node) => {
-            searchInput = node;
+            console.log(node);
           }}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
