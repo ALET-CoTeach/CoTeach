@@ -32,7 +32,7 @@ import {
 
 const isLoggedIn = true;
 
-function App() {
+const App = () => {
   if (isLoggedIn) {
     return (
       <div className="App">
@@ -40,7 +40,7 @@ function App() {
           <Navigation />
           <Switch>
             <Route path="/" exact component={() => <LandingPage />} />
-            <Route path="/users" exact component={() => <Users />} />
+            {/*  <Route path="/users" exact component={() => <Users />} />  */}
             <Route path="/about" exact component={() => <About />} />
             <Route path="/addlesson" exact component={() => <AddLesson />} />
             <Route path="/login" exact component={() => <LoginPage />} />
@@ -60,7 +60,8 @@ function App() {
       </div>
     );
   }
+
   return <LoginPage />;
-}
+};
 
 export default App;
