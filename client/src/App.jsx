@@ -52,7 +52,7 @@ const App = () => {
             <Route path="/landingpage" exact component={() => <LandingPage />} />
             <Route path="/utcprofiles2" exact component={() => <UTCProfilesTwo />} />
             <Route path="/coordinatorentries" exact component={() => <CoordinatorEntries />} />
-            <Route path="/teacherpostcreation" exact component={() => <TeacherPostCreationPage />} />
+            <Route path="/teacherpostcreationpage" exact component={() => <TeacherPostCreationPage />} />
             <Route path="/coordinatorpostverification" exact component={() => <CoordinatorPostVerificationPage />} />
             <Route path="/teacherdashboard" exact component={() => <TeacherDashboard />} />
           </Switch>

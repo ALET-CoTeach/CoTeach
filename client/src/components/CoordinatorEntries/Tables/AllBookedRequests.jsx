@@ -1,4 +1,4 @@
-import React, { Component, setState } from 'react';
+import React, { useState, setState } from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import '../../../index.css';
