@@ -22,7 +22,7 @@ const LoginPage = () => {
   const [authLevel, setAuthLevel] = useState('teacher');
 
   const changeAuthLevel = (value) => {
-    setAuthLevel({ authLevel: value });
+    setAuthLevel(value);
   };
 
   const handleSubmit = async (values) => {
