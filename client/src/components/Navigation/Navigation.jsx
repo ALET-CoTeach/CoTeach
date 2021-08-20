@@ -19,7 +19,7 @@ const Navigation = () => {
   };
 
   return (
-    <div>
+    <>
       <Menu className="navbar" onClick={handleClick} selectedKeys={[current]} mode="horizontal" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <Menu.Item key="home" icon={<HomeOutlined />}>
           <Link to="LandingPage">
@@ -63,7 +63,7 @@ const Navigation = () => {
           {/* <span style={{ paddingLeft: '10px' }}>Notifications</span> */}
         </Menu.Item>
       </Menu>
-    </div>
+    </>
   );
 };
 
