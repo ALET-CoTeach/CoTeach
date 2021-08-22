@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@assets': path.resolve(__dirname, './src/assets'),
-      '@actions': path.resolve(__dirname, './src/redux/actions'),
+      '@actions': path.resolve(__dirname, './src/redux/actions.js'),
     },
   },
 });

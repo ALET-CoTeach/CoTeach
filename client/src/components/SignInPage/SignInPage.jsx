@@ -8,6 +8,9 @@ import coTeach from '@assets/CoTeach-Logo-Blue.svg';
 import axios from 'axios';
 import LoginTabs from './Tabs/SignInTabs';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { auth } from '@actions';
+
 const validateMessages = {
   required: '${label} is required!',
   types: {
@@ -20,6 +23,7 @@ const BASE_URI = 'http://localhost:5001/api/v1';
 
 const SignInPage = () => {
   const [authLevel, setAuthLevel] = useState('teacher');
+  const dispatch = useDispatch();
 
   const changeAuthLevel = (value) => {
     setAuthLevel(value);
@@ -27,13 +31,22 @@ const SignInPage = () => {
 
   const handleSubmit = async (values) => {
     const { email, password } = values;
-    const res = await axios.post(`${BASE_URI}/${authLevel}/signin`, {
-      email,
-      password,
-    });
+    try {
+      const res = await axios.post(`${BASE_URI}/${authLevel}/signin`, {
+        email,
+        password,
+      });
 
-    console.log(authLevel);
-    console.log(res);
+      if (res) {
+        dispatch(auth.signIn({
+          token: res.data.token,
+          authLevel,
+          user: res.data[`${authLevel}`],
+        }));
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
