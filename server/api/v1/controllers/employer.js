@@ -111,7 +111,7 @@ module.exports.register = async (req, res) => {
     // Checks if account already exits
     if (employer) {
       // Send response, can't register an account that already exists
-      return res.status(409).json({
+      return res.status(200).json({
         message: 'Account already exists',
       });
     }
