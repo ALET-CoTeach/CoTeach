@@ -180,7 +180,7 @@ module.exports.access = async (req, res) => {
     // result is true or false, true if hashed passwords match
     const result = await bcrypt.compare(password, slt.password);
     if (result) {
-      // Removes password from teacher object,
+      // Removes password from slt object,
       // When slt is returned it won't return the hashed password
       delete slt.password;
 
@@ -197,7 +197,7 @@ module.exports.access = async (req, res) => {
       );
 
       // Previous tasks have processed properly
-      // Return success message as well as access token and authenticated teacher data
+      // Return success message as well as access token and authenticated slt data
       return res.status(200).json({
         message: 'Auth successful',
         token,
@@ -212,12 +212,16 @@ module.exports.access = async (req, res) => {
 
 module.exports.deauth = (req, res) => {
   try {
+    // Clear authentication headers and stored user data
     req.headers.authentication = null;
     req.sltData = null;
+
+    // Sign out successful, send success response
     return res.status(200).json({
       message: 'De-authentication (Sign Out) success',
     });
   } catch (err) {
+    // Sign out unsuccessfull, send failure response
     return res.status(401).json({
       message: 'De-authentication (Sign Out) failed',
     });
