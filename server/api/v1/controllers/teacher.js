@@ -1,128 +1,122 @@
-const Teacher = require('../models/Teacher');
-const School = require('../models/School');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const Teacher = require('../models/Teacher');
+const School = require('../models/School');
 
-module.exports.deleteOne = (teacherId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const teacher = await Teacher.findByIdAndDelete(teacherId);
-      
-      if (!teacher) {
-        resolve({ message: "Teacher document never existed or has already been deleted" }); 
+module.exports.deleteOne = (teacherId) => new Promise(async (resolve, reject) => {
+  try {
+    const teacher = await Teacher.findByIdAndDelete(teacherId);
+
+    if (!teacher) {
+      resolve({ message: 'Teacher document never existed or has already been deleted' });
+    }
+
+    resolve({ message: 'Teacher successfuly deleted', teacher });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+module.exports.updateOne = (teacherId, updateData) => new Promise(async (resolve, reject) => {
+  try {
+    const {
+      firstname,
+      lastname,
+      email,
+      phone,
+      schoolName,
+    } = updateData;
+
+    // Check if school exists
+    const school = await School.findOne({ name: schoolName });
+
+    if (!school) {
+      // Runs if school does not exist
+      reject(new Error('School does not exist on database'));
+    }
+
+    const update = {
+      firstname,
+      lastname,
+      email,
+      phone,
+      schoolId: school._id,
+    };
+
+    const updatedTeacher = await Teacher.findByIdAndUpdate(
+      teacherId,
+      update,
+      {
+        new: true,
+      },
+    );
+
+    if (!updatedTeacher) {
+      resolve({ message: 'Teacher document was never created or has been deleted' });
+    }
+
+    resolve({ message: 'Teacher has successfully been updated', teacher: updatedTeacher });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+module.exports.getAll = () => new Promise(async (resolve, reject) => {
+  try {
+    const teachers = await Teacher.find({});
+    resolve({ teachers });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+module.exports.getOne = (teacherId) => new Promise(async (resolve, reject) => {
+  try {
+    const teacher = await Teacher.findOneById(teacherId);
+
+    if (!teacher) {
+      resolve({ message: 'Teacher does not exist in database' });
+    }
+
+    resolve({ message: 'Teacher successfully found', teacher });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+module.exports.getOneByEmail = (email) => new Promise(async (resolve, reject) => {
+  try {
+    const teacher = await Teacher.findOne({ email });
+    resolve(teacher);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+module.exports.checkForMissingPosts = (teacherId) => new Promise(async (resolve, reject) => {
+  try {
+    // Get all lesson requests by a teacher
+    const lessonRequests = await LessonRequest.find({ teacherId });
+
+    // Empty array for LessonRequest id's with no corresponding SocialMediaPost
+    const noMatches = [];
+
+    // Checks for atleast one SocialMediaPost for a specific lessonId
+    lessonRequests.forEach(async (lessonRequest) => {
+      // Null when no document found
+      const socialMediaPost = await SocialMediaPost.findOne({ lessonId: lessonRequest._id });
+
+      // Adds LessonRequest id to array if no social media post found
+      if (!socialMediaPost) {
+        noMatches.push(lessonRequest._id);
       }
+    });
 
-      resolve({ message: "Teacher successfuly deleted", teacher });
-    } catch (err) {
-      reject(err);
-    }
-  });
-
-module.exports.updateOne = (teacherId, updateData) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const {
-        firstname,
-        lastname,
-        email,
-        phone,
-        schoolName,
-      } = updateData;
-
-      // Check if school exists
-      const school = await School.findOne({ name: schoolName });
-
-      if (!school) {
-        // Runs if school does not exist
-        reject(new Error("School does not exist on database"));
-      }
-
-      const update = {
-        firstname,
-        lastname,
-        email,
-        phone,
-        schoolId: school._id,
-      };
-
-      const updatedTeacher = await Teacher.findByIdAndUpdate(
-        teacherId,
-        update,
-        {
-          new: true,
-        }
-      );
-
-      if (!updatedTeacher) {
-        resolve({ message: "Teacher document was never created or has been deleted" });
-      }
-
-      resolve({ message: "Teacher has successfully been updated", teacher: updatedTeacher });
-    } catch (err) {
-      reject(err);
-    }
-  });
-
-module.exports.getAll = () =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const teachers = await Teacher.find({});
-      resolve({ teachers });
-    } catch (err) {
-      reject(err);
-    }
-  });
-
-module.exports.getOne = (teacherId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const teacher = await Teacher.findOneById(teacherId);
-
-      if (!teacher) {
-        resolve({ message: "Teacher does not exist in database" });
-      }
-
-      resolve({ message: "Teacher successfully found", teacher });
-    } catch (err) {
-      reject(err);
-    }
-  });
-
-module.exports.getOneByEmail = (email) => 
-  new Promise(async (resolve, reject) => {
-    try {
-      const teacher = await Teacher.findOne({ email });
-      resolve(teacher);
-    } catch (err) {
-      reject(err);
-    }
-  });
-
-module.exports.checkForMissingPosts = (teacherId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      // Get all lesson requests by a teacher
-      const lessonRequests = await LessonRequest.find({ teacherId });
-
-      // Empty array for LessonRequest id's with no corresponding SocialMediaPost
-      let noMatches = [];
-      
-      // Checks for atleast one SocialMediaPost for a specific lessonId
-      lessonRequests.forEach(async (lessonRequest) => {
-        // Null when no document found
-        const socialMediaPost = await SocialMediaPost.findOne({ lessonId: lessonRequest._id });
-       
-        // Adds LessonRequest id to array if no social media post found
-        if (!socialMediaPost) {
-          noMatches.push(lessonRequest._id);
-        }
-      });
-
-      resolve(noMatches);
-    } catch (err) {
-      reject(err);
-    }
-  });
+    resolve(noMatches);
+  } catch (err) {
+    reject(err);
+  }
+});
 
 module.exports.register = (req, res) => {
   // Destruct request body
@@ -137,7 +131,6 @@ module.exports.register = (req, res) => {
 
   // Returns a single document from unique email
   Teacher.findOne({ email }, (err, teacher) => {
-
     if (err) {
       return res.status(500).json({
         error: err,
@@ -161,10 +154,13 @@ module.exports.register = (req, res) => {
 
       // Check if school exists
       School.findOne({ name: schoolName }, (err, school) => {
-        // TODO check for error
+        if (err) {
+          res.status(500).json({ error: err });
+        }
+
         if (!school) {
           // Runs if school does not exist
-          res.status(500).json({
+          res.status(200).json({
             error: 'School does not exist on the database',
           });
         }
@@ -194,7 +190,7 @@ module.exports.register = (req, res) => {
               error: saveErr,
             });
           });
-        });
+      });
     });
   });
 };
@@ -211,7 +207,7 @@ module.exports.access = (req, res) => {
       });
     }
 
-    bcrypt.compare(password, teacher.password, (err, result) => {
+    return bcrypt.compare(password, teacher.password, (err, result) => {
       if (err) {
         return res.status(401).json({
           message: 'Auth failed',
@@ -219,6 +215,10 @@ module.exports.access = (req, res) => {
       }
 
       if (result) {
+        // Removes password from teacher object,
+        // When teacher is returned it won't return the hashed password
+        delete teacher.password;
+
         const token = jwt.sign(
           {
             email: teacher.email,
@@ -229,22 +229,28 @@ module.exports.access = (req, res) => {
             expiresIn: '1h',
           },
         );
+
         return res.status(200).json({
           message: 'Auth successful',
           token,
+          teacher,
         });
       }
-      res.status(401).json({
+
+      return res.status(401).json({
         message: 'Auth failed',
       });
     });
-  })
+  });
 };
 
 module.exports.deauth = (req, res) => {
   try {
     req.headers.authentication = null;
     req.teacherData = null;
+    return res.status(200).json({
+      message: 'De-authenticated (Sign Out) success',
+    });
   } catch (err) {
     return res.status(401).json({
       message: 'De-authentication (Sign Out) failed',

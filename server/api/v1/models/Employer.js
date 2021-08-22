@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const employerSchema  = new Schema(
+const employerSchema = new Schema(
   {
     firstname: {
       type: String,
@@ -39,4 +39,3 @@ const employerSchema  = new Schema(
 const Employer = mongoose.model('Employer', employerSchema);
 
 module.exports = Employer;
-

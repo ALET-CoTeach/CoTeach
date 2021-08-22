@@ -1,101 +1,96 @@
-const Employer = require('../models/Employer');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const Employer = require('../models/Employer');
 
-module.exports.deleteOne = (employerId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const employer = await Employer.findByIdAndDelete(employerId);
+module.exports.deleteOne = (employerId) => new Promise(async (resolve, reject) => {
+  try {
+    const employer = await Employer.findByIdAndDelete(employerId);
 
-      if (!employer) {
-        resolve({ message: "Employer document never existed or has already been deleted" });
-      }
-        
-      resolve({ message: "Employer successfuly deleted", employer });
-    } catch (err) {
-      reject(err);
+    if (!employer) {
+      resolve({ message: 'Employer document never existed or has already been deleted' });
     }
-  });
 
-module.exports.updateOne = (employerId, updateData) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const {
-        firstname,
-        lastname,
-        email,
-        phone,
-        companyName,
-      } = updateData;
+    resolve({ message: 'Employer successfuly deleted', employer });
+  } catch (err) {
+    reject(err);
+  }
+});
 
-      // Check if school exists
-      const company = await Company.findOne({ name: companyName });
+module.exports.updateOne = (employerId, updateData) => new Promise(async (resolve, reject) => {
+  try {
+    const {
+      firstname,
+      lastname,
+      email,
+      phone,
+      companyName,
+    } = updateData;
 
-      if (!company) {
-        // Runs if school does not exist
-        reject(new Error("School does not exist on database"));
-      }
+    // Check if company exists
+    const company = await Company.findOne({ name: companyName });
 
-      const update = {
-        firstname,
-        lastname,
-        email,
-        phone,
-        companyId: company._id,
-      };
-
-      const updatedEmployer = await Employer.findByIdAndUpdate(
-        employerId,
-        update,
-        {
-          new: true,
-        }
-      );
-
-      if (!updatedTeacher) {
-        resolve({ message: "Employer has successfully been updated" });
-      }
-
-      resolve({ message: "Employer has successfully been updated", employer: updatedEmployer });
-    } catch (err) {
-      reject(err);
+    if (!company) {
+      // Runs if company does not exist
+      reject(new Error('Company does not exist on database'));
     }
-  });
 
-module.exports.getAll = () =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const employers = await Employer.find({});
-      resolve({ employers });
-    } catch (err) {
-      reject(err);
+    const update = {
+      firstname,
+      lastname,
+      email,
+      phone,
+      companyId: company._id,
+    };
+
+    const updatedEmployer = await Employer.findByIdAndUpdate(
+      employerId,
+      update,
+      {
+        new: true,
+      },
+    );
+
+    if (!updatedTeacher) {
+      resolve({ message: 'Employer has successfully been updated' });
     }
-  });
 
-module.exports.getOne = (employerId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const employer = await Employer.findOneById(employerId);
+    resolve({ message: 'Employer has successfully been updated', employer: updatedEmployer });
+  } catch (err) {
+    reject(err);
+  }
+});
 
-      if (!employer) {
-        resolve({ message: "Employer does not exist in database" });
-      }
+module.exports.getAll = () => new Promise(async (resolve, reject) => {
+  try {
+    const employers = await Employer.find({});
+    resolve({ employers });
+  } catch (err) {
+    reject(err);
+  }
+});
 
-      resolve({ message: "Employer successfully found", employer });
-    } catch (err) {
-      reject(err);
+module.exports.getOne = (employerId) => new Promise(async (resolve, reject) => {
+  try {
+    const employer = await Employer.findOneById(employerId);
+
+    if (!employer) {
+      resolve({ message: 'Employer does not exist in database' });
     }
-  });
 
-module.exports.getOneByEmail = (email) => 
-  new Promise(async (resolve, reject) => {
-    try {
-      const employer = await Employer.findOne({ email });
-      resolve(employer);
-    } catch (err) {
-      reject(err);
-    }
-  });
+    resolve({ message: 'Employer successfully found', employer });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+module.exports.getOneByEmail = (email) => new Promise(async (resolve, reject) => {
+  try {
+    const employer = await Employer.findOne({ email });
+    resolve(employer);
+  } catch (err) {
+    reject(err);
+  }
+});
 
 module.exports.register = (req, res) => {
   // Destruct request body
@@ -104,12 +99,12 @@ module.exports.register = (req, res) => {
     lastname,
     email,
     phone,
-    schoolName,
+    companyName,
     password,
   } = req.body;
 
   // Returns a single document from unique email
-  Employer.findOne({ email } , (err, employer) => {
+  Employer.findOne({ email }, (err, employer) => {
     if (err) {
       return res.status(500).json({
         error: err,
@@ -131,42 +126,45 @@ module.exports.register = (req, res) => {
         });
       }
 
-      // Check if school exists
-      const school = School.findOne({ name: schoolName }, (err, school) => {
-        if (!school) {
-          // Runs if school does not exist
-          res.status(500).json({
-            error: 'School does not exist on the database',
+      // Check if company exists
+      Company.findOne({ name: companyName }, (err, company) => {
+        if (err) {
+          res.status({ error: err });
+        }
+
+        if (!company) {
+          // Runs if company does not exist
+          res.status(200).json({
+            error: 'Company does not exist on the database',
           });
         }
-      });
 
-
-      // Creates new Employer Object
-      const newEmployer = new Employer({
-        firstname,
-        lastname,
-        email,
-        phone,
-        companyId : company._id,
-        password: hash,
-      });
-
-      // Saves employer object to database
-      newEmployer
-        .save()
-        .then((result) => {
-          console.log(result);
-          res.status(201).json({
-            message: 'Employer account created',
-          });
-        })
-        .catch((saveErr) => {
-          console.log(saveErr);
-          res.status(500).json({
-            error: saveErr,
-          });
+        // Creates new Employer Object
+        const newEmployer = new Employer({
+          firstname,
+          lastname,
+          email,
+          phone,
+          companyId: company._id,
+          password: hash,
         });
+
+        // Saves employer object to database
+        newEmployer
+          .save()
+          .then((result) => {
+            console.log(result);
+            res.status(201).json({
+              message: 'Employer account created',
+            });
+          })
+          .catch((saveErr) => {
+            console.log(saveErr);
+            res.status(500).json({
+              error: saveErr,
+            });
+          });
+      });
     });
   });
 };
@@ -177,14 +175,13 @@ module.exports.access = (req, res) => {
 
   // Find single employer user from unique email
   Employer.findOne({ email }, (err, employer) => {
-
     if (err) {
       return res.status(500).json({
         error: err,
       });
     }
 
-    bcrypt.compare(password, employer.password, (err, result) => {
+    return bcrypt.compare(password, employer.password, (err, result) => {
       if (err) {
         return res.status(401).json({
           message: 'Auth failed',
@@ -192,6 +189,10 @@ module.exports.access = (req, res) => {
       }
 
       if (result) {
+        // Removes password from teacher object,
+        // When employer is returned it won't return the hashed password
+        delete employer.password;
+
         const token = jwt.sign(
           {
             email: employer.email,
@@ -202,16 +203,19 @@ module.exports.access = (req, res) => {
             expiresIn: '1h',
           },
         );
+
         return res.status(200).json({
           message: 'Auth successful',
           token,
+          employer,
         });
       }
-      res.status(401).json({
+
+      return res.status(401).json({
         message: 'Auth failed',
       });
     });
-  })
+  });
 };
 
 module.exports.deauth = (req, res) => {
