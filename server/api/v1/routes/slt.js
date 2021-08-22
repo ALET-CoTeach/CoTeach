@@ -25,7 +25,7 @@ router.put('/:sltId', requiredRoles(['admin']), (req, res) => {
 
   const updateData = req.body;
 
-  TeacherController.updateOne(sltId, updateData)
+  SLTController.updateOne(sltId, updateData)
     .then((jsonResponse) => {
       res.status(500).json(jsonResponse);
     })

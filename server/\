@@ -1,13 +1,13 @@
 const { Router } = require('express');
-const SchoolController = require('../controllers/school');
+const CompanyController = require('../controllers/company');
 const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
 router.post('/', requiredRoles(['admin']), (req, res) => {
-  const schoolData = req.body;
+  const companyData = req.body;
 
-  SchoolController.createOne(schoolData)
+  CompanyController.createOne(companyData)
     .then((jsonResponse) => {
       res.status(jsonResponse.status).json(jsonResponse);
     })
@@ -17,7 +17,7 @@ router.post('/', requiredRoles(['admin']), (req, res) => {
 });
 
 router.get('/', requiredRoles(['admin', 'slt', 'employer']), (req, res) => {
-  SchoolController.getAll()
+  CompanyController.getAll()
     .then((jsonResponse) => {
       res.status(200).json(jsonResponse);
     })
@@ -26,10 +26,10 @@ router.get('/', requiredRoles(['admin', 'slt', 'employer']), (req, res) => {
     });
 });
 
-router.delete('/:schoolId', requiredRoles(['admin']), (req, res) => {
-  const { schoolId } = req.params;
+router.delete('/:companyId', requiredRoles(['admin']), (req, res) => {
+  const { companyId } = req.params;
 
-  SchoolController.deleteOne(schoolId)
+  CompanyController.deleteOne(companyId)
     .then((jsonResponse) => {
       res.status(200).json(jsonResponse);
     })
@@ -38,12 +38,12 @@ router.delete('/:schoolId', requiredRoles(['admin']), (req, res) => {
     });
 });
 
-router.put('/:schoolId', requiredRoles(['admin']), (req, res) => {
-  const { schoolId } = req.params;
+router.put('/:companyId', requiredRoles(['admin']), (req, res) => {
+  const { companyId } = req.params;
 
   const updateData = req.body;
 
-  SchoolController.updateOne(schoolId, updateData)
+  CompanyController.updateOne(companyId, updateData)
     .then((jsonResponse) => {
       res.status(500).json(jsonResponse);
     })
