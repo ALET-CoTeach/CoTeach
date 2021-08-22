@@ -148,7 +148,7 @@ module.exports.register = async (req, res) => {
     // Throws error if saving to database fails
     if (!savedEmployer) throw new Error('Saving new Employer to database failed unexpectedly');
 
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Employer account created',
     });
   } catch (err) {
