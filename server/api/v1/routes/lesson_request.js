@@ -4,52 +4,48 @@ const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
-router.post('/', requiredRoles(['admin', 'slt', 'teacher']), (req, res) => {
-  const lessonRequestData = req.body;
+router.post('/', requiredRoles(['admin', 'slt', 'teacher']), LessonRequestController.createOne);
 
-  LessonRequestController.createOne(lessonRequestData)
-    .then((jsonResponse) => {
-      res.status(jsonResponse.status).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+router.get('/', requiredRoles(['admin', 'slt', 'employer']), async (req, res) => {
+  try {
+    // Get all LessonRequests from DB, then store response to const
+    const jsonResponse = await LessonRequestController.getAll();
+
+    return res.status(200).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 });
 
-router.get('/', requiredRoles(['admin', 'slt', 'employer']), (req, res) => {
-  LessonRequestController.getAll()
-    .then((jsonResponse) => {
-      res.status(200).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
-});
-
-router.delete('/:lessonRequestId', requiredRoles(['admin']), (req, res) => {
+router.delete('/:lessonRequestId', requiredRoles(['admin']), async (req, res) => {
   const { lessonRequestId } = req.params;
 
-  LessonRequestController.deleteOne(lessonRequestId)
-    .then((jsonResponse) => {
-      res.status(200).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+  try {
+    // Delete one LessonRequest by id from DB, then store response to const
+    const jsonResponse = await LessonRequestController.deleteOne(lessonRequestId);
+
+    return res.status(200).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 });
 
-router.put('/:lessonRequestId', requiredRoles(['admin']), (req, res) => {
+router.put('/:lessonRequestId', requiredRoles(['admin']), async (req, res) => {
   const { lessonRequestId } = req.params;
 
   const updateData = req.body;
 
-  LessonRequestController.updateOne(lessonRequestId, updateData)
-    .then((jsonResponse) => {
-      res.status(500).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+  try {
+    // Update on LessonRequest by id from DB, then store response to const
+    const jsonResponse = await LessonRequestController.updateOne(lessonRequestId, updateData);
+
+    return res.status(500).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 });
 
 module.exports = router;
