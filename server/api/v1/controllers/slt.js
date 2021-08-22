@@ -131,7 +131,7 @@ module.exports.register = async (req, res) => {
       // If no school is found, slt cannot be registered,
       // Hence, return valid response
       return res.status(200).json({
-        error: 'School does not exist on the database, cannot register an slt without a valid school',
+        error: 'School does not exist on the database, cannot register an slt member without a valid school',
       });
     }
 
