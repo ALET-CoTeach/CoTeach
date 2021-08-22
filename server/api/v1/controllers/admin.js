@@ -84,7 +84,7 @@ module.exports.access = async (req, res) => {
       );
 
       // Previous tasks have processed properly
-      // Return success message aswel as access token and authenticated admin data
+      // Return success message as well as access token and authenticated admin data
       return res.status(200).json({
         message: 'Auth successful',
         token,
