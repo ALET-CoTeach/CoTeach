@@ -8,30 +8,36 @@ router.post('/register', requiredRoles(['admin']), SLTController.register);
 router.post('/signin', SLTController.access);
 router.post('/signout', requiredRoles(['slt']), SLTController.deauth);
 
-router.delete('/:sltId', requiredRoles(['admin']), (req, res) => {
+router.delete('/:sltId', requiredRoles(['admin']), async (req, res) => {
   const { sltId } = req.params;
 
-  SLTController.deleteOne(sltId)
-    .then((jsonResponse) => {
-      res.status(200).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+  try {
+    // Delete one SLT by id from DB, then store response in const
+    const jsonResponse = await SLTController.deleteOne(sltId);
+
+    res.status(200).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 });
 
-router.put('/:sltId', requiredRoles(['admin']), (req, res) => {
+router.put('/:sltId', requiredRoles(['admin']), async (req, res) => {
   const { sltId } = req.params;
 
+  // Request body will be destructured in Controller method
+  // And will be validated
   const updateData = req.body;
 
-  SLTController.updateOne(sltId, updateData)
-    .then((jsonResponse) => {
-      res.status(500).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+  try {
+    // Update one SLT by id from DB, then store response in const
+    const jsonResponse = await SLTController.updateOne(sltId, updateData);
+
+    res.status(500).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 });
 
 module.exports = router;
