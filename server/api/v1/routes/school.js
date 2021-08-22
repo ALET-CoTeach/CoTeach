@@ -4,52 +4,62 @@ const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
-router.post('/', requiredRoles(['admin']), (req, res) => {
+router.post('/', requiredRoles(['admin']), async (req, res) => {
+  // Request body will be processed in Controller
+  // And will be validated
   const schoolData = req.body;
 
-  SchoolController.createOne(schoolData)
-    .then((jsonResponse) => {
-      res.status(jsonResponse.status).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+  try {
+    // Create and save new School to DB, then store response to const
+
+    const jsonResponse = await SchoolController.createOne(schoolData);
+    return res.status(jsonResponse.status).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 });
 
-router.get('/', requiredRoles(['admin', 'slt', 'employer']), (req, res) => {
-  SchoolController.getAll()
-    .then((jsonResponse) => {
-      res.status(200).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+router.get('/', requiredRoles(['admin', 'slt', 'employer']), async (req, res) => {
+  try {
+    // Get all Schools from DB, then store response to const
+    const jsonResponse = await SchoolController.getAll();
+    return res.status(200).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 });
 
-router.delete('/:schoolId', requiredRoles(['admin']), (req, res) => {
+router.delete('/:schoolId', requiredRoles(['admin']), async (req, res) => {
   const { schoolId } = req.params;
 
-  SchoolController.deleteOne(schoolId)
-    .then((jsonResponse) => {
-      res.status(200).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+  try {
+    // Delete one School by id from DB, then store response in const
+    const jsonResponse = await SchoolController.deleteOne(schoolId);
+    return res.status(200).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 });
 
-router.put('/:schoolId', requiredRoles(['admin']), (req, res) => {
+router.put('/:schoolId', requiredRoles(['admin']), async (req, res) => {
   const { schoolId } = req.params;
 
+  // Request body will be destructured in Controller method
+  // And will be validated
   const updateData = req.body;
 
-  SchoolController.updateOne(schoolId, updateData)
-    .then((jsonResponse) => {
-      res.status(500).json(jsonResponse);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+  try {
+    // Update one School by id from DB, then store response to const
+    const jsonResponse = await SchoolController.updateOne(schoolId, updateData);
+
+    res.status(500).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 });
 
 module.exports = router;
