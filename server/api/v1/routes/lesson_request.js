@@ -35,6 +35,8 @@ router.delete('/:lessonRequestId', requiredRoles(['admin']), async (req, res) =>
 router.put('/:lessonRequestId', requiredRoles(['admin']), async (req, res) => {
   const { lessonRequestId } = req.params;
 
+  // Request body will be destructured in Controller method
+  // And will be validated
   const updateData = req.body;
 
   try {

@@ -25,6 +25,8 @@ router.delete('/:employerId', requiredRoles(['admin']), async (req, res) => {
 router.put('/:employerId', requiredRoles(['admin']), async (req, res) => {
   const { employerId } = req.params;
 
+  // Request body will be destructured in Controller method
+  // And will be validated
   const updateData = req.body;
 
   try {

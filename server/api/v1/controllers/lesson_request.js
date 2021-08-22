@@ -1,9 +1,8 @@
 const LessonRequest = require('../models/LessonRequest');
-const Address = require('../models/Address');
 
 // TODO: Write suitable functions for all methods for the LessonRequest model
 
-module.exports.createOne = (req, res) => {
+module.exports.createOne = async (req, res) => {
   // Destruct lessonRequestData
   const {
     schoolId,
@@ -39,17 +38,20 @@ module.exports.createOne = (req, res) => {
     teacherId,
   });
 
-  // Saves lessonRequest object to database
-  newLessonRequest.save((err, lessonRequest) => {
-    if (err) {
-      res.status(500).json({ error: err });
-    }
+  try {
+    // Saves lessonRequest object to database
+    const savedLessonRequest = await newLessonRequest.save();
 
-    res.status(201).json({
-      message: 'LessonRequest successfully created and stored on database',
-      lessonRequest,
-    });
-  });
+    if (savedLessonRequest) {
+      res.status(201).json({
+        message: 'LessonRequest successfully created and stored on database',
+        lessonRequest: savedLessonRequest,
+      });
+    }
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 };
 
 module.exports.deleteOne = (lessonRequestId) => new Promise(async (resolve, reject) => {
