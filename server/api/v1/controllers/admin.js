@@ -13,7 +13,7 @@ module.exports.register = (req, res) => {
         error: err,
       });
     }
-    
+
     console.log(admin);
     // Checks if account already exits
     if (admin !== null) {
@@ -52,7 +52,7 @@ module.exports.register = (req, res) => {
           });
         });
     });
-  })
+  });
 };
 
 module.exports.access = (req, res) => {
@@ -66,7 +66,7 @@ module.exports.access = (req, res) => {
         error: err,
       });
     }
-  console.log(email, password);
+    console.log(email, password);
 
     bcrypt.compare(password, admin.password, (err, result) => {
       if (err) {
@@ -95,10 +95,10 @@ module.exports.access = (req, res) => {
         message: 'Auth failed',
       });
     });
-  })
+  });
 };
 
- module.exports.deauth = (req, res) => {
+module.exports.deauth = (req, res) => {
   try {
     req.headers.authentication = null;
     req.adminData = null;

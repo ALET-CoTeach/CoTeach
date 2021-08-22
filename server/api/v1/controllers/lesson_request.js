@@ -1,12 +1,11 @@
-const LessonRequest = require("../models/LessonRequest");
-const Address = require("../models/Address");
+const LessonRequest = require('../models/LessonRequest');
+const Address = require('../models/Address');
 
 // TODO: Write suitable functions for all methods for the LessonRequest model
 
-
 module.exports.createOne = (req, res) => {
   // Destruct lessonRequestData
-  let {
+  const {
     schoolId,
     year,
     subject,
@@ -15,16 +14,13 @@ module.exports.createOne = (req, res) => {
     term,
     preferredDay,
     preferredTime,
-  } = req.body; 
+  } = req.body;
 
-  // If the front-end devs first send a GET request to get a list of teachers
-  // They can create a dropbdown with all the teachers emails and names and set the value to the corresponding teacher's id
-  
   let teacherId;
 
-  // If authenticated user is not a teacher, use the teacherId from request body 
+  // If authenticated user is not a teacher, use the teacherId from request body
   if (!req.teacherData) {
-    teacherId = req.body.teacherId; 
+    teacherId = req.body.teacherId;
   } else {
     // If teacher is signed in
     teacherId = req.teacherData.id;
@@ -46,108 +42,100 @@ module.exports.createOne = (req, res) => {
   // Saves lessonRequest object to database
   newLessonRequest.save((err, lessonRequest) => {
     if (err) {
-      res.status(500).json({ error: err }); 
+      res.status(500).json({ error: err });
     }
 
     res.status(201).json({
-      message: "LessonRequest successfully created and stored on database",
+      message: 'LessonRequest successfully created and stored on database',
       lessonRequest,
-    })
+    });
   });
 };
 
-module.exports.deleteOne = (lessonRequestId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const lessonRequest = await LessonRequest.findByIdAndDelete(lessonRequestId);
+module.exports.deleteOne = (lessonRequestId) => new Promise(async (resolve, reject) => {
+  try {
+    const lessonRequest = await LessonRequest.findByIdAndDelete(lessonRequestId);
 
-      if (!lessonRequest) {
-        resolve({ message: "LessonRequest document never existed or has already been deleted" });
-      }
-
-      resolve({ message: "LessonRequest successfuly deleted", lessonRequest });
-    } catch (err) {
-      reject(err);
+    if (!lessonRequest) {
+      resolve({ message: 'LessonRequest document never existed or has already been deleted' });
     }
-  });
 
-module.exports.updateOne = (lessonRequestId, updateData) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const {
-        name,
-        email,
-        line1,
-        towncity,
-        county,
-        postcode,
-      } = updateData;
+    resolve({ message: 'LessonRequest successfuly deleted', lessonRequest });
+  } catch (err) {
+    reject(err);
+  }
+});
 
-      const address = {
-        line1,
-        towncity,
-        county,
-        postcode,
-      };
+module.exports.updateOne = (lessonRequestId, updateData) => new Promise(async (resolve, reject) => {
+  try {
+    const {
+      name,
+      email,
+      line1,
+      towncity,
+      county,
+      postcode,
+    } = updateData;
 
-      const update = {
-        name,
-        email,
-        address,
-      };
+    const address = {
+      line1,
+      towncity,
+      county,
+      postcode,
+    };
 
-      const updatedLessonRequest = await LessonRequest.findByIdAndUpdate(
-        lessonRequestId,
-        update,
-        {
-          new: true,
-        }
-      );
+    const update = {
+      name,
+      email,
+      address,
+    };
 
-      if (!updatedLessonRequest) {
-        resolve({ message: "LessonRequest was never created or has been deleted" });
-      }
+    const updatedLessonRequest = await LessonRequest.findByIdAndUpdate(
+      lessonRequestId,
+      update,
+      {
+        new: true,
+      },
+    );
 
-      resolve({ message: "LessonRequest has been successfully updated", lessonRequest: updatedLessonRequest });
-    } catch (err) {
-      reject(err);
+    if (!updatedLessonRequest) {
+      resolve({ message: 'LessonRequest was never created or has been deleted' });
     }
-  });
 
-module.exports.getAll = () =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const lessonRequests = await LessonRequest.find({});
-      resolve({ lessonRequests });
-    } catch (err) {
-      reject(err);
+    resolve({ message: 'LessonRequest has been successfully updated', lessonRequest: updatedLessonRequest });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+module.exports.getAll = () => new Promise(async (resolve, reject) => {
+  try {
+    const lessonRequests = await LessonRequest.find({});
+    resolve({ lessonRequests });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+module.exports.getOne = (lessonRequestId) => new Promise(async (resolve, reject) => {
+  try {
+    const lessonRequest = await LessonRequest.findOneById(lessonRequestId);
+
+    if (!lessonRequest) {
+      resolve({ message: 'LessonRequest does not exist in database' });
     }
-  });
 
-module.exports.getOne = (lessonRequestId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const lessonRequest = await LessonRequest.findOneById(lessonRequestId);
+    resolve({ message: 'LessonRequest successfully found', lessonRequest });
+  } catch (err) {
+    reject(err);
+  }
+});
 
-      if (!lessonRequest) {
-        resolve({ message: "LessonRequest does not exist in database" });
-      }
-
-      resolve({ message: "LessonRequest successfully found", lessonRequest });
-    } catch (err) {
-      reject(err);
-    }
-  });
-
-module.exports.getAllBySchool = (schoolId) =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const lessonRequests = await LessonRequests.find({ schoolId });
-      resolve(lessonRequests);
-    } catch (err) {
-      reject(err);
-    }
-  });
-
-
-
+module.exports.getAllBySchool = (schoolId) => new Promise(async (resolve, reject) => {
+  try {
+    const lessonRequests = await LessonRequests.find({ schoolId });
+    resolve(lessonRequests);
+  } catch (err) {
+    reject(err);
+  }
+});
