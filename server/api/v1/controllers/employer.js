@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Employer = require('../models/Employer');
+const Company = require('../models/Company');
 
 module.exports.deleteOne = (employerId) => new Promise(async (resolve, reject) => {
   try {
