@@ -182,53 +182,53 @@ module.exports.register = async (req, res) => {
   }
 };
 
-module.exports.access = (req, res) => {
+module.exports.access = async (req, res) => {
   // Destruct req.body
   const { email, password } = req.body;
 
-  // Find single teacher user from unique email
-  Teacher.findOne({ email }, (err, teacher) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
+  try {
+    // Find single teacher user from unique email
+    const teacher = await Teacher.findOne({ email });
+
+    // Checks if teacher doesn't exist
+    if (!teacher) {
+    // Cannot signin if teacher account does not exist
+      return res.status(200).json({
+        message: 'Teacher account does not exist on database',
       });
     }
 
-    return bcrypt.compare(password, teacher.password, (err, result) => {
-      if (err) {
-        return res.status(401).json({
-          message: 'Auth failed',
-        });
-      }
+    // result is true or false, true if hashed passwords match
+    const result = await bcrypt.compare(password, teacher.password);
+    if (result) {
+      // Removes password from teacher object,
+      // When teacher is returned it won't return the hashed password
+      delete teacher.password;
 
-      if (result) {
-        // Removes password from teacher object,
-        // When teacher is returned it won't return the hashed password
-        delete teacher.password;
+      // Sign unique data with jwt to create a user access token
+      const token = jwt.sign(
+        {
+          email: teacher.email,
+          id: teacher._id,
+        },
+        process.env.JWT_TEACHER_KEY,
+        {
+          expiresIn: '1h',
+        },
+      );
 
-        const token = jwt.sign(
-          {
-            email: teacher.email,
-            id: teacher._id,
-          },
-          process.env.JWT_TEACHER_KEY,
-          {
-            expiresIn: '1h',
-          },
-        );
-
-        return res.status(200).json({
-          message: 'Auth successful',
-          token,
-          teacher,
-        });
-      }
-
-      return res.status(401).json({
-        message: 'Auth failed',
+      // Previous tasks have processed properly
+      // Return success message as well as access token and authenticated teacher data
+      return res.status(200).json({
+        message: 'Auth successful',
+        token,
+        teacher,
       });
-    });
-  });
+    }
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 };
 
 module.exports.deauth = (req, res) => {
