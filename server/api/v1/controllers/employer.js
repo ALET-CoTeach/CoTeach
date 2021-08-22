@@ -31,7 +31,7 @@ module.exports.updateOne = (employerId, updateData) => new Promise(async (resolv
 
     if (!company) {
       // Runs if company does not exist
-      reject(new Error('Company does not exist on database'));
+      throw new Error('Company does not exist on database');
     }
 
     const update = {
@@ -50,7 +50,7 @@ module.exports.updateOne = (employerId, updateData) => new Promise(async (resolv
       },
     );
 
-    if (!updatedTeacher) {
+    if (!updatedEmployer) {
       resolve({ message: 'Employer has successfully been updated' });
     }
 
@@ -92,7 +92,7 @@ module.exports.getOneByEmail = (email) => new Promise(async (resolve, reject) =>
   }
 });
 
-module.exports.register = (req, res) => {
+module.exports.register = async (req, res) => {
   // Destruct request body
   const {
     firstname,
@@ -103,70 +103,57 @@ module.exports.register = (req, res) => {
     password,
   } = req.body;
 
+  try {
   // Returns a single document from unique email
-  Employer.findOne({ email }, (err, employer) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
-      });
-    }
+    const employer = await Employer.findOne({ email });
 
     // Checks if account already exits
-    if (employer !== null) {
+    if (employer) {
+      // Send response, can't register an account that already exists
       return res.status(409).json({
         message: 'Account already exists',
       });
     }
 
     // Hashes password for security
-    bcrypt.hash(password, 10, (err, hash) => {
-      if (err) {
-        return res.status(500).json({
-          error: err,
-        });
-      }
+    const hash = await bcrypt.hash(password, 10);
+    // Throw error if hashing failed function failed
+    if (!hash) throw new Error('Password hashing failed unexpectedly');
 
-      // Check if company exists
-      Company.findOne({ name: companyName }, (err, company) => {
-        if (err) {
-          res.status({ error: err });
-        }
-
-        if (!company) {
-          // Runs if company does not exist
-          res.status(200).json({
-            error: 'Company does not exist on the database',
-          });
-        }
-
-        // Creates new Employer Object
-        const newEmployer = new Employer({
-          firstname,
-          lastname,
-          email,
-          phone,
-          companyId: company._id,
-          password: hash,
-        });
-
-        // Saves employer object to database
-        newEmployer
-          .save()
-          .then((result) => {
-            console.log(result);
-            res.status(201).json({
-              message: 'Employer account created',
-            });
-          })
-          .catch((saveErr) => {
-            console.log(saveErr);
-            res.status(500).json({
-              error: saveErr,
-            });
-          });
+    // Check if company exists
+    const company = await Company.findOne({ name: companyName });
+    if (!company) {
+      // Since an employer 'belongs' to a company
+      // If no company is found, employer cannot be registered,
+      // Hence, return valid response
+      return res.status(200).json({
+        error: 'Company does not exist on the database, cannot register an employer without a valid company',
       });
+    }
+
+    // Creates new Employer Object
+    const newEmployer = new Employer({
+      firstname,
+      lastname,
+      email,
+      phone,
+      companyId: company._id,
+      password: hash,
     });
-  });
+
+    // Saves employer object to database asynchronously
+    // Stores saved employer data to constant
+    const savedEmployer = await newEmployer.save();
+    // Throws error if saving to database fails
+    if (!savedEmployer) throw new Error('Saving new Employer to database failed unexpectedly');
+
+    res.status(201).json({
+      message: 'Employer account created',
+    });
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 };
 
 module.exports.access = (req, res) => {
@@ -189,7 +176,7 @@ module.exports.access = (req, res) => {
       }
 
       if (result) {
-        // Removes password from teacher object,
+        // Removes password from employer object,
         // When employer is returned it won't return the hashed password
         delete employer.password;
 
