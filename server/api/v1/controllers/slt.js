@@ -182,7 +182,7 @@ module.exports.access = async (req, res) => {
     if (result) {
       // Removes password from slt object,
       // When slt is returned it won't return the hashed password
-      delete slt.password;
+      slt.password = undefined;
 
       // Sign unique data with jwt to create a user access token
       const token = jwt.sign(

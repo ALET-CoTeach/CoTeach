@@ -203,7 +203,7 @@ module.exports.access = async (req, res) => {
     if (result) {
       // Removes password from teacher object,
       // When teacher is returned it won't return the hashed password
-      delete teacher.password;
+      teacher.password = undefined;
 
       // Sign unique data with jwt to create a user access token
       const token = jwt.sign(

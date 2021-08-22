@@ -69,7 +69,7 @@ module.exports.access = async (req, res) => {
     if (result) {
       // Removes password from admin object,
       // When admin is returned it won't return the hashed password
-      delete admin.password;
+      admin.password = undefined;
 
       // Sign unique data with jwt to create a user access token
       const token = jwt.sign(

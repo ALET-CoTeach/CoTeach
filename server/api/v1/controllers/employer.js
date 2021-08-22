@@ -178,7 +178,7 @@ module.exports.access = async (req, res) => {
     if (result) {
       // Removes password from employer object,
       // When employer is returned it won't return the hashed password
-      delete employer.password;
+      employer.password = undefined;
 
       // Sign unique data with jwt to create a user access token
       const token = jwt.sign(
