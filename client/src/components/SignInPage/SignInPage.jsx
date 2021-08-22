@@ -11,6 +11,8 @@ import LoginTabs from './Tabs/SignInTabs';
 import { useSelector, useDispatch } from 'react-redux';
 import { auth } from '@actions';
 
+import { useGetLessonRequestQuery } from '@services/lesson_request';
+
 const validateMessages = {
   required: '${label} is required!',
   types: {
@@ -18,8 +20,7 @@ const validateMessages = {
   },
 };
 
-// const BASE_URI = process.env.BASE_API_URI;
-const BASE_URI = 'http://localhost:5001/api/v1';
+const BASE_URI = import.meta.env.VITE_BASE_API_URL;
 
 const SignInPage = () => {
   const [authLevel, setAuthLevel] = useState('teacher');
@@ -62,7 +63,7 @@ const SignInPage = () => {
             <Card className="cardStyling" style={{ boxShadow: '5px 8px 24px 5px rgba(0, 0, 0, 0.2)' }}>
               <h1 className="centerText">CoTeach Sign In</h1>
               <div align="center">
-                <img src={coTeach} width="30%" />
+                <img src={coTeach} width="30%" alt="CoTeach Logo" />
               </div>
               <Form
                 name="basic"
