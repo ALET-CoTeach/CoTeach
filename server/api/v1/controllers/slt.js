@@ -161,52 +161,53 @@ module.exports.register = async (req, res) => {
   }
 };
 
-module.exports.access = (req, res) => {
+module.exports.access = async (req, res) => {
   // Destruct req.body
   const { email, password } = req.body;
 
-  // Find single slt user from unique email
-  SLT.findOne({ email }, (err, slt) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
+  try {
+    // Find single slt user from unique email
+    const slt = await SLT.findOne({ email });
+
+    // Checks if slt doesn't exist
+    if (!slt) {
+      // Cannot signin if slt account does not exist
+      return res.status(200).json({
+        message: 'SLT account does not exist on database',
       });
     }
 
-    return bcrypt.compare(password, slt.password, (err, result) => {
-      if (err) {
-        return res.status(401).json({
-          message: 'Auth failed',
-        });
-      }
+    // result is true or false, true if hashed passwords match
+    const result = await bcrypt.compare(password, slt.password);
+    if (result) {
+      // Removes password from teacher object,
+      // When slt is returned it won't return the hashed password
+      delete slt.password;
 
-      if (result) {
-        // Removes password from teacher object,
-        // When slt is returned it won't return the hashed password
-        delete slt.password;
+      // Sign unique data with jwt to create a user access token
+      const token = jwt.sign(
+        {
+          email: slt.email,
+          id: slt._id,
+        },
+        process.env.JWT_SLT_KEY,
+        {
+          expiresIn: '1h',
+        },
+      );
 
-        const token = jwt.sign(
-          {
-            email: slt.email,
-            id: slt._id,
-          },
-          process.env.JWT_SLT_KEY,
-          {
-            expiresIn: '1h',
-          },
-        );
-        return res.status(200).json({
-          message: 'Auth successful',
-          token,
-          slt,
-        });
-      }
-
-      return res.status(401).json({
-        message: 'Auth failed',
+      // Previous tasks have processed properly
+      // Return success message as well as access token and authenticated teacher data
+      return res.status(200).json({
+        message: 'Auth successful',
+        token,
+        slt,
       });
-    });
-  });
+    }
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 };
 
 module.exports.deauth = (req, res) => {
