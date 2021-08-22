@@ -105,7 +105,7 @@ module.exports.register = async (req, res) => {
   } = req.body;
 
   try {
-  // Returns a single document from unique email
+    // Returns a single document from unique email
     const employer = await Employer.findOne({ email });
 
     // Checks if account already exits
