@@ -95,7 +95,7 @@ module.exports.getOneByEmail = (email) => new Promise(async (resolve, reject) =>
   }
 });
 
-module.exports.register = (req, res) => {
+module.exports.register = async (req, res) => {
   // Destruct request body
   const {
     firstname,
@@ -107,71 +107,58 @@ module.exports.register = (req, res) => {
     coordinator,
   } = req.body;
 
+  try {
   // Returns a single document from unique email
-  SLT.findOne({ email }, (err, slt) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
-      });
-    }
+    const slt = await SLT.findOne({ email });
 
     // Checks if account already exits
-    if (slt !== null) {
-      return res.status(409).json({
+    if (slt) {
+      // Send response, can't register an account that already exists
+      return res.status(200).json({
         message: 'Account already exists',
       });
     }
 
     // Hashes password for security
-    bcrypt.hash(password, 10, (err, hash) => {
-      if (err) {
-        return res.status(500).json({
-          error: err,
-        });
-      }
+    const hash = await bcrypt.hash(password, 10);
+    // Throw error if hashing failed function failed
+    if (!hash) throw new Error('Password hashing failed unexpectedly');
 
-      // Check if school exists
-      School.findOne({ name: schoolName }, (err, school) => {
-        if (err) {
-          res.status(500).json({ error: err });
-        }
-
-        if (!school) {
-          // Runs if school does not exist
-          res.status(200).json({
-            error: 'School does not exist on the database',
-          });
-        }
-
-        // Creates new SLT Object
-        const newSLT = new SLT({
-          firstname,
-          lastname,
-          email,
-          phone,
-          schoolId: school._id,
-          password: hash,
-          coordinator,
-        });
-
-        // Saves slt object to database
-        newSLT
-          .save()
-          .then((result) => {
-            console.log(result);
-            res.status(201).json({
-              message: 'SLT account created',
-            });
-          })
-          .catch((saveErr) => {
-            console.log(saveErr);
-            res.status(500).json({
-              error: saveErr,
-            });
-          });
+    // Check if school exists
+    const school = await School.findOne({ name: schoolName });
+    if (!school) {
+      // Since a member of slt 'belongs' to a school
+      // If no school is found, slt cannot be registered,
+      // Hence, return valid response
+      return res.status(200).json({
+        error: 'School does not exist on the database, cannot register an slt without a valid school',
       });
+    }
+
+    // Creates new SLT Object
+    const newSLT = new SLT({
+      firstname,
+      lastname,
+      email,
+      phone,
+      schoolId: school._id,
+      password: hash,
+      coordinator,
     });
-  });
+
+    // Saves slt object to database asynchronously
+    // Stores saved slt data to constant
+    const savedSLT = await newSLT.save();
+    // Throws error if saving to database fails
+    if (!savedSLT) throw new Error('Saving new SLT to database failed unexpectedly');
+
+    return res.status(201).json({
+      message: 'SLT account created',
+    });
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
 };
 
 module.exports.access = (req, res) => {
