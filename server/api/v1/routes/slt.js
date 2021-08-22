@@ -4,7 +4,7 @@ const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
-router.post('/register', requiredRoles(['admin']),  SLTController.register);
+router.post('/register', requiredRoles(['admin']), SLTController.register);
 router.post('/signin', SLTController.access);
 router.post('/signout', requiredRoles(['slt']), SLTController.deauth);
 
@@ -35,4 +35,3 @@ router.put('/:sltId', requiredRoles(['admin']), (req, res) => {
 });
 
 module.exports = router;
-
