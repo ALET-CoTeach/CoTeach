@@ -36,6 +36,8 @@ const teacherSchema = new Schema(
   },
 );
 
+teacherSchema.virtual('fullname').get(() => `${this.firstname} ${this.lastname}`);
+
 const Teacher = mongoose.model('Teacher', teacherSchema);
 
 module.exports = Teacher;

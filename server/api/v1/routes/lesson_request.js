@@ -6,7 +6,20 @@ const router = Router();
 
 router.post('/', requiredRoles(['admin', 'slt', 'teacher']), LessonRequestController.createOne);
 
-router.get('/', requiredRoles(['admin', 'slt', 'teacher', 'employer']), LessonRequestController.getAll);
+router.get('/', requiredRoles(['admin', 'slt', 'teacher', 'employer']), async (req, res) => {
+  const filter = {};
+
+  if (req.sltData) filter.schoolId = req.sltData.schoolId;
+
+  try {
+    const jsonResponse = await LessonRequestController.getAll(filter);
+
+    return res.status(200).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
+});
 
 router.delete('/:lessonRequestId', requiredRoles(['admin']), async (req, res) => {
   const { lessonRequestId } = req.params;

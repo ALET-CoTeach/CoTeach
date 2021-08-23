@@ -112,16 +112,12 @@ module.exports.updateOne = (lessonRequestId, updateData) => new Promise(async (r
   }
 });
 
-module.exports.getAll = async (req, res) => {
-  const filter = {};
-  if (req.sltData) filter.companyId = req.sltData.companyId;
-
+module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
     const lr = await LessonRequest.find(filter).lean();
 
     for (let i = 0; i < lr.length; i++) {
-      const { firstname, lastname } = await Teacher.findById(lr[i].teacherId);
-      const teacherName = `${firstname} ${lastname}`;
+      const teacherName = await Teacher.findById(lr[i].teacherId).fullname;
       const school = (await School.findById(lr[i].schoolId)).name;
 
       lr[i] = {
@@ -140,12 +136,11 @@ module.exports.getAll = async (req, res) => {
       console.log(lr);
     }
 
-    return res.status(200).json({ lessonRequests: lr });
+    resolve({ lessonRequests: lr });
   } catch (err) {
-    // Send JSON error response to the 'requestee'
-    return res.status(500).json({ error: err });
+    reject(err);
   }
-};
+});
 
 module.exports.getOne = (lessonRequestId) => new Promise(async (resolve, reject) => {
   try {
