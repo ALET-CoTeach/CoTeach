@@ -1,4 +1,6 @@
 const LessonRequest = require('../models/LessonRequest');
+const Teacher = require('../models/Teacher');
+const School = require('../models/School');
 
 // TODO: Write suitable functions for all methods for the LessonRequest model
 
@@ -115,8 +117,32 @@ module.exports.getAll = async (req, res) => {
   if (req.sltData) filter.companyId = req.sltData.companyId;
 
   try {
-    const lessonRequests = await LessonRequest.find(filter);
-    return res.status(200).json({ lessonRequests });
+    const lr = await LessonRequest.find(filter).lean();
+
+    for (let i = 0; i < lr.length; i++) {
+      const { firstname, lastname } = await Teacher.findById(lr[i].teacherId);
+      const teacherName = `${firstname} ${lastname}`;
+      const school = (await School.findById(lr[i].schoolId)).name;
+
+      lr[i] = {
+        ...lr[i],
+
+        teacherName,
+        school,
+      };
+
+      delete lr[i].teacherId;
+      delete lr[i].schoolId;
+      delete lr[i].createdAt;
+      delete lr[i].updatedAt;
+      delete lr[i].__v;
+
+      console.log(lr);
+      console.log(teacherName, school);
+    }
+    console.log(lr);
+    // .then(() => res.status(200).json({ lessonRequests: lr }));
+    return res.status(200).json({ lessonRequests: lr });
   } catch (err) {
     // Send JSON error response to the 'requestee'
     return res.status(500).json({ error: err });
@@ -125,7 +151,7 @@ module.exports.getAll = async (req, res) => {
 
 module.exports.getOne = (lessonRequestId) => new Promise(async (resolve, reject) => {
   try {
-    const lessonRequest = await LessonRequest.findOneById(lessonRequestId);
+    const lessonRequest = await LessonRequest.findById(lessonRequestId);
 
     if (!lessonRequest) {
       resolve({ message: 'LessonRequest does not exist in database' });

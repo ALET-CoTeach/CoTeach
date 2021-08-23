@@ -122,7 +122,7 @@ module.exports.getAll = () => new Promise(async (resolve, reject) => {
 
 module.exports.getOne = (companyId) => new Promise(async (resolve, reject) => {
   try {
-    const company = await Company.findOneById(companyId);
+    const company = await Company.findById(companyId);
 
     if (!company) {
       resolve({ message: 'Company does not exist in database' });

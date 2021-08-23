@@ -92,7 +92,7 @@ module.exports.getAll = () => new Promise(async (resolve, reject) => {
 
 module.exports.getOne = (socialMediaPostId) => new Promise(async (resolve, reject) => {
   try {
-    const socialMediaPost = await SocialMediaPost.findOneById(socialMediaPostId);
+    const socialMediaPost = await SocialMediaPost.findById(socialMediaPostId);
 
     if (!socialMediaPost) {
       resolve({ message: 'SocialMediaPost does not exist in database' });

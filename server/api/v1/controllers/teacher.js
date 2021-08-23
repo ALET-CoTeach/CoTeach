@@ -75,7 +75,7 @@ module.exports.getAll = () => new Promise(async (resolve, reject) => {
 
 module.exports.getOne = (teacherId) => new Promise(async (resolve, reject) => {
   try {
-    const teacher = await Teacher.findOneById(teacherId);
+    const teacher = await Teacher.findById(teacherId);
 
     if (!teacher) {
       resolve({ message: 'Teacher does not exist in database' });

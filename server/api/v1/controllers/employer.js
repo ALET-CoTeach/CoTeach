@@ -72,7 +72,7 @@ module.exports.getAll = () => new Promise(async (resolve, reject) => {
 
 module.exports.getOne = (employerId) => new Promise(async (resolve, reject) => {
   try {
-    const employer = await Employer.findOneById(employerId);
+    const employer = await Employer.findById(employerId);
 
     if (!employer) {
       resolve({ message: 'Employer does not exist in database' });

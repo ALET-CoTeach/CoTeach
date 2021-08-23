@@ -74,7 +74,7 @@ module.exports.getAll = () => new Promise(async (resolve, reject) => {
 
 module.exports.getOne = (sltId) => new Promise(async (resolve, reject) => {
   try {
-    const slt = await SLT.findOneById(sltId);
+    const slt = await SLT.findById(sltId);
 
     if (!slt) {
       resolve({ message: 'SLT does not exist in database' });

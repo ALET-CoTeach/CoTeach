@@ -7,86 +7,22 @@ import {
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 
+import { useGetLessonRequestsQuery } from '@services/backend_api';
 import styles from './table-styling.css';
-
-const data = [
-  {
-    key: '1',
-    teacherName: 'Robert Bradley',
-    term: 'T1',
-    day: 'Monday',
-    time: 'AM',
-    school: 'UTCR',
-    lesson: 'Network Topologies',
-    subject: 'Computer Science',
-    course: 'A Level',
-    year: '12',
-    activityType: 'Lesson',
-  },
-  {
-    key: '2',
-    teacherName: 'Colin Fox',
-    term: 'T1',
-    day: 'Friday　　　　　',
-    time: 'PM',
-    school: 'UTCR',
-    lesson: 'App Development',
-    subject: 'Computing',
-    course: 'BTEC Level 3',
-    year: '13',
-    activityType: 'Pipeline Programme',
-  },
-  {
-    key: '3',
-    teacherName: 'Robert Bradley',
-    term: 'T3',
-    day: 'Wednesday',
-    time: 'PM',
-    school: 'UTCR',
-    lesson: 'Web Development',
-    subject: 'Computing',
-    course: 'BTEC Level 3',
-    year: '13',
-    activityType: 'Work Placement',
-  },
-  {
-    key: '4',
-    teacherName: 'David Court',
-    term: 'T4',
-    day: 'Thursday　　',
-    time: 'AM',
-    school: 'UTCR',
-    lesson: 'Design using CAD',
-    subject: 'Engineering',
-    course: 'BTEC Level 3',
-    year: '12',
-    activityType: 'Workshop',
-  },
-  {
-    key: '5',
-    teacherName: 'Jonathan Doe',
-    term: 'T5',
-    day: 'Friday　　　　　',
-    time: 'AM',
-    school: 'BTS',
-    lesson: 'Binary',
-    subject: 'Computer Science',
-    course: 'GCSE',
-    year: '10',
-    activityType: 'Project',
-  },
-];
 
 const AllLessons = () => {
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');
   const searchInput = useRef(null);
 
+  const { data, error, isLoading } = useGetLessonRequestsQuery();
+
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
   };
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    console.log(data);
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchColumn(dataIndex);
@@ -128,8 +64,8 @@ const AllLessons = () => {
             size="small"
             onClick={() => {
               confirm({ closeDropdown: false });
-    setSearchText(selectedKeys[0]);
-    setSearchColumn(dataIndex);
+              setSearchText(selectedKeys[0]);
+              setSearchColumn(dataIndex);
             }}
           >
             Filter
@@ -190,7 +126,7 @@ const AllLessons = () => {
     },
     {
       title: 'Weekday',
-      dataIndex: 'day',
+      dataIndex: 'preferredDay',
       key: 'day',
       filters: [
         {
@@ -218,7 +154,7 @@ const AllLessons = () => {
     },
     {
       title: 'Time',
-      dataIndex: 'time',
+      dataIndex: 'preferredTime',
       key: 'time',
       filters: [
         {
@@ -417,7 +353,7 @@ const AllLessons = () => {
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={data} size="large" />
+      <Table columns={columns} dataSource={data.lessonRequests} size="large" />
     </div>
   );
 };
