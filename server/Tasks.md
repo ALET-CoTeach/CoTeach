@@ -13,7 +13,7 @@
 
 > Note: Do not create a Student model
 
-- [ ] Add information about parking, oftsed link, address, on school profile (Possibly change School model)
+- [x] Add information about parking, oftsed link, address, on school profile (Possibly change School model)
 - [ ] Add a field in the Teacher model for the subjects they take (Probably create a new model called Subject)
 - [ ] Filter LessonRequests based by the Subjects a Teacher teaches
 - [ ] Create a Coordinator model which doesn't have permision to view SocialMediaPosts
