@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Teacher = require('../models/Teacher');
 const School = require('../models/School');
+const SubjectList = require('../utils/SubjectList');
 
 module.exports.deleteOne = (teacherId) => new Promise(async (resolve, reject) => {
   try {
@@ -25,6 +26,7 @@ module.exports.updateOne = (teacherId, updateData) => new Promise(async (resolve
       email,
       phone,
       schoolName,
+      subjects,
     } = updateData;
 
     // Check if school exists
@@ -41,6 +43,7 @@ module.exports.updateOne = (teacherId, updateData) => new Promise(async (resolve
       email,
       phone,
       schoolId: school._id,
+      subjects,
     };
 
     const updatedTeacher = await Teacher.findByIdAndUpdate(

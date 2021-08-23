@@ -116,7 +116,7 @@ module.exports.getAll = async (req, res) => {
 
   try {
     const lessonRequests = await LessonRequest.find(filter);
-    return res.status(500).json({ lessonRequests });
+    return res.status(200).json({ lessonRequests });
   } catch (err) {
     // Send JSON error response to the 'requestee'
     return res.status(500).json({ error: err });

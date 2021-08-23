@@ -6,17 +6,7 @@ const router = Router();
 
 router.post('/', requiredRoles(['admin', 'slt', 'teacher']), LessonRequestController.createOne);
 
-router.get('/', requiredRoles(['admin', 'slt', 'employer']), async (req, res) => {
-  try {
-    // Get all LessonRequests from DB, then store response to const
-    const jsonResponse = await LessonRequestController.getAll();
-
-    return res.status(200).json(jsonResponse);
-  } catch (err) {
-    // Send JSON error response to the 'requestee'
-    return res.status(500).json({ error: err });
-  }
-});
+router.get('/', requiredRoles(['admin', 'slt', 'teacher', 'employer']), LessonRequestController.getAll);
 
 router.delete('/:lessonRequestId', requiredRoles(['admin']), async (req, res) => {
   const { lessonRequestId } = req.params;
