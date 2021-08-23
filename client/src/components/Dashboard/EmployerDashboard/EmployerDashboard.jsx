@@ -7,6 +7,7 @@ import {
 
 import UpcomingEmployerActivities from './EmployerDashboardComponents/UpcomingEmployerActivites';
 import EmployerStudentFeedback from './EmployerDashboardComponents/EmployerStudentFeedback';
+import EmployerStudentFeedbackComments from './EmployerDashboardComponents/EmployerStudentFeedbackComments';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -47,15 +48,14 @@ const EmployerDashboard = () => (
                 </Col>
                 <Col lg={19}>
                   <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                    <h1 className="SubHeadingGrey centerText">Organisation Statistics</h1>
                     <Row>
                       <Col lg={10}>
-                        
+                      <h1 className="SubHeadingGrey centerText">Organisation Statistics</h1>
+                        <EmployerStudentFeedback />
                       </Col>
                       <Col lg={14}>
-                       
-                          <EmployerStudentFeedback />
-                        
+                      <h1 className="SubHeadingGrey centerText">Student's Comments</h1>
+                      <EmployerStudentFeedbackComments />
                       </Col>
                     </Row>
                   </Card>
