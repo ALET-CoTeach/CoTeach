@@ -208,8 +208,7 @@ module.exports.access = async (req, res) => {
       // Sign unique data with jwt to create a user access token
       const token = jwt.sign(
         {
-          email: teacher.email,
-          id: teacher._id,
+          ...teacher,
         },
         process.env.JWT_TEACHER_KEY,
         {
