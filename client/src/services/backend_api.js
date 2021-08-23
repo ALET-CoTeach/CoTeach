@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const lessonRequestApi = createApi({
-  reducerPath: 'lessonRequestApi',
+export const backendApi = createApi({
+  reducerPath: 'backendApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_API_URL }),
   endpoints: (builder) => ({
     getLessonRequest: builder.query({
@@ -10,4 +10,4 @@ export const lessonRequestApi = createApi({
   }),
 });
 
-export const { useGetLessonRequestQuery } = lessonRequestApi;
+export const { useGetLessonRequestQuery } = backendApi;

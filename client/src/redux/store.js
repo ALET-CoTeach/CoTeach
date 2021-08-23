@@ -1,17 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
-import { lessonRequestApi } from '../services/lesson_request';
+import { backendApi } from '../services/backend_api';
 
 import allReducers from './reducers';
 
 const store = configureStore({
   reducer: {
-    [lessonRequestApi.reducerPath]: lessonRequestApi.reducer,
+    [backendApi.reducerPath]: backendApi.reducer,
     ...allReducers,
   },
   devTools: true,
-  middlware: (getDefaultMiddleware) => getDefaultMiddleware().concat(lessonRequestApi.middleware),
+  middlware: (getDefaultMiddleware) => getDefaultMiddleware().concat(backendApi.middleware),
 });
 
 setupListeners(store.dispatch);
