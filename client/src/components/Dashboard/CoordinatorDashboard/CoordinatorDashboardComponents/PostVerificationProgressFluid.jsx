@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Liquid } from '@ant-design/charts';
 
-const PostCreationProgressFluid = () => {
+const PostVerificationProgressFluid = () => {
   const config = {
     percent: 0.69,
     outline: {
@@ -14,4 +14,4 @@ const PostCreationProgressFluid = () => {
   return <Liquid {...config} />;
 };
 
-export default PostCreationProgressFluid;
+export default PostVerificationProgressFluid;

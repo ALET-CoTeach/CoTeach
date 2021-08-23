@@ -55,6 +55,7 @@ const Navigation = () => {
           <Menu.ItemGroup title="Dashboards">
             <Menu.Item key="setting:11"><Link to="TeacherDashboard">Teacher Dashboard</Link></Menu.Item>
             <Menu.Item key="setting:12"><Link to="employerdashboard">Employer Dashboard</Link></Menu.Item>
+            <Menu.Item key="setting:13"><Link to="coordinatordashboard">Coordinator Dashboard</Link></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="notifications">

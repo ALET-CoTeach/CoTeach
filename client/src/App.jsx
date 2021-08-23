@@ -19,6 +19,7 @@ import {
   CoordinatorPostVerificationPage,
   TeacherDashboard,
   EmployerDashboard,
+  CoordinatorDashboard,
 } from './components';
 
 // User Profiles for Coordinators
@@ -57,6 +58,7 @@ const App = () => {
             <Route path="/coordinatorpostverification" exact component={() => <CoordinatorPostVerificationPage />} />
             <Route path="/teacherdashboard" exact component={() => <TeacherDashboard />} />
             <Route path="/employerdashboard" exact component={() => <EmployerDashboard />} />
+            <Route path="/coordinatordashboard" exact component={() => <CoordinatorDashboard />} />
           </Switch>
         </Router>
       </div>
