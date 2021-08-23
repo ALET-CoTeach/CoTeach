@@ -21,6 +21,8 @@ import ThealeGreenBuilding from '@assets/SchoolPhotos/theale-green-building.png'
 import BicesterBuilding from '@assets/SchoolPhotos/bicester-building.jpg';
 import BicesterStudioBuilding from '@assets/SchoolPhotos/bicester-technology-building.jpg';
 
+import UTCReadingMap from '@assets/SchoolMaps/UTC-Reading-Map.png';
+
 const { Content, Footer, Sider } = Layout;
 
 const { Panel } = Collapse;
@@ -101,8 +103,7 @@ const UTCProfilesTwo = () => {
             <div className="site-layout-background">
 
               <div>
-              <h1 className="centerText HeadingGrey">Coordinator Contact Information</h1>
-                <p className="centerText">On this page, you will find all contact details for both the school and coordinator.</p>
+                <h1 className="centerText HeadingGrey">School Information</h1>
               </div>
 
               <div>
@@ -126,7 +127,7 @@ const UTCProfilesTwo = () => {
                           key={item.id}
                           actions={[
                             <a onClick={showDrawer} key={`a-${item.id}`}>
-                              Coordinator Information
+                              Information
                             </a>,
                           ]}
                         >
@@ -136,7 +137,7 @@ const UTCProfilesTwo = () => {
                     )}
                   />
                   <Drawer
-                    width={640}
+                    width={700}
                     placement="right"
                     closable={false}
                     onClose={onClose}
@@ -151,13 +152,20 @@ const UTCProfilesTwo = () => {
                           title="School Website"
                           content={(
                             <a href="https://www.utcreading.co.uk/">
-                              utcreading.co.uk
+                              UTC Reading
                             </a>
-                                                          )}
+                          )}
                         />
                       </Col>
                       <Col span={8}>
-                        <DescriptionItem title="Coordinator Name" content="Amy Sutcliffe" />
+                        <DescriptionItem
+                          title="Ofsted"
+                          content={(
+                            <a href="https://reports.ofsted.gov.uk/provider/23/139268">
+                              Ofted Rating
+                            </a>
+                          )}
+                        />
                       </Col>
 
                       <Col span={8}>
@@ -168,11 +176,24 @@ const UTCProfilesTwo = () => {
                     <br />
                     <hr />
                     <br />
-                    <h2 className="site-description-item-profile-p">Contacts</h2>
+                    <h2 className="site-description-item-profile-p">Contact the School</h2>
                     <br />
                     <Row>
                       <Col span={12}>
-                        <DescriptionItem title="Email" content="AntDesign@example.com" />
+                        <DescriptionItem title="Email" content="enquiries@utcreading.org.uk" />
+                      </Col>
+                      <Col span={12}>
+                        <DescriptionItem title="Phone Number" content="0118 938 1020" />
+                      </Col>
+                    </Row>
+                    <br />
+                    <hr />
+                    <br />
+                    <h2 className="site-description-item-profile-p">Contact the Coordinator</h2>
+                    <br />
+                    <Row>
+                      <Col span={12}>
+                        <DescriptionItem title="Email" content="Amy.Sutcliffe@utcreading.org.uk" />
                       </Col>
                       <Col span={12}>
                         <DescriptionItem title="Phone Number" content="+86 181 0000 0000" />
@@ -181,19 +202,17 @@ const UTCProfilesTwo = () => {
                     <br />
                     <hr />
                     <br />
-                    <h2 className="site-description-item-profile-p">Coordinator Contacts</h2>
+                    <h2 className="site-description-item-profile-p">Location</h2>
                     <br />
                     <Row>
-                      <Col span={12}>
-                        <DescriptionItem title="Email" content="AntDesign@example.com" />
-                      </Col>
-                      <Col span={12}>
-                        <DescriptionItem title="Phone Number" content="+86 181 0000 0000" />
+                      <Col span={24}>
+                        <Row>
+                          <Col span={24}>
+                            <img src={UTCReadingMap} width="100%" />
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
-                    <br />
-                    <hr />
-                    <br />
 
                   </Drawer>
                 </>

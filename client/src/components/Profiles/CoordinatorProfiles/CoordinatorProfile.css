@@ -13,3 +13,25 @@
     color: #1D71B8;
 }
 
+.centerText {
+    text-align: center;
+}
+
+
+.HeadingBlue {
+    font-size: 300%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #29245C;
+}
+
+.HeadingGrey {
+    font-size: 200%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #6e6e6e;
+    font-weight: 200;
+}
+
+.DrawerItemThickness {
+    font-weight: 100;
+}
+
