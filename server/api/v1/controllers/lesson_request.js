@@ -110,14 +110,18 @@ module.exports.updateOne = (lessonRequestId, updateData) => new Promise(async (r
   }
 });
 
-module.exports.getAll = () => new Promise(async (resolve, reject) => {
+module.exports.getAll = async (req, res) => {
+  const filter = {};
+  if (req.sltData) filter.companyId = req.sltData.companyId;
+
   try {
-    const lessonRequests = await LessonRequest.find({});
-    resolve({ lessonRequests });
+    const lessonRequests = await LessonRequest.find(filter);
+    return res.status(500).json({ lessonRequests });
   } catch (err) {
-    reject(err);
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
   }
-});
+};
 
 module.exports.getOne = (lessonRequestId) => new Promise(async (resolve, reject) => {
   try {
