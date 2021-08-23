@@ -55,6 +55,10 @@ const LessonRequestSchema = new Schema(
         companyId: {
             type: String,
             required: false,
+        },
+        activityType: {
+            type: String,
+            default: 'Lesson',
         }
     },
     {
