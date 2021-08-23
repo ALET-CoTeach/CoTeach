@@ -29,6 +29,7 @@ const AddLesson = () => (
     <Layout className="site-layout" style={{ marginLeft: 200 }}>
       <Content className="addLesson-content">
         <div className="site-layout-background">
+        <h1 className="centerText HeadingGrey" style={{ paddingTop: "1%" }}>Requests</h1>
           <Collapse bordered={false} defaultActiveKey={['1', '2', '3']} ghost>
             <Panel className="addLesson-table-title" header="Unbooked Requests" key="1">
               <UnbookedRequests />

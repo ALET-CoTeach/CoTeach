@@ -27,6 +27,7 @@ const CoordinatorEntries = () => (
       <Layout className="site-layout" style={{ marginLeft: 200 }}>
         <Content className="bookingLesson-content">
           <div className="site-layout-background">
+          <h1 className="centerText HeadingGrey" style={{ paddingTop: "1%" }}>Requests</h1>
 
             <Collapse bordered={false} defaultActiveKey={['1', '2']} ghost>
 

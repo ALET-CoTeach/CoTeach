@@ -101,7 +101,7 @@ const UTCProfilesTwo = () => {
             <div className="site-layout-background">
 
               <div>
-                <h1 className="centerText HeadingBlue"><b>Coordinator Contact Information</b></h1>
+              <h1 className="centerText HeadingGrey">Coordinator Contact Information</h1>
                 <p className="centerText">On this page, you will find all contact details for both the school and coordinator.</p>
               </div>
 

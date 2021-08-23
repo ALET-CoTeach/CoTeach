@@ -8,6 +8,7 @@ import {
 import UpcomingEmployerActivities from './EmployerDashboardComponents/UpcomingEmployerActivites';
 import EmployerStudentFeedback from './EmployerDashboardComponents/EmployerStudentFeedback';
 import EmployerStudentFeedbackComments from './EmployerDashboardComponents/EmployerStudentFeedbackComments';
+import OrganisationActivity from './EmployerDashboardComponents/OrganisationActivity';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -30,7 +31,7 @@ const EmployerDashboard = () => (
           <Row gutter={[16, 16]}>
             <Col lg={24}>
               <Row gutter={[16, 24]}>
-                <Col lg={5}>
+                <Col lg={7}>
                   <Row gutter={[16, 16]}>
                     <Col lg={24}>
                       <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
@@ -40,13 +41,13 @@ const EmployerDashboard = () => (
                     </Col>
                     <Col lg={24}>
                       <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                        <h1 className="SubHeadingGrey centerText">Your Organisation Activity</h1>
-
+                        <h1 className="SubHeadingGrey centerText"><a href="/LessonBooking">Your Organisation Activity</a></h1>
+                        <OrganisationActivity />
                       </Card>
                     </Col>
                   </Row>
                 </Col>
-                <Col lg={19}>
+                <Col lg={17}>
                   <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
                     <Row>
                       <Col lg={10}>
