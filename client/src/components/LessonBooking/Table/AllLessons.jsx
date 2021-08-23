@@ -22,7 +22,6 @@ const AllLessons = () => {
   };
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
-    console.log(data);
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchColumn(dataIndex);
@@ -353,7 +352,7 @@ const AllLessons = () => {
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={data.lessonRequests} size="large" />
+      <Table columns={columns} dataSource={data ? data.lessonRequests : null} size="large" />
     </div>
   );
 };

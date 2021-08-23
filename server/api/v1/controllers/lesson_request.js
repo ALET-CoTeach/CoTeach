@@ -138,10 +138,8 @@ module.exports.getAll = async (req, res) => {
       delete lr[i].__v;
 
       console.log(lr);
-      console.log(teacherName, school);
     }
-    console.log(lr);
-    // .then(() => res.status(200).json({ lessonRequests: lr }));
+
     return res.status(200).json({ lessonRequests: lr });
   } catch (err) {
     // Send JSON error response to the 'requestee'
