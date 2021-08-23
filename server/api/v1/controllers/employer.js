@@ -183,8 +183,7 @@ module.exports.access = async (req, res) => {
       // Sign unique data with jwt to create a user access token
       const token = jwt.sign(
         {
-          email: employer.email,
-          id: employer._id,
+          ...employer,
         },
         process.env.JWT_EMPLOYER_KEY,
         {
