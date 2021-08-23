@@ -8,6 +8,8 @@ module.exports.createOne = (schoolData) => new Promise(async (resolve, reject) =
     email,
     phone,
     website,
+    parking,
+    ofstedlink,
     line1,
     towncity,
     county,
@@ -33,6 +35,8 @@ module.exports.createOne = (schoolData) => new Promise(async (resolve, reject) =
         phone,
         website,
         address,
+        parking,
+        ofstedlink,
       });
 
       // Saves school object to database
@@ -76,6 +80,8 @@ module.exports.updateOne = (schoolId, updateData) => new Promise(async (resolve,
       email,
       phone,
       website,
+      parking,
+      ofstedlink,
       line1,
       towncity,
       county,
@@ -95,6 +101,8 @@ module.exports.updateOne = (schoolId, updateData) => new Promise(async (resolve,
       phone,
       website,
       address,
+      parking,
+      ofstedlink,
     };
 
     const updatedSchool = await School.findByIdAndUpdate(

@@ -27,6 +27,12 @@ const schoolSchema = new Schema({
     type: addressSchema,
     required: true,
   },
+  parking: {
+    type: String,
+  },
+  ofstedlink: {
+    type: String,
+  },
 }, {
   // Mongoose will create a "createdAt" and "updatedAt" properties to schema 😀
   timestamps: true,
@@ -35,4 +41,3 @@ const schoolSchema = new Schema({
 const School = mongoose.model('School', schoolSchema);
 
 module.exports = School;
-
