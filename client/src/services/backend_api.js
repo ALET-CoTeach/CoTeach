@@ -4,8 +4,14 @@ export const backendApi = createApi({
   reducerPath: 'backendApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_API_URL }),
   endpoints: (builder) => ({
-    getLessonRequest: builder.query({
+    getLessonRequests: builder.query({
       query: () => '/lessonrequest',
+    }),
+    getSocialMediaPosts: builder.query({
+      query: () => '/socialmediapost',
+    }),
+    getEmployers: builder.query({
+      query: () => '/employer',
     }),
   }),
 });
