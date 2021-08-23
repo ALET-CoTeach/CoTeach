@@ -6,6 +6,7 @@ const studentFeedbackSchema  = new Schema(
   {
     name: {
       type: String,
+      default: 'Anonymous'
     },
     data: {
       type: String,
