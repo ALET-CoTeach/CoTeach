@@ -13,5 +13,8 @@ module.exports = {
   rules: {
     'no-underscore-dangle': 'off',
     'consistent-return': 'off',
+    'no-await-in-loop': 'off',
+    'no-restricted-syntax': 'off',
+    'no-param-reassign': 'off',
   },
 };

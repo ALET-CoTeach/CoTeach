@@ -1,6 +1,9 @@
+const _ = require('lodash');
 const LessonRequest = require('../models/LessonRequest');
 const Teacher = require('../models/Teacher');
 const School = require('../models/School');
+const Employer = require('../models/Employer');
+const Company = require('../models/Company');
 
 // TODO: Write suitable functions for all methods for the LessonRequest model
 
@@ -113,29 +116,44 @@ module.exports.updateOne = (lessonRequestId, updateData) => new Promise(async (r
 });
 
 module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
-  try {
-    const lr = await LessonRequest.find(filter).lean();
+  const tempFunc = (data) => new Promise(async (resolve, reject) => {
+    const [teacher, school, employer, company] = await Promise.all([
+      Teacher.findById(data.teacherId).lean(),
+      School.findById(data.schoolId),
+      Employer.findById(data.employerId).lean(),
+      Company.findById(data.companyId),
+    ]);
 
-    for (let i = 0; i < lr.length; i++) {
-      const teacherName = await Teacher.findById(lr[i].teacherId).fullname;
-      const school = (await School.findById(lr[i].schoolId)).name;
+    delete data.__v;
+    delete data.createdAt;
+    delete data.updatedAt;
+    delete data.teacherId;
+    delete data.schoolId;
+    delete data.employerId;
+    delete data.companyId;
 
-      lr[i] = {
-        ...lr[i],
+    const teacherName = _.upperFirst(`${teacher.firstname} ${teacher.lastname}`);
 
-        teacherName,
-        school,
-      };
+    if (employer) {
+      const employerName = _.upperFirst(`${employer.firstname} ${employer.lastname}`);
 
-      delete lr[i].teacherId;
-      delete lr[i].schoolId;
-      delete lr[i].createdAt;
-      delete lr[i].updatedAt;
-      delete lr[i].__v;
-
-      console.log(lr);
+      resolve({
+        ...data, teacherName, school: school.name, employerName, company: company.name,
+      });
     }
 
+    resolve({
+      ...data, teacherName, school: school.name,
+    });
+  });
+
+  try {
+    let t;
+    const lr = await LessonRequest.find(filter).lean();
+    for (const [i, l] of lr.entries()) {
+      t = await tempFunc(l);
+      lr[i] = t;
+    }
     resolve({ lessonRequests: lr });
   } catch (err) {
     reject(err);

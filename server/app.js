@@ -5,7 +5,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const middleware = require('./middleware');
 
-
 // Environment variables
 require('dotenv').config();
 
@@ -28,6 +27,8 @@ mongoose.connect(process.env.REMOTE_DATABASE_URL, {
 mongoose.connection.on('error', (err) => {
   console.log(err);
 });
+
+mongoose.set('toJSON', { virtuals: true });
 
 app.use(morgan('common'));
 app.use(helmet());
@@ -84,4 +85,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
-

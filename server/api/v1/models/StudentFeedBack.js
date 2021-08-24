@@ -2,18 +2,18 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const studentFeedbackSchema  = new Schema(
+const studentFeedbackSchema = new Schema(
   {
     name: {
       type: String,
-      default: 'Anonymous'
+      default: 'Anonymous',
     },
     data: {
       type: String,
       required: true,
     },
     reviewed: {
-        default: false,
+      default: false,
     },
   },
   {
@@ -25,4 +25,3 @@ const studentFeedbackSchema  = new Schema(
 const studentFeedback = mongoose.model('studentFeedback', studentFeedbackSchema);
 
 module.exports = studentFeedback;
-

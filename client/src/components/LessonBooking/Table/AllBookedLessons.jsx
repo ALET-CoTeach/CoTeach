@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import 'antd/dist/antd.css';
 import '../../../index.css';
 import {
@@ -7,83 +8,6 @@ import {
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 
-const data = [
-  {
-    key: '1',
-    date: '21st September',
-    teacherName: 'Robert Bradley',
-    term: 'T1',
-    day: 'Monday',
-    time: 'AM',
-    school: 'UTCR',
-    lesson: 'Network Topologies',
-    subject: 'Computer Science',
-    course: 'A Level',
-    year: '12',
-    activityType: 'Lesson',
-    organisation: 'Cisco',
-  },
-  {
-    key: '2',
-    date: '23rd September',
-    teacherName: 'Colin Fox',
-    term: 'T1',
-    day: 'Friday',
-    time: 'PM',
-    school: 'UTCR',
-    lesson: 'App Development',
-    subject: 'Computing',
-    course: 'BTEC Level 3',
-    year: '13',
-    activityType: 'Workshop',
-    organisation: 'Microsoft',
-  },
-  {
-    key: '3',
-    date: '25th September',
-    teacherName: 'Robert Bradley',
-    term: 'T3',
-    day: 'Wednesday',
-    time: 'PM',
-    school: 'UTCR',
-    lesson: 'Web Development',
-    subject: 'Computing',
-    course: 'BTEC Level 3',
-    year: '13',
-    activityType: 'Project',
-    organisation: 'Microsoft',
-  },
-  {
-    key: '4',
-    date: '10th October',
-    teacherName: 'David Court',
-    term: 'T4',
-    day: 'Thursday',
-    time: 'AM',
-    school: 'UTCR',
-    lesson: 'Design using CAD',
-    subject: 'Engineering',
-    course: 'BTEC Level 3',
-    year: '12',
-    activityType: 'Work Placement',
-    organisation: 'AWE',
-  },
-  {
-    key: '5',
-    date: '12th October',
-    teacherName: 'Jonathan Doe',
-    term: 'T5',
-    day: 'Friday',
-    time: 'AM',
-    school: 'BTS',
-    lesson: 'Binary',
-    subject: 'Computer Science',
-    course: 'GCSE',
-    year: '10',
-    activityType: 'Pipeline Programme',
-    organisation: 'IBM',
-  },
-];
 
 const AllBookedLessons = () => {
   const [searchText, setSearchText] = useState('');
@@ -95,6 +19,7 @@ const AllBookedLessons = () => {
   };
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    console.log(data);
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchColumn(dataIndex);
@@ -136,8 +61,8 @@ const AllBookedLessons = () => {
             size="small"
             onClick={() => {
               confirm({ closeDropdown: false });
-    setSearchText(selectedKeys[0]);
-    setSearchColumn(dataIndex);
+              setSearchText(selectedKeys[0]);
+              setSearchColumn(dataIndex);
             }}
           >
             Filter
@@ -164,12 +89,12 @@ const AllBookedLessons = () => {
   const columns = [
     {
       title: 'Date',
-      dataIndex: 'date',
+      dataIndex: 'preferredDay',
       key: 'date',
     },
     {
       title: 'Booked By',
-      dataIndex: 'organisation',
+      dataIndex: 'company',
       key: 'organisation',
       ...getColumnSearchProps('organisation'),
     },
@@ -211,7 +136,7 @@ const AllBookedLessons = () => {
     },
     {
       title: 'Lesson Title',
-      dataIndex: 'lesson',
+      dataIndex: 'lessonTitle',
       key: 'lesson',
       ...getColumnSearchProps('lesson'),
     },
@@ -295,7 +220,7 @@ const AllBookedLessons = () => {
     },
     {
       title: 'Course Type',
-      dataIndex: 'course',
+      dataIndex: 'subject',
       key: 'course',
       filters: [
         {
@@ -359,7 +284,7 @@ const AllBookedLessons = () => {
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={data} size="large" />
+      <Table columns={columns} dataSource={[]} size="large" />
     </div>
   );
 };

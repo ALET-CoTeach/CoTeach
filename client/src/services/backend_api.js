@@ -16,7 +16,10 @@ export const backendApi = createApi({
   }),
   endpoints: (builder) => ({
     getLessonRequests: builder.query({
-      query: () => '/lessonrequest',
+      query: () => '/lessonrequest/available',
+    }),
+    getBookedLessonRequests: builder.query({
+      query: ({ role, id }) => `/lessonrequest/booked/${role}:${id}`,
     }),
     getSocialMediaPosts: builder.query({
       query: () => '/socialmediapost',
@@ -27,4 +30,4 @@ export const backendApi = createApi({
   }),
 });
 
-export const { useGetLessonRequestsQuery } = backendApi;
+export const { useGetLessonRequestsQuery, useGetBookedLessonRequestsQuery } = backendApi;

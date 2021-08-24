@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import 'antd/dist/antd.css';
 import '../../../index.css';
 import {
@@ -7,182 +8,16 @@ import {
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 
-const data = [
-  {
-    key: '1',
-    date: '21st September',
-    teacherName: 'Robert Bradley',
-    term: 'T1',
-    day: 'Monday',
-    time: 'AM',
-    school: 'UTCR',
-    lesson: 'Network Topologies',
-    subject: 'Computer Science',
-    course: 'A Level',
-    year: '12',
-    activityType: 'Lesson',
-  },
-  {
-    key: '2',
-    date: '23rd September',
-    teacherName: 'Colin Fox',
-    term: 'T1',
-    day: 'Friday',
-    time: 'PM',
-    school: 'UTCR',
-    lesson: 'App Development',
-    subject: 'Computing',
-    course: 'BTEC Level 3',
-    year: '13',
-    activityType: 'Workshop',
-  },
-  {
-    key: '3',
-    date: '25th September',
-    teacherName: 'Robert Bradley',
-    term: 'T3',
-    day: 'Wednesday',
-    time: 'PM',
-    school: 'UTCR',
-    lesson: 'Web Development',
-    subject: 'Computing',
-    course: 'BTEC Level 3',
-    year: '13',
-    activityType: 'Work Placement',
-  },
-  {
-    key: '4',
-    date: '10th October',
-    teacherName: 'David Court',
-    term: 'T4',
-    day: 'Thursday',
-    time: 'AM',
-    school: 'UTCR',
-    lesson: 'Design using CAD',
-    subject: 'Engineering',
-    course: 'BTEC Level 3',
-    year: '12',
-    activityType: 'Workshop',
-  },
-  {
-    key: '5',
-    date: '12th October',
-    teacherName: 'Jonathan Doe',
-    term: 'T5',
-    day: 'Friday',
-    time: 'AM',
-    school: 'BTS',
-    lesson: 'Binary',
-    subject: 'Computer Science',
-    course: 'GCSE',
-    year: '10',
-    activityType: 'Lesson',
-  },
-  {
-    key: '6',
-    date: '18th October',
-    teacherName: 'Nicola Gibson',
-    term: 'T5',
-    day: 'Friday',
-    time: 'AM',
-    school: 'UTCO',
-    lesson: 'Journalism',
-    subject: 'English Literature',
-    course: 'A Level',
-    year: '12',
-    activityType: 'Pipeline Programme',
-  },
-  {
-    key: '7',
-    date: '21st October',
-    teacherName: 'Martin Thomas',
-    term: 'T5',
-    day: 'Friday',
-    time: 'AM',
-    school: 'TGS',
-    lesson: 'Presentation Skills',
-    subject: 'Engineering',
-    course: 'GCSE',
-    year: '11',
-    activityType: 'Workshop',
-  },
-  {
-    key: '8',
-    date: '22nd October',
-    teacherName: 'David McArthur',
-    term: 'T5',
-    day: 'Friday',
-    time: 'AM',
-    school: 'UTCR',
-    lesson: 'Binary Code',
-    subject: 'Computer Science',
-    course: 'A Level',
-    year: '13',
-    activityType: 'Lesson',
-  },
-  {
-    key: '9',
-    date: '25th October',
-    teacherName: 'Robert Bradely',
-    term: 'T5',
-    day: 'Friday',
-    time: 'AM',
-    school: 'BTS',
-    lesson: 'Website Development',
-    subject: 'Computer Science',
-    course: 'GCSE',
-    year: '10',
-    activityType: 'Project',
-  },
-  {
-    key: '10',
-    date: '30th October',
-    teacherName: 'David Court',
-    term: 'T5',
-    day: 'Friday',
-    time: 'AM',
-    school: 'UTCH',
-    lesson: 'Building Bridges',
-    subject: 'Engineering',
-    course: 'BTEC Level 3',
-    year: '12',
-    activityType: 'Project',
-  },
-  {
-    key: '11',
-    date: '2nd November',
-    teacherName: 'Jennie Thompson',
-    term: 'T5',
-    day: 'Friday',
-    time: 'AM',
-    school: 'UTCR',
-    lesson: 'Human DNA',
-    subject: 'Biology',
-    course: 'GCSE',
-    year: '11',
-    activityType: 'Lesson',
-  },
-  {
-    key: '12',
-    date: '5th of November',
-    teacherName: 'Colin Fox',
-    term: 'T5',
-    day: 'Friday',
-    time: 'AM',
-    school: 'UTCO',
-    lesson: 'Binary',
-    subject: 'Computer Science',
-    course: 'A Level',
-    year: '12',
-    activityType: 'Lesson',
-  },
-
-];
+import { useGetBookedLessonRequestsQuery } from '@services/backend_api';
 
 const YourBookings = () => {
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');
   const searchInput = useRef(null);
+
+  const { userId, authLevel } = useSelector((state) => state.auth);
+  const { data, isLoading } = useGetBookedLessonRequestsQuery({ role: authLevel, id: userId });
+
 
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
@@ -230,8 +65,8 @@ const YourBookings = () => {
             size="small"
             onClick={() => {
               confirm({ closeDropdown: false });
-    setSearchText(selectedKeys[0]);
-    setSearchColumn(dataIndex);
+              setSearchText(selectedKeys[0]);
+              setSearchColumn(dataIndex);
             }}
           >
             Filter
@@ -258,7 +93,7 @@ const YourBookings = () => {
   const columns = [
     {
       title: 'Date',
-      dataIndex: 'date',
+      dataIndex: 'preferredDay',
       key: 'date',
     },
     {
@@ -299,7 +134,7 @@ const YourBookings = () => {
     },
     {
       title: 'Lesson Title',
-      dataIndex: 'lesson',
+      dataIndex: 'lessonTitle',
       key: 'lesson',
       ...getColumnSearchProps('lesson'),
     },
@@ -332,9 +167,15 @@ const YourBookings = () => {
       onFilter: (value, record) => record.activityType.indexOf(value) === 0,
     },
     {
-      title: 'Teacher Name',
-      dataIndex: 'teacherName',
-      key: 'teacherName',
+      title: () => {
+        if (authLevel === 'teacher') return 'Organisation Name';
+        if (authLevel === 'employer') return 'Teacher Name';
+      },
+      dataIndex: authLevel === 'teacher' ? 'company' : 'teacherName',
+      key: () => {
+        if (authLevel === 'teacher') return 'company';
+        if (authLevel === 'employer') return 'teacherName';
+      },
       ...getColumnSearchProps('teacherName'),
     },
     {
@@ -383,7 +224,7 @@ const YourBookings = () => {
     },
     {
       title: 'Course Type',
-      dataIndex: 'course',
+      dataIndex: 'subject',
       key: 'course',
       filters: [
         {
@@ -446,7 +287,7 @@ const YourBookings = () => {
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={data} size="large" />
+      <Table loading={isLoading} columns={columns} dataSource={data ? data.lessonRequests : null} size="large" />
     </div>
   );
 };

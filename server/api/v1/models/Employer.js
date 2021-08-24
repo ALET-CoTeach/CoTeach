@@ -36,6 +36,8 @@ const employerSchema = new Schema(
   },
 );
 
+employerSchema.virtual('fullname').get(() => `${this.firstname} ${this.lastname}`);
+
 const Employer = mongoose.model('Employer', employerSchema);
 
 module.exports = Employer;

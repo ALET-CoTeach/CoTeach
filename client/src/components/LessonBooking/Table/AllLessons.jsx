@@ -15,7 +15,7 @@ const AllLessons = () => {
   const [searchColumn, setSearchColumn] = useState('');
   const searchInput = useRef(null);
 
-  const { data, error, isLoading } = useGetLessonRequestsQuery();
+  const { allRequestsData, isLoading } = useGetLessonRequestsQuery();
 
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
@@ -352,7 +352,7 @@ const AllLessons = () => {
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={data ? data.lessonRequests : null} size="large" />
+      <Table columns={columns} dataSource={allRequestsData ? allRequestsData.lessonRequests : null} size="large" />
     </div>
   );
 };

@@ -19,6 +19,6 @@
 - [ ] Create a Coordinator model which doesn't have permision to view SocialMediaPosts
 
 - [ ] Teachers can see all lessons from the school they work at
-- [ ] Teachers can see relevent LessonRequests from other schools dependig on the subjects they teach
+- [ ] Teachers can see relevent LessonRequests from other schools depending on the subjects they teach
 
 - [ ] Using webhooks or something to notify SLT and teacher when a LessonRequest is booked ( Possibly MVP )
