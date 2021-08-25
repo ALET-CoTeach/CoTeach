@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const LessonRequestSchema = new Schema(
+const ActivityRequestSchema = new Schema(
   {
     schoolId: {
       type: String,
@@ -16,11 +16,11 @@ const LessonRequestSchema = new Schema(
       type: String,
       required: true,
     },
-    lessonTitle: {
+    title: {
       type: String,
       required: true,
     },
-    lessonDetails: {
+    details: {
       type: String,
       required: true,
     },
@@ -56,9 +56,12 @@ const LessonRequestSchema = new Schema(
       type: String,
       required: false,
     },
-    activityType: {
+    type: {
       type: String,
       default: 'Lesson',
+    },
+    feedback: {
+      type: String,
     },
   },
   {
@@ -66,6 +69,6 @@ const LessonRequestSchema = new Schema(
   },
 );
 
-const LessonRequest = mongoose.model('LessonRequest', LessonRequestSchema);
+const ActivityRequest = mongoose.model('ActivityRequest', ActivityRequestSchema);
 
-module.exports = LessonRequest;
+module.exports = ActivityRequest;

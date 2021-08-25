@@ -1,23 +1,24 @@
 const _ = require('lodash');
-const LessonRequest = require('../models/LessonRequest');
+const ActivityRequest = require('../models/ActivityRequest');
 const Teacher = require('../models/Teacher');
 const School = require('../models/School');
 const Employer = require('../models/Employer');
 const Company = require('../models/Company');
 
-// TODO: Write suitable functions for all methods for the LessonRequest model
+// TODO: Write suitable functions for all methods for the ActivityRequest model
 
 module.exports.createOne = async (req, res) => {
-  // Destruct lessonRequestData
+  // Destruct activityRequestData
   const {
     schoolId,
     year,
     subject,
-    lessonTitle,
-    lessonDetails,
+    title,
+    details,
     term,
     preferredDay,
     preferredTime,
+    type,
   } = req.body;
 
   let teacherId;
@@ -30,27 +31,28 @@ module.exports.createOne = async (req, res) => {
     teacherId = req.teacherData.id;
   }
 
-  // Creates new LessonRequest Object
-  const newLessonRequest = new LessonRequest({
+  // Creates new ActivityRequest Object
+  const newActivityRequest = new ActivityRequest({
     schoolId,
     year,
     subject,
-    lessonTitle,
-    lessonDetails,
+    title,
+    details,
     term,
     preferredDay,
     preferredTime,
     teacherId,
+    type,
   });
 
   try {
-    // Saves lessonRequest object to database
-    const savedLessonRequest = await newLessonRequest.save();
+    // Saves activityRequest object to database
+    const savedActivityRequest = await newActivityRequest.save();
 
-    if (savedLessonRequest) {
+    if (savedActivityRequest) {
       res.status(201).json({
-        message: 'LessonRequest successfully created and stored on database',
-        lessonRequest: savedLessonRequest,
+        message: 'ActivityRequest successfully created and stored on database',
+        activityRequest: savedActivityRequest,
       });
     }
   } catch (err) {
@@ -59,57 +61,35 @@ module.exports.createOne = async (req, res) => {
   }
 };
 
-module.exports.deleteOne = (lessonRequestId) => new Promise(async (resolve, reject) => {
+module.exports.deleteOne = (activityRequestId) => new Promise(async (resolve, reject) => {
   try {
-    const lessonRequest = await LessonRequest.findByIdAndDelete(lessonRequestId);
+    const activityRequest = await ActivityRequest.findByIdAndDelete(activityRequestId);
 
-    if (!lessonRequest) {
-      resolve({ message: 'LessonRequest document never existed or has already been deleted' });
+    if (!activityRequest) {
+      resolve({ message: 'ActivityRequest document never existed or has already been deleted' });
     }
 
-    resolve({ message: 'LessonRequest successfuly deleted', lessonRequest });
+    resolve({ message: 'ActivityRequest successfuly deleted', activityRequest });
   } catch (err) {
     reject(err);
   }
 });
 
-module.exports.updateOne = (lessonRequestId, updateData) => new Promise(async (resolve, reject) => {
+module.exports.updateOne = (activityRequestId, updateData) => new Promise(async (resolve, reject) => {
   try {
-    const {
-      name,
-      email,
-      line1,
-      towncity,
-      county,
-      postcode,
-    } = updateData;
-
-    const address = {
-      line1,
-      towncity,
-      county,
-      postcode,
-    };
-
-    const update = {
-      name,
-      email,
-      address,
-    };
-
-    const updatedLessonRequest = await LessonRequest.findByIdAndUpdate(
-      lessonRequestId,
-      update,
+    const updatedActivityRequest = await ActivityRequest.findByIdAndUpdate(
+      activityRequestId,
+      updateData,
       {
         new: true,
       },
     );
 
-    if (!updatedLessonRequest) {
-      resolve({ message: 'LessonRequest was never created or has been deleted' });
+    if (!updatedActivityRequest) {
+      resolve({ message: 'ActivityRequest was never created or has been deleted' });
     }
 
-    resolve({ message: 'LessonRequest has been successfully updated', lessonRequest: updatedLessonRequest });
+    resolve({ message: 'ActivityRequest has been successfully updated', activityRequest: updatedActivityRequest });
   } catch (err) {
     reject(err);
   }
@@ -149,26 +129,26 @@ module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
 
   try {
     let t;
-    const lr = await LessonRequest.find(filter).lean();
+    const lr = await ActivityRequest.find(filter).lean();
     for (const [i, l] of lr.entries()) {
       t = await tempFunc(l);
       lr[i] = t;
     }
-    resolve({ lessonRequests: lr });
+    resolve({ activityRequests: lr });
   } catch (err) {
     reject(err);
   }
 });
 
-module.exports.getOne = (lessonRequestId) => new Promise(async (resolve, reject) => {
+module.exports.getOne = (activityRequestId) => new Promise(async (resolve, reject) => {
   try {
-    const lessonRequest = await LessonRequest.findById(lessonRequestId);
+    const activityRequest = await ActivityRequest.findById(activityRequestId);
 
-    if (!lessonRequest) {
-      resolve({ message: 'LessonRequest does not exist in database' });
+    if (!activityRequest) {
+      resolve({ message: 'ActivityRequest does not exist in database' });
     }
 
-    resolve({ message: 'LessonRequest successfully found', lessonRequest });
+    resolve({ message: 'ActivityRequest successfully found', activityRequest });
   } catch (err) {
     reject(err);
   }
@@ -176,8 +156,8 @@ module.exports.getOne = (lessonRequestId) => new Promise(async (resolve, reject)
 
 module.exports.getAllBySchool = (schoolId) => new Promise(async (resolve, reject) => {
   try {
-    const lessonRequests = await LessonRequests.find({ schoolId });
-    resolve(lessonRequests);
+    const activityRequests = await ActivityRequest.find({ schoolId });
+    resolve(activityRequests);
   } catch (err) {
     reject(err);
   }

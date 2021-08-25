@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const LessonRequestController = require('../controllers/lesson_request');
+const ActivityRequestController = require('../controllers/activity_request');
 const requiredRoles = require('../middleware/requiredRoles');
 
 const router = Router();
 
-router.post('/', requiredRoles(['admin', 'slt', 'teacher']), LessonRequestController.createOne);
+router.post('/', requiredRoles(['admin', 'slt', 'teacher']), ActivityRequestController.createOne);
 
 router.get('/available', requiredRoles(['admin', 'slt', 'teacher', 'employer']), async (req, res) => {
   const filter = { employerId: { $exists: false }, companyId: { $exists: false } };
@@ -14,7 +14,7 @@ router.get('/available', requiredRoles(['admin', 'slt', 'teacher', 'employer']),
   if (req.teacherData) filter.schoolId = req.teacherData.schoolId;
 
   try {
-    const jsonResponse = await LessonRequestController.getAll(filter);
+    const jsonResponse = await ActivityRequestController.getAll(filter);
 
     return res.status(200).json(jsonResponse);
   } catch (err) {
@@ -37,7 +37,7 @@ router.get('/booked/:role::id', requiredRoles(['admin', 'slt', 'teacher', 'emplo
     if (req.teacherData) filter.teacherId = req.teacherData._id;
     console.log(filter);
 
-    const jsonResponse = await LessonRequestController.getAll(filter);
+    const jsonResponse = await ActivityRequestController.getAll(filter);
 
     return res.status(200).json(jsonResponse);
   } catch (err) {
@@ -50,8 +50,8 @@ router.delete('/:lessonRequestId', requiredRoles(['admin']), async (req, res) =>
   const { lessonRequestId } = req.params;
 
   try {
-    // Delete one LessonRequest by id from DB, then store response to const
-    const jsonResponse = await LessonRequestController.deleteOne(lessonRequestId);
+    // Delete one ActivityRequest by id from DB, then store response to const
+    const jsonResponse = await ActivityRequestController.deleteOne(lessonRequestId);
 
     return res.status(200).json(jsonResponse);
   } catch (err) {
@@ -68,8 +68,8 @@ router.put('/:lessonRequestId', requiredRoles(['admin']), async (req, res) => {
   const updateData = req.body;
 
   try {
-    // Update on LessonRequest by id from DB, then store response to const
-    const jsonResponse = await LessonRequestController.updateOne(lessonRequestId, updateData);
+    // Update on ActivityRequest by id from DB, then store response to const
+    const jsonResponse = await ActivityRequestController.updateOne(lessonRequestId, updateData);
 
     return res.status(500).json(jsonResponse);
   } catch (err) {

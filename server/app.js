@@ -65,7 +65,7 @@ const employerRoutes = require('./api/v1/routes/employer');
 const sltRoutes = require('./api/v1/routes/slt');
 const teacherRoutes = require('./api/v1/routes/teacher');
 const socialMediaPostRoutes = require('./api/v1/routes/social_media_post');
-const lessonRequestRoutes = require('./api/v1/routes/lesson_request');
+const activityRequestRoutes = require('./api/v1/routes/activity_request');
 const schoolRoutes = require('./api/v1/routes/school');
 const companyRoutes = require('./api/v1/routes/company');
 
@@ -74,7 +74,7 @@ app.use('/api/v1/employer', employerRoutes);
 app.use('/api/v1/slt', sltRoutes);
 app.use('/api/v1/teacher', teacherRoutes);
 app.use('/api/v1/socialmediapost', socialMediaPostRoutes);
-app.use('/api/v1/lessonrequest', lessonRequestRoutes);
+app.use('/api/v1/activityrequest', activityRequestRoutes);
 app.use('/api/v1/school', schoolRoutes);
 app.use('/api/v1/company', companyRoutes);
 

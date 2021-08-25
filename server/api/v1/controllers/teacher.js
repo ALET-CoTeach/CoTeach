@@ -99,9 +99,9 @@ module.exports.getOneByEmail = (email) => new Promise(async (resolve, reject) =>
 module.exports.checkForMissingPosts = (teacherId) => new Promise(async (resolve, reject) => {
   try {
     // Get all lesson requests by a teacher
-    const lessonRequests = await LessonRequest.find({ teacherId });
+    const lessonRequests = await ActivityRequest.find({ teacherId });
 
-    // Empty array for LessonRequest id's with no corresponding SocialMediaPost
+    // Empty array for ActivityRequest id's with no corresponding SocialMediaPost
     const noMatches = [];
 
     // Checks for atleast one SocialMediaPost for a specific lessonId
@@ -109,7 +109,7 @@ module.exports.checkForMissingPosts = (teacherId) => new Promise(async (resolve,
       // Null when no document found
       const socialMediaPost = await SocialMediaPost.findOne({ lessonId: lessonRequest._id });
 
-      // Adds LessonRequest id to array if no social media post found
+      // Adds ActivityRequest id to array if no social media post found
       if (!socialMediaPost) {
         noMatches.push(lessonRequest._id);
       }
