@@ -11,9 +11,13 @@ module.exports.createOne = (schoolData) => new Promise(async (resolve, reject) =
     parking,
     ofstedlink,
     line1,
+    line2,
+    line3,
     towncity,
     county,
     postcode,
+    lat,
+    lon,
   } = schoolData;
 
   try {
@@ -23,9 +27,13 @@ module.exports.createOne = (schoolData) => new Promise(async (resolve, reject) =
       // Creates new Address Object for School
       const address = new Address({
         line1,
+        line2,
+        line3,
         towncity,
         county,
         postcode,
+        lat,
+        lon,
       });
 
       // Creates new School Object
@@ -83,24 +91,30 @@ module.exports.updateOne = (schoolId, updateData) => new Promise(async (resolve,
       parking,
       ofstedlink,
       line1,
+      line2,
+      line3,
       towncity,
       county,
       postcode,
+      lat,
+      lon,
     } = updateData;
-
-    const address = {
-      line1,
-      towncity,
-      county,
-      postcode,
-    };
 
     const update = {
       name,
       email,
       phone,
       website,
-      address,
+      address: {
+        line1,
+        line2,
+        line3,
+        towncity,
+        county,
+        postcode,
+        lat,
+        lon,
+      },
       parking,
       ofstedlink,
     };

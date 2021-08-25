@@ -8,13 +8,12 @@ const companySchema = new Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
   },
-  email: {
+  emailDomain: [{
     type: String,
     required: true,
-    unique: true,
-    match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-  },
+  }],
   address: {
     type: addressSchema,
     required: true,
@@ -22,7 +21,11 @@ const companySchema = new Schema({
   website: {
     type: String,
     required: true,
-  }
+  },
+  phone: [{
+    type: String,
+    required: true,
+  }],
 }, {
   // Mongoose will create a "createdAt" and "updatedAt" properties to schema 😀
   timestamps: true,
@@ -31,5 +34,3 @@ const companySchema = new Schema({
 const Company = mongoose.model('Company', companySchema);
 
 module.exports = Company;
-
-

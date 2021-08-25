@@ -8,9 +8,13 @@ module.exports.createOne = (companyData) => new Promise(async (resolve, reject) 
     email,
     website,
     line1,
+    line2,
+    line3,
     towncity,
     county,
     postcode,
+    lat,
+    lon,
   } = companyData;
 
   try {
@@ -20,9 +24,13 @@ module.exports.createOne = (companyData) => new Promise(async (resolve, reject) 
       // Creates new Address Object for Company
       const address = new Address({
         line1,
+        line2,
+        line3,
         towncity,
         county,
         postcode,
+        lat,
+        lon,
       });
 
       // Creates new Company Object
@@ -74,23 +82,29 @@ module.exports.updateOne = (companyId, updateData) => new Promise(async (resolve
       email,
       website,
       line1,
+      line2,
+      line3,
       towncity,
       county,
       postcode,
+      lat,
+      lon,
     } = updateData;
-
-    const address = {
-      line1,
-      towncity,
-      county,
-      postcode,
-    };
 
     const update = {
       name,
       email,
       website,
-      address,
+      address: {
+        line1,
+        line2,
+        line3,
+        towncity,
+        county,
+        postcode,
+        lat,
+        lon,
+      },
     };
 
     const updatedCompany = await Company.findByIdAndUpdate(

@@ -8,6 +8,12 @@ const addressSchema = new Schema(
       type: String,
       required: true,
     },
+    line2: {
+      type: String,
+    },
+    line3: {
+      type: String,
+    },
     towncity: {
       type: String,
       required: true,
@@ -18,6 +24,14 @@ const addressSchema = new Schema(
     },
     postcode: {
       type: String,
+      required: true,
+    },
+    lat: {
+      type: Number,
+      required: true,
+    },
+    lon: {
+      type: Number,
       required: true,
     },
   },

@@ -8,21 +8,20 @@ const schoolSchema = new Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
   },
-  email: {
+  emailDomain: [{
     type: String,
     required: true,
-    unique: true,
-    match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-  },
+  }],
   website: {
     type: String,
     required: true,
   },
-  phone: {
+  phone: [{
     type: String,
     required: true,
-  },
+  }],
   address: {
     type: addressSchema,
     required: true,
