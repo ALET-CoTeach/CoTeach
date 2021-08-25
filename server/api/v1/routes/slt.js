@@ -9,7 +9,6 @@ const router = Router();
 
 router.post('/register', requiredRoles([_admin]), SLTController.register);
 router.post('/signin', SLTController.access);
-router.post('/signout', requiredRoles([_slt]), SLTController.deauth);
 
 router.delete('/:sltId', requiredRoles([_admin]), async (req, res) => {
   const { sltId } = req.params;

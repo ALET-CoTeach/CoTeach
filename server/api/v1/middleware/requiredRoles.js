@@ -6,12 +6,12 @@ module.exports = (roles) => (req, res, next) => {
 
   roles.forEach(async (role) => {
     try {
-      const decoded = jwt.verify(token, process.env[`JWT_${role.toUpperCase()}_KEY`]);
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      if (decoded) {
+      if (decoded.authLevel === role) {
         isVerified = true;
-        req[`${role}Data`] = decoded._doc;
-        console.log(req[`${role}Data`]);
+        req.user = decoded._doc;
+        console.log(req.user);
       }
     } catch (err) {}
   });

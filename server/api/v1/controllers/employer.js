@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Employer = require('../models/Employer');
 const Company = require('../models/Company');
+const { _employer } = require('../utils/UserTypes');
 
 module.exports.deleteOne = (employerId) => new Promise(async (resolve, reject) => {
   try {
@@ -184,8 +185,9 @@ module.exports.access = async (req, res) => {
       const token = jwt.sign(
         {
           ...employer,
+          authLevel: _employer,
         },
-        process.env.JWT_EMPLOYER_KEY,
+        process.env.JWT_SECRET,
         {
           expiresIn: '1h',
         },
@@ -209,7 +211,7 @@ module.exports.deauth = (req, res) => {
   try {
     // Clear authentication headers and stored user data
     req.headers.authentication = null;
-    req.employerData = null;
+    req.user = null;
 
     // Sign out successful, send success response
     return res.status(200).json({

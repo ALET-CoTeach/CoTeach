@@ -9,7 +9,6 @@ const router = Router();
 
 router.post('/register', requiredRoles([_admin, _slt]), TeacherController.register);
 router.post('/signin', TeacherController.access);
-router.post('/signout', requiredRoles([_teacher]), TeacherController.deauth);
 
 router.delete('/:teacherId', requiredRoles([_admin, _slt]), async (req, res) => {
   const { teacherId } = req.params;

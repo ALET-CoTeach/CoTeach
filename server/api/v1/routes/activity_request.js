@@ -13,8 +13,8 @@ router.get('/available', requiredRoles([_admin, _slt, _teacher, _employer]), asy
   const filter = { employerId: { $exists: false }, companyId: { $exists: false } };
 
   // SLT and Teachers can only see available requests for the school they work at
-  if (req.sltData) filter.schoolId = req.sltData.schoolId;
-  if (req.teacherData) filter.schoolId = req.teacherData.schoolId;
+  if (req.user) filter.schoolId = req.user.schoolId;
+  if (req.user) filter.schoolId = req.user.schoolId;
 
   try {
     const jsonResponse = await ActivityRequestController.getAll(filter);
@@ -37,7 +37,7 @@ router.get('/booked/:role::id', requiredRoles([_admin, _slt, _teacher, _employer
 
     // If teacher is authenticated overwrite teacherId field in filter, since teachers
     // can only see their own booked lessons
-    if (req.teacherData) filter.teacherId = req.teacherData._id;
+    if (req.user) filter.teacherId = req.user._id;
     console.log(filter);
 
     const jsonResponse = await ActivityRequestController.getAll(filter);

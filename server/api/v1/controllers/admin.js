@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
+const { _admin } require('../utils/UserTypes');
 
 module.exports.register = async (req, res) => {
   // Destruct request body
@@ -75,8 +76,9 @@ module.exports.access = async (req, res) => {
       const token = jwt.sign(
         {
           ...admin,
+          authLevel: _admin,
         },
-        process.env.JWT_ADMIN_KEY,
+        process.env.JWT_SECRET,
         {
           expiresIn: '1h',
         },
@@ -100,7 +102,7 @@ module.exports.deauth = (req, res) => {
   try {
     // Clear authentication headers and stored user data
     req.headers.authentication = null;
-    req.adminData = null;
+    req.user = null;
 
     // Sign out successful, send success response
     return res.status(200).json({

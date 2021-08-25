@@ -9,6 +9,5 @@ const router = Router();
 
 router.post('/register', requiredRoles([_admin]), AdminController.register);
 router.post('/signin', AdminController.access);
-router.post('/signout', requiredRoles([_admin]), AdminController.deauth);
 
 module.exports = router;

@@ -24,11 +24,11 @@ module.exports.createOne = async (req, res) => {
   let teacherId;
 
   // If authenticated user is not a teacher, use the teacherId from request body
-  if (!req.teacherData) {
+  if (!req.user) {
     teacherId = req.body.teacherId;
   } else {
     // If teacher is signed in
-    teacherId = req.teacherData.id;
+    teacherId = req.user.id;
   }
 
   // Creates new ActivityRequest Object

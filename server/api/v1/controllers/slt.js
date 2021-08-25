@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const SLT = require('../models/SLT');
 const School = require('../models/School');
+const { _slt } = require('../utils/UserTypes');
 
 module.exports.deleteOne = (sltId) => new Promise(async (resolve, reject) => {
   try {
@@ -188,8 +189,9 @@ module.exports.access = async (req, res) => {
       const token = jwt.sign(
         {
           ...slt,
+          authLevel: _slt,
         },
-        process.env.JWT_SLT_KEY,
+        process.env.JWT_SECRET,
         {
           expiresIn: '1h',
         },
@@ -213,7 +215,7 @@ module.exports.deauth = (req, res) => {
   try {
     // Clear authentication headers and stored user data
     req.headers.authentication = null;
-    req.sltData = null;
+    req.user = null;
 
     // Sign out successful, send success response
     return res.status(200).json({

@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const middleware = require('./middleware');
+const deauth = require('./api/v1/utils/deauth');
 
 // Environment variables
 require('dotenv').config();
@@ -53,11 +54,7 @@ const corsOptions = {
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Hello World!',
-  });
-});
+app.get('/api/v1/signout', deauth);
 
 // Imports for version 1 of the api
 const adminRoutes = require('./api/v1/routes/admin');

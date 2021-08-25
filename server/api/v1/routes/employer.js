@@ -9,7 +9,6 @@ const router = Router();
 
 router.post('/register', requiredRoles([_admin]), EmployerController.register);
 router.post('/signin', EmployerController.access);
-router.post('/signout', requiredRoles([_admin]), EmployerController.deauth);
 
 router.delete('/:employerId', requiredRoles([_admin]), async (req, res) => {
   const { employerId } = req.params;

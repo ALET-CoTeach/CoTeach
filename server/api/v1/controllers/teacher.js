@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const Teacher = require('../models/Teacher');
 const School = require('../models/School');
 const SubjectList = require('../utils/SubjectList');
+const { _teacher } = require('../utils/UserTypes');
 
 module.exports.deleteOne = (teacherId) => new Promise(async (resolve, reject) => {
   try {
@@ -212,8 +213,9 @@ module.exports.access = async (req, res) => {
       const token = jwt.sign(
         {
           ...teacher,
+          authLevel: _teacher,
         },
-        process.env.JWT_TEACHER_KEY,
+        process.env.JWT_SECRET,
         {
           expiresIn: '1h',
         },
@@ -230,23 +232,5 @@ module.exports.access = async (req, res) => {
   } catch (err) {
     // Send JSON error response to the 'requestee'
     return res.status(500).json({ error: err });
-  }
-};
-
-module.exports.deauth = (req, res) => {
-  try {
-    // Clear authentication headers and stored user data
-    req.headers.authentication = null;
-    req.teacherData = null;
-
-    // Sign out successful, send success response
-    return res.status(200).json({
-      message: 'De-authentication (Sign Out) success',
-    });
-  } catch (err) {
-    // Sign out unsuccessfull, send failure response
-    return res.status(401).json({
-      message: 'De-authentication (Sign Out) failed',
-    });
   }
 };
