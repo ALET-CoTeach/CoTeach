@@ -29,6 +29,10 @@ const employerSchema = new Schema(
       type: String,
       required: true,
     },
+    admin: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     // Mongoose will create a "createdAt" and "updatedAt" properties to schema 😀
