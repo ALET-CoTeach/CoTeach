@@ -27,11 +27,11 @@ const addressSchema = new Schema(
       required: true,
     },
     lat: {
-      type: Number,
+      type: String,
       required: true,
     },
     lon: {
-      type: Number,
+      type: String,
       required: true,
     },
   },
