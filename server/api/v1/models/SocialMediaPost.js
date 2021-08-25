@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const socialMediaPostSchema  = new Schema(
+const socialMediaPostSchema = new Schema(
   {
     image: {
       type: String,
@@ -20,7 +20,7 @@ const socialMediaPostSchema  = new Schema(
       type: String,
       required: true,
     },
-    lessonId: {
+    activtyId: {
       type: String,
       required: true,
     },
@@ -28,18 +28,18 @@ const socialMediaPostSchema  = new Schema(
       type: String,
     },
     linkedinStatus: {
-        type: String,
-        default: "pending"
+      type: String,
+      default: 'pending',
     },
     facebookStatus: {
-        type: String,
-        default: "pending"
+      type: String,
+      default: 'pending',
     },
     facebookPostUrl: {
-        type: String,
+      type: String,
     },
     linkedinPostUrl: {
-        type: String,
+      type: String,
     },
   },
   {
@@ -51,4 +51,3 @@ const socialMediaPostSchema  = new Schema(
 const SocialMediaPost = mongoose.model('SocialMediaPost', socialMediaPostSchema);
 
 module.exports = SocialMediaPost;
-
