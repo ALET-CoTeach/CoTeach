@@ -1,10 +1,13 @@
 const { Router } = require('express');
 const SchoolController = require('../controllers/school');
 const requiredRoles = require('../middleware/requiredRoles');
+const {
+  _admin, _employer, _slt, _teacher,
+} = require('../utils/UserTypes');
 
 const router = Router();
 
-router.post('/', requiredRoles(['admin']), async (req, res) => {
+router.post('/', requiredRoles([_admin]), async (req, res) => {
   // Request body will be processed in Controller
   // And will be validated
   const schoolData = req.body;
@@ -20,7 +23,7 @@ router.post('/', requiredRoles(['admin']), async (req, res) => {
   }
 });
 
-router.get('/', requiredRoles(['admin', 'slt', 'employer']), async (req, res) => {
+router.get('/', requiredRoles([_admin, _slt, _employer]), async (req, res) => {
   try {
     // Get all Schools from DB, then store response to const
     const jsonResponse = await SchoolController.getAll();
@@ -31,7 +34,7 @@ router.get('/', requiredRoles(['admin', 'slt', 'employer']), async (req, res) =>
   }
 });
 
-router.delete('/:schoolId', requiredRoles(['admin']), async (req, res) => {
+router.delete('/:schoolId', requiredRoles([_admin]), async (req, res) => {
   const { schoolId } = req.params;
 
   try {
@@ -44,7 +47,7 @@ router.delete('/:schoolId', requiredRoles(['admin']), async (req, res) => {
   }
 });
 
-router.put('/:schoolId', requiredRoles(['admin']), async (req, res) => {
+router.put('/:schoolId', requiredRoles([_admin]), async (req, res) => {
   const { schoolId } = req.params;
 
   // Request body will be destructured in Controller method

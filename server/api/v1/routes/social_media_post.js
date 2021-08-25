@@ -1,10 +1,13 @@
 const { Router } = require('express');
 const SocialMediaPostController = require('../controllers/social_media_post');
 const requiredRoles = require('../middleware/requiredRoles');
+const {
+  _admin, _employer, _slt, _teacher,
+} = require('../utils/UserTypes');
 
 const router = Router();
 
-router.post('/', requiredRoles(['admin', 'slt', 'teacher']), async (req, res) => {
+router.post('/', requiredRoles([_admin, _slt, _teacher]), async (req, res) => {
   const socialMediaPostData = req.body;
 
   try {
@@ -18,7 +21,7 @@ router.post('/', requiredRoles(['admin', 'slt', 'teacher']), async (req, res) =>
   }
 });
 
-router.get('/', requiredRoles(['admin', 'slt']), async (req, res) => {
+router.get('/', requiredRoles([_admin, _slt]), async (req, res) => {
   try {
     // Get all SocialMediaPosts from DB, then store response in const
     const jsonResponse = await SocialMediaPostController.getAll();
@@ -30,7 +33,7 @@ router.get('/', requiredRoles(['admin', 'slt']), async (req, res) => {
   }
 });
 
-router.delete('/:socialMediaPostId', requiredRoles(['admin']), async (req, res) => {
+router.delete('/:socialMediaPostId', requiredRoles([_admin]), async (req, res) => {
   const { socialMediaPostId } = req.params;
 
   try {
@@ -44,7 +47,7 @@ router.delete('/:socialMediaPostId', requiredRoles(['admin']), async (req, res) 
   }
 });
 
-router.put('/:socialMediaPostId', requiredRoles(['admin']), async (req, res) => {
+router.put('/:socialMediaPostId', requiredRoles([_admin]), async (req, res) => {
   const { socialMediaPostId } = req.params;
 
   // Request body will be destructured in Controller method

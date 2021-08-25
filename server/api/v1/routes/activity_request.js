@@ -1,12 +1,15 @@
 const { Router } = require('express');
 const ActivityRequestController = require('../controllers/activity_request');
 const requiredRoles = require('../middleware/requiredRoles');
+const {
+  _admin, _employer, _slt, _teacher,
+} = require('../utils/UserTypes');
 
 const router = Router();
 
-router.post('/', requiredRoles(['admin', 'slt', 'teacher']), ActivityRequestController.createOne);
+router.post('/', requiredRoles([_admin, _slt, _teacher]), ActivityRequestController.createOne);
 
-router.get('/available', requiredRoles(['admin', 'slt', 'teacher', 'employer']), async (req, res) => {
+router.get('/available', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, res) => {
   const filter = { employerId: { $exists: false }, companyId: { $exists: false } };
 
   // SLT and Teachers can only see available requests for the school they work at
@@ -23,14 +26,14 @@ router.get('/available', requiredRoles(['admin', 'slt', 'teacher', 'employer']),
   }
 });
 
-router.get('/booked/:role::id', requiredRoles(['admin', 'slt', 'teacher', 'employer']), async (req, res) => {
+router.get('/booked/:role::id', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, res) => {
   const { role, id } = req.params;
   const filter = { employerId: { $exists: true } };
 
   try {
     // Setup database search filter
-    if (role === 'teacher') filter.teacherId = id;
-    if (role === 'employer') filter.employerId = id;
+    if (role === _teacher) filter.teacherId = id;
+    if (role === _employer) filter.employerId = id;
 
     // If teacher is authenticated overwrite teacherId field in filter, since teachers
     // can only see their own booked lessons
@@ -46,7 +49,7 @@ router.get('/booked/:role::id', requiredRoles(['admin', 'slt', 'teacher', 'emplo
   }
 });
 
-router.delete('/:lessonRequestId', requiredRoles(['admin']), async (req, res) => {
+router.delete('/:lessonRequestId', requiredRoles([_admin]), async (req, res) => {
   const { lessonRequestId } = req.params;
 
   try {
@@ -60,7 +63,7 @@ router.delete('/:lessonRequestId', requiredRoles(['admin']), async (req, res) =>
   }
 });
 
-router.put('/:lessonRequestId', requiredRoles(['admin']), async (req, res) => {
+router.put('/:lessonRequestId', requiredRoles([_admin]), async (req, res) => {
   const { lessonRequestId } = req.params;
 
   // Request body will be destructured in Controller method

@@ -1,14 +1,17 @@
 const { Router } = require('express');
 const EmployerController = require('../controllers/employer');
 const requiredRoles = require('../middleware/requiredRoles');
+const {
+  _admin, _employer, _slt, _teacher,
+} = require('../utils/UserTypes');
 
 const router = Router();
 
-router.post('/register', requiredRoles(['admin']), EmployerController.register);
+router.post('/register', requiredRoles([_admin]), EmployerController.register);
 router.post('/signin', EmployerController.access);
-router.post('/signout', requiredRoles(['admin']), EmployerController.deauth);
+router.post('/signout', requiredRoles([_admin]), EmployerController.deauth);
 
-router.delete('/:employerId', requiredRoles(['admin']), async (req, res) => {
+router.delete('/:employerId', requiredRoles([_admin]), async (req, res) => {
   const { employerId } = req.params;
 
   try {
@@ -22,7 +25,7 @@ router.delete('/:employerId', requiredRoles(['admin']), async (req, res) => {
   }
 });
 
-router.put('/:employerId', requiredRoles(['admin']), async (req, res) => {
+router.put('/:employerId', requiredRoles([_admin]), async (req, res) => {
   const { employerId } = req.params;
 
   // Request body will be destructured in Controller method

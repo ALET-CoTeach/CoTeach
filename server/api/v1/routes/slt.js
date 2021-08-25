@@ -1,14 +1,17 @@
 const { Router } = require('express');
 const SLTController = require('../controllers/slt');
 const requiredRoles = require('../middleware/requiredRoles');
+const {
+  _admin, _employer, _slt, _teacher,
+} = require('../utils/UserTypes');
 
 const router = Router();
 
-router.post('/register', requiredRoles(['admin']), SLTController.register);
+router.post('/register', requiredRoles([_admin]), SLTController.register);
 router.post('/signin', SLTController.access);
-router.post('/signout', requiredRoles(['slt']), SLTController.deauth);
+router.post('/signout', requiredRoles([_slt]), SLTController.deauth);
 
-router.delete('/:sltId', requiredRoles(['admin']), async (req, res) => {
+router.delete('/:sltId', requiredRoles([_admin]), async (req, res) => {
   const { sltId } = req.params;
 
   try {
@@ -22,7 +25,7 @@ router.delete('/:sltId', requiredRoles(['admin']), async (req, res) => {
   }
 });
 
-router.put('/:sltId', requiredRoles(['admin']), async (req, res) => {
+router.put('/:sltId', requiredRoles([_admin]), async (req, res) => {
   const { sltId } = req.params;
 
   // Request body will be destructured in Controller method
