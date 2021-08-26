@@ -5,8 +5,21 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'plugin:import/recommended',
     'airbnb',
   ],
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@assets', './src/assets'],
+          ['@actions', './src/redux/actions'],
+          ['@services', './src/services'],
+        ],
+        extensions: ['.ts', '.js', '.jsx', '.json'],
+      },
+    },
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
