@@ -12,6 +12,8 @@ export { default as CoordinatorEntries } from './CoordinatorEntries/CoordinatorE
 export { default as TeacherPostCreationPage } from './TeacherPostCreationPage/TeacherPostCreationPage';
 export { default as CoordinatorPostVerificationPage } from './CoordinatorPostVerificationPage/CoordinatorPostVerificationPage';
 
+export { default as AdminControlTables } from './AdminControl/AdminControlTables';
+
 // Dashboard
 export { default as Dashboard } from './Dashboard/Dashboard';
 export { default as TeacherDashboard } from './Dashboard/TeacherDashboard/TeacherDashboard';
