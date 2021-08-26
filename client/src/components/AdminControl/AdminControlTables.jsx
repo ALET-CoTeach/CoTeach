@@ -4,6 +4,11 @@ import { Layout, Collapse, Tabs } from 'antd';
 
 import AdminTables from './Tables/AdminTables';
 import SLTTable from './Tables/SLTTable';
+import TeachersTable from './Tables/TeachersTable';
+import EmployersTables from './Tables/EmployerTable';
+import SchoolTable from './Tables/SchoolTable';
+import CompanyTable from './Tables/CompanyTable';
+import AddressTable from './Tables/AddressTable';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -40,19 +45,19 @@ const AdminControlTables = () => (
                             <SLTTable />
                         </TabPane>
                         <TabPane tab="Teachers" key="3">
-                            Content of Tab Pane 3
+                            <TeachersTable />
                         </TabPane>
                         <TabPane tab="Employers" key="4">
-                            Content of Tab Pane 4
+                            <EmployersTables />
                         </TabPane>
                         <TabPane tab="Schools" key="5">
-                            Content of Tab Pane 5
+                            <SchoolTable />
                         </TabPane>
                         <TabPane tab="Companies" key="6">
-                            Content of Tab Pane 6
+                            <CompanyTable />
                         </TabPane>
                         <TabPane tab="Addresses" key="7">
-                            Content of Tab Pane 7
+                            <AddressTable />
                         </TabPane>
                     </Tabs>
                 </div>
