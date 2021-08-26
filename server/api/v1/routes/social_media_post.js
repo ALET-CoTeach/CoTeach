@@ -10,6 +10,10 @@ const router = Router();
 router.post('/', requiredRoles([_admin, _slt, _teacher]), async (req, res) => {
   const socialMediaPostData = req.body;
 
+  if (req.user.authLevel === _teacher) {
+    socialMediaPostData.status = 'pending';
+  }
+
   try {
     // Create and save new SocialMediaPost from DB, then store response in const
     const jsonResponse = await SocialMediaPostController.createOne(socialMediaPostData);
