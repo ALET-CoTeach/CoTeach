@@ -21,12 +21,9 @@ import ThealeGreenBuilding from '@assets/SchoolPhotos/theale-green-building.png'
 import BicesterBuilding from '@assets/SchoolPhotos/bicester-building.jpg';
 import BicesterStudioBuilding from '@assets/SchoolPhotos/bicester-technology-building.jpg';
 
-import UTCReadingMap from '@assets/SchoolMaps/UTC-Reading-Map.png';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 const { Content, Footer, Sider } = Layout;
-
-const { Panel } = Collapse;
 
 const DescriptionItem = ({ title, content }) => (
   <div className="site-description-item-profile-wrapper">
@@ -86,7 +83,7 @@ const UTCProfilesTwo = () => {
   const onClose = () => {
     setVisible(false);
   };
-  const schoolProfiles = {};
+
   return (
     <div>
       <Layout style={{ paddingTop: 45 }}>
