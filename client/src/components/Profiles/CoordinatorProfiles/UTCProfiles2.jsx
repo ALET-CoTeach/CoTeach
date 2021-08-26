@@ -163,7 +163,7 @@ const UTCProfilesTwo = () => {
                           title="Ofsted"
                           content={(
                             <a href="https://reports.ofsted.gov.uk/provider/23/139268">
-                              Ofted Rating
+                              Ofsted Rating
                             </a>
                           )}
                         />
