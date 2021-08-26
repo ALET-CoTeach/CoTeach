@@ -9,8 +9,8 @@ import Highlighter from 'react-highlight-words';
 const data = [
   {
     key: '1',
-    adminFirstName: 'Amy',
-    adminLastName: 'Sutcliffe',
+    adminName: 'Amy',
+    adminEmail: 'amy.sutcliffe@utcreading.org.uk',
     adminPassword: 'password123'
   },
   
@@ -94,14 +94,14 @@ const AdminTables = () => {
 
   const columns = [
     {
-      title: 'First Name',
-      dataIndex: 'adminFirstName',
-      ...getColumnSearchProps('adminFirstName'),
+      title: 'Name',
+      dataIndex: 'adminName',
+      ...getColumnSearchProps('adminName'),
     },
     {
-      title: 'Last Name',
-      dataIndex: 'adminLastName',
-      ...getColumnSearchProps('adminLastName'),
+      title: 'Email',
+      dataIndex: 'adminEmail',
+      ...getColumnSearchProps('adminEmail'),
     },
     {
       title: 'Password',
