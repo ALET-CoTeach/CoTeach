@@ -15,6 +15,10 @@ import AddressTable from './Tables/AddressTable';
 import AddAdminModal from './Modals/AddAdminModal';
 import AddSLTModal from './Modals/AddSLTModal';
 import AddTeacherModal from './Modals/AddTeacherModal';
+import AddEmployerModal from './Modals/AddEmployerModal';
+import AddSchoolModal from './Modals/AddSchoolModal';
+import AddCompanyModal from './Modals/AddCompanyModal';
+import AddAddressModal from './Modals/AddAddressModal';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -46,15 +50,19 @@ const AdminControlTables = () => (
                             <TeachersTable />
                         </TabPane>
                         <TabPane tab="Employers" key="4">
+                            <AddEmployerModal />
                             <EmployersTables />
                         </TabPane>
                         <TabPane tab="Schools" key="5">
+                            <AddSchoolModal />
                             <SchoolTable />
                         </TabPane>
                         <TabPane tab="Companies" key="6">
+                            <AddCompanyModal />
                             <CompanyTable />
                         </TabPane>
                         <TabPane tab="Addresses" key="7">
+                            <AddAddressModal />
                             <AddressTable />
                         </TabPane>
                     </Tabs>
