@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
-const { _admin } require('../utils/UserTypes');
+const { _admin } = require('../utils/UserTypes');
 
 module.exports.register = async (req, res) => {
   // Destruct request body

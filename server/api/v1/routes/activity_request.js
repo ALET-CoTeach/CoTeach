@@ -49,12 +49,12 @@ router.get('/booked/:role::id', requiredRoles([_admin, _slt, _teacher, _employer
   }
 });
 
-router.delete('/:lessonRequestId', requiredRoles([_admin]), async (req, res) => {
-  const { lessonRequestId } = req.params;
+router.delete('/:activityRequestId', requiredRoles([_admin]), async (req, res) => {
+  const { activityRequestId } = req.params;
 
   try {
     // Delete one ActivityRequest by id from DB, then store response to const
-    const jsonResponse = await ActivityRequestController.deleteOne(lessonRequestId);
+    const jsonResponse = await ActivityRequestController.deleteOne(activityRequestId);
 
     return res.status(200).json(jsonResponse);
   } catch (err) {
@@ -63,8 +63,8 @@ router.delete('/:lessonRequestId', requiredRoles([_admin]), async (req, res) => 
   }
 });
 
-router.put('/:lessonRequestId', requiredRoles([_admin]), async (req, res) => {
-  const { lessonRequestId } = req.params;
+router.put('/:activityRequestId', requiredRoles([_admin]), async (req, res) => {
+  const { activityRequestId } = req.params;
 
   // Request body will be destructured in Controller method
   // And will be validated
@@ -72,7 +72,7 @@ router.put('/:lessonRequestId', requiredRoles([_admin]), async (req, res) => {
 
   try {
     // Update on ActivityRequest by id from DB, then store response to const
-    const jsonResponse = await ActivityRequestController.updateOne(lessonRequestId, updateData);
+    const jsonResponse = await ActivityRequestController.updateOne(activityRequestId, updateData);
 
     return res.status(500).json(jsonResponse);
   } catch (err) {

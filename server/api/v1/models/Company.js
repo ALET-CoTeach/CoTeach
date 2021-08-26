@@ -10,7 +10,7 @@ const companySchema = new Schema({
     required: true,
     unique: true,
   },
-  emailDomain: [{
+  emailDomains: [{
     type: String,
     required: true,
   }],
