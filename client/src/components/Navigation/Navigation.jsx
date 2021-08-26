@@ -59,12 +59,11 @@ const Navigation = () => {
             <Menu.Item key="setting:14"><Link to="coordinatordashboard">Coordinator Dashboard</Link></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
-        <Menu.Item key="notifications">
+        {/* <Menu.Item key="notifications">
           <Badge count={5}>
             <Toolbar />
           </Badge>
-          {/* <span style={{ paddingLeft: '10px' }}>Notifications</span> */}
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     </>
   );
