@@ -352,7 +352,7 @@ const AllLessons = () => {
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={allRequestsData ? allRequestsData.lessonRequests : null} size="large" />
+      <Table columns={columns} dataSource={allRequestsData ? allRequestsData.activityRequests : null} size="large" />
     </div>
   );
 };

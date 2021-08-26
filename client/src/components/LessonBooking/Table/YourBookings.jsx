@@ -287,7 +287,7 @@ const YourBookings = () => {
   ];
   return (
     <div>
-      <Table loading={isLoading} columns={columns} dataSource={data ? data.lessonRequests : null} size="large" />
+      <Table loading={isLoading} columns={columns} dataSource={data ? data.activityRequests : null} size="large" />
     </div>
   );
 };
