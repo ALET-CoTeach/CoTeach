@@ -42,28 +42,28 @@ const Navigation = () => {
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Profiles">
             <Menu.Item key="setting:5"><Link to="UTCProfiles2">Coordinator Contact</Link></Menu.Item>
-            <Menu.Item key="setting:6"><Link to="LandingPage">Landing Page</Link></Menu.Item>
+            <Menu.Item key="setting:6"><Link to="AdminControlTables">Admin Control Tables</Link></Menu.Item>
+            <Menu.Item key="setting:7"><Link to="LandingPage">Landing Page</Link></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Table Dashboards">
-            <Menu.Item key="setting:7"><Link to="LessonBooking">Lesson Booking (employer)</Link></Menu.Item>
-            <Menu.Item key="setting:8"><Link to="CoordinatorEntries">Coordinator Entries</Link></Menu.Item>
+            <Menu.Item key="setting:8"><Link to="LessonBooking">Lesson Booking (employer)</Link></Menu.Item>
+            <Menu.Item key="setting:9"><Link to="CoordinatorEntries">Coordinator Entries</Link></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Post Creation / Verification">
-            <Menu.Item key="setting:9"><Link to="TeacherPostCreationPage">Teacher Post Creation</Link></Menu.Item>
-            <Menu.Item key="setting:10"><Link to="CoordinatorPostVerification">Post Review Page</Link></Menu.Item>
+            <Menu.Item key="setting:10"><Link to="TeacherPostCreationPage">Teacher Post Creation</Link></Menu.Item>
+            <Menu.Item key="setting:11"><Link to="CoordinatorPostVerification">Post Review Page</Link></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Dashboards">
-            <Menu.Item key="setting:11"><Link to="TeacherDashboard">Teacher Dashboard</Link></Menu.Item>
-            <Menu.Item key="setting:12"><Link to="employerdashboard">Employer Dashboard</Link></Menu.Item>
-            <Menu.Item key="setting:13"><Link to="coordinatordashboard">Coordinator Dashboard</Link></Menu.Item>
+            <Menu.Item key="setting:12"><Link to="TeacherDashboard">Teacher Dashboard</Link></Menu.Item>
+            <Menu.Item key="setting:13"><Link to="employerdashboard">Employer Dashboard</Link></Menu.Item>
+            <Menu.Item key="setting:14"><Link to="coordinatordashboard">Coordinator Dashboard</Link></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
-        <Menu.Item key="notifications">
+        {/* <Menu.Item key="notifications">
           <Badge count={5}>
             <Toolbar />
           </Badge>
-          {/* <span style={{ paddingLeft: '10px' }}>Notifications</span> */}
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     </>
   );

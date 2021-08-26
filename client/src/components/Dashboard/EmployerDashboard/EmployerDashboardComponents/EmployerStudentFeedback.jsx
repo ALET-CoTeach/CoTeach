@@ -3,18 +3,18 @@ import { Radar } from '@ant-design/charts';
 
 const DemoRadar = () => {
   const data = [
-    { name: 'Enjoyability', star: 301},
-    { name: 'Relevancy', star: 150 },
-    { name: 'Amount Learned', star: 334 },
-    { name: 'Usefullness', star: 202 },
-    { name: 'Interactivity', star: 298 },
+    { name: 'Enjoyability', Stars: 301},
+    { name: 'Relevancy', Stars: 150 },
+    { name: 'Amount Learned', Stars: 334 },
+    { name: 'Usefullness', Stars: 202 },
+    { name: 'Interactivity', Stars: 298 },
   ];
   const config = {
     data: data.map((d) => ({ ...d })),
     xField: 'name',
-    yField: 'star',
+    yField: 'Stars',
     meta: {
-      star: {
+      Stars: {
         min: 0,
         nice: true,
       },
