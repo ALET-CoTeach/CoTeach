@@ -24,7 +24,6 @@ const steps = [
 ];
 
 const CreatePostSteps = (props) => {
-
   const { handleOk } = props;
 
   const [current, setCurrent] = useState(0);
