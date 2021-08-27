@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
 const middleware = require('./middleware');
 const deauth = require('./api/v1/utils/deauth');
 
@@ -74,6 +76,24 @@ app.use('/api/v1/socialmediapost', socialMediaPostRoutes);
 app.use('/api/v1/activityrequest', activityRequestRoutes);
 app.use('/api/v1/school', schoolRoutes);
 app.use('/api/v1/company', companyRoutes);
+
+// Swagger API documentation generator setup
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: 'CoTeach API',
+      description: 'Documentation for CoTeach API',
+      contact: {
+        name: 'Samson Nagamani',
+      },
+      servers: ['https://localhost:5001'],
+    },
+  },
+  apis: ['app.js', './api/v1/routes/*.js'],
+};
+
+const swaggerDocs = swaggerJSDoc(swaggerOptions);
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);
