@@ -14,6 +14,9 @@ require('dotenv').config();
 // Init. Express app
 const app = express();
 
+// Set port for server to listen on
+const port = process.env.PORT || 3000;
+
 // Check for local or remote db connection
 // const DATABASE_URL =
 //   process.env.LOCAL_DATABASE_URL || process.env.REMOTE_DATABASE_URL;
@@ -62,6 +65,8 @@ app.use(morgan('dev'));
  * /api/v1/signout:
  *  get:
  *    summary: Deauthenticates authenticated user.
+ *    security:
+ *      - bearerAuth: []
  */
 
 app.get('/api/v1/signout', deauth);
@@ -95,7 +100,16 @@ const swaggerOptions = {
       contact: {
         name: 'Samson Nagamani',
       },
-      servers: ['https://localhost:5001'],
+      servers: [`https://localhost:${port}`],
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
     },
   },
   apis: ['app.js', './api/v1/routes/*.js'],
@@ -107,7 +121,6 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);
 
-const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
