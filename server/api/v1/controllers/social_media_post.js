@@ -1,3 +1,4 @@
+const axios = require('axios');
 const SocialMediaPost = require('../models/SocialMediaPost');
 
 // TODO: Write suitable functions for all methods for the SocialMediaPost model
@@ -6,6 +7,7 @@ module.exports.createOne = (socialMediaPostData) => new Promise(async (resolve, 
   // Destruct socialMediaPostData
   const {
     image,
+    activityId,
     caption,
     teacherId,
     schoolId,
@@ -15,6 +17,7 @@ module.exports.createOne = (socialMediaPostData) => new Promise(async (resolve, 
     const newSocialMediaPost = new SocialMediaPost({
       // Creates new SocialMediaPost Object
       image,
+      activityId,
       caption,
       teacherId,
       schoolId,

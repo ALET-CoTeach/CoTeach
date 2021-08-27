@@ -15,6 +15,8 @@ export const backendApi = createApi({
     },
   }),
   endpoints: (builder) => ({
+    // creates a hook
+    // previxes with "use" capitalises first letter, sufexies with "Query".
     getLessonRequests: builder.query({
       query: () => '/activityrequest/available',
     }),

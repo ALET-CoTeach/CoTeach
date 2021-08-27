@@ -20,7 +20,7 @@ const socialMediaPostSchema = new Schema(
       type: String,
       required: true,
     },
-    activtyId: {
+    activityId: {
       type: String,
       required: true,
     },
