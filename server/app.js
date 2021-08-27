@@ -55,6 +55,14 @@ const corsOptions = {
 
 app.use(cors({ origin: '*' }));
 app.use(express.json());
+app.use(morgan('dev'));
+
+/**
+ * @openapi
+ * /api/v1/signout:
+ *  get:
+ *    summary: Deauthenticates authenticated user.
+ */
 
 app.get('/api/v1/signout', deauth);
 
@@ -79,7 +87,8 @@ app.use('/api/v1/company', companyRoutes);
 
 // Swagger API documentation generator setup
 const swaggerOptions = {
-  swaggerDefinition: {
+  definition: {
+    openapi: '3.0.0',
     info: {
       title: 'CoTeach API',
       description: 'Documentation for CoTeach API',
