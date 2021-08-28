@@ -10,6 +10,8 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './src/assets'),
       '@actions': path.resolve(__dirname, './src/redux/actions'),
       '@services': path.resolve(__dirname, './src/services'),
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@components': path.resolve(__dirname, './src/components'),
     },
   },
 });

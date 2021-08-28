@@ -68,7 +68,6 @@ app.use(morgan('dev'));
  *    security:
  *      - bearerAuth: []
  */
-
 app.get('/api/v1/signout', deauth);
 
 // Imports for version 1 of the api
