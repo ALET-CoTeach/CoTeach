@@ -25,7 +25,7 @@ code {
   left: 0;
 }
 
-.addLesson-content{
+.activityBooking-content{
   margin: '0px 16px 0';
   padding-bottom: 24px;
   padding-right: 24px;
@@ -34,7 +34,7 @@ code {
   overflow: 'initial';
 }
 
-.addLesson-table-title{
+.activityBooking-table-title{
   font-size: large;
 }
 

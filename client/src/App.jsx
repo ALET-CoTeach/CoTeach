@@ -1,27 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
-  SchoolProfile,
-  Navigation,
-  Dashboard,
-  //Users,
   About,
-  AddLesson,
-  SignInPage,
-  StatisticsPage,
-  RegisterPage,
-  UTCProfiles,
-  UTCProfilesTwo,
-  LessonBooking,
+  ActivityBookings,
+  Control,
+  CreatePost,
+  Dashboard,
   LandingPage,
-  CoordinatorEntries,
-  TeacherPostCreationPage,
-  CoordinatorPostVerificationPage,
-  TeacherDashboard,
-  EmployerDashboard,
-  CoordinatorDashboard,
-  AdminControlTables,
-} from './components';
+  Profile,
+  Register,
+  ReviewPost,
+  SignIn,
+  Statistics,
+} from '@pages';
+
+import { Navigation } from '@components';
 
 // User Profiles for Coordinators
 
@@ -43,31 +36,25 @@ const App = () => {
           <Navigation />
           <Switch>
             <Route path="/" exact component={() => <LandingPage />} />
-            {/*  <Route path="/users" exact component={() => <Users />} />  */}
+            <Route path="/dashboard" exact component={() => <Dashboard />} />
             <Route path="/about" exact component={() => <About />} />
-            <Route path="/addlesson" exact component={() => <AddLesson />} />
-            <Route path="/signin" exact component={() => <SignInPage />} />
-            <Route path="/register" exact component={() => <RegisterPage />} />
-            <Route path="/statistics" exact component={() => <StatisticsPage />} />
-            <Route path="/profiles/school" exact component={() => <SchoolProfile />} />
-            <Route path="/utcprofiles" exact component={() => <UTCProfiles />} />
-            <Route path="/lessonbooking" exact component={() => <LessonBooking />} />
+            <Route path="/signin" exact component={() => <SignIn />} />
+            <Route path="/register" exact component={() => <Register />} />
+            <Route path="/statistics" exact component={() => <Statistics />} />
+            <Route path="/schools" exact component={() => <Profile type="schools" />} />
+            <Route path="/organisations" exact component={() => <Profile type="orgs" />} />
+            <Route path="/activitybookings" exact component={() => <ActivityBookings />} />
             <Route path="/landingpage" exact component={() => <LandingPage />} />
-            <Route path="/utcprofiles2" exact component={() => <UTCProfilesTwo />} />
-            <Route path="/coordinatorentries" exact component={() => <CoordinatorEntries />} />
-            <Route path="/teacherpostcreationpage" exact component={() => <TeacherPostCreationPage />} />
-            <Route path="/coordinatorpostverification" exact component={() => <CoordinatorPostVerificationPage />} />
-            <Route path="/teacherdashboard" exact component={() => <TeacherDashboard />} />
-            <Route path="/employerdashboard" exact component={() => <EmployerDashboard />} />
-            <Route path="/coordinatordashboard" exact component={() => <CoordinatorDashboard />} />
-            <Route path="/admincontroltables" exact component={() => <AdminControlTables />} />
+            <Route path="/createpost" exact component={() => <CreatePost />} />
+            <Route path="/reviewpost" exact component={() => <ReviewPost />} />
+            <Route path="/control" exact component={() => <Control />} />
           </Switch>
         </Router>
       </div>
     );
   }
 
-  return <SignInPage />;
+  return <SignIn />;
 };
 
 export default App;

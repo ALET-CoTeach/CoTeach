@@ -1,62 +1,85 @@
-export { default as About } from './About/About';
-export { default as Footer } from './Footer/Footer';
-export { default as AddLesson } from './AddLesson/AddLesson';
-export { default as SignInPage } from './SignInPage/SignInPage';
-export { default as RegisterPage } from './RegisterPage/RegisterPage';
-export { default as StatisticsPage } from './Statistics/Statistics';
-export { default as UTCProfiles } from './Profiles/CoordinatorProfiles/UTCProfiles';
-export { default as UTCProfilesTwo } from './Profiles/CoordinatorProfiles/UTCProfiles2';
-export { default as LessonBooking } from './LessonBooking/LessonBooking';
-export { default as LandingPage } from './LandingPage/LandingPage';
-export { default as CoordinatorEntries } from './CoordinatorEntries/CoordinatorEntries';
-export { default as TeacherPostCreationPage } from './TeacherPostCreationPage/TeacherPostCreationPage';
-export { default as CoordinatorPostVerificationPage } from './CoordinatorPostVerificationPage/CoordinatorPostVerificationPage';
+import AllAvailableActivities from './ActivityTables/AllAvailableActivities';
+import AllBookedActivities from './ActivityTables/AllBookedActivities';
+import BookedActivities from './ActivityTables/BookedActivities';
+import CompletedActivities from './ActivityTables/CompletedActivities';
 
-export { default as AdminControlTables } from './AdminControl/AdminControlTables';
+import AddActivityModal from './AddActivityModal/AddActivityModal';
 
-// Dashboard
-export { default as Dashboard } from './Dashboard/Dashboard';
-export { default as TeacherDashboard } from './Dashboard/TeacherDashboard/TeacherDashboard';
-export { default as EmployerDashboard } from './Dashboard/EmployerDashboard/EmployerDashboard';
-export { default as CoordinatorDashboard } from './Dashboard/CoordinatorDashboard/CoordinatorDashboard';
-// export { default as EmployerDashboard } from "./Dashboard/EmployerDashboard";
-// export { default as CoordinatorDashboard } from "./Dashboard/CoordinatorDashboard";
+import AddAdminModal from './ControlModals/AddAdminModal';
+import AddCompanyModal from './ControlModals/AddCompanyModal';
+import AddEmployerModal from './ControlModals/AddEmployerModal';
+import AddSchoolModal from './ControlModals/AddSchoolModal';
+import AddSLTModal from './ControlModals/AddSLTModal';
+import AddTeacherModal from './ControlModals/AddTeacherModal';
 
-// Navigation
-export { default as Navigation } from './Navigation/Navigation';
-export { default as Toolbar } from './Navigation/Toolbar/Toolbar';
+import AdminTable from './ControlTables/AdminTable';
+import CompanyTable from './ControlTables/CompanyTable';
+import EmployerTable from './ControlTables/EmployerTable';
+import SchoolTable from './ControlTables/SchoolTable';
+import SLTTable from './ControlTables/SLTTable';
+import TeacherTable from './ControlTables/TeacherTable';
 
-// Profiles
-export { default as SchoolProfile } from './Profiles/School/School';
+import CreatePostModal from './CreatePostModal/CreatePostModal';
+import CreatePostTable from './CreatePostTable/CreatePostTable';
 
-// addLesson Tables
-export { default as MainTable } from './AddLesson/Table/AllRequests';
-export { default as TableComponent } from './AddLesson/Table/Table';
-export { default as BookedTable } from './AddLesson/Table/FulfilledRequests';
-export { default as UnbookedRequests } from './AddLesson/Table/UnbookedRequests';
+import CoordinatorDashboard from './Dashboard/CoordinatorDashboard';
+import EmployerDashboard from './Dashboard/EmployerDashboard';
+import TeacherDashboard from './Dashboard/TeacherDashboard';
 
-// Coordinator Entries page
+import IndustryLogos from './LogoGrid/IndustryLogos.jsx';
 
-// addLesson Tables Modal
-export { default as TableModal } from './AddLesson/Table/Modal/TableModal';
+import Navigation from './Navigation/Navigation';
 
-// SignInPageComponents
-export { default as SignInTabs } from './SignInPage/Tabs/SignInTabs';
-export { default as TeacherForm } from './SignInPage/Tabs/Forms/TeacherForm';
-export { default as SLTForm } from './SignInPage/Tabs/Forms/SLTForm';
-export { default as EmployerForm } from './SignInPage/Tabs/Forms/EmployerForm';
+import UTC2 from './Profiles/UTC2';
 
-// addLesson Modal
-export { default as ModalComponent } from './AddLesson/Modal/Modal';
+import SignInTabs from './SignInTabs/SignInTabs';
 
-// addLesson Steps
-export { default as StepsComponent } from './AddLesson/Modal/Steps/Steps';
+import StudentComments from './StudentComments/StudentComments';
+import StudentFeedback from './StudentFeedback/StudentFeedback';
 
-// addLesson Calendar
-export { default as CalendarComponent } from './AddLesson/Calendar/Calendar';
+import VerifyPostModal from './VerifyPostModal/VerifyPostModal';
+import VerifyPostTable from './VerifyPostTable/VerifyPostTable';
 
-// addLesson Forms
-export { default as Timeform } from './AddLesson/Modal/Steps/Form/Timeform';
-export { default as Lessonform } from './AddLesson/Modal/Steps/Form/Lessonform';
-export { default as Schoolform } from './AddLesson/Modal/Steps/Form/Schoolform';
-export { default as Teacherform } from './AddLesson/Modal/Steps/Form/Teacherform';
+export {
+  AllAvailableActivities,
+  AllBookedActivities,
+  BookedActivities,
+  CompletedActivities,
+
+  AddActivityModal,
+
+  AddAdminModal,
+  AddCompanyModal,
+  AddEmployerModal,
+  AddSchoolModal,
+  AddSLTModal,
+  AddTeacherModal,
+
+  AdminTable,
+  CompanyTable,
+  EmployerTable,
+  SchoolTable,
+  SLTTable,
+  TeacherTable,
+
+  CreatePostModal,
+  CreatePostTable,
+
+  CoordinatorDashboard,
+  EmployerDashboard,
+  TeacherDashboard,
+
+  IndustryLogos,
+
+  Navigation,
+
+  UTC2,
+
+  SignInTabs,
+
+  StudentComments,
+  StudentFeedback,
+
+  VerifyPostModal,
+  VerifyPostTable,
+};

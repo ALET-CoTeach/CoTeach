@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import '../../index.css';
+import '/src/index.css';
 import 'antd/dist/antd.css';
 import { Menu, Badge, Switch } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
+
 import {
   HomeOutlined, BookOutlined, SettingOutlined, BellOutlined,
 } from '@ant-design/icons';
+
 import Toolbar from './Toolbar/Toolbar';
 
 const { SubMenu } = Menu;
@@ -22,41 +24,38 @@ const Navigation = () => {
     <>
       <Menu className="navbar" onClick={handleClick} selectedKeys={[current]} mode="horizontal" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <Menu.Item key="home" icon={<HomeOutlined />}>
-          <Link to="LandingPage">
+          <NavLink to="/">
             Home
-          </Link>
+          </NavLink>
         </Menu.Item>
         <Menu.Item key="addLesson" icon={<BookOutlined />}>
-          <Link to="AddLesson">
+          <NavLink to="activitybookings">
             Add Lesson
-          </Link>
+          </NavLink>
         </Menu.Item>
         <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Work In Progress">
           <Menu.ItemGroup title="Dashboards">
-            <Menu.Item key="setting:1"><Link to="statistics">Lesson Statistics</Link></Menu.Item>
-            <Menu.Item key="setting:2"><Link to="/">Social Media Statistics</Link></Menu.Item>
+            <Menu.Item key="setting:1"><NavLink to="statistics">Lesson Statistics</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Accounts">
-            <Menu.Item key="setting:3"><Link to="register">Register</Link></Menu.Item>
-            <Menu.Item key="setting:4"><Link to="signin">Sign In</Link></Menu.Item>
+            <Menu.Item key="setting:3"><NavLink to="register">Register</NavLink></Menu.Item>
+            <Menu.Item key="setting:4"><NavLink to="signin">Sign In</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Profiles">
-            <Menu.Item key="setting:5"><Link to="UTCProfiles2">Coordinator Contact</Link></Menu.Item>
-            <Menu.Item key="setting:6"><Link to="AdminControlTables">Admin Control Tables</Link></Menu.Item>
-            <Menu.Item key="setting:7"><Link to="LandingPage">Landing Page</Link></Menu.Item>
+            <Menu.Item key="setting:5"><NavLink to="schools">Coordinator Contact</NavLink></Menu.Item>
+            <Menu.Item key="setting:6"><NavLink to="controls">Admin Control Tables</NavLink></Menu.Item>
+            <Menu.Item key="setting:7"><NavLink to="/">Landing Page</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Table Dashboards">
-            <Menu.Item key="setting:8"><Link to="LessonBooking">Lesson Booking (employer)</Link></Menu.Item>
-            <Menu.Item key="setting:9"><Link to="CoordinatorEntries">Coordinator Entries</Link></Menu.Item>
+            <Menu.Item key="setting:8"><NavLink to="activitybookings">Lesson Booking (employer)</NavLink></Menu.Item>
+            <Menu.Item key="setting:9"><NavLink to="activitybookings">Activity Entries</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Post Creation / Verification">
-            <Menu.Item key="setting:10"><Link to="TeacherPostCreationPage">Teacher Post Creation</Link></Menu.Item>
-            <Menu.Item key="setting:11"><Link to="CoordinatorPostVerification">Post Review Page</Link></Menu.Item>
+            <Menu.Item key="setting:10"><NavLink to="createpost">Create Post</NavLink></Menu.Item>
+            <Menu.Item key="setting:11"><NavLink to="reviewpost">Review Post</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Dashboards">
-            <Menu.Item key="setting:12"><Link to="TeacherDashboard">Teacher Dashboard</Link></Menu.Item>
-            <Menu.Item key="setting:13"><Link to="employerdashboard">Employer Dashboard</Link></Menu.Item>
-            <Menu.Item key="setting:14"><Link to="coordinatordashboard">Coordinator Dashboard</Link></Menu.Item>
+            <Menu.Item key="setting:12"><NavLink to="dashboard">Dashboard</NavLink></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
         {/* <Menu.Item key="notifications">
