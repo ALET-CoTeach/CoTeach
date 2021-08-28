@@ -5,6 +5,7 @@ import { activityAPI } from '../services/backendAPI/activity_request';
 import { adminAPI } from '../services/backendAPI/admin';
 import { companyAPI } from '../services/backendAPI/company';
 import { employerAPI } from '../services/backendAPI/employer';
+import { schoolAPI } from '../services/backendAPI/school';
 
 import allReducers from './reducers';
 
@@ -18,7 +19,8 @@ const store = configureStore({
     .concat(activityAPI.middleware)
     .concat(adminAPI.middleware)
     .concat(companyAPI.middleware)
-    .concat(employerAPI.middleware),
+    .concat(employerAPI.middleware)
+    .concat(schoolAPI.middleware),
 });
 
 setupListeners(store.dispatch);
