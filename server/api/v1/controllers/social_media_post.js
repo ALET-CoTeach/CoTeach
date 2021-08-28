@@ -147,26 +147,16 @@ module.exports.review = (req, res) => {
   }
 };
 //
-module.exports.postFacebook = (req, res) => {
-  const { id: postId } = req.body;
-  SocialMediaPost.findOne({ _id: postId }, (err, post) => {
-    if (err) {
-      return res.status(500).json({
-        error: err,
-      });
-    }
-
-    if (post.facebookStatus === 'approved') {
+module.exports.postFacebook = (id) => new Promise(async (resolve, reject) => {
+  try {
+    const post = await SocialMediaPost.findById(id);
+    if (post && post.facebookStatus === 'approved') {
       const url = `https://graph.facebook.com/v11.0/105175718455172/photos?url=${post.image}&message=${post.caption}&access_token=${process.env.FACEBOOK_TOKEN}`;
-      axios.post(url)
-        .then((response) => {
-          res.status(201).json({
-            message: 'Posted to Facebook successfully',
-          });
-        })
-        .catch((err) => res.status(500).json({
-          error: err,
-        }));
+
+      const response = await axios.post(url);
+      if (response) resolve(response);
     }
-  });
-};
+  } catch (err) {
+    reject(err);
+  }
+});
