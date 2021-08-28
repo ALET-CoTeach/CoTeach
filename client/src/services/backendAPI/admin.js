@@ -23,6 +23,7 @@ export const adminAPI = createApi({
     }),
     signinAdmin: builder.query({
       query: '/signin',
+      method: 'POST',
     }),
   }),
 });
