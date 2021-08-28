@@ -8,7 +8,7 @@ import { employerAPI } from '../services/backendAPI/employer';
 import { schoolAPI } from '../services/backendAPI/school';
 import { sltAPI } from '../services/backendAPI/slt';
 import { socialMediaPostAPI } from '../services/backendAPI/social_media_post';
-
+import { teacherAPI } from '../services/backendAPI/teacher';
 import allReducers from './reducers';
 
 const store = configureStore({
@@ -24,7 +24,8 @@ const store = configureStore({
     .concat(employerAPI.middleware)
     .concat(schoolAPI.middleware)
     .concat(sltAPI.middleware)
-    .concat(socialMediaPostAPI.middleware),
+    .concat(socialMediaPostAPI.middleware)
+    .concat(teacherAPI.middleware),
 });
 
 setupListeners(store.dispatch);
