@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { activityAPI } from '../services/backendAPI/activity_request';
-import { AdminAPI } from '../services/backendAPI/admin';
+import { adminAPI } from '../services/backendAPI/admin';
+import { companyAPI } from '../services/backendAPI/company';
 
 import allReducers from './reducers';
 
@@ -14,7 +15,8 @@ const store = configureStore({
   devTools: true,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(activityAPI.middleware)
-    .concat(AdminAPI.middleware),
+    .concat(adminAPI.middleware)
+    .concat(companyAPI.middleware),
 });
 
 setupListeners(store.dispatch);
