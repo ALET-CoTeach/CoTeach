@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
 const middleware = require('./middleware');
 const deauth = require('./api/v1/utils/deauth');
 
@@ -11,6 +13,9 @@ require('dotenv').config();
 
 // Init. Express app
 const app = express();
+
+// Set port for server to listen on
+const port = process.env.PORT || 3000;
 
 // Check for local or remote db connection
 // const DATABASE_URL =
@@ -53,6 +58,16 @@ const corsOptions = {
 
 app.use(cors({ origin: '*' }));
 app.use(express.json());
+app.use(morgan('dev'));
+
+/**
+ * @openapi
+ * /api/v1/signout:
+ *  get:
+ *    summary: Deauthenticates authenticated user.
+ *    security:
+ *      - bearerAuth: []
+ */
 
 app.get('/api/v1/signout', deauth);
 
@@ -75,10 +90,37 @@ app.use('/api/v1/activityrequest', activityRequestRoutes);
 app.use('/api/v1/school', schoolRoutes);
 app.use('/api/v1/company', companyRoutes);
 
+// Swagger API documentation generator setup
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'CoTeach API',
+      description: 'Documentation for CoTeach API',
+      contact: {
+        name: 'Samson Nagamani',
+      },
+      servers: [`https://localhost:${port}`],
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+  },
+  apis: ['app.js', './api/v1/routes/*.js'],
+};
+
+const swaggerDocs = swaggerJSDoc(swaggerOptions);
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);
 
-const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
