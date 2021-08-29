@@ -25,11 +25,11 @@ export const companyAPI = createApi({
       query: '/',
     }),
     deleteCompany: builder.query({
-      query: ({ companyId }) => `/:${companyId}`,
+      query: ({ companyId }) => `/${companyId}`,
       method: 'DELETE',
     }),
     updateCompany: builder.query({
-      query: ({ companyId }) => `/:${companyId}`,
+      query: ({ companyId }) => `/${companyId}`,
       method: 'PUT',
     }),
   }),

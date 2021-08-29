@@ -28,11 +28,11 @@ export const activityAPI = createApi({
       query: ({ role, id }) => `/activityrequest/booked/${role}:${id}`,
     }),
     deleteActivityRequest: builder.query({
-      query: ({ activityRequestId }) => `/:${activityRequestId}`,
+      query: ({ activityRequestId }) => `/${activityRequestId}`,
       method: 'DELETE',
     }),
     updateActivityRequest: builder.query({
-      query: ({ activityRequestId }) => `/:${activityRequestId}`,
+      query: ({ activityRequestId }) => `/${activityRequestId}`,
       method: 'PUT',
     }),
   }),

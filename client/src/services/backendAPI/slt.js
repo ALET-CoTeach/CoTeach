@@ -17,7 +17,7 @@ export const sltAPI = createApi({
   endpoints: (builder) => ({
     // creates a hook
     // previxes with "use" capitalises first letter, sufexies with "Query".
-    postSlt: builder.query({
+    registerSlt: builder.query({
       query: () => '/register',
       method: 'POST',
     }),
@@ -25,18 +25,18 @@ export const sltAPI = createApi({
       query: '/signin',
     }),
     deleteSlt: builder.query({
-      query: ({ sltId }) => `/:${sltId}`,
+      query: ({ sltId }) => `/${sltId}`,
       method: 'DELETE',
     }),
     updateSlt: builder.query({
-      query: ({ sltId }) => `/:${sltId}`,
+      query: ({ sltId }) => `/${sltId}`,
       method: 'PUT',
     }),
   }),
 });
 
 export const {
-  usePostSltQuery,
+  useRegisterSltQuery,
   useSignInSltQuery,
   useDeleteSltQuery,
   useUpdateSltQuery,

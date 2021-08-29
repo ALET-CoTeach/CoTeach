@@ -17,27 +17,27 @@ export const employerAPI = createApi({
   endpoints: (builder) => ({
     // creates a hook
     // previxes with "use" capitalises first letter, sufexies with "Query".
-    postEmployer: builder.query({
+    registerEmployer: builder.query({
       query: () => '/register',
       method: 'POST',
     }),
-    signInEmployer: builder.query({
+    signinEmployer: builder.query({
       query: '/signin',
       method: 'POST',
     }),
     deleteEmployer: builder.query({
-      query: ({ employerId }) => `/:${employerId}`,
+      query: ({ employerId }) => `/${employerId}`,
       method: 'DELETE',
     }),
     updateEmployer: builder.query({
-      query: ({ employerId }) => `/:${employerId}`,
+      query: ({ employerId }) => `/${employerId}`,
       method: 'PUT',
     }),
   }),
 });
 
 export const {
-  usePostEmployerQuery,
+  useRegisterEmployerQuery,
   useSignInEmployerQuery,
   useDeleteEmployerQuery,
   useUpdateEmployerQuery,

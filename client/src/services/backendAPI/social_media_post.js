@@ -25,11 +25,11 @@ export const socialMediaPostAPI = createApi({
       query: '/',
     }),
     deleteSocialMediaPost: builder.query({
-      query: ({ socialMediaPostId }) => `/:${socialMediaPostId}`,
+      query: ({ socialMediaPostId }) => `/${socialMediaPostId}`,
       method: 'DELETE',
     }),
     updateSocialMediaPost: builder.query({
-      query: ({ socialMediaPostId }) => `/:${socialMediaPostId}`,
+      query: ({ socialMediaPostId }) => `/${socialMediaPostId}`,
       method: 'PUT',
     }),
   }),

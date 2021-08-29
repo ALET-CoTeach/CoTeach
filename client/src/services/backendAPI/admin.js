@@ -17,7 +17,7 @@ export const adminAPI = createApi({
   endpoints: (builder) => ({
     // creates a hook
     // previxes with "use" capitalises first letter, sufexies with "Query".
-    postAdmin: builder.query({
+    registerAdmin: builder.query({
       query: () => '/register',
       method: 'POST',
     }),
@@ -29,6 +29,6 @@ export const adminAPI = createApi({
 });
 
 export const {
-  usePostAdminQuery,
+  useRegisterAdminQuery,
   useSigninAdminQuery,
 } = adminAPI;

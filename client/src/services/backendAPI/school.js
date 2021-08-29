@@ -25,11 +25,11 @@ export const schoolAPI = createApi({
       query: '/',
     }),
     deleteSchool: builder.query({
-      query: ({ schoolId }) => `/:${schoolId}`,
+      query: ({ schoolId }) => `/${schoolId}`,
       method: 'DELETE',
     }),
     updateSchool: builder.query({
-      query: ({ schoolId }) => `/:${schoolId}`,
+      query: ({ schoolId }) => `/${schoolId}`,
       method: 'PUT',
     }),
   }),

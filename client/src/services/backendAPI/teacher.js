@@ -17,7 +17,7 @@ export const teacherAPI = createApi({
   endpoints: (builder) => ({
     // creates a hook
     // previxes with "use" capitalises first letter, sufexies with "Query".
-    postTeacher: builder.query({
+    registerTeacher: builder.query({
       query: () => '/register',
       method: 'POST',
     }),
@@ -26,18 +26,18 @@ export const teacherAPI = createApi({
       method: 'POST',
     }),
     deleteTeacher: builder.query({
-      query: ({ teacherId }) => `/:${teacherId}`,
+      query: ({ teacherId }) => `/${teacherId}`,
       method: 'DELETE',
     }),
     updateTeacher: builder.query({
-      query: ({ teacherId }) => `/:${teacherId}`,
+      query: ({ teacherId }) => `/${teacherId}`,
       method: 'PUT',
     }),
   }),
 });
 
 export const {
-  usePostTeacherQuery,
+  useRegisterTeacherQuery,
   useSignInTeacherQuery,
   useDeleteTeacherQuery,
   useUpdateTeacherQuery,
