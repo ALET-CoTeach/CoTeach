@@ -14,6 +14,13 @@ import allReducers from './reducers';
 const store = configureStore({
   reducer: {
     [activityAPI.reducerPath]: activityAPI.reducer,
+    [adminAPI.reducerPath]: adminAPI.reducer,
+    [companyAPI.reducerPath]: companyAPI.reducer,
+    [employerAPI.reducerPath]: employerAPI.reducer,
+    [schoolAPI.reducerPath]: schoolAPI.reducer,
+    [sltAPI.reducerPath]: sltAPI.reducer,
+    [socialMediaPostAPI.reducerPath]: socialMediaPostAPI.reducer,
+    [teacherAPI.reducerPath]: teacherAPI.reducer,
     ...allReducers,
   },
   devTools: true,
