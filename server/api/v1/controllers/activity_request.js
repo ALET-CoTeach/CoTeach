@@ -97,34 +97,38 @@ module.exports.updateOne = (activityRequestId, updateData) => new Promise(async 
 
 module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   const tempFunc = (data) => new Promise(async (resolve, reject) => {
-    const [teacher, school, employer, company] = await Promise.all([
-      Teacher.findById(data.teacherId).lean(),
-      School.findById(data.schoolId),
-      Employer.findById(data.employerId).lean(),
-      Company.findById(data.companyId),
-    ]);
+    try {
+      const [teacher, school, employer, company] = await Promise.all([
+        Teacher.findById(data.teacherId).lean(),
+        School.findById(data.schoolId),
+        Employer.findById(data.employerId).lean(),
+        Company.findById(data.companyId),
+      ]);
 
-    delete data.__v;
-    delete data.createdAt;
-    delete data.updatedAt;
-    delete data.teacherId;
-    delete data.schoolId;
-    delete data.employerId;
-    delete data.companyId;
+      delete data.__v;
+      delete data.createdAt;
+      delete data.updatedAt;
+      delete data.teacherId;
+      delete data.schoolId;
+      delete data.employerId;
+      delete data.companyId;
 
-    const teacherName = _.upperFirst(`${teacher.firstname} ${teacher.lastname}`);
+      const teacherName = _.upperFirst(`${teacher.firstname} ${teacher.lastname}`);
 
-    if (employer) {
-      const employerName = _.upperFirst(`${employer.firstname} ${employer.lastname}`);
+      if (employer) {
+        const employerName = _.upperFirst(`${employer.firstname} ${employer.lastname}`);
+
+        resolve({
+          ...data, teacherName, school: school.name, employerName, company: company.name,
+        });
+      }
 
       resolve({
-        ...data, teacherName, school: school.name, employerName, company: company.name,
+        ...data, teacherName, school: school.name,
       });
+    } catch (err) {
+      reject(err);
     }
-
-    resolve({
-      ...data, teacherName, school: school.name,
-    });
   });
 
   try {
