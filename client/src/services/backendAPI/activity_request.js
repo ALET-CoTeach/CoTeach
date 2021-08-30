@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const activityAPI = createApi({
-  reducerPath: 'ActivityRequestAPI',
+  reducerPath: 'activityRequestAPI',
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_BASE_API_URL}/activityrequest`,
     prepareHeaders: (headers, { getState }) => {
@@ -22,10 +22,11 @@ export const activityAPI = createApi({
       method: 'POST',
     }),
     getActivityRequests: builder.query({
-      query: '/available',
+      query: () => '/available',
+      transformResponse: (response) => response.activityRequests,
     }),
-    getBookedActivityRequest: builder.query({
-      query: ({ role, id }) => `/activityrequest/booked/${role}:${id}`,
+    getBookedActivityRequests: builder.query({
+      query: ({ role, id }) => `/booked/${role}:${id}`,
     }),
     deleteActivityRequest: builder.query({
       query: ({ activityRequestId }) => `/${activityRequestId}`,
@@ -41,7 +42,7 @@ export const activityAPI = createApi({
 export const {
   usePostActivityRequestQuery,
   useGetActivityRequestsQuery,
-  useGetBookedActivityRequestQuery,
+  useGetBookedActivityRequestsQuery,
   useDeleteActivityRequestQuery,
   useUpdateActivityRequestQuery,
 } = activityAPI;

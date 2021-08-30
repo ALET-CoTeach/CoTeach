@@ -19,9 +19,7 @@ import {
   TeacherTable,
 } from '@components';
 
-const { Content, Footer, Sider } = Layout;
-
-const { Panel } = Collapse;
+const { Content, Footer } = Layout;
 
 const { TabPane } = Tabs;
 

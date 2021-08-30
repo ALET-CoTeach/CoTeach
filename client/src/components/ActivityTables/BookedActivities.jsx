@@ -8,18 +8,11 @@ import {
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 
-import { useGetBookedLessonRequestsQuery } from '@services/backend_api';
-
 const YourBookings = () => {
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');
   const searchInput = useRef(null);
 
-  const { userId, authLevel } = useSelector((state) => state.auth); const { data, isLoading } = useGetBookedLessonRequestsQuery({ role: authLevel, id: userId });
-
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
-  };
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -165,18 +158,6 @@ const YourBookings = () => {
       onFilter: (value, record) => record.activityType.indexOf(value) === 0,
     },
     {
-      title: () => {
-        if (authLevel === 'teacher') return 'Organisation Name';
-        if (authLevel === 'employer') return 'Teacher Name';
-      },
-      dataIndex: authLevel === 'teacher' ? 'company' : 'teacherName',
-      key: () => {
-        if (authLevel === 'teacher') return 'company';
-        if (authLevel === 'employer') return 'teacherName';
-      },
-      ...getColumnSearchProps('teacherName'),
-    },
-    {
       title: 'Subject',
       dataIndex: 'subject',
       key: 'subject',
@@ -285,7 +266,6 @@ const YourBookings = () => {
   ];
   return (
     <div>
-      <Table loading={isLoading} columns={columns} dataSource={data ? data.activityRequests : null} size="large" />
     </div>
   );
 };

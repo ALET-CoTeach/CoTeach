@@ -26,6 +26,8 @@ import CoordinatorDashboard from './Dashboard/CoordinatorDashboard';
 import EmployerDashboard from './Dashboard/EmployerDashboard';
 import TeacherDashboard from './Dashboard/TeacherDashboard';
 
+import Footer from './Footer/Footer';
+
 import IndustryLogos from './LogoGrid/IndustryLogos.jsx';
 
 import Navigation from './Navigation/Navigation';
@@ -68,6 +70,8 @@ export {
   CoordinatorDashboard,
   EmployerDashboard,
   TeacherDashboard,
+
+  Footer,
 
   IndustryLogos,
 

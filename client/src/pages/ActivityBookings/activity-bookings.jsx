@@ -16,7 +16,7 @@ const { Content, Footer, Sider } = Layout;
 const { Panel } = Collapse;
 
 const ActivityBookings = () => {
-  const authLevel = 'slt';
+  const authLevel = 'teacher';
 
   let panels;
   /**
@@ -42,19 +42,19 @@ const ActivityBookings = () => {
             header="All Available Activities"
             key="2"
           >
-            <AllBookedActivities />
+            <AllAvailableActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="Your Pending Requests"
-            key="1"
+            key="3"
           >
             <BookedActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="Your "
-            key="1"
+            key="4"
           >
             <AllBookedActivities />
           </Panel>

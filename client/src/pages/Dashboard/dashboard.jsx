@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 
 // import TeacherDashboard from './TeacherDashboard';
 // import EmployerDashboard from './EmployerDashboard';
@@ -11,9 +10,10 @@ import {
   TeacherDashboard,
   CoordinatorDashboard,
   EmployerDashboard,
+  Footer,
 } from '@components';
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 const Dashboard = () => {
   const authLevel = 'employer';
@@ -52,7 +52,7 @@ const Dashboard = () => {
             {dashboard}
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>ALET CoTeach 2021</Footer>
+        <Footer />
       </Layout>
     </Layout>
   );
