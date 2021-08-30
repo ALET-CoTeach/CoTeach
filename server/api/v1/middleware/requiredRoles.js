@@ -10,7 +10,7 @@ module.exports = (roles) => (req, res, next) => {
 
       if (decoded.authLevel === role) {
         isVerified = true;
-        req.user = decoded._doc;
+        req.user = decoded;
         console.log(req.user);
       }
     } catch (err) {}
