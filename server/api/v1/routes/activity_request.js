@@ -13,8 +13,8 @@ router.get('/available', requiredRoles([_admin, _slt, _teacher, _employer]), asy
   const filter = { employerId: { $exists: false }, companyId: { $exists: false } };
 
   // SLT and Teachers can only see available requests for the school they work at
-  if (req.user) filter.schoolId = req.user.schoolId;
-  if (req.user) filter.schoolId = req.user.schoolId;
+  // Only teachers and SLT have a schoolId property
+  filter.schoolId = req.user.schoolId;
 
   try {
     const jsonResponse = await ActivityRequestController.getAll(filter);
