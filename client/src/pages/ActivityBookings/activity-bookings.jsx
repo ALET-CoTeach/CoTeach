@@ -16,7 +16,7 @@ const { Content, Footer, Sider } = Layout;
 const { Panel } = Collapse;
 
 const ActivityBookings = () => {
-  const authLevel = 'teacher';
+  const authLevel = 'employer';
 
   let panels;
   /**
@@ -112,7 +112,9 @@ const ActivityBookings = () => {
           left: 0,
         }}
       >
-        <AddActivityModal />
+        {authLevel !== 'employer'
+          ? (<AddActivityModal />)
+          : null }
       </Sider>
       <Layout className="site-layout" style={{ marginLeft: 200 }}>
         <Content className="activityBooking-content">
