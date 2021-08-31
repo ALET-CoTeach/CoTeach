@@ -168,7 +168,7 @@ module.exports.access = async (req, res) => {
 
   try {
     // Find single slt user from unique email
-    const slt = await SLT.findOne({ email });
+    const slt = await SLT.findOne({ email }).lean();
 
     // Checks if slt doesn't exist
     if (!slt) {

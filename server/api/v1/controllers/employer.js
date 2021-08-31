@@ -164,7 +164,7 @@ module.exports.access = async (req, res) => {
 
   try {
     // Find single employer user from unique email
-    const employer = await Employer.findOne({ email });
+    const employer = await Employer.findOne({ email }).lean();
 
     // Checks if employer doesn't exist
     if (!employer) {

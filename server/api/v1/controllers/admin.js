@@ -55,7 +55,7 @@ module.exports.access = async (req, res) => {
 
   try {
     // Find single admin user from unique email
-    const admin = await Admin.findOne({ email });
+    const admin = await Admin.findOne({ email }).lean();
 
     // Checks if admin doesn't exist
     if (!admin) {

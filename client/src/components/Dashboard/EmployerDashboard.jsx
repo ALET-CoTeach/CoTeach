@@ -23,8 +23,8 @@ const EmployerDashboard = () => (
               <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
                 <h1 className="SubHeadingGrey centerText"><a href="/LessonBooking">Your Organisation Activity</a></h1>
                 {
-                          // Add this back in
-                        }
+                  // Add this back in
+                }
               </Card>
             </Col>
           </Row>

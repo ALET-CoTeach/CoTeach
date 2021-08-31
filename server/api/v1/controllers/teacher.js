@@ -192,7 +192,7 @@ module.exports.access = async (req, res) => {
 
   try {
     // Find single teacher user from unique email
-    const teacher = await Teacher.findOne({ email });
+    const teacher = await Teacher.findOne({ email }).lean();
 
     // Checks if teacher doesn't exist
     if (!teacher) {
