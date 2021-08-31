@@ -124,8 +124,8 @@ const AllLessons = () => {
     },
     {
       title: 'Lesson Title',
-      dataIndex: 'lesson',
-      key: 'lesson',
+      dataIndex: 'lessonTitle',
+      key: 'lessonTitle',
     },
     {
       title: 'Type',
