@@ -169,8 +169,8 @@ module.exports.access = async (req, res) => {
     // Checks if employer doesn't exist
     if (!employer) {
       // Cannot signin if employer account does not exist
-      return res.status(200).json({
-        message: 'Employer account does not exist on database',
+      return res.status(404).json({
+        message: 'Employer account does not exist',
       });
     }
 

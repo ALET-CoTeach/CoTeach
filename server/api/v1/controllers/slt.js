@@ -173,8 +173,8 @@ module.exports.access = async (req, res) => {
     // Checks if slt doesn't exist
     if (!slt) {
       // Cannot signin if slt account does not exist
-      return res.status(200).json({
-        message: 'SLT account does not exist on database',
+      return res.status(404).json({
+        message: 'SLT account does not exist',
       });
     }
 

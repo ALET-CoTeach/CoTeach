@@ -60,8 +60,8 @@ module.exports.access = async (req, res) => {
     // Checks if admin doesn't exist
     if (!admin) {
       // Cannot signin if admin account does not exist
-      return res.status(200).json({
-        message: 'Admin account does not exist on database',
+      return res.status(404).json({
+        message: 'Admin account does not exist',
       });
     }
 

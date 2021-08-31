@@ -197,8 +197,8 @@ module.exports.access = async (req, res) => {
     // Checks if teacher doesn't exist
     if (!teacher) {
     // Cannot signin if teacher account does not exist
-      return res.status(200).json({
-        message: 'Teacher account does not exist on database',
+      return res.status(404).json({
+        message: 'Teacher account does not exist',
       });
     }
 
