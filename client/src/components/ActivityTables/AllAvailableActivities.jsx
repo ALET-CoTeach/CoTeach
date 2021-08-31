@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import 'antd/dist/antd.css';
-import '/src/index.css';
+
+
 
 import { useGetActivityRequestsQuery } from '@services/backendAPI/activity_request';
 

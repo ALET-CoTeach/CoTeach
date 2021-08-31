@@ -1,5 +1,5 @@
 import React from 'react';
-import 'antd/dist/antd.css';
+
 import {
   Layout, Row, Col, Card,
 } from 'antd';

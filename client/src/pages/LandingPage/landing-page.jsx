@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Collapse, Statistic,
 } from 'antd';
-import 'antd/dist/antd.css';
+
 import './landing-page.css';
 import CoTeachWords from '@assets/CoTeachWords.svg';
 import EducationBulletPoints from '@assets/EducationBullets.svg';

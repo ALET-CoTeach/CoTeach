@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'antd/dist/antd.css';
+
 import { Modal, Button } from 'antd';
 
 import CreatePostSteps from './Steps/Steps';

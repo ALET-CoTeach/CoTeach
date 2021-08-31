@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'antd/dist/antd.css';
+
 import {
   Layout, Collapse, Drawer, List, Avatar, Divider, Col, Row, Card,
 } from 'antd';

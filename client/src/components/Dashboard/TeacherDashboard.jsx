@@ -1,10 +1,8 @@
 import React from 'react';
-import 'antd/dist/antd.css';
+
 import {
   Row, Col, Card,
 } from 'antd';
-
-import './teacher-dashboard.css';
 
 import ProgressFluid from './Components/ProgressFluid';
 import BookedActivities from './Components/BookedActivities';

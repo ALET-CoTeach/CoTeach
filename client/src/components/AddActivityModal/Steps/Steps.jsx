@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import 'antd/dist/antd.css';
-import '/src/index.css';
+
+
 import { Steps, Button, message } from 'antd';
 import Teacherform from './Form/Teacherform';
 import Schoolform from './Form/Schoolform';

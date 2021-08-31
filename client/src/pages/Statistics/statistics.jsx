@@ -1,6 +1,6 @@
 import React from 'react';
-import 'antd/dist/antd.css';
-import '/src/index.css';
+
+
 import {
   Statistic, Card, Row, Col, Layout,
 } from 'antd';

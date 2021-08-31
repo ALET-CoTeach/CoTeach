@@ -1,6 +1,6 @@
 import React from 'react';
 import './register.css';
-import 'antd/dist/antd.css';
+
 import {
   Card, Image, Form, Input, Button, Checkbox, Radio,
 } from 'antd';

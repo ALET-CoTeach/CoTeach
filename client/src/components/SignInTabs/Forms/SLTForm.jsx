@@ -1,5 +1,5 @@
 import React from 'react';
-import 'antd/dist/antd.css';
+
 import {
   Input, Form, Button, Checkbox,
 } from 'antd';
@@ -35,23 +35,8 @@ const SLTForm = () => (
     <Form.Item
       name="remember"
       valuePropName="checked"
-      wrapperCol={{
-        // offset: 8,
-        // span: 16
-      }}
     >
       <Checkbox>Remember me</Checkbox>
-    </Form.Item>
-
-    <Form.Item
-      wrapperCol={{
-        // offset: 8,
-        // span: 16
-      }}
-    >
-      <Button block type="primary" htmlType="submit" size="large">
-        Sign In
-      </Button>
     </Form.Item>
   </>
 );

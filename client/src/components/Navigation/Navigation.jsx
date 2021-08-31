@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '/src/index.css';
-import 'antd/dist/antd.css';
+
+
 import { Menu, Badge, Switch } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom';
 

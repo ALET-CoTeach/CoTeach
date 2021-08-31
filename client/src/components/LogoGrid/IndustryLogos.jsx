@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Collapse, Statistic,
 } from 'antd';
-import 'antd/dist/antd.css';
+
 
 import ActivateLearning from '@assets/IndustryLogos/activate-learning.svg';
 import AutoDesk from '@assets/IndustryLogos/autodesk.svg';

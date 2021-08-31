@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import 'antd/dist/antd.css';
+
 import {
   Table, Space, Input, Button,
 } from 'antd';

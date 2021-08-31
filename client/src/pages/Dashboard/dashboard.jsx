@@ -1,8 +1,5 @@
 import React from 'react';
-
-// import TeacherDashboard from './TeacherDashboard';
-// import EmployerDashboard from './EmployerDashboard';
-// import CoordinatorDashboard from './CoordinatorDashboard';
+import './dashboard.css';
 
 import { Layout } from 'antd';
 
@@ -48,7 +45,7 @@ const Dashboard = () => {
       <Layout className="site-layout" style={{ marginLeft: 200 }}>
         <Content className="addLesson-content">
           <div className="site-layout-background">
-            <h1 className="HeadingGrey centerText">Dashboard</h1>
+            <h1 className=" centerText">Dashboard</h1>
             {dashboard}
           </div>
         </Content>

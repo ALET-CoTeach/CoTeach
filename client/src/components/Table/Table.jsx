@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import 'antd/dist/antd.css';
-import '/src/index.css';
+
+
 import {
   Table, Input, Button, Space,
 } from 'antd';
@@ -41,7 +41,7 @@ const CustomTable = ({ queryName, columns }) => {
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{ marginBottom: 8, display: 'block' }}
+          style={{marginBottom: 8, display: 'block'}}
         />
         <Space>
           <Button

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import 'antd/dist/antd.css';
-import '/src/index.css';
+
+
 import { Modal, Button } from 'antd';
 
 import StepsComponent from './Steps/Steps';

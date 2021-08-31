@@ -21,14 +21,17 @@ export const adminAPI = createApi({
       query: () => '/register',
       method: 'POST',
     }),
-    signinAdmin: builder.query({
-      query: '/signin',
-      method: 'POST',
+    signInAdmin: builder.mutation({
+      query: ({ ...values }) => ({
+        url: '/signin',
+        method: 'POST',
+        body: values,
+      }),
     }),
   }),
 });
 
 export const {
   useRegisterAdminQuery,
-  useSigninAdminQuery,
+  useSignInAdminMutation,
 } = adminAPI;

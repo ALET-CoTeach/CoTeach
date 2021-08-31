@@ -21,8 +21,12 @@ export const sltAPI = createApi({
       query: () => '/register',
       method: 'POST',
     }),
-    signInSlt: builder.query({
-      query: '/signin',
+    signInSlt: builder.mutation({
+      query: ({ ...values }) => ({
+        url: '/signin',
+        method: 'POST',
+        body: values,
+      }),
     }),
     deleteSlt: builder.query({
       query: ({ sltId }) => `/${sltId}`,
@@ -37,7 +41,7 @@ export const sltAPI = createApi({
 
 export const {
   useRegisterSltQuery,
-  useSignInSltQuery,
+  useSignInSltMutation,
   useDeleteSltQuery,
   useUpdateSltQuery,
 } = sltAPI;

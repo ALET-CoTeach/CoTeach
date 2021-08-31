@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
+
 import { Comment, Tooltip, List } from 'antd';
 import moment from 'moment';
 

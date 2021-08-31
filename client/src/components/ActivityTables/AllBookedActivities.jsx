@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import 'antd/dist/antd.css';
-import '/src/index.css';
+
+
 import {
   Table, Input, Button, Space,
 } from 'antd';

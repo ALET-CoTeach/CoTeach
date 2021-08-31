@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'antd/dist/antd.css';
+
 import { Upload, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 // import ImgCrop from 'antd-img-crop'; possible to add this to crop to a sqaure (good for social media stuffs)

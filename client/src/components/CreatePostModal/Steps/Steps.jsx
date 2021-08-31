@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'antd/dist/antd.css';
+
 import { Steps, Button, message } from 'antd';
 
 import UploadMedia from './Forms/UploadMedia';

@@ -21,7 +21,7 @@ export const companyAPI = createApi({
       query: () => '/',
       method: 'POST',
     }),
-    getCompany: builder.query({
+    getCompanies: builder.query({
       query: '/',
     }),
     deleteCompany: builder.query({
@@ -37,7 +37,7 @@ export const companyAPI = createApi({
 
 export const {
   usePostCompanyQuery,
-  useGetCompanyQuery,
+  useGetCompaniesQuery,
   useDeleteCompanyQuery,
   useUpdateCompanyQuery,
 } = companyAPI;

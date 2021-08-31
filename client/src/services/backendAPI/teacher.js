@@ -21,9 +21,12 @@ export const teacherAPI = createApi({
       query: () => '/register',
       method: 'POST',
     }),
-    signInTeacher: builder.query({
-      query: '/signin',
-      method: 'POST',
+    signInTeacher: builder.mutation({
+      query: ({ ...values }) => ({
+        url: '/signin',
+        method: 'POST',
+        body: values,
+      }),
     }),
     deleteTeacher: builder.query({
       query: ({ teacherId }) => `/${teacherId}`,
@@ -38,7 +41,7 @@ export const teacherAPI = createApi({
 
 export const {
   useRegisterTeacherQuery,
-  useSignInTeacherQuery,
+  useSignInTeacherMutation,
   useDeleteTeacherQuery,
   useUpdateTeacherQuery,
 } = teacherAPI;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import 'antd/dist/antd.css';
+
 import {
   Modal, Button, Row, Col,
 } from 'antd';

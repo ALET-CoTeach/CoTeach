@@ -1,5 +1,5 @@
 import React from 'react';
-import 'antd/dist/antd.css';
+
 import { Menu, Dropdown, message } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ScienceClass from '@assets/SchoolPhotos/ScienceClass.jpg';
-import 'antd/dist/antd.css';
+
 import {
   Modal, Button, Row, Col, Input,
 } from 'antd';

@@ -21,9 +21,12 @@ export const employerAPI = createApi({
       query: () => '/register',
       method: 'POST',
     }),
-    signinEmployer: builder.query({
-      query: '/signin',
-      method: 'POST',
+    signInEmployer: builder.mutation({
+      query: ({ ...values }) => ({
+        url: '/signin',
+        method: 'POST',
+        body: values,
+      }),
     }),
     deleteEmployer: builder.query({
       query: ({ employerId }) => `/${employerId}`,
@@ -38,7 +41,7 @@ export const employerAPI = createApi({
 
 export const {
   useRegisterEmployerQuery,
-  useSignInEmployerQuery,
+  useSignInEmployerMutation,
   useDeleteEmployerQuery,
   useUpdateEmployerQuery,
 } = employerAPI;
