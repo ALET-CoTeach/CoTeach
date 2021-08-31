@@ -43,7 +43,7 @@ const Navigation = () => {
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Profiles">
             <Menu.Item key="setting:5"><NavLink to="schools">Coordinator Contact</NavLink></Menu.Item>
-            <Menu.Item key="setting:6"><NavLink to="controls">Admin Control Tables</NavLink></Menu.Item>
+            <Menu.Item key="setting:6"><NavLink to="control">Admin Control Tables</NavLink></Menu.Item>
             <Menu.Item key="setting:7"><NavLink to="/">Landing Page</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Table Dashboards">
