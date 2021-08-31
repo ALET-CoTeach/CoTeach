@@ -9,11 +9,11 @@ import Highlighter from 'react-highlight-words';
 
 import './table.css';
 
-import { activityAPI} from '@services/backendAPI/activity_request'
+import api from '@services/hooks'
 
 const CustomTable = ({ queryName, columns }) => {
-  console.log(activityAPI.endpoints[queryName])
-  const { data, isLoading } = activityAPI.endpoints[queryName].useQuery();
+  console.log(api)
+  const { data, isLoading } = api.endpoints[queryName].useQuery();
 
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');
