@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 import { Menu, Badge, Switch } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom';
 
@@ -28,7 +27,7 @@ const Navigation = () => {
             Home
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="addLesson" icon={<BookOutlined />}>
+        <Menu.Item key="activitybookings" icon={<BookOutlined />}>
           <NavLink to="activitybookings">
             Add Lesson
           </NavLink>
@@ -47,7 +46,6 @@ const Navigation = () => {
             <Menu.Item key="setting:7"><NavLink to="/">Landing Page</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Table Dashboards">
-            <Menu.Item key="setting:8"><NavLink to="activitybookings">Lesson Booking (employer)</NavLink></Menu.Item>
             <Menu.Item key="setting:9"><NavLink to="activitybookings">Activity Entries</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Post Creation / Verification">
