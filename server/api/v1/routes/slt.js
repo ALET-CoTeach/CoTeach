@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const SLTController = require('../controllers/slt');
-const requiredRoles = require('../middleware/requiredRoles');
+const requiredRoles = require('../utils/requiredRoles');
 const {
   _admin, _employer, _slt, _teacher,
 } = require('../utils/UserTypes');

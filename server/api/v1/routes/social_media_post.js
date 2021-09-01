@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { Storage } = require('@google-cloud/storage');
 const multer = require('multer');
 const SocialMediaPostController = require('../controllers/social_media_post');
-const requiredRoles = require('../middleware/requiredRoles');
+const requiredRoles = require('../utils/requiredRoles');
 
 const upload = multer({ dest: multer.memoryStorage() });
 
