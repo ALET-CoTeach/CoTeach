@@ -63,6 +63,11 @@ const ActivityRequestSchema = new Schema(
     feedback: {
       type: String,
     },
+    status: {
+      type: String,
+      default: 'pending',
+      // status can either be 'pending', 'negotiating' and 'booked'
+    },
   },
   {
     timestamps: true,

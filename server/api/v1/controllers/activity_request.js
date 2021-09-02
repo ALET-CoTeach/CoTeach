@@ -43,6 +43,7 @@ module.exports.createOne = async (req, res) => {
     preferredTime,
     teacherId,
     type,
+    status: 'pending',
   });
 
   try {
