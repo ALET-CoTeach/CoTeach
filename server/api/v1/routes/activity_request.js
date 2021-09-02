@@ -9,12 +9,20 @@ const router = Router();
 
 router.post('/', requiredRoles([_admin, _slt, _teacher]), ActivityRequestController.createOne);
 
-router.get('/available', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, res) => {
+// Return all activity requests based on what the user is allowed to see
+// based on authLevel
+// As well as filtering out requests of the authenticated user from the
+// returned array
+router.get('/', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, res) => {
   const filter = { employerId: { $exists: false }, companyId: { $exists: false } };
 
   // SLT and Teachers can only see available requests for the school they work at
   // Only teachers and SLT have a schoolId property
   filter.schoolId = req.user.schoolId;
+  // Filter option to exclude activity requests from the current user by
+  // their id
+  console.log(req.user.authLevel);
+  filter[`${req.user.authLevel}Id`] = { $ne: req.user._id };
 
   try {
     const jsonResponse = await ActivityRequestController.getAll(filter);
