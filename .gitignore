@@ -1,5 +1,9 @@
 coteach-docusarus/
 google-creds.json
+
+.yarn
+.vim
+
 # Logs
 logs
 *.log
