@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  email: '',
-  userId: '',
+  user: {},
   token: '',
   authLevel: '',
 };
@@ -14,8 +13,7 @@ const authSlice = createSlice({
     signIn: (state, action) => {
       const { user } = action.payload;
 
-      state.email = user.email;
-      state.userId = user._id;
+      state.user = user;
       state.token = action.payload.token;
       state.authLevel = action.payload.authLevel;
     },
