@@ -22,7 +22,7 @@ export const activityAPI = createApi({
       method: 'POST',
     }),
     getActivityRequests: builder.query({
-      query: () => '/available',
+      query: () => '/',
       transformResponse: (response) => response.activityRequests,
     }),
     getBookedActivityRequests: builder.query({
@@ -45,4 +45,5 @@ export const {
   useGetBookedActivityRequestsQuery,
   useDeleteActivityRequestQuery,
   useUpdateActivityRequestQuery,
+  usePrefetch,
 } = activityAPI;

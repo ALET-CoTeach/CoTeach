@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-
-
-import { useGetActivityRequestsQuery } from '@services/backendAPI/activity_request';
-
+import { activityAPI as api } from '@services/backendAPI/activity_request';
+import _ from 'lodash';
 import Table from '../Table/Table';
 
 const AllLessons = () => {
@@ -126,6 +125,7 @@ const AllLessons = () => {
       title: 'Lesson Title',
       dataIndex: 'lessonTitle',
       key: 'lessonTitle',
+      isSearchable: true,
     },
     {
       title: 'Type',
@@ -268,9 +268,29 @@ const AllLessons = () => {
     },
   ];
 
+  const { user } = useSelector((state) => state.auth);
+  const { data, isLoading, isSuccess } = api.useGetActivityRequestsQuery();
+  const [activityRequests, setActivityRequests] = useState([]);
+
+  useEffect(() => {
+    setActivityRequests(data);
+    const fullname = _.startCase(`${user.firstname} ${user.lastname}`);
+    const filteredActivityRequests = activityRequests.filter(
+      (activityRequest) => {
+        if (activityRequest.teacherName === fullname
+      || activityRequest.id === user._id) {
+          return true;
+        }
+      },
+    );
+
+    setActivityRequests(filteredActivityRequests);
+
+    console.log(activityRequests);
+  }, []);
 
   return (
-    <Table columns={columns} queryName="getActivityRequests" />
+    <Table columns={columns} isLoading={isLoading} data={[]} />
   );
 };
 

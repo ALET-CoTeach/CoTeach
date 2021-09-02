@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 
-
 import {
   Table, Input, Button, Space,
 } from 'antd';
@@ -9,12 +8,7 @@ import Highlighter from 'react-highlight-words';
 
 import './table.css';
 
-import api from '@services/hooks'
-
-const CustomTable = ({ queryName, columns }) => {
-  console.log(api)
-  const { data, isLoading } = api.endpoints[queryName].useQuery();
-
+const CustomTable = ({ isLoading, data, columns }) => {
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');
   const searchInput = useRef(null);
@@ -41,7 +35,7 @@ const CustomTable = ({ queryName, columns }) => {
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{marginBottom: 8, display: 'block'}}
+          style={{ marginBottom: 8, display: 'block' }}
         />
         <Space>
           <Button
@@ -96,11 +90,8 @@ const CustomTable = ({ queryName, columns }) => {
     }
   });
 
-
   return (
-    <>
-      <Table loading={isLoading} columns={columns} dataSource={data} size="large" />
-    </>
+    <Table loading={isLoading} columns={columns} dataSource={data} size="large" />
   );
 };
 

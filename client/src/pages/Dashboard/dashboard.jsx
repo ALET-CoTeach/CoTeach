@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './dashboard.css';
 
 import { Layout } from 'antd';
+
+import { usePrefetch } from '@services/backendAPI/activity_request';
 
 import {
   TeacherDashboard,
@@ -14,6 +16,12 @@ const { Content, Sider } = Layout;
 
 const Dashboard = () => {
   const authLevel = 'employer';
+
+  const prefetchAllActivities = usePrefetch('getActivityRequests', undefined, { force: true })
+  useEffect(() => {
+    prefetchAllActivities()
+  }, [])
+
 
   let dashboard;
 

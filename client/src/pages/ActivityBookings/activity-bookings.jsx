@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { usePrefetch } from '@services/backendAPI/activity_request';
 
 import { Layout, Collapse } from 'antd';
 
@@ -10,13 +10,14 @@ import {
   BookedActivities,
   AddActivityModal,
 } from '@components';
+import hooks from '@services/hooks';
 
 const { Content, Footer, Sider } = Layout;
-
 const { Panel } = Collapse;
 
 const ActivityBookings = () => {
-  const authLevel = 'employer';
+  const authLevel = 'teacher';
+
 
   let panels;
   /**
@@ -49,7 +50,6 @@ const ActivityBookings = () => {
             header="Your Pending Requests"
             key="3"
           >
-            <BookedActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
@@ -65,6 +65,13 @@ const ActivityBookings = () => {
     case 'coordinator':
       panels = (
         <>
+          <Panel
+            className="activityBooking-table-title"
+            header="Your Pending Requests"
+            key="3"
+          >
+            <BookedActivities />
+          </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Available Activities"
@@ -90,6 +97,13 @@ const ActivityBookings = () => {
     case 'companyadmin':
       panels = (
         <>
+          <Panel
+            className="activityBooking-table-title"
+            header="Your Pending Requests"
+            key="3"
+          >
+            <BookedActivities />
+          </Panel>
           <Panel
             className="activityBooking-table-title"
             header="Your Booked Activity"

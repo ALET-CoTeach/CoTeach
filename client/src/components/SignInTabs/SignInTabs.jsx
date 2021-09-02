@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Tabs, Form, Button } from 'antd';
+import { Alert, Tabs, Form, Button } from 'antd';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -92,6 +92,7 @@ const SignInTabs = () => {
   if (isSLTSuccess) setAuth(sltData);
   if (isEmployerSuccess) setAuth(employerData);
 
+  const isError = isTeacherError || isSLTError || isEmployerError;
 
   const handleChange = (key) => changeAuthLevel(key);
 
@@ -132,7 +133,12 @@ const SignInTabs = () => {
             Sign In
           </Button>
         </TabPane>
-
+        {isError ? (<Alert
+          message="Failed to Sign In"
+          description="This account doesn't exist"
+          type="error"
+          showIcon
+        />) : null}
       </Tabs>
       {authState.token ? <Redirect push to="/dashboard" /> : null}
     </Form>
