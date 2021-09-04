@@ -36,28 +36,40 @@ const Control = () => {
             <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Admin Control Tables</h1>
             <Tabs defaultActiveKey="1" onChange={callback} centered size="large">
               <TabPane tab="Admins" key="1">
-                <AddAdminModal />
-                <AdminTable />
+                <div style={{ margin: "1%" }}>
+                  <AddAdminModal />
+                  <AdminTable />
+                </div>
               </TabPane>
               <TabPane tab="SLT" key="2">
-                <AddSLTModal />
-                <SLTTable />
+                <div style={{ margin: "1%" }}>
+                  <AddSLTModal />
+                  <SLTTable />
+                </div>
               </TabPane>
               <TabPane tab="Teachers" key="3">
-                <AddTeacherModal />
-                <TeacherTable />
+                <div style={{ margin: "1%" }}>
+                  <AddTeacherModal />
+                  <TeacherTable />
+                </div>
               </TabPane>
               <TabPane tab="Employers" key="4">
-                <AddEmployerModal />
-                <EmployerTable />
+                <div style={{ margin: "1%" }}>
+                  <AddEmployerModal />
+                  <EmployerTable />
+                </div>
               </TabPane>
               <TabPane tab="Schools" key="5">
-                <AddSchoolModal />
-                <SchoolTable />
+                <div style={{ margin: "1%" }}>
+                  <AddSchoolModal />
+                  <SchoolTable />
+                </div>
               </TabPane>
               <TabPane tab="Companies" key="6">
-                <AddCompanyModal />
-                <CompanyTable />
+                <div style={{ margin: "1%" }}>
+                  <AddCompanyModal />
+                  <CompanyTable />
+                </div>
               </TabPane>
             </Tabs>
           </div>
