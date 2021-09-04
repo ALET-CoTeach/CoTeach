@@ -3,7 +3,7 @@ import React from 'react';
 import { activityAPI as api } from '@services/backendAPI/activity_request';
 import Table from '../Table/Table';
 
-const AllBookedActivities = () => {
+const UserAvailableActivities = ({ authLevel, id }) => {
   const columns = [
     {
       title: 'Date',
@@ -201,10 +201,10 @@ const AllBookedActivities = () => {
     },
   ];
 
-  const { data, isLoading } = api.useGetActivityRequestsQuery();
+  const { data, isLoading } = api.useGetUserActivityRequestsQuery({ role: authLevel, id });
 
   const filterActivityRequests = (d) => d.filter(
-    (activityRequest) => activityRequest.status === 'booked',
+    (activityRequest) => activityRequest.status === 'pending',
   );
 
   const getData = (d) => {
@@ -218,4 +218,4 @@ const AllBookedActivities = () => {
   );
 };
 
-export default AllBookedActivities;
+export default UserAvailableActivities;

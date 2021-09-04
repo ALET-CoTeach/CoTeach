@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { usePrefetch } from '@services/backendAPI/activity_request';
-
 import { Layout, Collapse } from 'antd';
 
 import {
   AllAvailableActivities,
   AllBookedActivities,
-  CompletedActivities,
-  BookedActivities,
+  AllCompletedActivities,
+  AllNegotiableActivities,
+  UserAvailableActivities,
+  UserBookedActivities,
+  UserCompletedActivities,
+  UserNegotiableActivities,
   AddActivityModal,
 } from '@components';
-import hooks from '@services/hooks';
 
 const { Content, Footer, Sider } = Layout;
 const { Panel } = Collapse;
 
 const ActivityBookings = () => {
   const authLevel = 'teacher';
-
 
   let panels;
   /**
@@ -36,7 +36,6 @@ const ActivityBookings = () => {
             header="Your Booked Activities"
             key="1"
           >
-            <BookedActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
@@ -47,16 +46,17 @@ const ActivityBookings = () => {
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your Pending Requests"
+            header="All Booked Actiivty Requests"
             key="3"
           >
+            <AllBookedActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your "
+            header="All Negotiating Activity Requests"
             key="4"
           >
-            <AllBookedActivities />
+            <AllNegotiableActivities />
           </Panel>
         </>
       );

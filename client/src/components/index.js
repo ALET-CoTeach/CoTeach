@@ -1,7 +1,11 @@
 import AllAvailableActivities from './ActivityTables/AllAvailableActivities';
 import AllBookedActivities from './ActivityTables/AllBookedActivities';
-import BookedActivities from './ActivityTables/BookedActivities';
-import CompletedActivities from './ActivityTables/CompletedActivities';
+import AllCompletedActivities from './ActivityTables/AllCompletedActivities';
+import AllNegotiableActivities from './ActivityTables/AllNegotiableActivities';
+import UserAvailableActivities from './ActivityTables/UserAvailableActivities';
+import UserBookedActivities from './ActivityTables/UserBookedActivities';
+import UserCompletedActivities from './ActivityTables/UserCompletedActivities';
+import UserNegotiableActivities from './ActivityTables/UserNegotiableActivities';
 
 import AddActivityModal from './AddActivityModal/AddActivityModal';
 
@@ -45,8 +49,12 @@ import VerifyPostTable from './VerifyPostTable/VerifyPostTable';
 export {
   AllAvailableActivities,
   AllBookedActivities,
-  BookedActivities,
-  CompletedActivities,
+  AllCompletedActivities,
+  AllNegotiableActivities,
+  UserAvailableActivities,
+  UserBookedActivities,
+  UserCompletedActivities,
+  UserNegotiableActivities,
 
   AddActivityModal,
 

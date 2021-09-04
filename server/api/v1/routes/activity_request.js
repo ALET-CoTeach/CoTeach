@@ -14,15 +14,17 @@ router.post('/', requiredRoles([_admin, _slt, _teacher]), ActivityRequestControl
 // As well as filtering out requests of the authenticated user from the
 // returned array
 router.get('/', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, res) => {
-  const filter = { employerId: { $exists: false }, companyId: { $exists: false } };
+  const { user } = req;
+  const filter = {};
 
   // SLT and Teachers can only see available requests for the school they work at
   // Only teachers and SLT have a schoolId property
-  filter.schoolId = req.user.schoolId;
+  if (user.authLevel === _teacher
+      || user.authLevel === _slt) filter.schoolId = user.schoolId;
   // Filter option to exclude activity requests from the current user by
   // their id
-  console.log(req.user.authLevel);
-  filter[`${req.user.authLevel}Id`] = { $ne: req.user._id };
+  filter[`${user.authLevel}Id`] = { $ne: user._id };
+  console.log(filter);
 
   try {
     const jsonResponse = await ActivityRequestController.getAll(filter);
@@ -34,18 +36,20 @@ router.get('/', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, 
   }
 });
 
-router.get('/booked/:role::id', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, res) => {
+router.get('/:role::id', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, res) => {
+  const { user } = req;
   const { role, id } = req.params;
-  const filter = { employerId: { $exists: true } };
+  const filter = {};
 
   try {
     // Setup database search filter
+    if (role === _slt) filter.sltId = id;
     if (role === _teacher) filter.teacherId = id;
     if (role === _employer) filter.employerId = id;
 
     // If teacher is authenticated overwrite teacherId field in filter, since teachers
     // can only see their own booked lessons
-    if (req.user) filter.teacherId = req.user._id;
+    if (user.authLevel === _teacher) filter.teacherId = user._id;
     console.log(filter);
 
     const jsonResponse = await ActivityRequestController.getAll(filter);

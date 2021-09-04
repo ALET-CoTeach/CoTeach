@@ -3,18 +3,12 @@ import React from 'react';
 import { activityAPI as api } from '@services/backendAPI/activity_request';
 import Table from '../Table/Table';
 
-const AllBookedActivities = () => {
+const UserCompletedActivities = ({ authLevel, id }) => {
   const columns = [
     {
       title: 'Date',
       dataIndex: 'preferredDay',
       key: 'date',
-    },
-    {
-      title: 'Booked By',
-      dataIndex: 'company',
-      key: 'organisation',
-      isSearchable: true,
     },
     {
       title: 'School',
@@ -85,12 +79,6 @@ const AllBookedActivities = () => {
         },
       ],
       onFilter: (value, record) => record.activityType.indexOf(value) === 0,
-    },
-    {
-      title: 'Teacher Name',
-      dataIndex: 'teacherName',
-      key: 'teacherName',
-      isSearchable: true,
     },
     {
       title: 'Subject',
@@ -195,16 +183,15 @@ const AllBookedActivities = () => {
         },
       ],
       onFilter: (value, record) => record.year.indexOf(value) === 0,
-      // sorter: (a, b) => a.year.charAt(1) - b.year.charAt(1),
       // sorter: (a, b) => a.year - b.year,
       // sortDirections: ['ascend', 'descend'],
     },
   ];
 
-  const { data, isLoading } = api.useGetActivityRequestsQuery();
+  const { data, isLoading } = api.useGetUserActivityRequestsQuery({ role: authLevel, id });
 
   const filterActivityRequests = (d) => d.filter(
-    (activityRequest) => activityRequest.status === 'booked',
+    (activityRequest) => activityRequest.status === 'booked' && activityRequest.endDate < Date.now(),
   );
 
   const getData = (d) => {
@@ -218,4 +205,4 @@ const AllBookedActivities = () => {
   );
 };
 
-export default AllBookedActivities;
+export default UserCompletedActivities;

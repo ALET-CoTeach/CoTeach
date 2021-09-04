@@ -25,8 +25,8 @@ export const activityAPI = createApi({
       query: () => '/',
       transformResponse: (response) => response.activityRequests,
     }),
-    getBookedActivityRequests: builder.query({
-      query: ({ role, id }) => `/booked/${role}:${id}`,
+    getUserActivityRequests: builder.query({
+      query: ({ role, id }) => `/${role}:${id}`,
     }),
     deleteActivityRequest: builder.query({
       query: ({ activityRequestId }) => `/${activityRequestId}`,
