@@ -1,19 +1,26 @@
 import React, { useState, useRef } from 'react';
 
 import {
-  Table, Input, Button, Space,
+  Table, Input, Button, Space, Row, Col,
 } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 
+import AddAdminModal from '../ControlModals/AddAdminModal';
+
 const data = [
   {
-    key: '1',
-    adminName: 'Amy',
-    adminEmail: 'amy.sutcliffe@utcreading.org.uk',
-    adminPassword: 'password123'
+    key: "1",
+    adminName: "Amy",
+    adminEmail: "amy.sutcliffe@utcreading.org.uk",
+    adminPassword: "password123"
   },
-  
+  {
+    key: "2",
+    adminName: "Joe",
+    adminEmail: "joe.doe@utcreading.org.uk",
+    adminPassword: "password789"
+  }
 ];
 
 const AdminTables = () => {
@@ -92,28 +99,68 @@ const AdminTables = () => {
     )),
   });
 
+  const [selectedRowKeys, setSelectedRowKeys] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const start = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setSelectedRowKeys([]);
+      setLoading(false);
+    }, 1000);
+  };
+
+  const onSelectChange = selectedRowKeys => {
+    console.log('selectedRowKeys changed:  ', selectedRowKeys);
+    setSelectedRowKeys(selectedRowKeys)
+  };
+
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'adminName',
+      title: "Admin Name",
+      dataIndex: "adminName",
       ...getColumnSearchProps('adminName'),
     },
     {
-      title: 'Email',
-      dataIndex: 'adminEmail',
+      title: "Admin Email",
+      dataIndex: "adminEmail",
       ...getColumnSearchProps('adminEmail'),
     },
     {
-      title: 'Password',
-      dataIndex: 'adminPassword',
-    },
+      title: "Admin Password",
+      dataIndex: "adminPassword"
+    }
   ];
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
+  const hasSelected = selectedRowKeys.length > 0;
 
   return (
     <>
-      <Table columns={columns} dataSource={data} onChange={onChange} className="styles.thead" />
+      <div style={{ marginBottom: 5 }}>
+        <Row>
+          <Col lg={2}>
+            <AddAdminModal />
+          </Col>
+          <Col lg={2}>
+            <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading} block danger>
+              Delete
+            </Button>
+            <span style={{ marginLeft: 2 }}>
+              {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+            </span>
+          </Col>
+        </Row>
+      </div>
+      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
     </>
   );
 };
+
 
 export default AdminTables;

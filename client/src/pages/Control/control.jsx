@@ -37,7 +37,6 @@ const Control = () => {
             <Tabs defaultActiveKey="1" onChange={callback} centered size="large">
               <TabPane tab="Admins" key="1">
                 <div style={{ margin: "1%" }}>
-                  <AddAdminModal />
                   <AdminTable />
                 </div>
               </TabPane>
