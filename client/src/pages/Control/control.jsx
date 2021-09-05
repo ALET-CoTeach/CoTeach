@@ -42,31 +42,26 @@ const Control = () => {
               </TabPane>
               <TabPane tab="SLT" key="2">
                 <div style={{ margin: "1%" }}>
-                  <AddSLTModal />
                   <SLTTable />
                 </div>
               </TabPane>
               <TabPane tab="Teachers" key="3">
                 <div style={{ margin: "1%" }}>
-                  <AddTeacherModal />
                   <TeacherTable />
                 </div>
               </TabPane>
               <TabPane tab="Employers" key="4">
                 <div style={{ margin: "1%" }}>
-                  <AddEmployerModal />
                   <EmployerTable />
                 </div>
               </TabPane>
               <TabPane tab="Schools" key="5">
                 <div style={{ margin: "1%" }}>
-                  <AddSchoolModal />
                   <SchoolTable />
                 </div>
               </TabPane>
               <TabPane tab="Companies" key="6">
                 <div style={{ margin: "1%" }}>
-                  <AddCompanyModal />
                   <CompanyTable />
                 </div>
               </TabPane>

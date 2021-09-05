@@ -32,7 +32,7 @@ const AddEmployerModal = () => {
 
   return (
     <>
-      <Button style={{ width: 150, marginBottom: 20 }} type="primary" onClick={showModal}>
+      <Button style={{ width: "110%", marginBottom: 20 }} type="primary" onClick={showModal}>
         Add Employer
       </Button>
       <Modal

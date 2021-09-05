@@ -108,6 +108,7 @@ const AdminTables = () => {
     setTimeout(() => {
       setSelectedRowKeys([]);
       setLoading(false);
+      message.success('Deleted Successfully');
     }, 1000);
   };
 
@@ -147,13 +148,13 @@ const AdminTables = () => {
 
   function cancel(e) {
     console.log(e);
-    message.error('Click on No');
+    message.error('Cancelled');
   }
 
   return (
     <>
       <div style={{ marginBottom: 5 }}>
-        <Row>
+        <Row gutter={[16, 16]}>
           <Col lg={2}>
             <AddAdminModal />
           </Col>
@@ -166,7 +167,7 @@ const AdminTables = () => {
               cancelText="No"
               loading={loading}
             >
-              <Button type="primary" disabled={!hasSelected}  block danger>
+              <Button type="primary" disabled={!hasSelected} danger>
                 Delete
               </Button>
               <span style={{ marginLeft: 2 }}>

@@ -32,7 +32,7 @@ const AddSchoolModal = () => {
 
   return (
     <>
-      <Button style={{ width: 150, marginBottom: 20 }} type="primary" onClick={showModal}>
+      <Button style={{ width: "100%", marginBottom: 20 }} type="primary" onClick={showModal}>
         Add School
       </Button>
       <Modal

@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 
 import {
-  Table, Input, Button, Space,
+  Table, Input, Button, Space, Row, Col, Popconfirm, message,
 } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+
+import AddTeacherModal from '../ControlModals/AddTeacherModal';
 
 const data = [
   {
@@ -94,6 +96,24 @@ const TeachersTable = () => {
     )),
   });
 
+  const [selectedRowKeys, setSelectedRowKeys] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const start = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setSelectedRowKeys([]);
+      setLoading(false);
+      message.success('Deleted Successfully');
+    }, 1000);
+  };
+
+  const onSelectChange = selectedRowKeys => {
+    console.log('selectedRowKeys changed:  ', selectedRowKeys);
+    setSelectedRowKeys(selectedRowKeys)
+  };
+
   const columns = [
     {
       title: 'First Name',
@@ -155,9 +175,51 @@ const TeachersTable = () => {
     },
   ];
 
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
+  const hasSelected = selectedRowKeys.length > 0;
+
+  function confirm(e) {
+    console.log(e);
+    message.success('Click on Yes');
+  }
+
+  function cancel(e) {
+    console.log(e);
+    message.error('Cancelled');
+  }
+
   return (
     <>
-      <Table columns={columns} dataSource={data} onChange={onChange} className="styles.thead" />
+    <div style={{ marginBottom: 5 }}>
+        <Row gutter={[16, 16]}>
+          <Col lg={2}>
+            <AddTeacherModal />
+          </Col>
+          <Col lg={2}>
+            <Popconfirm
+              title="Are you sure to delete this item?"
+              onConfirm={start}
+              onCancel={cancel}
+              okText="Yes"
+              cancelText="No"
+              loading={loading}
+            >
+              <Button type="primary" disabled={!hasSelected} danger>
+                Delete
+              </Button>
+              <span style={{ marginLeft: 2 }}>
+                {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+              </span>
+            </Popconfirm>
+
+          </Col>
+        </Row>
+      </div>
+      <Table rowSelection={rowSelection} columns={columns} dataSource={data} className="styles.thead" />
     </>
   );
 };
