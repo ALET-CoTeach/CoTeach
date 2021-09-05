@@ -1,14 +1,14 @@
 import React, { useState, useRef } from 'react';
 
 import {
-  Table, Input, Button, Space, Row, Col, Popconfirm, message,
+  Table, Input, Button, Space, Row, Col, Popconfirm, message, InputNumber, Form, Typography,
 } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 
 import AddAdminModal from '../ControlModals/AddAdminModal';
 
-const data = [
+const originData = [
   {
     key: "1",
     adminName: "Amy",
@@ -23,7 +23,43 @@ const data = [
   }
 ];
 
+const EditableCell = ({
+  editing,
+  dataIndex,
+  title,
+  inputType,
+  record,
+  index,
+  children,
+  ...restProps
+}) => {
+  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+  return (
+    <td {...restProps}>
+      {editing ? (
+        <Form.Item
+          name={dataIndex}
+          style={{
+            margin: 0,
+          }}
+          rules={[
+            {
+              required: true,
+              message: `Please Input ${title}!`,
+            },
+          ]}
+        >
+          {inputNode}
+        </Form.Item>
+      ) : (
+        children
+      )}
+    </td>
+  );
+};
+
 const AdminTables = () => {
+
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');
   const searchInput = useRef(null);
@@ -117,22 +153,113 @@ const AdminTables = () => {
     setSelectedRowKeys(selectedRowKeys)
   };
 
+
+  const [form] = Form.useForm();
+  const [data, setData] = useState(originData);
+  const [editingKey, setEditingKey] = useState('');
+
+  const isEditing = (record) => record.key === editingKey;
+
+  const edit = (record) => {
+    form.setFieldsValue({
+      adminName: '',
+      adminEmail: '',
+      adminPassword: '',
+      ...record,
+    });
+    setEditingKey(record.key);
+  };
+
+  const cancel = () => {
+    setEditingKey('');
+  };
+
+  const save = async (key) => {
+    try {
+      const row = await form.validateFields();
+      const newData = [...data];
+      const index = newData.findIndex((item) => key === item.key);
+
+      if (index > -1) {
+        const item = newData[index];
+        newData.splice(index, 1, { ...item, ...row });
+        setData(newData);
+        setEditingKey('');
+      } else {
+        newData.push(row);
+        setData(newData);
+        setEditingKey('');
+      }
+    } catch (errInfo) {
+      console.log('Validate Failed:', errInfo);
+    }
+  };
+
   const columns = [
     {
-      title: "Admin Name",
-      dataIndex: "adminName",
+      title: 'Admin Name',
+      dataIndex: 'adminName',
+      width: '25%',
+      editable: true,
       ...getColumnSearchProps('adminName'),
     },
     {
-      title: "Admin Email",
-      dataIndex: "adminEmail",
+      title: 'Admin Email',
+      dataIndex: 'adminEmail',
+      width: '15%',
+      editable: true,
       ...getColumnSearchProps('adminEmail'),
     },
     {
-      title: "Admin Password",
-      dataIndex: "adminPassword"
-    }
+      title: 'Admin Password',
+      dataIndex: 'adminPassword',
+      width: '40%',
+      editable: true,
+    },
+    {
+      title: 'Edit',
+      dataIndex: 'operation',
+      render: (_, record) => {
+        const editable = isEditing(record);
+        return editable ? (
+          <span>
+            <a
+              href="javascript:;"
+              onClick={() => save(record.key)}
+              style={{
+                marginRight: 8,
+              }}
+            >
+              Save
+            </a>
+            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+              <a>Cancel</a>
+            </Popconfirm>
+          </span>
+        ) : (
+          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+            Edit
+          </Typography.Link>
+        );
+      },
+    },
   ];
+  const mergedColumns = columns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+
+    return {
+      ...col,
+      onCell: (record) => ({
+        record,
+        inputType: col.dataIndex === 'age' ? 'number' : 'text',
+        dataIndex: col.dataIndex,
+        title: col.title,
+        editing: isEditing(record),
+      }),
+    };
+  });
 
   const rowSelection = {
     selectedRowKeys,
@@ -146,7 +273,7 @@ const AdminTables = () => {
     message.success('Click on Yes');
   }
 
-  function cancel(e) {
+  function cancelPop(e) {
     console.log(e);
     message.error('Cancelled');
   }
@@ -162,7 +289,7 @@ const AdminTables = () => {
             <Popconfirm
               title="Are you sure to delete this item?"
               onConfirm={start}
-              onCancel={cancel}
+              onCancel={cancelPop}
               okText="Yes"
               cancelText="No"
               loading={loading}
@@ -178,8 +305,25 @@ const AdminTables = () => {
           </Col>
         </Row>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+      <Form form={form} component={false}>
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          dataSource={data}
+          columns={mergedColumns}
+          rowClassName="editable-row"
+          pagination={{
+            onChange: cancel,
+          }}
+          rowSelection={rowSelection}
+        />
+      </Form>
     </>
+
   );
 };
 
