@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import {
-  Table, Input, Button, Space, Row, Col,
+  Table, Input, Button, Space, Row, Col, Popconfirm, message,
 } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -140,6 +140,16 @@ const AdminTables = () => {
 
   const hasSelected = selectedRowKeys.length > 0;
 
+  function confirm(e) {
+    console.log(e);
+    message.success('Click on Yes');
+  }
+
+  function cancel(e) {
+    console.log(e);
+    message.error('Click on No');
+  }
+
   return (
     <>
       <div style={{ marginBottom: 5 }}>
@@ -148,12 +158,22 @@ const AdminTables = () => {
             <AddAdminModal />
           </Col>
           <Col lg={2}>
-            <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading} block danger>
-              Delete
-            </Button>
-            <span style={{ marginLeft: 2 }}>
-              {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-            </span>
+            <Popconfirm
+              title="Are you sure to delete this item?"
+              onConfirm={start}
+              onCancel={cancel}
+              okText="Yes"
+              cancelText="No"
+              loading={loading}
+            >
+              <Button type="primary" disabled={!hasSelected}  block danger>
+                Delete
+              </Button>
+              <span style={{ marginLeft: 2 }}>
+                {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+              </span>
+            </Popconfirm>
+
           </Col>
         </Row>
       </div>
