@@ -27,6 +27,7 @@ export const activityAPI = createApi({
     }),
     getUserActivityRequests: builder.query({
       query: ({ role, id }) => `/${role}:${id}`,
+      transformResponse: (response) => response.activityRequests,
     }),
     deleteActivityRequest: builder.query({
       query: ({ activityRequestId }) => `/${activityRequestId}`,
@@ -42,7 +43,7 @@ export const activityAPI = createApi({
 export const {
   usePostActivityRequestQuery,
   useGetActivityRequestsQuery,
-  useGetBookedActivityRequestsQuery,
+  useGetUserActivityRequestsQuery,
   useDeleteActivityRequestQuery,
   useUpdateActivityRequestQuery,
   usePrefetch,

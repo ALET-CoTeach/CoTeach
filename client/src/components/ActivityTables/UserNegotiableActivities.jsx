@@ -203,7 +203,7 @@ const UserNegotiableActivities = ({ authLevel, id }) => {
 
   const { data, isLoading } = api.useGetUserActivityRequestsQuery({ role: authLevel, id });
 
-  const filterActivityRequests = (d) => d.filter(
+  const filterActivityRequests = (d) => d?.filter(
     (activityRequest) => activityRequest.status === 'negotiable',
   );
 

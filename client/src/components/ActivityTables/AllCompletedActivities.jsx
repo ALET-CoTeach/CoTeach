@@ -267,7 +267,7 @@ const AllCompletedActivities = () => {
 
   const { data, isLoading } = api.useGetActivityRequestsQuery();
 
-  const filterActivityRequests = (d) => d.filter(
+  const filterActivityRequests = (d) => d?.filter(
     (activityRequest) => activityRequest.status === 'pending' && activityRequest.endDate < Date.now(),
   );
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Layout, Collapse } from 'antd';
 
 import {
@@ -17,6 +18,7 @@ const { Content, Footer, Sider } = Layout;
 const { Panel } = Collapse;
 
 const ActivityBookings = () => {
+  const { _id } = useSelector((state) => state.auth.user);
   const authLevel = 'teacher';
 
   let panels;
@@ -33,9 +35,10 @@ const ActivityBookings = () => {
         <>
           <Panel
             className="activityBooking-table-title"
-            header="Your Booked Activities"
+            header="Your Pending Activities"
             key="1"
           >
+            <UserAvailableActivities authLevel={authLevel} id={_id} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
