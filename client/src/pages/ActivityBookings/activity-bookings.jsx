@@ -18,8 +18,7 @@ const { Content, Footer, Sider } = Layout;
 const { Panel } = Collapse;
 
 const ActivityBookings = () => {
-  const { _id } = useSelector((state) => state.auth.user);
-  const authLevel = 'teacher';
+  const { authLevel, user } = useSelector((state) => state.auth);
 
   let panels;
   /**
@@ -30,88 +29,95 @@ const ActivityBookings = () => {
    * Employer/CompanyAdmin:
    */
   switch (authLevel) {
+    case 'employer':
     case 'teacher':
       panels = (
         <>
           <Panel
             className="activityBooking-table-title"
-            header="Your Pending Activities"
+            header="Your Pending Requests"
             key="1"
           >
-            <UserAvailableActivities authLevel={authLevel} id={_id} />
+            <UserAvailableActivities authLevel={authLevel} id={user._id} />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="Your Booked Activities"
+            key="2"
+          >
+            <UserBookedActivities authLevel={authLevel} id={user._id} />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="Your Negotiating Activities"
+            key="3"
+          >
+            <UserNegotiableActivities authLevel={authLevel} id={user._id} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Available Activities"
-            key="2"
+            key="4"
           >
             <AllAvailableActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Booked Actiivty Requests"
-            key="3"
+            key="5"
           >
             <AllBookedActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Negotiating Activity Requests"
-            key="4"
+            key="6"
           >
             <AllNegotiableActivities />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="Your Completed Activities"
+            key="7"
+          >
+            <UserCompletedActivities authLevel={authLevel} id={user._id} />
           </Panel>
         </>
       );
       break;
     case 'slt':
     case 'coordinator':
-      panels = (
-        <>
-          <Panel
-            className="activityBooking-table-title"
-            header="Your Pending Requests"
-            key="3"
-          >
-            <BookedActivities />
-          </Panel>
-          <Panel
-            className="activityBooking-table-title"
-            header="All Available Activities"
-            key="1"
-          >
-            <AllBookedActivities />
-          </Panel>
-        </>
-      );
-      break;
     case 'admin':
       panels = (
         <>
           <Panel
             className="activityBooking-table-title"
-            header="Your Booked Activity"
-            key="1"
-          />
-        </>
-      );
-      break;
-    case 'employer':
-    case 'companyadmin':
-      panels = (
-        <>
-          <Panel
-            className="activityBooking-table-title"
-            header="Your Pending Requests"
-            key="3"
+            header="All Available Activities"
+            key="4"
           >
-            <BookedActivities />
+            <AllAvailableActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your Booked Activity"
-            key="1"
-          />
+            header="All Booked Actiivty Requests"
+            key="5"
+          >
+            <AllBookedActivities />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="All Negotiating Activity Requests"
+            key="6"
+          >
+            <AllNegotiableActivities />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="All Negotiating Activity Requests"
+            key="6"
+          >
+            <AllCompletedActivities />
+          </Panel>
         </>
       );
       break;
