@@ -1,50 +1,28 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import backendAPI from './index';
 
-export const activityAPI = createApi({
-  reducerPath: 'activityRequestAPI',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_BASE_API_URL}/activityrequest`,
-    prepareHeaders: (headers, { getState }) => {
-      const { token } = getState().auth;
-
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-
-      return headers;
-    },
-  }),
+export default backendAPI.injectEndpoints({
   endpoints: (builder) => ({
     // creates a hook
     // previxes with "use" capitalises first letter, sufexies with "Query".
     postActivityRequest: builder.query({
-      query: () => '/',
+      query: () => '/activityrequest',
       method: 'POST',
     }),
     getActivityRequests: builder.query({
-      query: () => '/',
+      query: () => '/activityrequest',
       transformResponse: (response) => response.activityRequests,
     }),
     getUserActivityRequests: builder.query({
-      query: ({ role, id }) => `/${role}:${id}`,
+      query: ({ role, id }) => `/activityrequest/${role}:${id}`,
       transformResponse: (response) => response.activityRequests,
     }),
     deleteActivityRequest: builder.query({
-      query: ({ activityRequestId }) => `/${activityRequestId}`,
+      query: ({ activityRequestId }) => `/activityrequest/${activityRequestId}`,
       method: 'DELETE',
     }),
     updateActivityRequest: builder.query({
-      query: ({ activityRequestId }) => `/${activityRequestId}`,
+      query: ({ activityRequestId }) => `/activityrequest/${activityRequestId}`,
       method: 'PUT',
     }),
   }),
 });
-
-export const {
-  usePostActivityRequestQuery,
-  useGetActivityRequestsQuery,
-  useGetUserActivityRequestsQuery,
-  useDeleteActivityRequestQuery,
-  useUpdateActivityRequestQuery,
-  usePrefetch,
-} = activityAPI;

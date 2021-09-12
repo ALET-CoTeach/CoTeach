@@ -1,47 +1,28 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import backendAPI from './index';
 
-export const employerAPI = createApi({
-  reducerPath: 'employerAPI',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_BASE_API_URL}/employer`,
-    prepareHeaders: (headers, { getState }) => {
-      const { token } = getState().auth;
-
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-
-      return headers;
-    },
-  }),
+export default backendAPI.injectEndpoints({
   endpoints: (builder) => ({
     // creates a hook
     // previxes with "use" capitalises first letter, sufexies with "Query".
     registerEmployer: builder.query({
-      query: () => '/register',
+      query: () => '/employer/register',
       method: 'POST',
     }),
     signInEmployer: builder.mutation({
       query: ({ ...values }) => ({
-        url: '/signin',
+        url: '/employer/signin',
         method: 'POST',
         body: values,
       }),
     }),
     deleteEmployer: builder.query({
-      query: ({ employerId }) => `/${employerId}`,
+      query: ({ employerId }) => `/employer/${employerId}`,
       method: 'DELETE',
     }),
     updateEmployer: builder.query({
-      query: ({ employerId }) => `/${employerId}`,
+      query: ({ employerId }) => `/employer/${employerId}`,
       method: 'PUT',
     }),
   }),
+  overrideExisting: false,
 });
-
-export const {
-  useRegisterEmployerQuery,
-  useSignInEmployerMutation,
-  useDeleteEmployerQuery,
-  useUpdateEmployerQuery,
-} = employerAPI;

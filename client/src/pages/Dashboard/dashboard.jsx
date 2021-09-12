@@ -3,7 +3,7 @@ import './dashboard.css';
 
 import { Layout } from 'antd';
 
-import { usePrefetch } from '@services/backendAPI/activity_request';
+import apiHooks from '@services/hooks';
 
 import {
   TeacherDashboard,
@@ -12,16 +12,19 @@ import {
   Footer,
 } from '@components';
 
+const {
+  usePrefetch,
+} = apiHooks;
+
 const { Content, Sider } = Layout;
 
 const Dashboard = () => {
   const authLevel = 'employer';
 
-  const prefetchAllActivities = usePrefetch('getActivityRequests', undefined, { force: true })
+  const prefetchAllActivities = usePrefetch('getActivityRequests', undefined, { force: true });
   useEffect(() => {
-    prefetchAllActivities()
-  }, [])
-
+    prefetchAllActivities();
+  }, []);
 
   let dashboard;
 

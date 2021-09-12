@@ -1,37 +1,19 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import backendAPI from './index';
 
-export const adminAPI = createApi({
-  reducerPath: 'AdminAPI',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_BASE_API_URL}/admin`,
-    prepareHeaders: (headers, { getState }) => {
-      const { token } = getState().auth;
-
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-
-      return headers;
-    },
-  }),
+export default backendAPI.injectEndpoints({
   endpoints: (builder) => ({
     // creates a hook
     // previxes with "use" capitalises first letter, sufexies with "Query".
     registerAdmin: builder.query({
-      query: () => '/register',
+      query: () => '/admin/register',
       method: 'POST',
     }),
     signInAdmin: builder.mutation({
       query: ({ ...values }) => ({
-        url: '/signin',
+        url: '/admin/signin',
         method: 'POST',
         body: values,
       }),
     }),
   }),
 });
-
-export const {
-  useRegisterAdminQuery,
-  useSignInAdminMutation,
-} = adminAPI;

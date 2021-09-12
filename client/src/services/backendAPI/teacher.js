@@ -1,47 +1,27 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import backendAPI from './index';
 
-export const teacherAPI = createApi({
-  reducerPath: 'teacherAPI',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${import.meta.env.VITE_BASE_API_URL}/teacher`,
-    prepareHeaders: (headers, { getState }) => {
-      const { token } = getState().auth;
-
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-
-      return headers;
-    },
-  }),
+export default backendAPI.injectEndpoints({
   endpoints: (builder) => ({
     // creates a hook
     // previxes with "use" capitalises first letter, sufexies with "Query".
     registerTeacher: builder.query({
-      query: () => '/register',
+      query: () => '/teacher/register',
       method: 'POST',
     }),
     signInTeacher: builder.mutation({
       query: ({ ...values }) => ({
-        url: '/signin',
+        url: '/teacher/signin',
         method: 'POST',
         body: values,
       }),
     }),
     deleteTeacher: builder.query({
-      query: ({ teacherId }) => `/${teacherId}`,
+      query: ({ teacherId }) => `/teacher/${teacherId}`,
       method: 'DELETE',
     }),
     updateTeacher: builder.query({
-      query: ({ teacherId }) => `/${teacherId}`,
+      query: ({ teacherId }) => `/teacher/${teacherId}`,
       method: 'PUT',
     }),
   }),
 });
-
-export const {
-  useRegisterTeacherQuery,
-  useSignInTeacherMutation,
-  useDeleteTeacherQuery,
-  useUpdateTeacherQuery,
-} = teacherAPI;

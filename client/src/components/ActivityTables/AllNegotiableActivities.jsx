@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { activityAPI as api } from '@services/backendAPI/activity_request';
+import apiHooks from '@services/hooks';
 import Table from '../Table/Table';
 
 const AllNegotiableActivities = () => {
@@ -201,7 +201,7 @@ const AllNegotiableActivities = () => {
     },
   ];
 
-  const { data, isLoading } = api.useGetActivityRequestsQuery();
+  const { data, isLoading } = apiHooks.useGetActivityRequestsQuery();
 
   const filterActivityRequests = (d) => d?.filter(
     (activityRequest) => activityRequest.status === 'negotiable',

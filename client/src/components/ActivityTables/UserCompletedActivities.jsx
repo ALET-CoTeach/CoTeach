@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { activityAPI as api } from '@services/backendAPI/activity_request';
+import apiHooks from '@services/hooks';
 import Table from '../Table/Table';
 
 const UserCompletedActivities = ({ authLevel, id }) => {
@@ -188,7 +188,7 @@ const UserCompletedActivities = ({ authLevel, id }) => {
     },
   ];
 
-  const { data, isLoading } = api.useGetUserActivityRequestsQuery({ role: authLevel, id });
+  const { data, isLoading } = apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id });
 
   const filterActivityRequests = (d) => d?.filter(
     (activityRequest) => activityRequest.status === 'booked' && activityRequest.endDate < Date.now(),

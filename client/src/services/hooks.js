@@ -1,11 +1,11 @@
-import { adminAPI } from './backendAPI/admin';
-import { employerAPI } from './backendAPI/employer';
-import { sltAPI } from './backendAPI/slt';
-import { teacherAPI } from './backendAPI/teacher';
-import { activityAPI } from './backendAPI/activity_request';
-import { companyAPI } from './backendAPI/company';
-import { schoolAPI } from './backendAPI/school';
-import { socialMediaPostAPI } from './backendAPI/social_media_post';
+import adminAPI from './backendAPI/admin';
+import employerAPI from './backendAPI/employer';
+import sltAPI from './backendAPI/slt';
+import teacherAPI from './backendAPI/teacher';
+import activityAPI from './backendAPI/activity_request';
+import companyAPI from './backendAPI/company';
+import schoolAPI from './backendAPI/school';
+import socialMediaPostAPI from './backendAPI/social_media_post';
 
 const hooks = {
   ...adminAPI,
