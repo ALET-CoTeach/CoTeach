@@ -60,7 +60,7 @@ router.put('/:companyId', requiredRoles([_admin]), async (req, res) => {
     // Update a company by id in DB, and store success response in const
     const jsonResponse = await CompanyController.updateOne(companyId, updateData);
 
-    return res.status(500).json(jsonResponse);
+    return res.status(200).json(jsonResponse);
   } catch (err) {
     // Send JSON error response to the 'requestee'
     return res.status(500).json({ error: err });
