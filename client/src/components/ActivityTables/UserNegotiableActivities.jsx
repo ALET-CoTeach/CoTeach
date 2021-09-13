@@ -207,14 +207,8 @@ const UserNegotiableActivities = ({ authLevel, id }) => {
     (activityRequest) => activityRequest.status === 'negotiable',
   );
 
-  const getData = (d) => {
-    const filteredData = filterActivityRequests(d);
-    console.log(filteredData);
-    return filteredData;
-  };
-
   return (
-    <Table columns={columns} data={getData(data)} isLoading={isLoading} />
+    <Table columns={columns} data={filterActivityRequests(data)} isLoading={isLoading} />
   );
 };
 

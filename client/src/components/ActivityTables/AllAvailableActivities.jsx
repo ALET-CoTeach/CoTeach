@@ -271,14 +271,8 @@ const AllAvailableActivities = () => {
     (activityRequest) => activityRequest.status === 'pending',
   );
 
-  const getData = (d) => {
-    const filteredData = filterActivityRequests(d);
-    console.log(filteredData);
-    return filteredData;
-  };
-
   return (
-    <Table columns={columns} isLoading={isLoading} data={getData(data)} />
+    <Table columns={columns} isLoading={isLoading} data={filterActivityRequests(data)} />
   );
 };
 

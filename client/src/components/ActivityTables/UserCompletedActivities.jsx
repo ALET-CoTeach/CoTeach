@@ -194,14 +194,8 @@ const UserCompletedActivities = ({ authLevel, id }) => {
     (activityRequest) => activityRequest.status === 'booked' && activityRequest.endDate < Date.now(),
   );
 
-  const getData = (d) => {
-    const filteredData = filterActivityRequests(d);
-    console.log(filteredData);
-    return filteredData;
-  };
-
   return (
-    <Table columns={columns} data={getData(data)} isLoading={isLoading} />
+    <Table columns={columns} data={filterActivityRequests(data)} isLoading={isLoading} />
   );
 };
 
