@@ -3,6 +3,7 @@ import './dashboard.css';
 
 import { Layout } from 'antd';
 
+import { useSelector } from 'react-redux';
 import apiHooks from '@services/hooks';
 
 import {
@@ -19,7 +20,7 @@ const {
 const { Content, Sider } = Layout;
 
 const Dashboard = () => {
-  const authLevel = 'employer';
+  const { authLevel } = useSelector((state) => state.auth);
 
   const prefetchAllActivities = usePrefetch('getActivityRequests', undefined, { force: true });
   useEffect(() => {
