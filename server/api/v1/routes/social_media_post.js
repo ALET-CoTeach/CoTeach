@@ -46,10 +46,33 @@ router.post('/', requiredRoles([_admin, _slt, _teacher]), multer({ storage: mult
   }
 });
 
-router.get('/', requiredRoles([_admin, _slt]), async (req, res) => {
+router.get('/', requiredRoles([_admin, _slt, _teacher]), async (req, res) => {
+  const { authLevel, id: userId } = req.user;
+  const filter = {};
+
+  if (authLevel === _teacher) filter.teacherId = userId;
+
   try {
     // Get all SocialMediaPosts from DB, then store response in const
-    const jsonResponse = await SocialMediaPostController.getAll();
+    const jsonResponse = await SocialMediaPostController.getAll(filter);
+
+    res.status(200).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
+});
+
+router.get('/:smpId', requiredRoles([_admin, _slt, _teacher]), async (req, res) => {
+  const { authLevel, id: userId } = req.user;
+  const { smpId } = req.params;
+  const filter = {};
+
+  if (authLevel === _teacher) filter.teacherId = userId;
+
+  try {
+    // Get a SocialMediaPost by id from DB
+    const jsonResponse = await SocialMediaPostController.getOne(smpId, filter);
 
     res.status(200).json(jsonResponse);
   } catch (err) {

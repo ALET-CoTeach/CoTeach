@@ -84,18 +84,18 @@ module.exports.updateOne = (socialMediaPostId, updateData) => new Promise(async 
   }
 });
 
-module.exports.getAll = () => new Promise(async (resolve, reject) => {
+module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
-    const socialMediaPosts = await SocialMediaPost.find({});
+    const socialMediaPosts = await SocialMediaPost.find(filter);
     resolve({ socialMediaPosts });
   } catch (err) {
     reject(err);
   }
 });
 
-module.exports.getOne = (socialMediaPostId) => new Promise(async (resolve, reject) => {
+module.exports.getOne = (socialMediaPostId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const socialMediaPost = await SocialMediaPost.findById(socialMediaPostId);
+    const socialMediaPost = await SocialMediaPost.findOne({ _id: socialMediaPostId, ...filter });
 
     if (!socialMediaPost) {
       resolve({ message: 'SocialMediaPost does not exist in database' });

@@ -35,6 +35,21 @@ router.get('/', requiredRoles([_admin, _slt, _employer]), async (req, res) => {
   }
 });
 
+router.get('/:companyId', requiredRoles([_admin, _slt, _employer, _teacher]), async (req, res) => {
+  const { companyId } = req.params;
+
+  try {
+    // Get a company by id from DB
+    const jsonResponse = await CompanyController.getOne(companyId);
+
+    // Return a company, if it exists
+    return res.status(200).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    res.status(500).json({ error: err });
+  }
+});
+
 router.delete('/:companyId', requiredRoles([_admin]), async (req, res) => {
   const { companyId } = req.params;
 

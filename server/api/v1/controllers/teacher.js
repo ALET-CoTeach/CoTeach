@@ -65,18 +65,18 @@ module.exports.updateOne = (teacherId, updateData) => new Promise(async (resolve
   }
 });
 
-module.exports.getAll = () => new Promise(async (resolve, reject) => {
+module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
-    const teachers = await Teacher.find({});
+    const teachers = await Teacher.find(filter);
     resolve({ teachers });
   } catch (err) {
     reject(err);
   }
 });
 
-module.exports.getOne = (teacherId) => new Promise(async (resolve, reject) => {
+module.exports.getOne = (teacherId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const teacher = await Teacher.findById(teacherId);
+    const teacher = await Teacher.findOne({ _id: teacherId, ...filter });
 
     if (!teacher) {
       resolve({ message: 'Teacher does not exist in database' });

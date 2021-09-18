@@ -115,3 +115,21 @@ module.exports.deauth = (req, res) => {
     });
   }
 };
+
+module.exports.getAll = () => new Promise(async (resolve, reject) => {
+  try {
+    const admins = await Admin.find({});
+    resolve({ admins });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+module.exports.getOne = (adminId) => new Promise(async (resolve, reject) => {
+  try {
+    const admin = await Admin.findById(adminId);
+    resolve({ admin });
+  } catch (err) {
+    reject(err);
+  }
+});

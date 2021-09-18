@@ -10,6 +10,24 @@ const router = Router();
 router.post('/register', requiredRoles([_admin]), SLTController.register);
 router.post('/signin', SLTController.access);
 
+router.get('/', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, res) => {
+  const { user } = req;
+  const filter = {};
+
+  // Authenticated teachers and slt users can only see slt members from
+  // their own school
+  if (user.authLevel === _teacher
+      || user.authLevel === _slt) filter.schoolId = user.schoolId;
+
+  try {
+    const jsonResponse = await SLTController.getAll(filter);
+
+    return res.status(200).json(jsonResponse);
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
+});
+
 router.delete('/:sltId', requiredRoles([_admin]), async (req, res) => {
   const { sltId } = req.params;
 

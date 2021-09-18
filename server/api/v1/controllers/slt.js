@@ -64,9 +64,9 @@ module.exports.updateOne = (sltId, updateData) => new Promise(async (resolve, re
   }
 });
 
-module.exports.getAll = () => new Promise(async (resolve, reject) => {
+module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
-    const slts = await SLT.find({});
+    const slts = await SLT.find(filter).lean();
     resolve({ slts });
   } catch (err) {
     reject(err);
