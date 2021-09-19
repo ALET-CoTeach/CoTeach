@@ -6,7 +6,7 @@ const { _slt } = require('../utils/UserTypes');
 
 module.exports.deleteOne = (sltId) => new Promise(async (resolve, reject) => {
   try {
-    const slt = await SLT.findByIdAndDelete(sltId);
+    const slt = await SLT.findByIdAndDelete(sltId).lean();
 
     if (!slt) {
       resolve({ message: 'SLT document never existed or has already been deleted' });
@@ -30,7 +30,7 @@ module.exports.updateOne = (sltId, updateData) => new Promise(async (resolve, re
     } = updateData;
 
     // Check if school exists
-    const school = await School.findOne({ name: schoolName });
+    const school = await School.findOne({ name: schoolName }).lean();
 
     if (!school) {
       // Runs if school does not exist
@@ -52,7 +52,7 @@ module.exports.updateOne = (sltId, updateData) => new Promise(async (resolve, re
       {
         new: true,
       },
-    );
+    ).lean();
 
     if (!updatedSLT) {
       resolve({ message: 'SLT document was never creator or has been deleted ' });
@@ -73,9 +73,9 @@ module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   }
 });
 
-module.exports.getOne = (sltId) => new Promise(async (resolve, reject) => {
+module.exports.getOne = (sltId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const slt = await SLT.findById(sltId);
+    const slt = await SLT.findOne({ _id: sltId, ...filter }).lean();
 
     if (!slt) {
       resolve({ message: 'SLT does not exist in database' });
@@ -89,7 +89,7 @@ module.exports.getOne = (sltId) => new Promise(async (resolve, reject) => {
 
 module.exports.getOneByEmail = (email) => new Promise(async (resolve, reject) => {
   try {
-    const slt = await SLT.findOne({ email });
+    const slt = await SLT.findOne({ email }).lean();
     resolve(slt);
   } catch (err) {
     reject(err);
@@ -110,7 +110,7 @@ module.exports.register = async (req, res) => {
 
   try {
   // Returns a single document from unique email
-    const slt = await SLT.findOne({ email });
+    const slt = await SLT.findOne({ email }).lean();
 
     // Checks if account already exits
     if (slt) {
@@ -126,7 +126,7 @@ module.exports.register = async (req, res) => {
     if (!hash) throw new Error('Password hashing failed unexpectedly');
 
     // Check if school exists
-    const school = await School.findOne({ name: schoolName });
+    const school = await School.findOne({ name: schoolName }).lean();
     if (!school) {
       // Since a member of slt 'belongs' to a school
       // If no school is found, slt cannot be registered,
@@ -149,7 +149,7 @@ module.exports.register = async (req, res) => {
 
     // Saves slt object to database asynchronously
     // Stores saved slt data to constant
-    const savedSLT = await newSLT.save();
+    const savedSLT = await newSLT.save().lean();
     // Throws error if saving to database fails
     if (!savedSLT) throw new Error('Saving new SLT to database failed unexpectedly');
 

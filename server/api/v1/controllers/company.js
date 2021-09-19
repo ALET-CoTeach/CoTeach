@@ -19,7 +19,7 @@ module.exports.createOne = (companyData) => new Promise(async (resolve, reject) 
 
   try {
     // Returns a single document from unique email
-    const company = await Company.findOne({ email });
+    const company = await Company.findOne({ email }).lean();
     if (!company) {
       // Creates new Address Object for Company
       const address = new Address({
@@ -42,7 +42,7 @@ module.exports.createOne = (companyData) => new Promise(async (resolve, reject) 
       });
 
       // Saves company object to database
-      const savedCompany = await newCompany.save();
+      const savedCompany = await newCompany.save().lean();
       resolve({
         message: 'Company successfully created and stored on database',
         company: savedCompany,
@@ -63,7 +63,7 @@ module.exports.createOne = (companyData) => new Promise(async (resolve, reject) 
 
 module.exports.deleteOne = (companyId) => new Promise(async (resolve, reject) => {
   try {
-    const company = await Company.findByIdAndDelete(companyId);
+    const company = await Company.findByIdAndDelete(companyId).lean();
 
     if (!company) {
       resolve({ message: 'Company document never existed or has already been deleted' });
@@ -113,7 +113,7 @@ module.exports.updateOne = (companyId, updateData) => new Promise(async (resolve
       {
         new: true,
       },
-    );
+    ).lean();
 
     if (!updatedCompany) {
       resolve({ message: 'Company document was never created or has been deleted' });
@@ -125,18 +125,18 @@ module.exports.updateOne = (companyId, updateData) => new Promise(async (resolve
   }
 });
 
-module.exports.getAll = () => new Promise(async (resolve, reject) => {
+module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
-    const companies = await Company.find({});
+    const companies = await Company.find(filter).lean();
     resolve({ companies });
   } catch (err) {
     reject(err);
   }
 });
 
-module.exports.getOne = (companyId) => new Promise(async (resolve, reject) => {
+module.exports.getOne = (companyId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const company = await Company.findById(companyId);
+    const company = await Company.findOne({ _id: companyId, ...filter }).lean();
 
     if (!company) {
       resolve({ message: 'Company does not exist in database' });

@@ -9,7 +9,7 @@ module.exports.register = async (req, res) => {
 
   try {
     // Returns a single document from unique email
-    const admin = await Admin.findOne({ email });
+    const admin = await Admin.findOne({ email }).lean();
 
     // Checks if account already exists
     if (admin) {
@@ -33,7 +33,7 @@ module.exports.register = async (req, res) => {
 
     // Saves admin object to database asynchronously
     // Stores saved admin data to constant
-    const savedAdmin = await newAdmin.save();
+    const savedAdmin = await newAdmin.save().lean();
     // Throws error if saving to database fails
     if (!savedAdmin) throw new Error('Saving new Admin to database failed unexpectedly');
 
@@ -116,18 +116,18 @@ module.exports.deauth = (req, res) => {
   }
 };
 
-module.exports.getAll = () => new Promise(async (resolve, reject) => {
+module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
-    const admins = await Admin.find({});
+    const admins = await Admin.find(filter).lean();
     resolve({ admins });
   } catch (err) {
     reject(err);
   }
 });
 
-module.exports.getOne = (adminId) => new Promise(async (resolve, reject) => {
+module.exports.getOne = (adminId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const admin = await Admin.findById(adminId);
+    const admin = await Admin.findOne({ _id: adminId, ...filter }).lean();
     resolve({ admin });
   } catch (err) {
     reject(err);

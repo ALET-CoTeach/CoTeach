@@ -22,7 +22,7 @@ module.exports.createOne = (schoolData) => new Promise(async (resolve, reject) =
 
   try {
     // Returns a single document from unique email
-    const school = await School.findOne({ email });
+    const school = await School.findOne({ email }).lean();
     if (!school) {
       // Creates new Address Object for School
       const address = new Address({
@@ -48,7 +48,7 @@ module.exports.createOne = (schoolData) => new Promise(async (resolve, reject) =
       });
 
       // Saves school object to database
-      const savedSchool = await newSchool.save();
+      const savedSchool = await newSchool.save().lean();
       resolve({
         message: 'School successfully created and stored on database',
         school: savedSchool,
@@ -69,7 +69,7 @@ module.exports.createOne = (schoolData) => new Promise(async (resolve, reject) =
 
 module.exports.deleteOne = (schoolId) => new Promise(async (resolve, reject) => {
   try {
-    const school = await School.findByIdAndDelete(schoolId);
+    const school = await School.findByIdAndDelete(schoolId).lean();
 
     if (!school) {
       resolve({ message: 'School document never existed or has already been deleted' });
@@ -125,7 +125,7 @@ module.exports.updateOne = (schoolId, updateData) => new Promise(async (resolve,
       {
         new: true,
       },
-    );
+    ).lean();
 
     if (!updatedSchool) {
       resolve({ message: 'School document was never created or has been deleted' });
@@ -137,18 +137,18 @@ module.exports.updateOne = (schoolId, updateData) => new Promise(async (resolve,
   }
 });
 
-module.exports.getAll = () => new Promise(async (resolve, reject) => {
+module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
-    const schools = await School.find({});
+    const schools = await School.find(filter).lean();
     resolve({ schools });
   } catch (err) {
     reject(err);
   }
 });
 
-module.exports.getOne = (schoolId) => new Promise(async (resolve, reject) => {
+module.exports.getOne = (schoolId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const school = await School.findById(schoolId);
+    const school = await School.findOne({ _id: schoolId, ...filter });
 
     if (!school) {
       resolve({ message: 'School does not exist in database' });

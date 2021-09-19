@@ -2,12 +2,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Teacher = require('../models/Teacher');
 const School = require('../models/School');
+const SocialMediaPost = require('../models/SocialMediaPost');
+const ActivityRequest = require('../models/ActivityRequest');
 const SubjectList = require('../utils/SubjectList');
 const { _teacher } = require('../utils/UserTypes');
 
 module.exports.deleteOne = (teacherId) => new Promise(async (resolve, reject) => {
   try {
-    const teacher = await Teacher.findByIdAndDelete(teacherId);
+    const teacher = await Teacher.findByIdAndDelete(teacherId).lean();
 
     if (!teacher) {
       resolve({ message: 'Teacher document never existed or has already been deleted' });
@@ -31,7 +33,7 @@ module.exports.updateOne = (teacherId, updateData) => new Promise(async (resolve
     } = updateData;
 
     // Check if school exists
-    const school = await School.findOne({ name: schoolName });
+    const school = await School.findOne({ name: schoolName }).lean();
 
     if (!school) {
       // Runs if school does not exist
@@ -53,7 +55,7 @@ module.exports.updateOne = (teacherId, updateData) => new Promise(async (resolve
       {
         new: true,
       },
-    );
+    ).lean();
 
     if (!updatedTeacher) {
       resolve({ message: 'Teacher document was never created or has been deleted' });
@@ -67,7 +69,7 @@ module.exports.updateOne = (teacherId, updateData) => new Promise(async (resolve
 
 module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
-    const teachers = await Teacher.find(filter);
+    const teachers = await Teacher.find(filter).lean();
     resolve({ teachers });
   } catch (err) {
     reject(err);
@@ -76,7 +78,7 @@ module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
 
 module.exports.getOne = (teacherId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const teacher = await Teacher.findOne({ _id: teacherId, ...filter });
+    const teacher = await Teacher.findOne({ _id: teacherId, ...filter }).lean();
 
     if (!teacher) {
       resolve({ message: 'Teacher does not exist in database' });
@@ -90,7 +92,7 @@ module.exports.getOne = (teacherId, filter) => new Promise(async (resolve, rejec
 
 module.exports.getOneByEmail = (email) => new Promise(async (resolve, reject) => {
   try {
-    const teacher = await Teacher.findOne({ email });
+    const teacher = await Teacher.findOne({ email }).lean();
     resolve(teacher);
   } catch (err) {
     reject(err);
@@ -99,20 +101,22 @@ module.exports.getOneByEmail = (email) => new Promise(async (resolve, reject) =>
 
 module.exports.checkForMissingPosts = (teacherId) => new Promise(async (resolve, reject) => {
   try {
-    // Get all lesson requests by a teacher
-    const lessonRequests = await ActivityRequest.find({ teacherId });
+    // Get all activity requests by a teacher
+    const activityRequests = await ActivityRequest.find({ teacherId }).lean();
 
     // Empty array for ActivityRequest id's with no corresponding SocialMediaPost
     const noMatches = [];
 
     // Checks for atleast one SocialMediaPost for a specific lessonId
-    lessonRequests.forEach(async (lessonRequest) => {
+    activityRequests.forEach(async (activityRequest) => {
       // Null when no document found
-      const socialMediaPost = await SocialMediaPost.findOne({ lessonId: lessonRequest._id });
+      const socialMediaPost = await SocialMediaPost.findOne({
+        activityId: activityRequest._id,
+      }).lean();
 
       // Adds ActivityRequest id to array if no social media post found
       if (!socialMediaPost) {
-        noMatches.push(lessonRequest._id);
+        noMatches.push(activityRequest._id);
       }
     });
 
@@ -135,7 +139,7 @@ module.exports.register = async (req, res) => {
 
   try {
     // Returns a single document from unique email
-    const teacher = await Teacher.findOne({ email });
+    const teacher = await Teacher.findOne({ email }).lean();
 
     // Checks if account already exits
     if (teacher) {
@@ -151,7 +155,7 @@ module.exports.register = async (req, res) => {
     if (!hash) throw new Error('Password hashing failed unexpectedly');
 
     // Check if school exists
-    const school = await School.findOne({ name: schoolName });
+    const school = await School.findOne({ name: schoolName }).lean();
     if (!school) {
       // Since an teacher 'belongs' to a school
       // If no school is found, teacehr cannot be registered,
@@ -173,7 +177,7 @@ module.exports.register = async (req, res) => {
 
     // Saves teacher object to database asynchronously
     // Stores saved teacher data to constant
-    const savedTeacher = await newTeacher.save();
+    const savedTeacher = await newTeacher.save().lean();
     // Throws error if saving to database fails
     if (!savedTeacher) throw new Error('Saving new Teacher to database failed unexpectedly');
 

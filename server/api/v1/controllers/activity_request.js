@@ -48,7 +48,7 @@ module.exports.createOne = async (req, res) => {
 
   try {
     // Saves activityRequest object to database
-    const savedActivityRequest = await newActivityRequest.save();
+    const savedActivityRequest = await newActivityRequest.save().lean();
 
     if (savedActivityRequest) {
       res.status(201).json({
@@ -64,7 +64,7 @@ module.exports.createOne = async (req, res) => {
 
 module.exports.deleteOne = (activityRequestId) => new Promise(async (resolve, reject) => {
   try {
-    const activityRequest = await ActivityRequest.findByIdAndDelete(activityRequestId);
+    const activityRequest = await ActivityRequest.findByIdAndDelete(activityRequestId).lean();
 
     if (!activityRequest) {
       resolve({ message: 'ActivityRequest document never existed or has already been deleted' });
@@ -84,7 +84,7 @@ module.exports.updateOne = (activityRequestId, updateData) => new Promise(async 
       {
         new: true,
       },
-    );
+    ).lean();
 
     if (!updatedActivityRequest) {
       resolve({ message: 'ActivityRequest was never created or has been deleted' });
@@ -101,9 +101,9 @@ const tempFunc = (data) => new Promise(async (resolve, reject) => {
   try {
     const [teacher, school, employer, company] = await Promise.all([
       Teacher.findById(data.teacherId).lean(),
-      School.findById(data.schoolId),
+      School.findById(data.schoolId).lean(),
       Employer.findById(data.employerId).lean(),
-      Company.findById(data.companyId),
+      Company.findById(data.companyId).lean(),
     ]);
 
     delete data.__v;
@@ -146,9 +146,12 @@ module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   }
 });
 
-module.exports.getOne = (activityRequestId) => new Promise(async (resolve, reject) => {
+module.exports.getOne = (activityRequestId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const activityRequest = await ActivityRequest.findById(activityRequestId);
+    const activityRequest = await ActivityRequest.findOne({
+      _id: activityRequestId,
+      ...filter,
+    }).lean();
 
     if (!activityRequest) {
       resolve({ message: 'ActivityRequest does not exist in database' });
@@ -162,7 +165,7 @@ module.exports.getOne = (activityRequestId) => new Promise(async (resolve, rejec
 
 module.exports.getAllBySchool = (schoolId) => new Promise(async (resolve, reject) => {
   try {
-    const activityRequests = await ActivityRequest.find({ schoolId });
+    const activityRequests = await ActivityRequest.find({ schoolId }).lean();
     resolve(activityRequests);
   } catch (err) {
     reject(err);

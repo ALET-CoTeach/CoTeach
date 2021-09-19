@@ -23,10 +23,15 @@ router.post('/', requiredRoles([_admin]), async (req, res) => {
   }
 });
 
-router.get('/', requiredRoles([_admin, _slt, _employer]), async (req, res) => {
+router.get('/', requiredRoles([_admin, _slt, _employer, _teacher]), async (req, res) => {
+  const { authLevel, schoolId } = req.user;
+  const filter = {};
+
+  if (authLevel === _teacher) filter._id = schoolId;
+
   try {
     // Get all Schools from DB, then store response to const
-    const jsonResponse = await SchoolController.getAll();
+    const jsonResponse = await SchoolController.getAll(filter);
     return res.status(200).json(jsonResponse);
   } catch (err) {
     // Send JSON error response to the 'requestee'
@@ -36,10 +41,14 @@ router.get('/', requiredRoles([_admin, _slt, _employer]), async (req, res) => {
 
 router.get('/:schoolId', requiredRoles([_admin, _slt, _employer, _teacher]), async (req, res) => {
   const { schoolId } = req.params;
+  const { authLevel, usersSchoolId } = req.user;
+  const filter = {};
+
+  if (authLevel === _teacher) filter.schoolId = usersSchoolId;
 
   try {
     // Get a school by id from DB
-    const jsonResponse = await SchoolController.getOne(schoolId);
+    const jsonResponse = await SchoolController.getOne(schoolId, filter);
 
     // Return a school object if it exists in the DB
     return res.status(200).json(jsonResponse);

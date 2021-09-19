@@ -24,7 +24,7 @@ module.exports.createOne = (socialMediaPostData) => new Promise(async (resolve, 
     });
 
     // Saves socialMediaPost object to database
-    const savedSocialMediaPost = await newSocialMediaPost.save();
+    const savedSocialMediaPost = await newSocialMediaPost.save().lean();
     resolve({
       message: 'SocialMediaPost successfully created and stored on database',
       socialMediaPost: savedSocialMediaPost,
@@ -37,7 +37,7 @@ module.exports.createOne = (socialMediaPostData) => new Promise(async (resolve, 
 
 module.exports.deleteOne = (socialMediaPostId) => new Promise(async (resolve, reject) => {
   try {
-    const socialMediaPost = await SocialMediaPost.findByIdAndDelete(socialMediaPostId);
+    const socialMediaPost = await SocialMediaPost.findByIdAndDelete(socialMediaPostId).lean();
 
     if (!socialMediaPost) {
       resolve({ message: 'SocialMediaPost document never existed or has already been deleted' });
@@ -72,7 +72,7 @@ module.exports.updateOne = (socialMediaPostId, updateData) => new Promise(async 
         // Returns the new document after update is made
         new: true,
       },
-    );
+    ).lean();
 
     if (!updatedSocialMediaPost) {
       resolve({ message: 'SocialMediaPost document was never created or has never been deleted' });
@@ -86,7 +86,7 @@ module.exports.updateOne = (socialMediaPostId, updateData) => new Promise(async 
 
 module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
-    const socialMediaPosts = await SocialMediaPost.find(filter);
+    const socialMediaPosts = await SocialMediaPost.find(filter).lean();
     resolve({ socialMediaPosts });
   } catch (err) {
     reject(err);
@@ -95,7 +95,10 @@ module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
 
 module.exports.getOne = (socialMediaPostId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const socialMediaPost = await SocialMediaPost.findOne({ _id: socialMediaPostId, ...filter });
+    const socialMediaPost = await SocialMediaPost.findOne({
+      _id: socialMediaPostId,
+      ...filter,
+    }).lean();
 
     if (!socialMediaPost) {
       resolve({ message: 'SocialMediaPost does not exist in database' });
@@ -149,7 +152,7 @@ module.exports.review = (req, res) => {
 //
 module.exports.postFacebook = (id) => new Promise(async (resolve, reject) => {
   try {
-    const post = await SocialMediaPost.findById(id);
+    const post = await SocialMediaPost.findById(id).lean();
     if (post && post.facebookStatus === 'approved') {
       const url = `https://graph.facebook.com/v11.0/105175718455172/photos?url=${post.image}&message=${post.caption}&access_token=${process.env.FACEBOOK_TOKEN}`;
 

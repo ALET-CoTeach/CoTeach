@@ -6,7 +6,7 @@ const { _employer } = require('../utils/UserTypes');
 
 module.exports.deleteOne = (employerId) => new Promise(async (resolve, reject) => {
   try {
-    const employer = await Employer.findByIdAndDelete(employerId);
+    const employer = await Employer.findByIdAndDelete(employerId).lean();
 
     if (!employer) {
       resolve({ message: 'Employer document never existed or has already been deleted' });
@@ -29,7 +29,7 @@ module.exports.updateOne = (employerId, updateData) => new Promise(async (resolv
     } = updateData;
 
     // Check if company exists
-    const company = await Company.findOne({ name: companyName });
+    const company = await Company.findOne({ name: companyName }).lean();
 
     if (!company) {
       // Runs if company does not exist
@@ -50,7 +50,7 @@ module.exports.updateOne = (employerId, updateData) => new Promise(async (resolv
       {
         new: true,
       },
-    );
+    ).lean();
 
     if (!updatedEmployer) {
       resolve({ message: 'Employer has successfully been updated' });
@@ -62,18 +62,18 @@ module.exports.updateOne = (employerId, updateData) => new Promise(async (resolv
   }
 });
 
-module.exports.getAll = () => new Promise(async (resolve, reject) => {
+module.exports.getAll = (filter) => new Promise(async (resolve, reject) => {
   try {
-    const employers = await Employer.find({});
+    const employers = await Employer.find(filter).lean();
     resolve({ employers });
   } catch (err) {
     reject(err);
   }
 });
 
-module.exports.getOne = (employerId) => new Promise(async (resolve, reject) => {
+module.exports.getOne = (employerId, filter) => new Promise(async (resolve, reject) => {
   try {
-    const employer = await Employer.findById(employerId);
+    const employer = await Employer.findOne({ _id: employerId, ...filter }).lean();
 
     if (!employer) {
       resolve({ message: 'Employer does not exist in database' });
@@ -87,7 +87,7 @@ module.exports.getOne = (employerId) => new Promise(async (resolve, reject) => {
 
 module.exports.getOneByEmail = (email) => new Promise(async (resolve, reject) => {
   try {
-    const employer = await Employer.findOne({ email });
+    const employer = await Employer.findOne({ email }).lean();
     resolve(employer);
   } catch (err) {
     reject(err);
@@ -107,7 +107,7 @@ module.exports.register = async (req, res) => {
 
   try {
     // Returns a single document from unique email
-    const employer = await Employer.findOne({ email });
+    const employer = await Employer.findOne({ email }).lean();
 
     // Checks if account already exits
     if (employer) {
@@ -123,7 +123,7 @@ module.exports.register = async (req, res) => {
     if (!hash) throw new Error('Password hashing failed unexpectedly');
 
     // Check if company exists
-    const company = await Company.findOne({ name: companyName });
+    const company = await Company.findOne({ name: companyName }).lean();
     if (!company) {
       // Since an employer 'belongs' to a company
       // If no company is found, employer cannot be registered,
@@ -145,7 +145,7 @@ module.exports.register = async (req, res) => {
 
     // Saves employer object to database asynchronously
     // Stores saved employer data to constant
-    const savedEmployer = await newEmployer.save();
+    const savedEmployer = await newEmployer.save().lean();
     // Throws error if saving to database fails
     if (!savedEmployer) throw new Error('Saving new Employer to database failed unexpectedly');
 
