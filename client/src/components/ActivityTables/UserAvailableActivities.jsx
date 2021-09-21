@@ -6,15 +6,9 @@ import Table from '../Table/Table';
 const UserAvailableActivities = ({ authLevel, id }) => {
   const columns = [
     {
-      title: 'Date',
+      title: 'Preferred Day',
       dataIndex: 'preferredDay',
-      key: 'date',
-    },
-    {
-      title: 'Booked By',
-      dataIndex: 'company',
-      key: 'organisation',
-      isSearchable: true,
+      key: 'prefDay',
     },
     {
       title: 'School',
@@ -54,13 +48,13 @@ const UserAvailableActivities = ({ authLevel, id }) => {
     },
     {
       title: 'Lesson Title',
-      dataIndex: 'lessonTitle',
+      dataIndex: 'title',
       key: 'lesson',
       isSearchable: true,
     },
     {
       title: 'Type',
-      dataIndex: 'activityType',
+      dataIndex: 'type',
       key: 'activityType',
       filters: [
         {
