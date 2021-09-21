@@ -33,7 +33,7 @@ module.exports.register = async (req, res) => {
 
     // Saves admin object to database asynchronously
     // Stores saved admin data to constant
-    const savedAdmin = await newAdmin.save().lean();
+    const savedAdmin = await newAdmin.save();
     // Throws error if saving to database fails
     if (!savedAdmin) throw new Error('Saving new Admin to database failed unexpectedly');
 

@@ -145,7 +145,7 @@ module.exports.register = async (req, res) => {
 
     // Saves employer object to database asynchronously
     // Stores saved employer data to constant
-    const savedEmployer = await newEmployer.save().lean();
+    const savedEmployer = await newEmployer.save();
     // Throws error if saving to database fails
     if (!savedEmployer) throw new Error('Saving new Employer to database failed unexpectedly');
 

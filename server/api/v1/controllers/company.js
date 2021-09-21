@@ -42,7 +42,7 @@ module.exports.createOne = (companyData) => new Promise(async (resolve, reject) 
       });
 
       // Saves company object to database
-      const savedCompany = await newCompany.save().lean();
+      const savedCompany = await newCompany.save();
       resolve({
         message: 'Company successfully created and stored on database',
         company: savedCompany,

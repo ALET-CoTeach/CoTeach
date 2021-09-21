@@ -24,7 +24,7 @@ module.exports.createOne = (socialMediaPostData) => new Promise(async (resolve, 
     });
 
     // Saves socialMediaPost object to database
-    const savedSocialMediaPost = await newSocialMediaPost.save().lean();
+    const savedSocialMediaPost = await newSocialMediaPost.save();
     resolve({
       message: 'SocialMediaPost successfully created and stored on database',
       socialMediaPost: savedSocialMediaPost,

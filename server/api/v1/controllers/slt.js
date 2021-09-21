@@ -149,7 +149,7 @@ module.exports.register = async (req, res) => {
 
     // Saves slt object to database asynchronously
     // Stores saved slt data to constant
-    const savedSLT = await newSLT.save().lean();
+    const savedSLT = await newSLT.save();
     // Throws error if saving to database fails
     if (!savedSLT) throw new Error('Saving new SLT to database failed unexpectedly');
 

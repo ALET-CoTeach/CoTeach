@@ -177,7 +177,7 @@ module.exports.register = async (req, res) => {
 
     // Saves teacher object to database asynchronously
     // Stores saved teacher data to constant
-    const savedTeacher = await newTeacher.save().lean();
+    const savedTeacher = await newTeacher.save();
     // Throws error if saving to database fails
     if (!savedTeacher) throw new Error('Saving new Teacher to database failed unexpectedly');
 

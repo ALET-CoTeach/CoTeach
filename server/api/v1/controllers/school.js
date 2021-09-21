@@ -48,7 +48,7 @@ module.exports.createOne = (schoolData) => new Promise(async (resolve, reject) =
       });
 
       // Saves school object to database
-      const savedSchool = await newSchool.save().lean();
+      const savedSchool = await newSchool.save();
       resolve({
         message: 'School successfully created and stored on database',
         school: savedSchool,
