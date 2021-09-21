@@ -24,10 +24,6 @@ const AddActivityModal = () => {
     }, 2000);
   };
 
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
-    setVisible(false);
-  };
   return (
     <>
       <Button style={{ width: 150, margin: 20 }} type="primary" onClick={() => setVisible(true)}>

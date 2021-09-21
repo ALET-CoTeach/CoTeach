@@ -5,6 +5,7 @@ const School = require('../models/School');
 const Employer = require('../models/Employer');
 const Company = require('../models/Company');
 
+const { _teacher } = require('../utils/UserTypes');
 // TODO: Write suitable functions for all methods for the ActivityRequest model
 
 module.exports.createOne = async (req, res) => {
@@ -21,16 +22,10 @@ module.exports.createOne = async (req, res) => {
     type,
   } = req.body;
 
-  let teacherId;
-
   // If authenticated user is not a teacher, use the teacherId from request body
-  if (!req.user) {
-    teacherId = req.body.teacherId;
-  } else {
-    // If teacher is signed in
-    teacherId = req.user.id;
-  }
+  const teacherId = req.user.authLevel !== _teacher ? req.body.teacherId : req.user._id;
 
+  console.log(teacherId);
   // Creates new ActivityRequest Object
   const newActivityRequest = new ActivityRequest({
     schoolId,
@@ -48,10 +43,11 @@ module.exports.createOne = async (req, res) => {
 
   try {
     // Saves activityRequest object to database
-    const savedActivityRequest = await newActivityRequest.save().lean();
+    const savedActivityRequest = await newActivityRequest.save();
+    console.log(savedActivityRequest);
 
     if (savedActivityRequest) {
-      res.status(201).json({
+      return res.status(201).json({
         message: 'ActivityRequest successfully created and stored on database',
         activityRequest: savedActivityRequest,
       });

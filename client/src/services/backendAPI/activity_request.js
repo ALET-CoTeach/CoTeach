@@ -4,9 +4,13 @@ export default backendAPI.injectEndpoints({
   endpoints: (builder) => ({
     // creates a hook
     // previxes with "use" capitalises first letter, sufexies with "Query".
-    postActivityRequest: builder.query({
-      query: () => '/activityrequest',
-      method: 'POST',
+    postActivityRequest: builder.mutation({
+      query: (values) => ({
+        url: '/activityrequest',
+        body: values,
+        method: 'POST',
+      }),
+      transformResponse: (response) => response.activityRequest,
     }),
     getActivityRequests: builder.query({
       query: () => '/activityrequest',

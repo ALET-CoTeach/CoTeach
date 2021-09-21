@@ -8,8 +8,9 @@ export default backendAPI.injectEndpoints({
       query: () => '/school',
       method: 'POST',
     }),
-    getSchool: builder.query({
-      query: '/school',
+    getSchools: builder.query({
+      query: () => '/school',
+      transformResponse: (response) => response.schools,
     }),
     deleteSchool: builder.query({
       query: ({ schoolId }) => `/school/${schoolId}`,

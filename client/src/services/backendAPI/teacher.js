@@ -15,6 +15,10 @@ export default backendAPI.injectEndpoints({
         body: values,
       }),
     }),
+    getTeachers: builder.query({
+      query: () => '/teacher',
+      transformResponse: (response) => response.teachers,
+    }),
     deleteTeacher: builder.query({
       query: ({ teacherId }) => `/teacher/${teacherId}`,
       method: 'DELETE',
