@@ -10,14 +10,17 @@ export default backendAPI.injectEndpoints({
         body: values,
         method: 'POST',
       }),
+      invalidatesTags: ['ActivityRequest'],
       transformResponse: (response) => response.activityRequest,
     }),
     getActivityRequests: builder.query({
       query: () => '/activityrequest',
+      providesTags: ['ActivityRequest'],
       transformResponse: (response) => response.activityRequests,
     }),
     getUserActivityRequests: builder.query({
       query: ({ role, id }) => `/activityrequest/${role}:${id}`,
+      providesTags: ['ActivityRequest'],
       transformResponse: (response) => response.activityRequests,
     }),
     deleteActivityRequest: builder.query({

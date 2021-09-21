@@ -14,5 +14,6 @@ export default createApi({
       return headers;
     },
   }),
+  tagTypes: ['ActivityRequest'],
   endpoints: () => ({}),
 });

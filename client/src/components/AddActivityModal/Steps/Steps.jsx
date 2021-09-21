@@ -61,7 +61,7 @@ const StepsComponent = ({ handleOk }) => {
     createActivityRequest(formData);
   };
 
-  if (!isLoading && !data) message.success('Successfuly created Activity Request');
+  if (!isLoading && data) message.success('Successfuly created Activity Request');
 
   return (
     <Form
