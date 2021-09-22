@@ -24,5 +24,4 @@ export default backendAPI.injectEndpoints({
       method: 'PUT',
     }),
   }),
-  overrideExisting: false,
 });
