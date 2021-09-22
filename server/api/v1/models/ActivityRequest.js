@@ -25,11 +25,13 @@ const ActivityRequestSchema = new Schema(
       required: true,
     },
     term: {
-      type: String,
+      // 1 - T1, 2 - T2 ... 6 - T6
+      type: Number,
       required: true,
     },
     preferredDay: {
-      type: String,
+      // 0 - Sunday, 1 - Monday ... 6 - Saturday
+      type: Number,
       required: true,
     },
     preferredTime: {
