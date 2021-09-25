@@ -2,6 +2,8 @@ import React from 'react';
 import apiHooks from '@services/hooks';
 import Table from '../Table/Table';
 
+import { getDayFromInt } from '@utils/datetime';
+
 const AllAvailableActivities = () => {
   const columns = [
     {
@@ -269,7 +271,10 @@ const AllAvailableActivities = () => {
 
   const filterActivityRequests = (d) => d?.filter(
     (activityRequest) => activityRequest.status === 'pending',
-  );
+  ).map((activityRequest) => ({
+      ...activityRequest,
+      preferredDay: getDayFromInt(activityRequest.preferredDay),
+    }));
 
   return (
     <Table columns={columns} isLoading={isLoading} data={filterActivityRequests(data)} />

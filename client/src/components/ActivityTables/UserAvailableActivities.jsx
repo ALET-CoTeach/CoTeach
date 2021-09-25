@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { getDayFromInt } from '@utils/datetime';
+
 import apiHooks from '@services/hooks';
 import Table from '../Table/Table';
 
@@ -197,9 +199,11 @@ const UserAvailableActivities = ({ authLevel, id }) => {
 
   const { data, isLoading } = apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id });
 
-  const filterActivityRequests = (d) => d?.filter(
-    (activityRequest) => activityRequest.status === 'pending',
-  );
+  const filterActivityRequests = (d) => d?.filter((activityRequest) => activityRequest.status === 'pending')
+    .map((activityRequest) => ({
+      ...activityRequest,
+      preferredDay: getDayFromInt(activityRequest.preferredDay),
+    }));
 
   return (
     <Table columns={columns} data={filterActivityRequests(data)} isLoading={isLoading} />
