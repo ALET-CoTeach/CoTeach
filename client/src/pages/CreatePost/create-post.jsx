@@ -19,9 +19,9 @@ const CreatePost = () => (
           left: 0,
         }}
       />
-      <Layout className="site-layout" style={{ marginLeft: 200 }}>
+      <Layout className="site-layout" style={{ marginLeft: 200}}>
         <Content className="addLesson-content">
-          <div className="site-layout-background">
+          <div className="site-layout-background" style={{ margin:"1%" }}>
             <h1 className="centerText HeadingGrey">Post Creation Page</h1>
             <CreatePostTable />
           </div>
