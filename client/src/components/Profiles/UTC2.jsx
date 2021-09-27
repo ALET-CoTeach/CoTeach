@@ -98,7 +98,7 @@ const UTCProfilesTwo = () => {
         />
         <Layout className="site-layout" style={{ marginLeft: 200 }}>
           <Content className="addLesson-content" width="100%">
-            <div className="site-layout-background">
+            <div className="site-layout-background" style={{ margin:"1%" }}>
 
               <div>
                 <h1 className="centerText HeadingGrey">School Information</h1>
