@@ -39,12 +39,12 @@ const TeacherDashboard = () => (
               <Col lg={24}>
                 <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
                   <Row>
-                    <Col lg={18}>
+                    <Col lg={16}>
                       <h1 className="SubHeadingGrey centerText headerPadding">Student&apos;s Comments</h1>
                       <StudentFeedback />
                     </Col>
 
-                    <Col lg={6}>
+                    <Col lg={8}>
                       <h1 className="SubHeadingGrey centerText">Department Activity</h1>
                       <DashboardDepartmentStats />
                     </Col>

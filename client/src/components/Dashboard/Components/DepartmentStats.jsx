@@ -11,9 +11,9 @@ const { Content, Footer, Sider } = Layout;
 const DashboardDepartmentStats = () => (
   <div>
     <div className="site-statistic-demo-card">
-      <Row lg={24}>
+      <Row lg={24} style={{ textAlign:"center" }}>
         <Col lg={24}>
-          <Card>
+          <Card >
             <Statistic
               title="Positive Student Feedback"
               value={11.28}
