@@ -13,7 +13,8 @@ import StudentFeedback from './Components/StudentFeedback';
 import { NavLink } from 'react-router-dom';
 
 const TeacherDashboard = () => (
-  <Row gutter={[16, 16]}>
+  <div style={{ marginLeft:"1%" }}> 
+  <Row gutter={[16, 16]} >
     <Col lg={24}>
       <Row gutter={[16, 24]}>
         <Col lg={5}>
@@ -37,12 +38,17 @@ const TeacherDashboard = () => (
             <Row gutter={[16, 24]}>
               <Col lg={24}>
                 <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                  <h1 className="SubHeadingGrey centerText">Department Activity</h1>
-                  <DashboardDepartmentStats />
-                  <div className="topPadding" />
-                  <hr />
-                  <h1 className="SubHeadingGrey centerText headerPadding">Student&apos;s Comments</h1>
-                  <StudentFeedback />
+                  <Row>
+                    <Col lg={18}>
+                      <h1 className="SubHeadingGrey centerText headerPadding">Student&apos;s Comments</h1>
+                      <StudentFeedback />
+                    </Col>
+
+                    <Col lg={6}>
+                      <h1 className="SubHeadingGrey centerText">Department Activity</h1>
+                      <DashboardDepartmentStats />
+                    </Col>
+                  </Row>
                 </Card>
               </Col>
               <Col lg={24}>
@@ -58,6 +64,7 @@ const TeacherDashboard = () => (
       </Row>
     </Col>
   </Row>
+  </div>
 );
 
 export default TeacherDashboard;

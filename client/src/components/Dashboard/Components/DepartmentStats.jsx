@@ -9,10 +9,10 @@ import StudentFeedback from './StudentFeedback';
 const { Content, Footer, Sider } = Layout;
 
 const DashboardDepartmentStats = () => (
-    <div>
+  <div>
     <div className="site-statistic-demo-card">
-      <Row gutter={16}>
-        <Col span={6}>
+      <Row lg={24}>
+        <Col lg={24}>
           <Card>
             <Statistic
               title="Positive Student Feedback"
@@ -24,7 +24,7 @@ const DashboardDepartmentStats = () => (
             />
           </Card>
         </Col>
-        <Col span={6}>
+        <Col lg={24}>
           <Card>
             <Statistic
               title="Activities Requested"
@@ -36,7 +36,7 @@ const DashboardDepartmentStats = () => (
             />
           </Card>
         </Col>
-        <Col span={6}>
+        <Col lg={24}>
           <Card>
             <Statistic
               title="Activities Booked"
@@ -48,7 +48,7 @@ const DashboardDepartmentStats = () => (
             />
           </Card>
         </Col>
-        <Col span={6}>
+        <Col lg={24}>
           <Card>
             <Statistic
               title="Activities Delivered "
@@ -61,6 +61,9 @@ const DashboardDepartmentStats = () => (
           </Card>
         </Col>
       </Row>
+
+
+
 
     </div>
   </div>
