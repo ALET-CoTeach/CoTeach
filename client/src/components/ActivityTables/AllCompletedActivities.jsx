@@ -269,7 +269,10 @@ const AllCompletedActivities = () => {
 
   const filterActivityRequests = (d) => d?.filter(
     (activityRequest) => activityRequest.status === 'pending' && activityRequest.endDate < Date.now(),
-  );
+  ).map((activityRequest) => ({
+    ...activityRequest,
+          term: `T${activityRequest.term}`,
+  }));
 
   return (
     <Table columns={columns} isLoading={isLoading} data={filterActivityRequests(data)} />

@@ -273,6 +273,7 @@ const AllAvailableActivities = () => {
     (activityRequest) => activityRequest.status === 'pending',
   ).map((activityRequest) => ({
       ...activityRequest,
+      term: `T${activityRequest.term}`,
       preferredDay: getDayFromInt(activityRequest.preferredDay),
     }));
 
