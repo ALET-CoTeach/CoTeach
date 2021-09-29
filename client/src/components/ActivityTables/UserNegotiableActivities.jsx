@@ -207,8 +207,10 @@ const UserNegotiableActivities = ({ authLevel, id }) => {
     (activityRequest) => activityRequest.status === 'negotiable',
   );
 
+  const userColumns = authLevel === 'teacher' ? columns.filter((col) => col.dataIndex !== 'teacherName') : columns;
+
   return (
-    <Table columns={columns} data={filterActivityRequests(data)} isLoading={isLoading} />
+    <Table columns={userColumns} data={filterActivityRequests(data)} isLoading={isLoading} />
   );
 };
 

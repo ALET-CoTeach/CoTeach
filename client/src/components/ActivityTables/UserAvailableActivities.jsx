@@ -205,8 +205,10 @@ const UserAvailableActivities = ({ authLevel, id }) => {
       preferredDay: getDayFromInt(activityRequest.preferredDay),
     }));
 
+  const userColumns = authLevel === 'teacher' ? columns.filter((col) => col.dataIndex !== 'teacherName') : columns;
+
   return (
-    <Table columns={columns} data={filterActivityRequests(data)} isLoading={isLoading} />
+    <Table columns={userColumns} data={filterActivityRequests(data)} isLoading={isLoading} />
   );
 };
 
