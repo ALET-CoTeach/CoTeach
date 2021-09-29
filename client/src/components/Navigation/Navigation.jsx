@@ -29,7 +29,7 @@ const Navigation = () => {
         </Menu.Item>
         <Menu.Item key="activitybookings" icon={<BookOutlined />}>
           <NavLink to="activitybookings">
-            Add Lesson
+            Activity Bookings
           </NavLink>
         </Menu.Item>
         <SubMenu key="SubMenu" icon={<SettingOutlined />} title="Work In Progress">
@@ -46,7 +46,6 @@ const Navigation = () => {
             <Menu.Item key="setting:7"><NavLink to="/">Landing Page</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Table Dashboards">
-            <Menu.Item key="setting:9"><NavLink to="activitybookings">Activity Entries</NavLink></Menu.Item>
           </Menu.ItemGroup>
           <Menu.ItemGroup title="Post Creation / Verification">
             <Menu.Item key="setting:10"><NavLink to="createpost">Create Post</NavLink></Menu.Item>
