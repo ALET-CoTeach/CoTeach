@@ -1,12 +1,22 @@
 module.exports = {
+  parserOptions: {
+    ecmaVersion: 2021,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
   env: {
     browser: true,
-    es2021: true,
+    node: true,
   },
+  plugins: [
+    'react',
+  ],
   extends: [
     'plugin:react/recommended',
     'plugin:import/recommended',
-    'airbnb',
+    'airbnb-base',
   ],
   settings: {
     'import/resolver': {
@@ -17,21 +27,12 @@ module.exports = {
           ['@services', './src/services'],
           ['@pages', './src/pages/'],
           ['@components', './src/components'],
+          ['@utils', './src/utils/'],
         ],
         extensions: ['.ts', '.js', '.jsx', '.json'],
       },
     },
   },
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 12,
-    sourceType: 'module',
-  },
-  plugins: [
-    'react',
-  ],
   rules: {
     'react/prop-types': ['off'],
     'no-param-reassign': 'off',

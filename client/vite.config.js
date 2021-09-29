@@ -6,13 +6,13 @@ import path from 'path';
 export default defineConfig({
   plugins: [reactRefresh()],
   resolve: {
-    alias: {
+    alias: [{
       '@assets': path.resolve(__dirname, './src/assets'),
       '@actions': path.resolve(__dirname, './src/redux/actions'),
       '@services': path.resolve(__dirname, './src/services'),
       '@pages': path.resolve(__dirname, './src/pages'),
       '@components': path.resolve(__dirname, './src/components'),
       '@utils': path.resolve(__dirname, './src/utils'),
-    },
+    }],
   },
 });

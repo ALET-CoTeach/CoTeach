@@ -8,7 +8,6 @@
     "build": "vite build",
     "serve": "vite preview"
   },
-  "alias": {},
   "license": "GPL-3.0",
   "dependencies": {
     "@ant-design/charts": "^1.2.7",
@@ -41,6 +40,7 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-node": "^0.3.6",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
