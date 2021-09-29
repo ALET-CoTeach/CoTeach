@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import { getDayFromInt } from '@utils/datetime';
 
@@ -51,13 +52,13 @@ const UserAvailableActivities = ({ authLevel, id }) => {
     {
       title: 'Lesson Title',
       dataIndex: 'title',
-      key: 'lesson',
+      key: 'title',
       isSearchable: true,
     },
     {
       title: 'Type',
       dataIndex: 'type',
-      key: 'activityType',
+      key: 'type',
       filters: [
         {
           text: 'Lesson',
@@ -133,30 +134,6 @@ const UserAvailableActivities = ({ authLevel, id }) => {
       onFilter: (value, record) => record.subject.indexOf(value) === 0,
     },
     {
-      title: 'Course Type',
-      dataIndex: 'subject',
-      key: 'course',
-      filters: [
-        {
-          text: 'A-Level',
-          value: 'A Level',
-        },
-        {
-          text: 'BTEC Level 3',
-          value: 'BTEC Level 3',
-        },
-        {
-          text: 'BTEC Level 2',
-          value: 'BTEC Level 2',
-        },
-        {
-          text: 'GCSE',
-          value: 'GCSE',
-        },
-      ],
-      onFilter: (value, record) => record.course.indexOf(value) === 0,
-    },
-    {
       title: 'Year',
       dataIndex: 'year',
       key: 'year',
@@ -202,6 +179,7 @@ const UserAvailableActivities = ({ authLevel, id }) => {
   const filterActivityRequests = (d) => d?.filter((activityRequest) => activityRequest.status === 'pending')
     .map((activityRequest) => ({
       ...activityRequest,
+      type: _.startCase(activityRequest.type),
       preferredDay: getDayFromInt(activityRequest.preferredDay),
     }));
 

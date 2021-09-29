@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import apiHooks from '@services/hooks';
 import Table from '../Table/Table';
@@ -8,7 +9,7 @@ const AllBookedActivities = () => {
     {
       title: 'Date',
       dataIndex: 'preferredDay',
-      key: 'date',
+      key: 'prefDay',
     },
     {
       title: 'Booked By',
@@ -54,14 +55,14 @@ const AllBookedActivities = () => {
     },
     {
       title: 'Lesson Title',
-      dataIndex: 'lessonTitle',
-      key: 'lesson',
+      dataIndex: 'title',
+      key: 'title',
       isSearchable: true,
     },
     {
       title: 'Type',
-      dataIndex: 'activityType',
-      key: 'activityType',
+      dataIndex: 'type',
+      key: 'type',
       filters: [
         {
           text: 'Lesson',
@@ -137,30 +138,6 @@ const AllBookedActivities = () => {
       onFilter: (value, record) => record.subject.indexOf(value) === 0,
     },
     {
-      title: 'Course Type',
-      dataIndex: 'subject',
-      key: 'course',
-      filters: [
-        {
-          text: 'A-Level',
-          value: 'A Level',
-        },
-        {
-          text: 'BTEC Level 3',
-          value: 'BTEC Level 3',
-        },
-        {
-          text: 'BTEC Level 2',
-          value: 'BTEC Level 2',
-        },
-        {
-          text: 'GCSE',
-          value: 'GCSE',
-        },
-      ],
-      onFilter: (value, record) => record.course.indexOf(value) === 0,
-    },
-    {
       title: 'Year',
       dataIndex: 'year',
       key: 'year',
@@ -205,7 +182,11 @@ const AllBookedActivities = () => {
 
   const filterActivityRequests = (d) => d?.filter(
     (activityRequest) => activityRequest.status === 'booked',
-  );
+  ).map((activityRequest) => ({
+    ...activityRequest,
+    type: _.startCase(activityRequest.type),
+    preferredDay: getDayFromInt(activityRequest.preferredDay),
+  }));
 
   return (
     <Table columns={columns} data={filterActivityRequests(data)} isLoading={isLoading} />

@@ -41,7 +41,7 @@ const AllCompletedActivities = () => {
     {
       title: 'Weekday',
       dataIndex: 'preferredDay',
-      key: 'day',
+      key: 'prefDay',
       filters: [
         {
           text: 'Monday',
@@ -69,7 +69,7 @@ const AllCompletedActivities = () => {
     {
       title: 'Time',
       dataIndex: 'preferredTime',
-      key: 'time',
+      key: 'prefTime',
       filters: [
         {
           text: 'AM',
@@ -120,14 +120,14 @@ const AllCompletedActivities = () => {
     },
     {
       title: 'Lesson Title',
-      dataIndex: 'lessonTitle',
-      key: 'lessonTitle',
+      dataIndex: 'title',
+      key: 'title',
       isSearchable: true,
     },
     {
       title: 'Type',
-      dataIndex: 'activityType',
-      key: 'activityType',
+      dataIndex: 'type',
+      key: 'type',
       filters: [
         {
           text: 'Lesson',
@@ -202,30 +202,6 @@ const AllCompletedActivities = () => {
       onFilter: (value, record) => record.subject.indexOf(value) === 0,
     },
     {
-      title: 'Course',
-      dataIndex: 'course',
-      key: 'course',
-      filters: [
-        {
-          text: 'A-Level',
-          value: 'A Level',
-        },
-        {
-          text: 'BTEC Level 3',
-          value: 'BTEC Level 3',
-        },
-        {
-          text: 'BTEC Level 2',
-          value: 'BTEC Level 2',
-        },
-        {
-          text: 'GCSE',
-          value: 'GCSE',
-        },
-      ],
-      onFilter: (value, record) => record.course.indexOf(value) === 0,
-    },
-    {
       title: 'Year',
       dataIndex: 'year',
       key: 'year',
@@ -271,7 +247,7 @@ const AllCompletedActivities = () => {
     (activityRequest) => activityRequest.status === 'pending' && activityRequest.endDate < Date.now(),
   ).map((activityRequest) => ({
     ...activityRequest,
-          term: `T${activityRequest.term}`,
+    term: `T${activityRequest.term}`,
   }));
 
   return (

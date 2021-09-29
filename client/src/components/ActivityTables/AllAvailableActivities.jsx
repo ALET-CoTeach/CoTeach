@@ -1,5 +1,6 @@
 import React from 'react';
 import apiHooks from '@services/hooks';
+import _ from 'lodash';
 import Table from '../Table/Table';
 
 import { getDayFromInt } from '@utils/datetime';
@@ -43,7 +44,7 @@ const AllAvailableActivities = () => {
     {
       title: 'Weekday',
       dataIndex: 'preferredDay',
-      key: 'day',
+      key: 'prefDay',
       filters: [
         {
           text: 'Monday',
@@ -59,11 +60,11 @@ const AllAvailableActivities = () => {
         },
         {
           text: 'Thursday',
-          value: 'Thursday　　',
+          value: 'Thursday',
         },
         {
           text: 'Friday',
-          value: 'Friday　　　　　',
+          value: 'Friday',
         },
       ],
       onFilter: (value, record) => record.day.indexOf(value) === 0,
@@ -71,7 +72,7 @@ const AllAvailableActivities = () => {
     {
       title: 'Time',
       dataIndex: 'preferredTime',
-      key: 'time',
+      key: 'prefTime',
       filters: [
         {
           text: 'AM',
@@ -121,15 +122,15 @@ const AllAvailableActivities = () => {
       onFilter: (value, record) => record.school.indexOf(value) === 0,
     },
     {
-      title: 'Lesson Title',
-      dataIndex: 'lessonTitle',
-      key: 'lessonTitle',
+      title: 'Activity Title',
+      dataIndex: 'title',
+      key: 'title',
       isSearchable: true,
     },
     {
       title: 'Type',
-      dataIndex: 'activityType',
-      key: 'activityType',
+      dataIndex: 'type',
+      key: 'type',
       filters: [
         {
           text: 'Lesson',
@@ -203,68 +204,6 @@ const AllAvailableActivities = () => {
       ],
       onFilter: (value, record) => record.subject.indexOf(value) === 0,
     },
-    {
-      title: 'Course',
-      dataIndex: 'course',
-      key: 'course',
-      filters: [
-        {
-          text: 'A-Level',
-          value: 'A Level',
-        },
-        {
-          text: 'BTEC Level 3',
-          value: 'BTEC Level 3',
-        },
-        {
-          text: 'BTEC Level 2',
-          value: 'BTEC Level 2',
-        },
-        {
-          text: 'GCSE',
-          value: 'GCSE',
-        },
-      ],
-      onFilter: (value, record) => record.course.indexOf(value) === 0,
-    },
-    {
-      title: 'Year',
-      dataIndex: 'year',
-      key: 'year',
-      filters: [
-        {
-          text: '7',
-          value: '7',
-        },
-        {
-          text: '8',
-          value: '8',
-        },
-        {
-          text: '9',
-          value: '9',
-        },
-        {
-          text: '10',
-          value: '10',
-        },
-        {
-          text: '11',
-          value: '11',
-        },
-        {
-          text: '12',
-          value: '12',
-        },
-        {
-          text: '13',
-          value: '13',
-        },
-      ],
-      onFilter: (value, record) => record.year.indexOf(value) === 0,
-      // sorter: (a, b) => a.year - b.year,
-      // sortDirections: ['ascend', 'descend'],
-    },
   ];
 
   const { data, isLoading } = apiHooks.useGetActivityRequestsQuery();
@@ -274,6 +213,7 @@ const AllAvailableActivities = () => {
   ).map((activityRequest) => ({
       ...activityRequest,
       term: `T${activityRequest.term}`,
+      type: _.startCase(activityRequest.type),
       preferredDay: getDayFromInt(activityRequest.preferredDay),
     }));
 
