@@ -6,6 +6,8 @@ import {
 import { ArrowUpOutlined, ArrowDownOutlined, LikeOutlined } from '@ant-design/icons';
 import StudentFeedback from './StudentFeedback';
 
+import { Column } from '@antv/g2plot';
+
 const { Content, Footer, Sider } = Layout;
 
 const DashboardDepartmentStats = () => (
@@ -61,10 +63,6 @@ const DashboardDepartmentStats = () => (
           </Card>
         </Col>
       </Row>
-
-
-
-
     </div>
   </div>
 );
