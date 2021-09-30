@@ -16,7 +16,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'plugin:import/recommended',
-    'airbnb-base',
+    'airbnb',
   ],
   settings: {
     'import/resolver': {
@@ -29,7 +29,6 @@ module.exports = {
           ['@components', './src/components'],
           ['@utils', './src/utils/'],
         ],
-        extensions: ['.ts', '.js', '.jsx', '.json'],
       },
     },
   },
