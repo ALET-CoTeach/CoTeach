@@ -1,9 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import apiHooks from '@services/hooks';
 import _ from 'lodash';
-import Table from '../Table/Table';
 
 import { getDayFromInt } from '@utils/datetime';
+import { Button } from 'antd';
+import Table from '../Table/Table';
 
 const AllAvailableActivities = () => {
   const columns = [
@@ -204,6 +206,18 @@ const AllAvailableActivities = () => {
       ],
       onFilter: (value, record) => record.subject.indexOf(value) === 0,
     },
+    {
+      title: 'Actions',
+      dataIndex: '_id',
+      key: 'id',
+      render: (_, record) => (
+        <>
+          <NavLink to={`/activity/${record._id}`} >
+            View
+          </NavLink>
+        </>
+      ),
+    },
   ];
 
   const { data, isLoading } = apiHooks.useGetActivityRequestsQuery();
@@ -211,11 +225,11 @@ const AllAvailableActivities = () => {
   const filterActivityRequests = (d) => d?.filter(
     (activityRequest) => activityRequest.status === 'pending',
   ).map((activityRequest) => ({
-      ...activityRequest,
-      term: `T${activityRequest.term}`,
-      type: _.startCase(activityRequest.type),
-      preferredDay: getDayFromInt(activityRequest.preferredDay),
-    }));
+    ...activityRequest,
+    term: `T${activityRequest.term}`,
+    type: _.startCase(activityRequest.type),
+    preferredDay: getDayFromInt(activityRequest.preferredDay),
+  }));
 
   return (
     <Table columns={columns} isLoading={isLoading} data={filterActivityRequests(data)} />
