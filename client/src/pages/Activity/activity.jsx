@@ -41,7 +41,7 @@ const Activity = () => {
     </>
   );
 
-  switch ('negotiating') {
+  switch (activity.status) {
     case 'pending':
       statusBadge = (<Badge color="green" text="Available" />);
       break;
