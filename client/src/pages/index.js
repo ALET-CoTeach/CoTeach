@@ -1,4 +1,5 @@
 import About from './About/about';
+import Activity from './Activity/activity';
 import ActivityBookings from './ActivityBookings/activity-bookings';
 import Control from './Control/control';
 import CreatePost from './CreatePost/create-post';
@@ -12,6 +13,7 @@ import Statistics from './Statistics/statistics';
 
 export {
   About,
+  Activity,
   ActivityBookings,
   Control,
   CreatePost,

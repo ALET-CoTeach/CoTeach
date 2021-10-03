@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   About,
+  Activity,
   ActivityBookings,
   Control,
   CreatePost,
@@ -44,6 +45,7 @@ const App = () => {
             <Route path="/schools" exact component={() => <Profile type="schools" />} />
             <Route path="/organisations" exact component={() => <Profile type="orgs" />} />
             <Route path="/activitybookings" exact component={() => <ActivityBookings />} />
+            <Route path="/activity/:id" exact component={() => <Activity />} />
             <Route path="/landingpage" exact component={() => <LandingPage />} />
             <Route path="/createpost" exact component={() => <CreatePost />} />
             <Route path="/reviewpost" exact component={() => <ReviewPost />} />
