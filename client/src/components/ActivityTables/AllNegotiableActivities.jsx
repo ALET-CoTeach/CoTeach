@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
 
 import apiHooks from '@services/hooks';
@@ -175,6 +176,18 @@ const AllNegotiableActivities = () => {
       // sorter: (a, b) => a.year.charAt(1) - b.year.charAt(1),
       // sorter: (a, b) => a.year - b.year,
       // sortDirections: ['ascend', 'descend'],
+    },
+    {
+      title: 'Actions',
+      dataIndex: '_id',
+      key: 'id',
+      render: (_, record) => (
+        <>
+          <NavLink to={`/activity/${record._id}`} >
+            View
+          </NavLink>
+        </>
+      ),
     },
   ];
 

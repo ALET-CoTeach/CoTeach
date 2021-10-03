@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import apiHooks from '@services/hooks';
 import Table from '../Table/Table';
 
@@ -238,6 +239,18 @@ const AllCompletedActivities = () => {
       onFilter: (value, record) => record.year.indexOf(value) === 0,
       // sorter: (a, b) => a.year - b.year,
       // sortDirections: ['ascend', 'descend'],
+    },
+    {
+      title: 'Actions',
+      dataIndex: '_id',
+      key: 'id',
+      render: (_, record) => (
+        <>
+          <NavLink to={`/activity/${record._id}`} >
+            View
+          </NavLink>
+        </>
+      ),
     },
   ];
 
