@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import { auth } from '@actions';
+import { useDispatch } from 'react-redux';
+
 import { Menu, Badge, Switch } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom';
 
@@ -12,6 +15,7 @@ import Toolbar from './Toolbar/Toolbar';
 const { SubMenu } = Menu;
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const [current, setCurrent] = useState('home');
 
   const handleClick = (e) => {
@@ -55,6 +59,9 @@ const Navigation = () => {
             <Menu.Item key="setting:12"><NavLink to="/dashboard">Dashboard</NavLink></Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
+        <Menu.Item key="signout">
+          <NavLink to="/" onClick={() => dispatch(auth.signOut())}>Sign Out</NavLink>
+          </Menu.Item>
         {/* <Menu.Item key="notifications">
           <Badge count={5}>
             <Toolbar />
