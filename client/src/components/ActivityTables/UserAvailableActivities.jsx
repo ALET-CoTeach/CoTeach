@@ -14,42 +14,6 @@ const UserAvailableActivities = ({ authLevel, id }) => {
       key: 'prefDay',
     },
     {
-      title: 'School',
-      dataIndex: 'school',
-      key: 'school',
-      filters: [
-        {
-          text: 'UTCR',
-          value: 'UTCR',
-        },
-        {
-          text: 'UTCO',
-          value: 'UTCO',
-        },
-        {
-          text: 'UTCH',
-          value: 'UTCH',
-        },
-        {
-          text: 'UTCS',
-          value: 'UTCS',
-        },
-        {
-          text: 'TGS',
-          value: 'TGS',
-        },
-        {
-          text: 'TBS',
-          value: 'TBS',
-        },
-        {
-          text: 'BTS',
-          value: 'BTS',
-        },
-      ],
-      onFilter: (value, record) => record.school.indexOf(value) === 0,
-    },
-    {
       title: 'Lesson Title',
       dataIndex: 'title',
       key: 'title',

@@ -30,6 +30,53 @@ const ActivityBookings = () => {
    */
   switch (authLevel) {
     case 'employer':
+      panels = (
+        <>
+          <Panel
+            className="activityBooking-table-title"
+            header="Your Booked Activities"
+            key="1"
+          >
+            <UserBookedActivities authLevel={authLevel} id={user._id} />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="Your Negotiating Activities"
+            key="2"
+          >
+            <UserNegotiableActivities authLevel={authLevel} id={user._id} />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="All Available Activities"
+            key="3"
+          >
+            <AllAvailableActivities />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="All Booked Actiivty Requests"
+            key="4"
+          >
+            <AllBookedActivities />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="All Negotiating Activity Requests"
+            key="5"
+          >
+            <AllNegotiableActivities />
+          </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="Your Completed Activities"
+            key="6"
+          >
+            <UserCompletedActivities authLevel={authLevel} id={user._id} />
+          </Panel>
+        </>
+      );
+      break;
     case 'teacher':
       panels = (
         <>

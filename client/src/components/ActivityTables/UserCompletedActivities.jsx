@@ -12,42 +12,6 @@ const UserCompletedActivities = ({ authLevel, id }) => {
       key: 'predDay',
     },
     {
-      title: 'School',
-      dataIndex: 'school',
-      key: 'school',
-      filters: [
-        {
-          text: 'UTCR',
-          value: 'UTCR',
-        },
-        {
-          text: 'UTCO',
-          value: 'UTCO',
-        },
-        {
-          text: 'UTCH',
-          value: 'UTCH',
-        },
-        {
-          text: 'UTCS',
-          value: 'UTCS',
-        },
-        {
-          text: 'TGS',
-          value: 'TGS',
-        },
-        {
-          text: 'TBS',
-          value: 'TBS',
-        },
-        {
-          text: 'BTS',
-          value: 'BTS',
-        },
-      ],
-      onFilter: (value, record) => record.school.indexOf(value) === 0,
-    },
-    {
       title: 'Lesson Title',
       dataIndex: 'title',
       key: 'title',
@@ -166,6 +130,45 @@ const UserCompletedActivities = ({ authLevel, id }) => {
   ];
 
   const { data, isLoading } = apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id });
+
+    const schoolCol = {
+    title: 'School',
+    dataIndex: 'school',
+    key: 'school',
+    filters: [
+      {
+        text: 'UTCR',
+        value: 'UTCR',
+      },
+      {
+        text: 'UTCO',
+        value: 'UTCO',
+      },
+      {
+        text: 'UTCH',
+        value: 'UTCH',
+      },
+      {
+        text: 'UTCS',
+        value: 'UTCS',
+      },
+      {
+        text: 'TGS',
+        value: 'TGS',
+      },
+      {
+        text: 'TBS',
+        value: 'TBS',
+      },
+      {
+        text: 'BTS',
+        value: 'BTS',
+      },
+    ],
+    onFilter: (value, record) => record.school.indexOf(value) === 0,
+  };
+
+  if (authLevel === 'employer') columns.splice(1, 0, schoolCol);
 
   const filterActivityRequests = (d) => d?.filter(
     (activityRequest) => activityRequest.status === 'booked' && activityRequest.endDate < Date.now(),
