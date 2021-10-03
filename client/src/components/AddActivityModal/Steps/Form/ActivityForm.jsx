@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 import { Form, Input, Select } from 'antd';
 
@@ -55,8 +57,9 @@ const ActivityForm = () => (
           message: "Please input the activity's details!",
         },
       ]}
+      style={{ height: '300px' }}
     >
-      <Input.TextArea />
+      <ReactQuill style={{ height: '275px' }} theme="snow" />
     </Form.Item>
   </>
 );
