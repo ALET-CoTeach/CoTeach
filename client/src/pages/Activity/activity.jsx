@@ -5,8 +5,10 @@ import { getDayFromInt } from '@utils/datetime';
 import _ from 'lodash';
 import parseHTML from 'html-react-parser';
 
-import { useParams } from 'react-router-dom';
-import { Layout, Descriptions, Badge } from 'antd';
+import { Link, useParams } from 'react-router-dom';
+import {
+  Layout, Descriptions, Badge, Breadcrumb,
+} from 'antd';
 
 import apiHooks from '@services/hooks';
 
@@ -69,6 +71,14 @@ const Activity = () => {
       />
       <Layout className="site-layout" style={{ marginLeft: 200 }}>
         <Content className="activityBooking-content">
+          <Breadcrumb>
+            <Breadcrumb.Item>
+              <Link to="/activitybookings">Activity Bookings</Link>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              Activity: {activity.title}
+            </Breadcrumb.Item>
+          </Breadcrumb>
           <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Activity Info</h1>
 
           <Descriptions bordered>
