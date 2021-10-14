@@ -75,6 +75,24 @@ router.delete('/:activityRequestId', requiredRoles([_admin]), async (req, res) =
   }
 });
 
+router.put('/negotiate/:activityRequestId', requiredRoles([_admin, _employer]), async (req, res) => {
+  const { activityRequestId } = req.params;
+
+  // Request body will be destructured in Controller method
+  // And will be validated
+  const updateData = req.body;
+
+  try {
+    // Update on ActivityRequest by id from DB, then store response to const
+    const jsonResponse = await ActivityRequestController.updateNegotiationData(activityRequestId, updateData);
+
+    return res.status(200).json(jsonResponse);
+  } catch (err) {
+    // Send JSON error response to the 'requestee'
+    return res.status(500).json({ error: err });
+  }
+});
+
 router.put('/:activityRequestId', requiredRoles([_admin]), async (req, res) => {
   const { activityRequestId } = req.params;
 
@@ -86,7 +104,7 @@ router.put('/:activityRequestId', requiredRoles([_admin]), async (req, res) => {
     // Update on ActivityRequest by id from DB, then store response to const
     const jsonResponse = await ActivityRequestController.updateOne(activityRequestId, updateData);
 
-    return res.status(500).json(jsonResponse);
+    return res.status(200).json(jsonResponse);
   } catch (err) {
     // Send JSON error response to the 'requestee'
     return res.status(500).json({ error: err });

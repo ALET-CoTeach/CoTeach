@@ -30,7 +30,7 @@ mongoose.connect(process.env.REMOTE_DATABASE_URL, {
   console.log(err);
 });
 
-mongoose.connection.on('error', (err) => {
+mongoose.connection.on('open', (err) => {
   console.log(err);
 });
 

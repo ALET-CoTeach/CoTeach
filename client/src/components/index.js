@@ -16,6 +16,8 @@ import AddSchoolModal from './ControlModals/AddSchoolModal';
 import AddSLTModal from './ControlModals/AddSLTModal';
 import AddTeacherModal from './ControlModals/AddTeacherModal';
 
+import StartNegotiatingModal from './StartNegotiatingModal/StartNegotiatingModal';
+
 import AdminTable from './ControlTables/AdminTable';
 import CompanyTable from './ControlTables/CompanyTable';
 import EmployerTable from './ControlTables/EmployerTable';
@@ -55,6 +57,8 @@ export {
   UserBookedActivities,
   UserCompletedActivities,
   UserNegotiableActivities,
+
+  StartNegotiatingModal,
 
   AddActivityModal,
 

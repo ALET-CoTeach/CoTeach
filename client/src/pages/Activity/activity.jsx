@@ -5,10 +5,11 @@ import { getDayFromInt } from '@utils/datetime';
 import _ from 'lodash';
 import parseHTML from 'html-react-parser';
 
+import { StartNegotiatingModal } from '@components';
 import { Link, useParams } from 'react-router-dom';
 
 import {
-  Layout, Descriptions, Badge, Breadcrumb,
+  Layout, Descriptions, Badge, Breadcrumb, Button,
 } from 'antd';
 
 import apiHooks from '@services/hooks';
@@ -19,9 +20,24 @@ const { Content, Footer, Sider } = Layout;
 const Activity = () => {
   const { user, authLevel } = useSelector((state) => state.auth);
   const { data, isLoading } = authLevel === 'teacher' ? apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id: user._id }) : apiHooks.useGetActivityRequestsQuery();
+
   const { id } = useParams();
 
   const activity = data?.filter((activityRequest) => activityRequest._id === id)[0];
+
+  let extras;
+  switch (authLevel) {
+    case 'teacher':
+      extras = (
+        <Button type="primary">Edit</Button>
+      );
+      break;
+    case 'employer':
+      extras = (
+        <StartNegotiatingModal />
+      );
+      break;
+  }
 
   let statusBadge;
   const negotiateRow = (
@@ -79,12 +95,14 @@ const Activity = () => {
               <Link to="/activitybookings">Activity Bookings</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              Activity: {activity?.title}
+              Activity:
+              {' '}
+              {activity?.title}
             </Breadcrumb.Item>
           </Breadcrumb>
           <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Activity Info</h1>
 
-          <Descriptions bordered>
+          <Descriptions extra={extras} bordered>
             <Descriptions.Item label="Title" span={3}><h1>{activity?.title}</h1></Descriptions.Item>
             <Descriptions.Item label="Subject">{_.startCase(activity?.subject)}</Descriptions.Item>
             <Descriptions.Item label="Type">{_.startCase(activity?.type)}</Descriptions.Item>

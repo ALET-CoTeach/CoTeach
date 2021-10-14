@@ -27,6 +27,15 @@ export default backendAPI.injectEndpoints({
       query: ({ activityRequestId }) => `/activityrequest/${activityRequestId}`,
       method: 'DELETE',
     }),
+    updateActivityRequestNegotiationData: builder.mutation({
+      query: (values) => ({
+        url: `/activityrequest/negotiate/${values._id}`,
+        body: values,
+        method: 'PUT',
+      }),
+      invalidatesTags: ['ActivityRequest'],
+      transformResponse: (response) => response.activityRequest,
+    }),
     updateActivityRequest: builder.query({
       query: ({ activityRequestId }) => `/activityrequest/${activityRequestId}`,
       method: 'PUT',

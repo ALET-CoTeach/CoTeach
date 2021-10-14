@@ -58,6 +58,39 @@ module.exports.createOne = async (req, res) => {
   }
 };
 
+module.exports.updateNegotiationData = (activityRequestId, updateData) => new Promise(async (resolve, reject) => {
+  const { employerId, companyId, startDate, endDate, status } = updateData;
+
+  try {
+    const activityRequest = await ActivityRequest.getOneById(activityRequestId);
+
+    // If activityRequest currently in negotiations by an employer with the id,
+    // employerId, update negotiation data
+    // If activityRequest's negotiation data has yet to be set, set it
+    if (activityRequest.employerId === employerId
+    || activityRequest.employerId == null) {
+      const { activityRequest: updatedActivityRequest } = await ActivityRequestController.updateOne(activityRequestId, {
+        status,
+        employerId,
+        companyId,
+        startDate,
+        endDate,
+      })
+      
+      resolve({ message: 'Updated negotiation data of activity', activityRequest: updatedActivityRequest })
+    } else {
+      // If a user is trying to change negotiation data where the user
+      // should not be involved. Do nothing with the DB
+      resolve({ 
+        message: 'This activity is in the middle of negotiations. Cannot set negotiation data', 
+        activityRequest 
+      })
+    }
+  } catch (err) {
+    reject(err);
+  }
+});
+
 module.exports.deleteOne = (activityRequestId) => new Promise(async (resolve, reject) => {
   try {
     const activityRequest = await ActivityRequest.findByIdAndDelete(activityRequestId).lean();
