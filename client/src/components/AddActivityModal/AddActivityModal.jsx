@@ -1,28 +1,11 @@
 import React, { useState } from 'react';
 
-
 import { Modal, Button } from 'antd';
 
 import StepsComponent from './Steps/Steps';
 
 const AddActivityModal = () => {
   const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState('Content of the modal');
-
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleOk = () => {
-    console.log('handleOk');
-    setModalText('The modal will be closed after two seconds');
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
 
   return (
     <>
@@ -37,7 +20,7 @@ const AddActivityModal = () => {
         width={1000}
         footer={[]}
       >
-        <StepsComponent handleOk={handleOk}/>
+        <StepsComponent handleOk={() => setVisible(false)}/>
       </Modal>
     </>
   );
