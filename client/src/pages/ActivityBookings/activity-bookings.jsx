@@ -186,7 +186,7 @@ const ActivityBookings = () => {
           ? (<AddActivityModal />)
           : null }
       </Sider>
-      <Layout className="site-layout" style={{ marginLeft: 200 }}>
+      <Layout className="site-layout">
         <Content className="activityBooking-content">
           <div className="site-layout-background">
             <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Requests</h1>

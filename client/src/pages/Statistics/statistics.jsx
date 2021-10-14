@@ -12,9 +12,6 @@ const { Content, Footer, Sider } = Layout;
 
 const Statistics = () => (
   <Layout style={{ paddingTop: 45 }}>
-    <Sider className="sidebar">
-      <p />
-    </Sider>
     <Layout className="site-layout">
       <Content className="addLesson-content">
         <div className="site-layout-background">

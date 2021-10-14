@@ -45,16 +45,7 @@ const Dashboard = () => {
 
   return (
     <Layout style={{ paddingTop: 45 }}>
-      <Sider
-        className="sidebar"
-        style={{
-          overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-          left: 0,
-        }}
-      />
-      <Layout className="site-layout" style={{ marginLeft: 200 }}>
+      <Layout className="site-layout">
         <Content className="addLesson-content">
           <div className="site-layout-background" style={{ paddingTop: "1%" }}>
             <h1 className=" centerText" style={{ fontWeight: "300" , fontSize: "150%"}}>Dashboard</h1>

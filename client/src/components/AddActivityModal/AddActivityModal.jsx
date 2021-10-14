@@ -26,7 +26,7 @@ const AddActivityModal = () => {
 
   return (
     <>
-      <Button style={{ width: 150, margin: 20 }} type="primary" onClick={() => setVisible(true)}>
+      <Button onClick={() => setVisible(true)} type="primary" shape="round" icon={<UsergroupAddOutlined />} size='large' style={{backgroundColor: '#001428', borderColor: '#001428', zIndex: '1', position: 'absolute', bottom: '5%', right: '5%'}}>
         Add Request
       </Button>
       <Modal
