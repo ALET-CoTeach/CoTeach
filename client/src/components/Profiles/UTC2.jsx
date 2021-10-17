@@ -87,16 +87,7 @@ const UTCProfilesTwo = () => {
   return (
     <div>
       <Layout style={{ paddingTop: 45 }}>
-        <Sider
-          className="sidebar"
-          style={{
-            overflow: 'auto',
-            height: '100vh',
-            position: 'fixed',
-            left: 0,
-          }}
-        />
-        <Layout className="site-layout" style={{ marginLeft: 200 }}>
+        <Layout className="site-layout">
           <Content className="addLesson-content" width="100%">
             <div className="site-layout-background" style={{ margin:"1%" }}>
 

@@ -79,16 +79,7 @@ const Activity = () => {
 
   return (
     <Layout style={{ paddingTop: 45 }}>
-      <Sider
-        className="sidebar"
-        style={{
-          overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-          left: 0,
-        }}
-      />
-      <Layout className="site-layout" style={{ marginLeft: 200 }}>
+      <Layout className="site-layout">
         <Content className="activityBooking-content">
           <Breadcrumb>
             <Breadcrumb.Item>

@@ -14,7 +14,7 @@ import {
   AddActivityModal,
 } from '@components';
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Footer } = Layout;
 const { Panel } = Collapse;
 
 const ActivityBookings = () => {
@@ -173,19 +173,11 @@ const ActivityBookings = () => {
 
   return (
     <Layout style={{ paddingTop: 45 }}>
-      <Sider
-        className="sidebar"
-        style={{
-          overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-          left: 0,
-        }}
-      >
+      
         {authLevel !== 'employer'
           ? (<AddActivityModal />)
           : null }
-      </Sider>
+      
       <Layout className="site-layout">
         <Content className="activityBooking-content">
           <div className="site-layout-background">
