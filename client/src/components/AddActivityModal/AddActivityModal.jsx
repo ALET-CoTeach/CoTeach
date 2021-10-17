@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
 
 import StepsComponent from './Steps/Steps';
+import { UsergroupAddOutlined} from '@ant-design/icons';
 
 const AddActivityModal = () => {
   const [visible, setVisible] = useState(false);
