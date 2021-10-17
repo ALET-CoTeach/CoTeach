@@ -9,8 +9,10 @@ import { StartNegotiatingModal } from '@components';
 import { Link, useParams } from 'react-router-dom';
 
 import {
-  Layout, Descriptions, Badge, Breadcrumb, Button,
+  Layout, Descriptions, Badge, Breadcrumb, Button, Card, Row, Col
 } from 'antd';
+
+import {ClockCircleOutlined, UserOutlined, ReadOutlined, InfoCircleOutlined} from '@ant-design/icons';
 
 import apiHooks from '@services/hooks';
 import { useSelector } from 'react-redux';
@@ -80,8 +82,8 @@ const Activity = () => {
   return (
     <Layout style={{ paddingTop: 45 }}>
       <Layout className="site-layout">
-        <Content className="activityBooking-content">
-          <Breadcrumb>
+        <Content className="activityBooking-content" >
+          <Breadcrumb style={{ paddingBottom: 45 }}>
             <Breadcrumb.Item>
               <Link to="/activitybookings">Activity Bookings</Link>
             </Breadcrumb.Item>
@@ -91,36 +93,54 @@ const Activity = () => {
               {activity?.title}
             </Breadcrumb.Item>
           </Breadcrumb>
-          <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Activity Info</h1>
+          
 
-          <Descriptions extra={extras} bordered>
-            <Descriptions.Item label="Title" span={3}><h1>{activity?.title}</h1></Descriptions.Item>
-            <Descriptions.Item label="Subject">{_.startCase(activity?.subject)}</Descriptions.Item>
-            <Descriptions.Item label="Type">{_.startCase(activity?.type)}</Descriptions.Item>
-            <Descriptions.Item label="Teacher">{activity?.teacherName}</Descriptions.Item>
-            <Descriptions.Item label="Term">
-              Term
-              {' '}
-              {activity?.term}
-            </Descriptions.Item>
-            <Descriptions.Item label="Preferred Day and Time" span={2}>
-              {getDayFromInt(activity?.preferredDay)}
-              {' '}
-              {_.upperCase(activity?.preferredTime)}
-            </Descriptions.Item>
-            <Descriptions.Item label="Status" span={3}>
+          <Row>
+
+          <Col lg={6}>
+            
+          </Col>
+
+          <Col lg={12}>
+          <Card className="">
+              <div className="centerText">
+              <h1 className="" style={{ paddingTop: '1%', fontWeight:"400", fontSize:"200%"}}>Activity Info </h1>
               {statusBadge}
-            </Descriptions.Item>
-            {activity?.status !== 'pending' ? (
+              {activity?.status !== 'pending' ? (
               <>
                 {negotiateRow}
                 {employerRow}
               </>
+              
             ) : null}
-            <Descriptions.Item label="Details" span={3}>
-              {parseHTML(activity?.details)}
-            </Descriptions.Item>
-          </Descriptions>
+              <div style={{paddingBottom:"1%" }} />
+              <h2 style={{ fontWeight:"400", fontSize:"130%", paddingBottom:"2%"}}>{activity?.title}</h2>
+              </div>
+
+              
+              <h2 style={{ fontWeight:"400", fontSize:"130%" }}><ClockCircleOutlined />
+
+              {' '}
+              Term {activity?.term}
+              {', '}
+              {getDayFromInt(activity?.preferredDay)}
+              {', '}
+              {_.upperCase(activity?.preferredTime)}
+              {' '}
+              
+              </h2>
+              <h2 style={{ fontWeight:"400", fontSize:"130%" }}><UserOutlined />{' '} {activity?.teacherName} </h2>
+              <h2 style={{ fontWeight:"400", fontSize:"130%" }}><ReadOutlined /> {' '}{_.startCase(activity?.subject)} </h2>
+              <h2 style={{ fontWeight:"400", fontSize:"130%" }}><InfoCircleOutlined />{' '}{parseHTML(activity?.details)} </h2>
+            </Card>
+          
+          </Col>
+
+          <Col lg={6}>
+          </Col>
+
+          </Row>
+
         </Content>
         <Footer style={{ textAlign: 'center' }}>ALET CoTeach 2021</Footer>
       </Layout>
