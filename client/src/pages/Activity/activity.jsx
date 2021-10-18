@@ -9,10 +9,12 @@ import { StartNegotiatingModal } from '@components';
 import { Link, useParams } from 'react-router-dom';
 
 import {
-  Layout, Descriptions, Badge, Breadcrumb, Button, Card, Row, Col
+  Layout, Descriptions, Badge, Breadcrumb, Button, Card, Row, Col, Space,
 } from 'antd';
 
-import {ClockCircleOutlined, UserOutlined, ReadOutlined, InfoCircleOutlined} from '@ant-design/icons';
+import {
+  ClockCircleOutlined, UserOutlined, ReadOutlined, InfoCircleOutlined,
+} from '@ant-design/icons';
 
 import apiHooks from '@services/hooks';
 import { useSelector } from 'react-redux';
@@ -27,15 +29,15 @@ const Activity = () => {
 
   const activity = data?.filter((activityRequest) => activityRequest._id === id)[0];
 
-  let extras;
+  let mainBtn;
   switch (authLevel) {
     case 'teacher':
-      extras = (
+      mainBtn = (
         <Button type="primary">Edit</Button>
       );
       break;
     case 'employer':
-      extras = (
+      mainBtn = (
         <StartNegotiatingModal />
       );
       break;
@@ -82,7 +84,7 @@ const Activity = () => {
   return (
     <Layout style={{ paddingTop: 45 }}>
       <Layout className="site-layout">
-        <Content className="activityBooking-content" >
+        <Content className="activityBooking-content">
           <Breadcrumb style={{ paddingBottom: 45 }}>
             <Breadcrumb.Item>
               <Link to="/activitybookings">Activity Bookings</Link>
@@ -93,51 +95,70 @@ const Activity = () => {
               {activity?.title}
             </Breadcrumb.Item>
           </Breadcrumb>
-          
 
           <Row>
 
-          <Col lg={6}>
-            
-          </Col>
+            <Col lg={6} />
 
-          <Col lg={12}>
-          <Card className="">
-              <div className="centerText">
-              <h1 className="" style={{ paddingTop: '1%', fontWeight:"400", fontSize:"200%"}}>Activity Info </h1>
-              {statusBadge}
-              {activity?.status !== 'pending' ? (
-              <>
-                {negotiateRow}
-                {employerRow}
-              </>
-              
-            ) : null}
-              <div style={{paddingBottom:"1%" }} />
-              <h2 style={{ fontWeight:"400", fontSize:"130%", paddingBottom:"2%"}}>{activity?.title}</h2>
+            <Col lg={12}>
+              <Card className="">
+                <Space align="center" direction="vertical">
+                  <h1 className="" style={{ paddingTop: '1%', fontWeight: '400', fontSize: '200%' }}>Activity Info </h1>
+                  {statusBadge}
+                  {activity?.status !== 'pending' ? (
+                    <>
+                      {negotiateRow}
+                      {employerRow}
+                    </>
+
+                  ) : null}
+                  <div style={{ paddingBottom: '1%' }} />
+                  <h2 className="text-center" style={{ fontWeight: '400', fontSize: '130%', paddingBottom: '2%' }}>{activity?.title}</h2>
+                </Space>
+
+                <h2 style={{ fontWeight: '400', fontSize: '130%' }}>
+                  <ClockCircleOutlined />
+
+                  {' '}
+                  Term
+                  {' '}
+                  {activity?.term}
+                  {', '}
+                  {getDayFromInt(activity?.preferredDay)}
+                  {', '}
+                  {_.upperCase(activity?.preferredTime)}
+                  {' '}
+
+                </h2>
+                <h2 style={{ fontWeight: '400', fontSize: '130%' }}>
+                  <UserOutlined />
+                  {' '}
+                  {' '}
+                  {activity?.teacherName}
+                  {' '}
+                </h2>
+                <h2 style={{ fontWeight: '400', fontSize: '130%' }}>
+                  <ReadOutlined />
+                  {' '}
+                  {' '}
+                  {_.startCase(activity?.subject)}
+                  {' '}
+
+                </h2>
+                <h2 style={{ fontWeight: '400', fontSize: '130%' }}>
+                  <InfoCircleOutlined />
+                  {' '}
+                  {parseHTML(activity?.details)}
+                  {' '}
+                </h2>
+              </Card>
+              <div className="text-right">
+                <span>Posted at: {dayjs(activity?.createdAt).format('DD/MM/YYYY HH:mm')}</span>
+                {mainBtn}
               </div>
+            </Col>
 
-              
-              <h2 style={{ fontWeight:"400", fontSize:"130%" }}><ClockCircleOutlined />
-
-              {' '}
-              Term {activity?.term}
-              {', '}
-              {getDayFromInt(activity?.preferredDay)}
-              {', '}
-              {_.upperCase(activity?.preferredTime)}
-              {' '}
-              
-              </h2>
-              <h2 style={{ fontWeight:"400", fontSize:"130%" }}><UserOutlined />{' '} {activity?.teacherName} </h2>
-              <h2 style={{ fontWeight:"400", fontSize:"130%" }}><ReadOutlined /> {' '}{_.startCase(activity?.subject)} </h2>
-              <h2 style={{ fontWeight:"400", fontSize:"130%" }}><InfoCircleOutlined />{' '}{parseHTML(activity?.details)} </h2>
-            </Card>
-          
-          </Col>
-
-          <Col lg={6}>
-          </Col>
+            <Col lg={6} />
 
           </Row>
 
