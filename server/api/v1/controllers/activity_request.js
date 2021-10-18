@@ -136,7 +136,6 @@ const tempFunc = (data) => new Promise(async (resolve, reject) => {
     ]);
 
     delete data.__v;
-    delete data.createdAt;
     delete data.updatedAt;
     delete data.teacherId;
     delete data.schoolId;
