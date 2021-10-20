@@ -137,10 +137,6 @@ const tempFunc = (data) => new Promise(async (resolve, reject) => {
 
     delete data.__v;
     delete data.updatedAt;
-    delete data.teacherId;
-    delete data.schoolId;
-    delete data.employerId;
-    delete data.companyId;
 
     const teacherName = _.upperFirst(`${teacher.firstname} ${teacher.lastname}`);
 
