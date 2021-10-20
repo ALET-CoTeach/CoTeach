@@ -144,12 +144,12 @@ const tempFunc = (data) => new Promise(async (resolve, reject) => {
       const employerName = _.upperFirst(`${employer.firstname} ${employer.lastname}`);
 
       resolve({
-        ...data, teacherName, school: school.name, employerName, company: company.name,
+        ...data, teacherName, teacherEmail: teacher.email, school: school.name, employerName, company: company.name,
       });
     }
 
     resolve({
-      ...data, teacherName, school: school.name,
+      ...data, teacherName, teacherEmail: teacher.email, school: school.name,
     });
   } catch (err) {
     reject(err);
