@@ -27,10 +27,37 @@ export default backendAPI.injectEndpoints({
       query: ({ activityRequestId }) => `/activityrequest/${activityRequestId}`,
       method: 'DELETE',
     }),
-    updateActivityRequestNegotiationData: builder.mutation({
+    activityRequestStartNegotiation: builder.mutation({
       query: (values) => ({
         url: `/activityrequest/negotiate/${values._id}`,
-        body: values,
+        body: {
+          ...values,
+          status: 'negotiating',
+        },
+        method: 'PUT',
+      }),
+      invalidatesTags: ['ActivityRequest'],
+      transformResponse: (response) => response.activityRequest,
+    }),
+    activityRequestCancelNegotiation: builder.mutation({
+      query: (values) => ({
+        url: `/activityrequest/negotiate/${values._id}`,
+        body: {
+          ...values,
+          status: 'pending',
+        },
+        method: 'PUT',
+      }),
+      invalidatesTags: ['ActivityRequest'],
+      transformResponse: (response) => response.activityRequest,
+    }),
+    bookActivityRequest: builder.mutation({
+      query: (values) => ({
+        url: `/activityrequest/negotiate/${values._id}`,
+        body: {
+          ...values,
+          status: 'booked',
+        },
         method: 'PUT',
       }),
       invalidatesTags: ['ActivityRequest'],
