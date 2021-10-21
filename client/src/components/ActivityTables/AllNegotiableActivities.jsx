@@ -194,7 +194,7 @@ const AllNegotiableActivities = () => {
   const { data, isLoading } = apiHooks.useGetActivityRequestsQuery();
 
   const filterActivityRequests = (d) => d?.filter(
-    (activityRequest) => activityRequest.status === 'negotiable',
+    (activityRequest) => activityRequest.status === 'negotiating',
   ).map((activityRequest) => ({
     ...activityRequest,
     type: _.startCase(activityRequest),
