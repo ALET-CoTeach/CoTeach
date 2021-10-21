@@ -33,7 +33,10 @@ const Activity = () => {
   switch (authLevel) {
     case 'teacher':
       mainBtn = (
-        <Button type="primary">Edit</Button>
+        <Button 
+        type="primary"
+        style={{ width: 150, margin: 20 }}
+        >Edit</Button>
       );
       break;
     case 'employer':
