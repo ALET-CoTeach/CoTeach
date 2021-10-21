@@ -5,11 +5,8 @@ import {
 
 import './landing-page.css';
 import CoTeachWords from '@assets/CoTeachWords.svg';
-import EducationBulletPoints from '@assets/EducationBullets.svg';
-import WhatIsCoTeach from '@assets/What-Is-CoTeach.svg';
 import CoTeachMotto from '@assets/CoTeachMotto.svg';
 import { LinkedinOutlined, FacebookOutlined } from '@ant-design/icons';
-import { IndustryLogos } from '@components';
 
 const { Panel } = Collapse;
 
