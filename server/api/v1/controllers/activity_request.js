@@ -62,14 +62,16 @@ module.exports.updateNegotiationData = (activityRequestId, updateData) => new Pr
   const { employerId, companyId, startDate, endDate, status } = updateData;
 
   try {
-    const activityRequest = await ActivityRequest.getOneById(activityRequestId);
+    const activityRequest = await ActivityRequest.findById(activityRequestId);
 
     // If activityRequest currently in negotiations by an employer with the id,
     // employerId, update negotiation data
     // If activityRequest's negotiation data has yet to be set, set it
+    console.log(activityRequest.employerId)
+    console.log(employerId)
     if (activityRequest.employerId === employerId
     || activityRequest.employerId == null) {
-      const { activityRequest: updatedActivityRequest } = await ActivityRequestController.updateOne(activityRequestId, {
+      const { activityRequest: updatedActivityRequest } = await this.updateOne(activityRequestId, {
         status,
         employerId,
         companyId,

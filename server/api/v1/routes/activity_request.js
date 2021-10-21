@@ -75,8 +75,8 @@ router.delete('/:activityRequestId', requiredRoles([_admin]), async (req, res) =
   }
 });
 
-router.put('/negotiate/:activityRequestId', requiredRoles([_admin, _employer]), async (req, res) => {
-  const { activityRequestId } = req.params;
+router.put('/negotiate', requiredRoles([_admin, _employer]), async (req, res) => {
+  const { activityRequestId } = req.body;
 
   // Request body will be destructured in Controller method
   // And will be validated
