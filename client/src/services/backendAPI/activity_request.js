@@ -29,12 +29,12 @@ export default backendAPI.injectEndpoints({
     }),
     activityRequestStartNegotiation: builder.mutation({
       query: (values) => ({
-        url: `/activityrequest/negotiate/${values._id}`,
+        url: '/activityrequest/negotiate',
+        method: 'PUT',
         body: {
           ...values,
           status: 'negotiating',
         },
-        method: 'PUT',
       }),
       invalidatesTags: ['ActivityRequest'],
       transformResponse: (response) => response.activityRequest,
