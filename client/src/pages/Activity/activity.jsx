@@ -41,7 +41,7 @@ const Activity = () => {
       break;
     case 'employer':
       mainBtn = (
-        <StartNegotiatingModal teacherEmail={activity?.teacherEmail} />
+        <StartNegotiatingModal activityId={activity?._id} teacherEmail={activity?.teacherEmail} />
       );
       break;
   }
