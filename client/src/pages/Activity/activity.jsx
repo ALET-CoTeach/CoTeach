@@ -33,10 +33,12 @@ const Activity = () => {
   switch (authLevel) {
     case 'teacher':
       mainBtn = (
-        <Button 
-        type="primary"
-        style={{ width: 150, margin: 20 }}
-        >Edit</Button>
+        <Button
+          type="primary"
+          style={{ width: 150, margin: 20 }}
+        >
+          Edit
+        </Button>
       );
       break;
     case 'employer':
@@ -99,71 +101,69 @@ const Activity = () => {
             </Breadcrumb.Item>
           </Breadcrumb>
 
-          <Row>
+          <div className="grid mx-auto w-6/12 bg-white bg-opacity-75 p-5">
+            <Space align="center" direction="vertical">
+              <h1 className="text-3xl py-4">Activity Info</h1>
+              {statusBadge}
+              {activity?.status !== 'pending' ? (
+                <>
+                  {negotiateRow}
+                  {employerRow}
+                </>
 
-            <Col lg={6} />
+              ) : null}
+              <h2 className="text-center pt-1 pb-8 text-2xl">{activity?.title}</h2>
+            </Space>
 
-            <Col lg={12}>
-              <Card className="">
-                <Space align="center" direction="vertical">
-                  <h1 className="" style={{ paddingTop: '1%', fontWeight: '400', fontSize: '200%' }}>Activity Info </h1>
-                  {statusBadge}
-                  {activity?.status !== 'pending' ? (
-                    <>
-                      {negotiateRow}
-                      {employerRow}
-                    </>
-
-                  ) : null}
-                  <div style={{ paddingBottom: '1%' }} />
-                  <h2 className="text-center" style={{ fontWeight: '400', fontSize: '130%', paddingBottom: '2%' }}>{activity?.title}</h2>
-                </Space>
-
-                <h2 style={{ fontWeight: '400', fontSize: '130%' }}>
-                  <ClockCircleOutlined />
-
+            <Descriptions column={1}>
+              <Descriptions.Item>
+                <ClockCircleOutlined className="mr-7 text-base" />
+                <h2 className="text-lg">
                   {' '}
                   Term
                   {' '}
                   {activity?.term}
-                  {', '}
+                  {' '}
                   {getDayFromInt(activity?.preferredDay)}
-                  {', '}
+                  {' '}
                   {_.upperCase(activity?.preferredTime)}
-                  {' '}
-
                 </h2>
-                <h2 style={{ fontWeight: '400', fontSize: '130%' }}>
-                  <UserOutlined />
-                  {' '}
+              </Descriptions.Item>
+
+              <Descriptions.Item>
+                <UserOutlined className="mr-7 text-base" />
+                <h2 className="text-lg">
                   {' '}
                   {activity?.teacherName}
-                  {' '}
                 </h2>
-                <h2 style={{ fontWeight: '400', fontSize: '130%' }}>
-                  <ReadOutlined />
-                  {' '}
+              </Descriptions.Item>
+
+              <Descriptions.Item>
+                <ReadOutlined className="mr-7 text-base" />
+                <h2 className="text-lg">
                   {' '}
                   {_.startCase(activity?.subject)}
-                  {' '}
-
                 </h2>
-                <h2 style={{ fontWeight: '400', fontSize: '130%' }}>
-                  <InfoCircleOutlined />
+              </Descriptions.Item>
+
+              <Descriptions.Item>
+                <InfoCircleOutlined className="mr-7 text-base" />
+                <h2 className="text-lg">
                   {' '}
+                  Description:
                   {parseHTML(activity?.details)}
-                  {' '}
                 </h2>
-              </Card>
-              <div className="text-right">
-                <span>Posted at: {dayjs(activity?.createdAt).format('DD/MM/YYYY HH:mm')}</span>
-                {mainBtn}
-              </div>
-            </Col>
+              </Descriptions.Item>
+            </Descriptions>
 
-            <Col lg={6} />
-
-          </Row>
+            <div className="text-right">
+              <span>
+                Posted at:
+                {dayjs(activity?.createdAt).format('DD/MM/YYYY HH:mm')}
+              </span>
+              {mainBtn}
+            </div>
+          </div>
 
         </Content>
         <Footer style={{ textAlign: 'center' }}>ALET CoTeach 2021</Footer>
