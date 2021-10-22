@@ -38,11 +38,12 @@ const StartNegotiatingModal = ({ teacherEmail, activityId }) => {
             <Col lg={6}>
             </Col>
           </Row>
-            
-            <span style={{ fontWeight:"600", fontSize:"130%"}}>By starting negotiations you agree to receive emails from <span className="text-blue-800">{teacherEmail}</span></span>
-            
+
+            <span style={{ fontWeight:"600", fontSize:"130%"}}>By starting negotiations you agree to receive emails from <span className="text-blue-800"><a href={`mailto:${teacherEmail}`}>{teacherEmail}</a></span></span>
+
+
             <br />
-            
+
           </>
         ),
         okText: 'I Agree',
