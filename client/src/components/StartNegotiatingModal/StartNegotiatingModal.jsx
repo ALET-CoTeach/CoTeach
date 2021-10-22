@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 
 import apiHooks from '@services/hooks';
 
-import { Modal, Button } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { Modal, Button, Row, Col } from 'antd';
+import { ExclamationCircleOutlined, MailTwoTone } from '@ant-design/icons';
 
 const StartNegotiatingModal = ({ teacherEmail, activityId }) => {
   const user = useSelector((state) => state.auth.user);
@@ -25,15 +25,24 @@ const StartNegotiatingModal = ({ teacherEmail, activityId }) => {
       style={{ width: 150, margin: 20 }}
       type="primary"
       onClick={() => Modal.confirm({
-        title: 'Confirm',
         width: 500,
-        icon: <ExclamationCircleOutlined />,
         content:
         (
           <>
-            By starting negotiations you agree to receive emails from
+          <Row>
+            <Col lg={6}>
+            </Col>
+            <Col lg={12}>
+              <MailTwoTone style={{ fontSize: '150px'}}  />
+            </Col>
+            <Col lg={6}>
+            </Col>
+          </Row>
+            
+            <span style={{ fontWeight:"600", fontSize:"130%"}}>By starting negotiations you agree to receive emails from <span className="text-blue-800">{teacherEmail}</span></span>
+            
             <br />
-            <span className="text-red-800">{teacherEmail}</span>
+            
           </>
         ),
         okText: 'I Agree',
