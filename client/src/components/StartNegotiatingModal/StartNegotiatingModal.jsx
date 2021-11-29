@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import apiHooks from '@services/hooks';
@@ -8,17 +9,21 @@ import { ExclamationCircleOutlined, MailTwoTone } from '@ant-design/icons';
 
 const StartNegotiatingModal = ({ teacherEmail, activityId }) => {
   const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
 
   const [
     startNegotiations,
     { data, isLoading, isError },
   ] = apiHooks.useActivityRequestStartNegotiationMutation();
 
-  const handleOk = () => startNegotiations({
-    employerId: user._id,
-    companyId: user.companyId,
-    activityRequestId: activityId,
-  });
+  const handleOk = () => {
+    startNegotiations({
+      employerId: user._id,
+      companyId: user.companyId,
+      activityRequestId: activityId,
+    });
+    navigate(-1);
+  }
 
   return (
     <Button
