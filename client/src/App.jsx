@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {
   About,
   Activity,
@@ -35,22 +35,22 @@ const App = () => {
       <div className="App">
         <Router>
           <Navigation />
-          <Switch>
-            <Route path="/" exact component={() => <LandingPage />} />
-            <Route path="/dashboard" exact component={() => <Dashboard />} />
-            <Route path="/about" exact component={() => <About />} />
-            <Route path="/signin" exact component={() => <SignIn />} />
-            <Route path="/register" exact component={() => <Register />} />
-            <Route path="/statistics" exact component={() => <Statistics />} />
-            <Route path="/schools" exact component={() => <Profile type="schools" />} />
-            <Route path="/organisations" exact component={() => <Profile type="orgs" />} />
-            <Route path="/activitybookings" exact component={() => <ActivityBookings />} />
-            <Route path="/activity/:id" exact component={() => <Activity />} />
-            <Route path="/landingpage" exact component={() => <LandingPage />} />
-            <Route path="/createpost" exact component={() => <CreatePost />} />
-            <Route path="/reviewpost" exact component={() => <ReviewPost />} />
-            <Route path="/control" exact component={() => <Control />} />
-          </Switch>
+          <Routes>
+            <Route path="/" exact element={<LandingPage />} />
+            <Route path="/dashboard" exact element={<Dashboard />} />
+            <Route path="/about" exact element={<About />} />
+            <Route path="/signin" exact element={<SignIn />} />
+            <Route path="/register" exact element={<Register />} />
+            <Route path="/statistics" exact element={<Statistics />} />
+            <Route path="/schools" exact element={<Profile type="schools" />} />
+            <Route path="/organisations" exact element={<Profile type="orgs" />} />
+            <Route path="/activitybookings" exact element={<ActivityBookings />} />
+            <Route path="/activity/:id" exact element={<Activity />} />
+            <Route path="/landingpage" exact element={<LandingPage />} />
+            <Route path="/createpost" exact element={<CreatePost />} />
+            <Route path="/reviewpost" exact element={<ReviewPost />} />
+            <Route path="/control" exact element={<Control />} />
+          </Routes>
         </Router>
       </div>
     );

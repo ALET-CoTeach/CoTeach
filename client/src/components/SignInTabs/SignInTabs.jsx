@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Alert, Tabs, Form, Button } from 'antd';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '@actions';
 import hooks from '@services/hooks';
 import TeacherForm from './Forms/TeacherForm';
@@ -21,7 +21,10 @@ const { TabPane } = Tabs;
 const SignInTabs = () => {
   const [authLevel, setAuthLevel] = useState('teacher');
   const authState = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  if (authState.token) navigate(-1)
 
   const validateMessages = {
     required: '${label} is required!',
@@ -140,7 +143,6 @@ const SignInTabs = () => {
           showIcon
         />) : null}
       </Tabs>
-      {authState.token ? <Redirect push to="/dashboard" /> : null}
     </Form>
   );
 };

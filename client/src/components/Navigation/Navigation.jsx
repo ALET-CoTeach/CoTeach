@@ -4,7 +4,7 @@ import { auth } from '@actions';
 import { useDispatch } from 'react-redux';
 
 import { Menu, Badge, Switch } from 'antd';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import {
   HomeOutlined, BookOutlined, SettingOutlined, BellOutlined,
@@ -72,4 +72,4 @@ const Navigation = () => {
   );
 };
 
-export default withRouter(Navigation);
+export default Navigation;

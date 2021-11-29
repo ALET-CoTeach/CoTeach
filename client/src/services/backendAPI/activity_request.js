@@ -19,7 +19,7 @@ export default backendAPI.injectEndpoints({
       transformResponse: (response) => response.activityRequests,
     }),
     getUserActivityRequests: builder.query({
-      query: ({ role, id }) => `/activityrequest/${role}:${id}`,
+      query: (values) => `/activityrequest/${values?.role}:${values?.id}`,
       providesTags: ['ActivityRequest'],
       transformResponse: (response) => response.activityRequests,
     }),

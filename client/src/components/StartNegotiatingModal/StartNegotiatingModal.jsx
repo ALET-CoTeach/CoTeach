@@ -11,7 +11,7 @@ const StartNegotiatingModal = ({ teacherEmail, activityId }) => {
 
   const [
     startNegotiations,
-    { data, isLoading },
+    { data, isLoading, isError },
   ] = apiHooks.useActivityRequestStartNegotiationMutation();
 
   const handleOk = () => startNegotiations({

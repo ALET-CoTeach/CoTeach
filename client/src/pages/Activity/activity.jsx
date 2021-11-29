@@ -23,11 +23,16 @@ const { Content, Footer, Sider } = Layout;
 
 const Activity = () => {
   const { user, authLevel } = useSelector((state) => state.auth);
-  const { data, isLoading } = authLevel === 'teacher' ? apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id: user._id }) : apiHooks.useGetActivityRequestsQuery();
+  const { data, isLoading, refetch } = authLevel === 'teacher' ? apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id: user._id }) : apiHooks.useGetActivityRequestsQuery();
 
   const { id } = useParams();
 
   const activity = data?.filter((activityRequest) => activityRequest._id === id)[0];
+
+  if (isLoading) {
+    console.log(isLoading)
+    refetch()
+  }
 
   let mainBtn;
   switch (authLevel) {
