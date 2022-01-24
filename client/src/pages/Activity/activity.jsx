@@ -28,6 +28,7 @@ const Activity = () => {
   const { id } = useParams();
 
   const activity = data?.filter((activityRequest) => activityRequest._id === id)[0];
+  console.log(activity)
 
   if (isLoading) {
     console.log(isLoading)
@@ -52,9 +53,10 @@ const Activity = () => {
       );
       break;
   }
+  console.log(activity?.startDate)
 
   let statusBadge;
-  const negotiateRow = (
+  const negotiateRow = activity?.startDate !== null ? (
     <>
       <Descriptions.Item label="Start" span={1.5}>
         {dayjs(activity?.startDate).format('DD MMMM YYYY HH:MM')}
@@ -63,7 +65,7 @@ const Activity = () => {
         {dayjs(activity?.endDate).format('DD MMMM YYYY HH:MM')}
       </Descriptions.Item>
     </>
-  );
+  ) : null;
 
   const employerRow = (
     <>
@@ -71,7 +73,7 @@ const Activity = () => {
         {activity?.employerName}
       </Descriptions.Item>
       <Descriptions.Item label="Organisation" span={1.5}>
-        {activity?.companyName}
+        {activity?.company}
       </Descriptions.Item>
     </>
   );
