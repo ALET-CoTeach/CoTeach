@@ -15,7 +15,7 @@ const UserAvailableActivities = ({ authLevel, id }) => {
       key: 'prefDay',
     },
     {
-      title: 'Lesson Title',
+      title: 'Activity Title',
       dataIndex: 'title',
       key: 'title',
       isSearchable: true,

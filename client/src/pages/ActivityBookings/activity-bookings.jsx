@@ -110,7 +110,7 @@ const ActivityBookings = () => {
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Booked Activty Requests"
+            header="All Booked Activity Requests"
             key="5"
           >
             <AllBookedActivities />

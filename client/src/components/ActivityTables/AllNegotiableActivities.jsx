@@ -55,7 +55,7 @@ const AllNegotiableActivities = () => {
       onFilter: (value, record) => record.school.indexOf(value) === 0,
     },
     {
-      title: 'Lesson Title',
+      title: 'Activity Title',
       dataIndex: 'title',
       key: 'title',
       isSearchable: true,

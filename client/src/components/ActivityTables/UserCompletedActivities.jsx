@@ -13,7 +13,7 @@ const UserCompletedActivities = ({ authLevel, id }) => {
       key: 'predDay',
     },
     {
-      title: 'Lesson Title',
+      title: 'Activity Title',
       dataIndex: 'title',
       key: 'title',
       isSearchable: true,

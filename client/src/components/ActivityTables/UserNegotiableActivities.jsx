@@ -19,7 +19,7 @@ const UserNegotiableActivities = ({ authLevel, id }) => {
       isSearchable: true,
     },
     {
-      title: 'Lesson Title',
+      title: 'Activity Title',
       dataIndex: 'title',
       key: 'title',
       isSearchable: true,
