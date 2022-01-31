@@ -34,14 +34,14 @@ const ActivityBookings = () => {
         <>
           <Panel
             className="activityBooking-table-title"
-            header="Your Booked Activities"
+            header="My Booked Activities"
             key="1"
           >
             <UserBookedActivities authLevel={authLevel} id={user._id} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your Negotiating Activities"
+            header="My Under Offer Activities"
             key="2"
           >
             <UserNegotiableActivities authLevel={authLevel} id={user._id} />
@@ -55,21 +55,21 @@ const ActivityBookings = () => {
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Booked Actiivty Requests"
+            header="All Booked Activity Requests"
             key="4"
           >
             <AllBookedActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Negotiating Activity Requests"
+            header="All Under Offer Activity Requests"
             key="5"
           >
             <AllNegotiableActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your Completed Activities"
+            header="My Completed Activities"
             key="6"
           >
             <UserCompletedActivities authLevel={authLevel} id={user._id} />
@@ -82,21 +82,21 @@ const ActivityBookings = () => {
         <>
           <Panel
             className="activityBooking-table-title"
-            header="Your Pending Requests"
+            header="My Pending Requests"
             key="1"
           >
             <UserAvailableActivities authLevel={authLevel} id={user._id} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your Booked Activities"
+            header="My Booked Activities"
             key="2"
           >
             <UserBookedActivities authLevel={authLevel} id={user._id} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your Negotiating Activities"
+            header="My Under Offer Activities"
             key="3"
           >
             <UserNegotiableActivities authLevel={authLevel} id={user._id} />
@@ -110,21 +110,21 @@ const ActivityBookings = () => {
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Booked Actiivty Requests"
+            header="All Booked Activty Requests"
             key="5"
           >
             <AllBookedActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Negotiating Activity Requests"
+            header="All Under Offer Activity Requests"
             key="6"
           >
             <AllNegotiableActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your Completed Activities"
+            header="My Completed Activities"
             key="7"
           >
             <UserCompletedActivities authLevel={authLevel} id={user._id} />
@@ -146,21 +146,21 @@ const ActivityBookings = () => {
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Booked Actiivty Requests"
+            header="All Booked Activity Requests"
             key="5"
           >
             <AllBookedActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Negotiating Activity Requests"
+            header="All Under Offer Activity Requests"
             key="6"
           >
             <AllNegotiableActivities />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Negotiating Activity Requests"
+            header="All Under Offer Activity Requests"
             key="6"
           >
             <AllCompletedActivities />
