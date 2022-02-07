@@ -1,11 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
+import { getDayFromInt } from '@utils/datetime';
 
-import apiHooks from '@services/hooks';
+import { useSelector } from 'react-redux';
+
 import Table from '../Table/Table';
 
-const AllBookedActivities = () => {
+const AllBookedActivities = ({ data }) => {
   const columns = [
     {
       title: 'Date',
@@ -191,10 +193,11 @@ const AllBookedActivities = () => {
     },
   ];
 
-  const { data, isLoading } = apiHooks.useGetActivityRequestsQuery();
+  const { user, authLevel } = useSelector((state) => state.auth);
 
-  const filterActivityRequests = (d) => d?.filter(
-    (activityRequest) => activityRequest.status === 'booked',
+  const filterActivityRequests = (d) => d?.filter((activityRequest) =>
+    activityRequest.status === 'booked' &&
+    activityRequest[`${authLevel}Id`] !== user._id
   ).map((activityRequest) => ({
     ...activityRequest,
     type: _.startCase(activityRequest.type),
@@ -202,7 +205,7 @@ const AllBookedActivities = () => {
   }));
 
   return (
-    <Table columns={columns} data={filterActivityRequests(data)} isLoading={isLoading} />
+    <Table columns={columns} data={filterActivityRequests(data)} />
   );
 };
 

@@ -4,10 +4,11 @@ import _ from 'lodash';
 
 import { getDayFromInt } from '@utils/datetime';
 
-import apiHooks from '@services/hooks';
+import { useSelector } from 'react-redux';
+
 import Table from '../Table/Table';
 
-const UserAvailableActivities = ({ authLevel, id }) => {
+const UserAvailableActivities = ({ data }) => {
   const columns = [
     {
       title: 'Preferred Day',
@@ -151,9 +152,12 @@ const UserAvailableActivities = ({ authLevel, id }) => {
     },
   ];
 
-  const { data, isLoading } = apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id });
+  const { user, authLevel } = useSelector((state) => state.auth);
 
-  const filterActivityRequests = (d) => d?.filter((activityRequest) => activityRequest.status === 'pending')
+  const filterActivityRequests = (d) => d?.filter((activityRequest) =>
+    activityRequest.status === 'pending' &&
+    activityRequest[`${authLevel}Id`] === user._id
+  )
     .map((activityRequest) => ({
       ...activityRequest,
       type: _.startCase(activityRequest.type),
@@ -163,7 +167,7 @@ const UserAvailableActivities = ({ authLevel, id }) => {
   const userColumns = authLevel === 'teacher' ? columns.filter((col) => col.dataIndex !== 'teacherName') : columns;
 
   return (
-    <Table columns={userColumns} data={filterActivityRequests(data)} isLoading={isLoading} />
+    <Table columns={userColumns} data={filterActivityRequests(data)}  />
   );
 };
 

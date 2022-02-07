@@ -2,10 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
 
-import apiHooks from '@services/hooks';
+import { useSelector } from 'react-redux';
+
 import Table from '../Table/Table';
 
-const UserNegotiableActivities = ({ authLevel, id }) => {
+const UserNegotiableActivities = ({ data }) => {
   const columns = [
     {
       title: 'Date',
@@ -155,8 +156,6 @@ const UserNegotiableActivities = ({ authLevel, id }) => {
     },
   ];
 
-  const { data, isLoading } = apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id });
-
     const schoolCol = {
     title: 'School',
     dataIndex: 'school',
@@ -194,10 +193,13 @@ const UserNegotiableActivities = ({ authLevel, id }) => {
     onFilter: (value, record) => record.school.indexOf(value) === 0,
   };
 
+  const { user, authLevel } = useSelector((state) => state.auth);
+
   if (authLevel === 'employer') columns.splice(1, 0, schoolCol);
 
-  const filterActivityRequests = (d) => d?.filter(
-    (activityRequest) => activityRequest.status === 'negotiating',
+  const filterActivityRequests = (d) => d?.filter((activityRequest) =>
+    activityRequest.status === 'negotiating' &&
+    activityRequest[`${authLevel}Id`] === user._id
   ).map((activityRequest) => ({
     ...activityRequest,
     type: _.startCase(activityRequest.type),
@@ -206,7 +208,7 @@ const UserNegotiableActivities = ({ authLevel, id }) => {
   const userColumns = authLevel === 'teacher' ? columns.filter((col) => col.dataIndex !== 'teacherName') : columns;
 
   return (
-    <Table columns={userColumns} data={filterActivityRequests(data)} isLoading={isLoading} />
+    <Table columns={userColumns} data={filterActivityRequests(data)} />
   );
 };
 

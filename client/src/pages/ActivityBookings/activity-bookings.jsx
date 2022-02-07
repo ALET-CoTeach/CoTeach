@@ -14,11 +14,16 @@ import {
   AddActivityModal,
 } from '@components';
 
+import apiHooks from '@services/hooks';
+
 const { Content, Footer } = Layout;
 const { Panel } = Collapse;
 
 const ActivityBookings = () => {
   const { authLevel, user } = useSelector((state) => state.auth);
+  const { data, isFetching, isLoading } = apiHooks.useGetActivityRequestsQuery();
+
+  console.log(data)
 
   let panels;
   /**
@@ -28,6 +33,7 @@ const ActivityBookings = () => {
    * Admin:
    * Employer/CompanyAdmin:
    */
+  if (!isFetching) {
   switch (authLevel) {
     case 'employer':
       panels = (
@@ -37,42 +43,42 @@ const ActivityBookings = () => {
             header="Your Booked Activities"
             key="1"
           >
-            <UserBookedActivities authLevel={authLevel} id={user._id} />
+            <UserBookedActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="Your Negotiating Activities"
             key="2"
           >
-            <UserNegotiableActivities authLevel={authLevel} id={user._id} />
+            <UserNegotiableActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Available Activities"
             key="3"
           >
-            <AllAvailableActivities />
+            <AllAvailableActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Booked Actiivty Requests"
             key="4"
           >
-            <AllBookedActivities />
+            <AllBookedActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Negotiating Activity Requests"
             key="5"
           >
-            <AllNegotiableActivities />
+            <AllNegotiableActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="Your Completed Activities"
             key="6"
           >
-            <UserCompletedActivities authLevel={authLevel} id={user._id} />
+            <UserCompletedActivities data={data} />
           </Panel>
         </>
       );
@@ -85,49 +91,54 @@ const ActivityBookings = () => {
             header="Your Pending Requests"
             key="1"
           >
-            <UserAvailableActivities authLevel={authLevel} id={user._id} />
+            <UserAvailableActivities data={data} />
           </Panel>
-          <Panel
-            className="activityBooking-table-title"
+
+          <Panel className="activityBooking-table-title"
             header="Your Booked Activities"
             key="2"
           >
-            <UserBookedActivities authLevel={authLevel} id={user._id} />
+            <UserBookedActivities data={data} />
           </Panel>
+
           <Panel
             className="activityBooking-table-title"
             header="Your Negotiating Activities"
             key="3"
           >
-            <UserNegotiableActivities authLevel={authLevel} id={user._id} />
+            <UserNegotiableActivities data={data} />
           </Panel>
+
           <Panel
             className="activityBooking-table-title"
             header="All Available Activities"
             key="4"
           >
-            <AllAvailableActivities />
+            <AllAvailableActivities data={data} />
           </Panel>
+
           <Panel
             className="activityBooking-table-title"
             header="All Booked Actiivty Requests"
             key="5"
           >
-            <AllBookedActivities />
+            <AllBookedActivities data={data} />
           </Panel>
+
           <Panel
             className="activityBooking-table-title"
             header="All Negotiating Activity Requests"
             key="6"
           >
-            <AllNegotiableActivities />
+            <AllNegotiableActivities data={data} />
           </Panel>
+
           <Panel
             className="activityBooking-table-title"
             header="Your Completed Activities"
             key="7"
           >
-            <UserCompletedActivities authLevel={authLevel} id={user._id} />
+            <UserCompletedActivities data={data} />
           </Panel>
         </>
       );
@@ -142,42 +153,43 @@ const ActivityBookings = () => {
             header="All Available Activities"
             key="4"
           >
-            <AllAvailableActivities />
+            <AllAvailableActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Booked Actiivty Requests"
             key="5"
           >
-            <AllBookedActivities />
+            <AllBookedActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Negotiating Activity Requests"
             key="6"
           >
-            <AllNegotiableActivities />
+            <AllNegotiableActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Negotiating Activity Requests"
             key="6"
           >
-            <AllCompletedActivities />
+            <AllCompletedActivities data={data} />
           </Panel>
         </>
       );
       break;
     default: panels = null;
   }
+  }
 
   return (
     <Layout style={{ paddingTop: 45 }}>
-      
+
         {authLevel !== 'employer'
           ? (<AddActivityModal />)
           : null }
-      
+
       <Layout className="site-layout">
         <Content className="activityBooking-content">
           <div className="site-layout-background">

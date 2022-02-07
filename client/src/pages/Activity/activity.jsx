@@ -23,12 +23,12 @@ const { Content, Footer, Sider } = Layout;
 
 const Activity = () => {
   const { user, authLevel } = useSelector((state) => state.auth);
-  const { data, isLoading, refetch } = authLevel === 'teacher' ? apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id: user._id }) : apiHooks.useGetActivityRequestsQuery();
-
+  const { data, isLoading, refetch } = authLevel === 'teacher' ? apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id: user._id }) : null
+  const { data1 } = apiHooks.useGetActivityRequestsQuery()
   const { id } = useParams();
 
   const activity = data?.filter((activityRequest) => activityRequest._id === id)[0];
-  console.log(activity)
+  console.log(data, authLevel)
 
   if (isLoading) {
     console.log(isLoading)
@@ -53,7 +53,6 @@ const Activity = () => {
       );
       break;
   }
-  console.log(activity?.startDate)
 
   let statusBadge;
   const negotiateRow = activity?.startDate !== null ? (

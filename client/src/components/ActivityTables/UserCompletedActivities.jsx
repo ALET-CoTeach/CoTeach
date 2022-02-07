@@ -2,10 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
 
-import apiHooks from '@services/hooks';
+import { useSelector } from 'react-redux';
+
 import Table from '../Table/Table';
 
-const UserCompletedActivities = ({ authLevel, id }) => {
+const UserCompletedActivities = ({ data }) => {
   const columns = [
     {
       title: 'Date',
@@ -142,7 +143,7 @@ const UserCompletedActivities = ({ authLevel, id }) => {
     },
   ];
 
-  const { data, isLoading } = apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id });
+  const { user, authLevel } = useSelector((state) => state.auth);
 
     const schoolCol = {
     title: 'School',
@@ -183,15 +184,17 @@ const UserCompletedActivities = ({ authLevel, id }) => {
 
   if (authLevel === 'employer') columns.splice(1, 0, schoolCol);
 
-  const filterActivityRequests = (d) => d?.filter(
-    (activityRequest) => activityRequest.status === 'booked' && activityRequest.endDate < Date.now(),
+  const filterActivityRequests = (d) => d?.filter((activityRequest) =>
+    activityRequest.status === 'booked' &&
+    activityRequest.endDate < Date.now() &&
+    activityRequest[`${authLevel}Id`] === user._id
   ).map((activityRequest) => ({
     ...activityRequest,
     type: _.startCase(activityRequest.type),
   }));
 
   return (
-    <Table columns={columns} data={filterActivityRequests(data)} isLoading={isLoading} />
+    <Table columns={columns} data={filterActivityRequests(data)} />
   );
 };
 

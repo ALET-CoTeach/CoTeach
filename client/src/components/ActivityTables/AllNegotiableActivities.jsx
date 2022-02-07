@@ -2,10 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
 
-import apiHooks from '@services/hooks';
+import { useSelector } from 'react-redux';
 import Table from '../Table/Table';
 
-const AllNegotiableActivities = () => {
+const AllNegotiableActivities = ({ data }) => {
   const columns = [
     {
       title: 'Date',
@@ -191,17 +191,18 @@ const AllNegotiableActivities = () => {
     },
   ];
 
-  const { data, isLoading } = apiHooks.useGetActivityRequestsQuery();
+  const { user, authLevel } = useSelector((state) => state.auth);
 
-  const filterActivityRequests = (d) => d?.filter(
-    (activityRequest) => activityRequest.status === 'negotiating',
+  const filterActivityRequests = (d) => d?.filter((activityRequest) =>
+    activityRequest.status === 'negotiating' &&
+    activityRequest[`${authLevel}Id`] !== user._id
   ).map((activityRequest) => ({
     ...activityRequest,
     type: _.startCase(activityRequest),
   }));
 
   return (
-    <Table columns={columns} data={filterActivityRequests(data)} isLoading={isLoading} />
+    <Table columns={columns} data={filterActivityRequests(data)} />
   );
 };
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import apiHooks from '@services/hooks';
 import _ from 'lodash';
 
+import { useSelector } from 'react-redux';
 import { getDayFromInt } from '@utils/datetime';
-import { Button } from 'antd';
+
 import Table from '../Table/Table';
 
-const AllAvailableActivities = () => {
+const AllAvailableActivities = ({ data }) => {
   const columns = [
     {
       title: 'Term',
@@ -220,10 +220,11 @@ const AllAvailableActivities = () => {
     },
   ];
 
-  const { data, isLoading } = apiHooks.useGetActivityRequestsQuery();
+  const { user, authLevel } = useSelector((state) => state.auth);
 
-  const filterActivityRequests = (d) => d?.filter(
-    (activityRequest) => activityRequest.status === 'pending',
+  const filterActivityRequests = (d) => d?.filter((activityRequest) =>
+    activityRequest.status === 'pending' &&
+    activityRequest[`${authLevel}Id`] !== user._id
   ).map((activityRequest) => ({
     ...activityRequest,
     term: `T${activityRequest.term}`,
@@ -232,7 +233,7 @@ const AllAvailableActivities = () => {
   }));
 
   return (
-    <Table columns={columns} isLoading={isLoading} data={filterActivityRequests(data)} />
+    <Table columns={columns} data={filterActivityRequests(data)} />
   );
 };
 
