@@ -17,14 +17,9 @@ router.get('/', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, 
   const { user } = req;
   const filter = {};
 
-  // SLT and Teachers can only see available requests for the school they work at
   // Only teachers and SLT have a schoolId property
-  if (user.authLevel === _teacher
-      || user.authLevel === _slt) filter.schoolId = user.schoolId;
-  // Filter option to exclude activity requests from the current user by
-  // their id
-  filter[`${user.authLevel}Id`] = { $ne: user._id };
-  console.log(filter);
+  // Teachers can only see available requests for the school they work at
+  if (user.authLevel === _teacher) filter.schoolId = user.schoolId;
 
   try {
     const jsonResponse = await ActivityRequestController.getAll(filter);
@@ -36,8 +31,8 @@ router.get('/', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, 
   }
 });
 
-router.get('/:role::id', requiredRoles([_admin, _slt, _teacher, _employer]), async (req, res) => {
-  const { user } = req;
+// Get all requests, pending, booked, or negotiating, for a specific user
+router.get('/:role::id', requiredRoles([_admin]), async (req, res) => {
   const { role, id } = req.params;
   const filter = {};
 
@@ -47,12 +42,8 @@ router.get('/:role::id', requiredRoles([_admin, _slt, _teacher, _employer]), asy
     if (role === _teacher) filter.teacherId = id;
     if (role === _employer) filter.employerId = id;
 
-    // If teacher is authenticated overwrite teacherId field in filter, since teachers
-    // can only see their own booked lessons
-    if (user.authLevel === _teacher) filter.teacherId = user._id;
-    console.log(filter);
-
     const jsonResponse = await ActivityRequestController.getAll(filter);
+    console.log(jsonResponse.activityRequests.length)
 
     return res.status(200).json(jsonResponse);
   } catch (err) {
