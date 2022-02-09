@@ -19,21 +19,14 @@ import {
 import apiHooks from '@services/hooks';
 import { useSelector } from 'react-redux';
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Footer } = Layout;
 
 const Activity = () => {
-  const { user, authLevel } = useSelector((state) => state.auth);
-  const { data, isLoading, refetch } = authLevel === 'teacher' ? apiHooks.useGetUserActivityRequestsQuery({ role: authLevel, id: user._id }) : null
-  const { data1 } = apiHooks.useGetActivityRequestsQuery()
+  const { authLevel } = useSelector((state) => state.auth);
+  const { data, isLoading, refetch } = apiHooks.useGetActivityRequestsQuery()
   const { id } = useParams();
 
   const activity = data?.filter((activityRequest) => activityRequest._id === id)[0];
-  console.log(data, authLevel)
-
-  if (isLoading) {
-    console.log(isLoading)
-    refetch()
-  }
 
   let mainBtn;
   switch (authLevel) {
