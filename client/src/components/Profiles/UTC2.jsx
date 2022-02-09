@@ -21,6 +21,14 @@ import ThealeGreenBuilding from '@assets/SchoolPhotos/theale-green-building.png'
 import BicesterBuilding from '@assets/SchoolPhotos/bicester-building.jpg';
 import BicesterStudioBuilding from '@assets/SchoolPhotos/bicester-technology-building.jpg';
 
+import BicesterOriginalLogo from '@assets/OriginalLogos/Bicester-Logo-Orig.svg';
+import BicesterTchnologyStudioOriginal from '@assets/OriginalLogos/Bicester-Tchnology-Studio-Logo-Orig.svg';
+import ThealeGreenOrginalLogo from '@assets/OriginalLogos/ThealeGreenLogo-Orig.svg';
+import UTCHeathrowOriginalLogo from '@assets/OriginalLogos/UTC-Heathrow-Logo-Orig.svg';
+import UTCOxfordshireOriginalLogo from '@assets/OriginalLogos/UTC-Oxfordshire-Logo-Orig.svg';
+import UTCReadingOriginalLogo from '@assets/OriginalLogos/UTC-Reading-Orig.svg';
+import UTCSwindonOriginalLogo from '@assets/OriginalLogos/UTC-Swindon-Logo-Orig.svg';
+
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 const { Content, Footer, Sider } = Layout;
@@ -39,37 +47,37 @@ const data = [
   {
     title: 'UTC Reading',
     imageURL: UTCReadingBuilding,
-    schoolLogo: UTCReading,
+    schoolLogo: UTCReadingOriginalLogo,
   },
   {
     title: 'UTC Swindon',
     imageURL: UTCSwindonBuidling,
-    schoolLogo: UTCSwindon,
+    schoolLogo: UTCSwindonOriginalLogo,
   },
   {
     title: 'UTC Heathrow',
     imageURL: UTCHeathrowBuilding,
-    schoolLogo: UTCHeathrowLogo,
+    schoolLogo: UTCHeathrowOriginalLogo,
   },
   {
     title: 'UTC Oxford',
     imageURL: UTCOxfordBuilding,
-    schoolLogo: UTCOxfordshire,
+    schoolLogo: UTCOxfordshireOriginalLogo,
   },
   {
     title: 'Theale Green',
     imageURL: ThealeGreenBuilding,
-    schoolLogo: ThealeGreen,
+    schoolLogo: ThealeGreenOrginalLogo,
   },
   {
     title: 'Bicester',
     imageURL: BicesterBuilding,
-    schoolLogo: Bicester,
+    schoolLogo: BicesterOriginalLogo,
   },
   {
     title: 'Bicester Technology Studio',
     imageURL: BicesterStudioBuilding,
-    schoolLogo: BicesterTechnology,
+    schoolLogo: BicesterTchnologyStudioOriginal,
   },
 ];
 

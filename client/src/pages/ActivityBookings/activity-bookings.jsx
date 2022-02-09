@@ -40,14 +40,14 @@ const ActivityBookings = () => {
         <>
           <Panel
             className="activityBooking-table-title"
-            header="Your Booked Activities"
+            header="My Booked Activities"
             key="1"
           >
             <UserBookedActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your Negotiating Activities"
+            header="My Under Offer Activities"
             key="2"
           >
             <UserNegotiableActivities data={data} />
@@ -61,21 +61,21 @@ const ActivityBookings = () => {
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Booked Actiivty Requests"
+            header="All Booked Activity Requests"
             key="4"
           >
             <AllBookedActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Negotiating Activity Requests"
+            header="All Under Offer Activity Requests"
             key="5"
           >
             <AllNegotiableActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="Your Completed Activities"
+            header="My Completed Activities"
             key="6"
           >
             <UserCompletedActivities data={data} />
@@ -88,22 +88,21 @@ const ActivityBookings = () => {
         <>
           <Panel
             className="activityBooking-table-title"
-            header="Your Pending Requests"
+            header="My Pending Requests"
             key="1"
           >
             <UserAvailableActivities data={data} />
           </Panel>
-
-          <Panel className="activityBooking-table-title"
-            header="Your Booked Activities"
-            key="2"
+          <Panel
+            className="activityBooking-table-title"
+            header="My Booked Activities"
           >
             <UserBookedActivities data={data} />
           </Panel>
 
           <Panel
             className="activityBooking-table-title"
-            header="Your Negotiating Activities"
+            header="My Under Offer Activities"
             key="3"
           >
             <UserNegotiableActivities data={data} />
@@ -119,7 +118,7 @@ const ActivityBookings = () => {
 
           <Panel
             className="activityBooking-table-title"
-            header="All Booked Actiivty Requests"
+            header="All Booked Activity Requests"
             key="5"
           >
             <AllBookedActivities data={data} />
@@ -127,7 +126,7 @@ const ActivityBookings = () => {
 
           <Panel
             className="activityBooking-table-title"
-            header="All Negotiating Activity Requests"
+            header="All Under Offer Activity Requests"
             key="6"
           >
             <AllNegotiableActivities data={data} />
@@ -135,7 +134,7 @@ const ActivityBookings = () => {
 
           <Panel
             className="activityBooking-table-title"
-            header="Your Completed Activities"
+            header="My Completed Activities"
             key="7"
           >
             <UserCompletedActivities data={data} />
@@ -157,21 +156,21 @@ const ActivityBookings = () => {
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Booked Actiivty Requests"
+            header="All Booked Activity Requests"
             key="5"
           >
             <AllBookedActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Negotiating Activity Requests"
+            header="All Under Offer Activity Requests"
             key="6"
           >
             <AllNegotiableActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Negotiating Activity Requests"
+            header="All Under Offer Activity Requests"
             key="6"
           >
             <AllCompletedActivities data={data} />

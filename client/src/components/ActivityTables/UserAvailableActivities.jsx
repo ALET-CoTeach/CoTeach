@@ -16,7 +16,7 @@ const UserAvailableActivities = ({ data }) => {
       key: 'prefDay',
     },
     {
-      title: 'Lesson Title',
+      title: 'Activity Title',
       dataIndex: 'title',
       key: 'title',
       isSearchable: true,
