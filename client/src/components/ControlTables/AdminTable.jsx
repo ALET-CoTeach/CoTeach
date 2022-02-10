@@ -206,15 +206,9 @@ const AdminTables = () => {
     {
       title: 'Admin Email',
       dataIndex: 'adminEmail',
-      width: '15%',
+      width: '65%',
       editable: true,
       ...getColumnSearchProps('adminEmail'),
-    },
-    {
-      title: 'Admin Password',
-      dataIndex: 'adminPassword',
-      width: '40%',
-      editable: true,
     },
     {
       title: 'Edit',

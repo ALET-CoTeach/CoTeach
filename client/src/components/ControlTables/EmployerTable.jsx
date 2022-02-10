@@ -149,10 +149,6 @@ const EmployersTables = () => {
       ...getColumnSearchProps('CompanyName'),
 
     },
-    {
-      title: 'Password',
-      dataIndex: 'EmployerPassword',
-    },
   ];
 
   const rowSelection = {

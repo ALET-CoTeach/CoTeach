@@ -29,7 +29,7 @@ const data = [
     SLTPassword: 'cupcake78',
     IsCoordinator: 'No',
   },
-  
+
 ];
 
 const SLTTable = () => {
@@ -180,10 +180,6 @@ const SLTTable = () => {
         },
       ],
       onFilter: (value, record) => record.SchoolName.indexOf(value) === 0,
-    },
-    {
-      title: 'Password',
-      dataIndex: 'SLTPassword',
     },
     {
       title: 'Coordinator',

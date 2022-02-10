@@ -169,10 +169,6 @@ const TeachersTable = () => {
       ],
       onFilter: (value, record) => record.SchoolName.indexOf(value) === 0,
     },
-    {
-      title: 'Password',
-      dataIndex: 'TeacherPassword',
-    },
   ];
 
   const rowSelection = {
