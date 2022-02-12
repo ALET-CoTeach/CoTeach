@@ -30,7 +30,7 @@ const Control = () => {
 
   return (
     <Layout style={{ paddingTop: 45 }}>
-      <Layout className="site-layout">
+      <Layout className="site-layout" style={{height: '100vh'}}>
         <Content className="addLesson-content">
           <div className="site-layout-background">
             <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Admin Control Tables</h1>

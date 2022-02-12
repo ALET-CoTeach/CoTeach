@@ -189,7 +189,7 @@ const ActivityBookings = () => {
           ? (<AddActivityModal />)
           : null }
 
-      <Layout className="site-layout">
+      <Layout className="site-layout" style={{height: '100vh'}}>
         <Content className="activityBooking-content">
           <div className="site-layout-background">
             <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Requests</h1>
