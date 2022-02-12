@@ -10,19 +10,11 @@ const { Panel } = Collapse;
 const CreatePost = () => (
   <div>
     <Layout style={{ paddingTop: 45 }}>
-      <Sider
-        className="sidebar"
-        style={{
-          overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-          left: 0,
-        }}
-      />
-      <Layout className="site-layout" style={{ marginLeft: 200}}>
+      
+      <Layout className="site-layout" style={{ height: '100vh'}}>
         <Content className="addLesson-content">
           <div className="site-layout-background" style={{ margin:"1%" }}>
-            <h1 className="centerText HeadingGrey">Post Creation Page</h1>
+            <h1 className="centerText HeadingGrey" style={{ marginBottom: 20}}>Post Creation Page</h1>
             <CreatePostTable />
           </div>
         </Content>
