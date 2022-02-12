@@ -77,7 +77,7 @@ const TeacherDashboard = () => (
                 </Col>
                 <Col lg={24}>
                   <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                    <h1 className="SubHeadingGrey centerText">Department Booking Activity</h1>
+                    <h1 className="SubHeadingGrey centerText" style={{ marginBottom: 10}}>Department Booking Activity</h1>
                     <DepartmentBookingActivies />
                   </Card>
                 </Col>
