@@ -34,10 +34,17 @@ const LandingPage = () => (
                 <Col lg={24} sm={24}>
                   <p>
                     <i>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                      dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                      ALET is dedicated to providing a
+                      learning journey for our students
+                      that creates rich opportunities to
+                      engage with industry, and to build
+                      the attributes and skills needed to
+                      secure a rewarding career. The
+                      CoTeach portfolio offers a range
+                      of activities to our employers and
+                      partners to support our students,
+                      and to build skills pipelines in the
+                      Thames Valley and beyond.
                     </i>
                   </p>
                 </Col>
@@ -153,21 +160,21 @@ const LandingPage = () => (
                       <hr />
 
                       <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        ALET is dedicated to providing a
+                        learning journey for our students
+                        that creates rich opportunities to
+                        engage with industry, and to build
+                        the attributes and skills needed to
+                        secure a rewarding career. The
+                        CoTeach portfolio offers a range
+                        of activities to our employers and
+                        partners to support our students,
+                        and to build skills pipelines in the
+                        Thames Valley and beyond.
                       </p>
                       <br />
                       <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        
                       </p>
 
                     </Card>
