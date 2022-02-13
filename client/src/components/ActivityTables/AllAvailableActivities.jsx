@@ -7,6 +7,8 @@ import { getDayFromInt } from '@utils/datetime';
 
 import Table from '../Table/Table';
 
+import { Button } from 'antd';
+
 const AllAvailableActivities = ({ data }) => {
   const columns = [
     {
@@ -213,7 +215,9 @@ const AllAvailableActivities = ({ data }) => {
       render: (_, record) => (
         <>
           <NavLink to={`/activity/${record._id}`} >
-            View
+            <Button>
+              View
+            </Button>
           </NavLink>
         </>
       ),

@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 
 import Table from '../Table/Table';
 
+import { Button } from 'antd';
+
 const AllBookedActivities = ({ data }) => {
   const columns = [
     {
@@ -186,7 +188,9 @@ const AllBookedActivities = ({ data }) => {
       render: (_, record) => (
         <>
           <NavLink to={`/activity/${record._id}`} >
-            View
+            <Button>
+              View
+            </Button>
           </NavLink>
         </>
       ),

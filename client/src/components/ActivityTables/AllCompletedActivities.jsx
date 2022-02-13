@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 
 import Table from '../Table/Table';
 
+import { Button } from 'antd';
+
 const AllCompletedActivities = ({ data }) => {
   const columns = [
     {
@@ -249,7 +251,9 @@ const AllCompletedActivities = ({ data }) => {
       render: (_, record) => (
         <>
           <NavLink to={`/activity/${record._id}`} >
-            View
+            <Button>
+              View
+            </Button>
           </NavLink>
         </>
       ),
