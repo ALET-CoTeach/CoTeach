@@ -10,7 +10,7 @@ import {
 import { useSelector } from 'react-redux';
 import apiHooks from '@services/hooks';
 
-const Schoolform = ({ form }) => {
+const Schoolform = () => {
   const { data, isLoading } = apiHooks.useGetSchoolsQuery();
   const { authLevel, user: { schoolId } } = useSelector((state) => state.auth);
 
