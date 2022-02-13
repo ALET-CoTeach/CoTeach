@@ -10,6 +10,7 @@ export default backendAPI.injectEndpoints({
     }),
     getCompanies: builder.query({
       query: () => '/company',
+      transformResponse: (response) => response.companies,
     }),
     deleteCompany: builder.query({
       query: ({ companyId }) => `/company/${companyId}`,

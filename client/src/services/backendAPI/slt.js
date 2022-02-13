@@ -23,5 +23,9 @@ export default backendAPI.injectEndpoints({
       query: ({ sltId }) => `/slt/${sltId}`,
       method: 'PUT',
     }),
+    getSlts: builder.query({
+      query: () => '/slt',
+      transformResponse: (response) => response.slts,
+    }),
   }),
 });

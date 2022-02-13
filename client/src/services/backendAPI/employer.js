@@ -23,5 +23,9 @@ export default backendAPI.injectEndpoints({
       query: ({ employerId }) => `/employer/${employerId}`,
       method: 'PUT',
     }),
+    getEmployers: builder.query({
+      query: () => '/employer',
+      transformResponse: (response) => response.employers,
+    }),
   }),
 });
