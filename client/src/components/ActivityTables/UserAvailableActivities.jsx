@@ -18,6 +18,22 @@ const UserAvailableActivities = ({ data }) => {
       key: 'prefDay',
     },
     {
+      title: 'Time',
+      dataIndex: 'preferredTime',
+      key: 'prefTime',
+      filters: [
+        {
+          text: 'AM',
+          value: 'AM',
+        },
+        {
+          text: 'PM',
+          value: 'PM',
+        },
+      ],
+      onFilter: (value, record) => record.time.indexOf(value) === 0,
+    },
+    {
       title: 'Activity Title',
       dataIndex: 'title',
       key: 'title',
@@ -166,6 +182,7 @@ const UserAvailableActivities = ({ data }) => {
       ...activityRequest,
       type: _.startCase(activityRequest.type),
       preferredDay: getDayFromInt(activityRequest.preferredDay),
+      preferredTime: _.upperCase(activityRequest.preferredTime),
     }));
 
   const userColumns = authLevel === 'teacher' ? columns.filter((col) => col.dataIndex !== 'teacherName') : columns;
