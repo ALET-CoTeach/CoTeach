@@ -216,7 +216,7 @@ const AllAvailableActivities = ({ data }) => {
         <>
           <NavLink to={`/activity/${record._id}`} >
             <Button>
-              View
+            View
             </Button>
           </NavLink>
         </>
@@ -234,6 +234,7 @@ const AllAvailableActivities = ({ data }) => {
     term: `T${activityRequest.term}`,
     type: _.startCase(activityRequest.type),
     preferredDay: getDayFromInt(activityRequest.preferredDay),
+    preferredTime: _.upperCase(activityRequest.preferredTime),
   }));
 
   return (
