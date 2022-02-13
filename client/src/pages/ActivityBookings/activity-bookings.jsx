@@ -150,28 +150,21 @@ const ActivityBookings = () => {
           <Panel
             className="activityBooking-table-title"
             header="All Available Activities"
-            key="4"
+            key="1"
           >
             <AllAvailableActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
             header="All Booked Activity Requests"
-            key="5"
+            key="2"
           >
             <AllBookedActivities data={data} />
           </Panel>
           <Panel
             className="activityBooking-table-title"
-            header="All Under Offer Activity Requests"
-            key="6"
-          >
-            <AllNegotiableActivities data={data} />
-          </Panel>
-          <Panel
-            className="activityBooking-table-title"
-            header="All Under Offer Activity Requests"
-            key="6"
+            header="All Completed Activity Requests"
+            key="3"
           >
             <AllCompletedActivities data={data} />
           </Panel>
