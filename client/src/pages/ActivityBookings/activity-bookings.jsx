@@ -168,6 +168,13 @@ const ActivityBookings = () => {
           >
             <AllCompletedActivities data={data} />
           </Panel>
+          <Panel
+            className="activityBooking-table-title"
+            header="All Under Offer Activity Requests"
+            key="3"
+          >
+            <AllNegotiableActivities data={data} />
+          </Panel>
         </>
       );
       break;
@@ -182,7 +189,7 @@ const ActivityBookings = () => {
           ? (<AddActivityModal />)
           : null }
 
-      <Layout className="site-layout" style={{height: '100vh'}}>
+      <Layout className="site-layout min-h-screen">
         <Content className="activityBooking-content">
           <div className="site-layout-background">
             <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Requests</h1>
@@ -191,7 +198,7 @@ const ActivityBookings = () => {
             </Collapse>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>ALET CoTeach 2021</Footer>
+        <Footer className="text-center">ALET CoTeach 2021</Footer>
       </Layout>
     </Layout>
   );

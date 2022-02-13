@@ -202,7 +202,7 @@ const AllNegotiableActivities = ({ data }) => {
     activityRequest[`${authLevel}Id`] !== user._id
   ).map((activityRequest) => ({
     ...activityRequest,
-    type: _.startCase(activityRequest),
+    type: _.startCase(activityRequest.type),
   }));
 
   return (
