@@ -5,13 +5,6 @@ import {
 } from 'antd';
 import './CoordinatorProfile.css';
 
-import UTCHeathrowLogo from '@assets/BlueLogos/UTC-Heathrow-Logo.svg';
-import BicesterTechnology from '@assets/BlueLogos/Bicester-Tchnology-Studio-Logo.svg';
-import Bicester from '@assets/BlueLogos/Bicester-Logo.svg';
-import ThealeGreen from '@assets/BlueLogos/ThealeGreenLogo.svg';
-import UTCOxfordshire from '@assets/BlueLogos/UTC-Oxfordshire-Logo.svg';
-import UTCReading from '@assets/BlueLogos/UTC-Reading-Logo.svg';
-import UTCSwindon from '@assets/BlueLogos/UTC-Swindon-Logo.svg';
 
 import UTCReadingBuilding from '@assets/SchoolPhotos/utc-reading.jpg';
 import UTCSwindonBuidling from '@assets/SchoolPhotos/utc-swindon-building.jpg';
@@ -21,13 +14,14 @@ import ThealeGreenBuilding from '@assets/SchoolPhotos/theale-green-building.png'
 import BicesterBuilding from '@assets/SchoolPhotos/bicester-building.jpg';
 import BicesterStudioBuilding from '@assets/SchoolPhotos/bicester-technology-building.jpg';
 
-import BicesterOriginalLogo from '@assets/OriginalLogos/Bicester-Logo-Orig.svg';
-import BicesterTchnologyStudioOriginal from '@assets/OriginalLogos/Bicester-Tchnology-Studio-Logo-Orig.svg';
-import ThealeGreenOrginalLogo from '@assets/OriginalLogos/ThealeGreenLogo-Orig.svg';
-import UTCHeathrowOriginalLogo from '@assets/OriginalLogos/UTC-Heathrow-Logo-Orig.svg';
-import UTCOxfordshireOriginalLogo from '@assets/OriginalLogos/UTC-Oxfordshire-Logo-Orig.svg';
-import UTCReadingOriginalLogo from '@assets/OriginalLogos/UTC-Reading-Orig.svg';
-import UTCSwindonOriginalLogo from '@assets/OriginalLogos/UTC-Swindon-Logo-Orig.svg';
+
+import BicesterOriginalLogo from '@assets/OriginalLogos/Bicester-Logo-Original-Colour.svg';
+import BicesterTechnologyStudioOriginal from '@assets/OriginalLogos/Bicester-Technology-Studio-Logo-Original-Colour.svg';
+import ThealeGreenOriginalLogo from '@assets/OriginalLogos/ThealeGreenLogo-Original-Colour.svg';
+import UTCHeathrowOriginalLogo from '@assets/OriginalLogos/UTC-Heathrow-Logo-Original-Colour.svg';
+import UTCOxfordshireOriginalLogo from '@assets/OriginalLogos/UTC-Oxfordshire-Logo-Original-Colour.svg';
+import UTCReadingOriginalLogo from '@assets/OriginalLogos/UTC-Reading-Logo-Original-Colour.svg';
+import UTCSwindonOriginalLogo from '@assets/OriginalLogos/UTC-Swindon-Logo-Original-Colour.svg';
 
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
@@ -67,7 +61,7 @@ const data = [
   {
     title: 'Theale Green',
     imageURL: ThealeGreenBuilding,
-    schoolLogo: ThealeGreenOrginalLogo,
+    schoolLogo: ThealeGreenOriginalLogo,
   },
   {
     title: 'Bicester',
@@ -77,7 +71,7 @@ const data = [
   {
     title: 'Bicester Technology Studio',
     imageURL: BicesterStudioBuilding,
-    schoolLogo: BicesterTchnologyStudioOriginal,
+    schoolLogo: BicesterTechnologyStudioOriginal,
   },
 ];
 
@@ -122,6 +116,7 @@ const UTCProfilesTwo = () => {
                           className="centerText"
                           title={item.title}
                           key={item.id}
+                          size="100%"
                           actions={[
                             <a onClick={showDrawer} key={`a-${item.id}`}>
                               Information
