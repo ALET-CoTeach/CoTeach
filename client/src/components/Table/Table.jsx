@@ -8,9 +8,10 @@ import Highlighter from 'react-highlight-words';
 
 import './table.css';
 
-const CustomTable = ({ isLoading, data, columns }) => {
+const CustomTable = ({ isLoading, data, columns, hasCheckbox  }) => {
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');
+  const [selectedRowKeys, setSelectedRowKeys] = useState("");
   const searchInput = useRef(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -80,6 +81,18 @@ const CustomTable = ({ isLoading, data, columns }) => {
     )),
   });
 
+  const onSelectChange = selectedRowKeys => {
+    console.log('selectedRowKeys changed:  ', selectedRowKeys);
+    setSelectedRowKeys(selectedRowKeys)
+  };
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+  };
+
+  const hasSelected = selectedRowKeys.length > 0;
+
   columns.forEach((col, i) => {
     if (col.isSearchable) {
       const temp = {
@@ -91,7 +104,7 @@ const CustomTable = ({ isLoading, data, columns }) => {
   });
 
   return (
-    <Table loading={isLoading} columns={columns} dataSource={data} size="large" />
+    <Table rowSelection={hasCheckbox ? rowSelection : null} loading={isLoading} columns={columns} dataSource={data} size="large" />
   );
 };
 
