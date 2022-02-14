@@ -1,154 +1,49 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 
 import {
-  Table, Input, Button, Space, Row, Col, Popconfirm, message,
+  Row, Col,
 } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
-import Highlighter from 'react-highlight-words';
 
-import AddSLTModal from '../ControlModals/AddSLTModal';
+import Table from '../Table/Table';
 
-const data = [
-  {
-    key: '1',
-    SLTFirstName: 'Amy',
-    SLTLastName: 'Sutcliffe',
-    SLTEmail: 'amy.sutcliffe@utcreading.org.uk',
-    SLTphoneNumber: '+44 07478834665',
-    SchoolName: 'UTCR',
-    SLTPassword: 'password123',
-    IsCoordinator: 'Yes',
-  },
-  {
-    key: '2',
-    SLTFirstName: 'John',
-    SLTLastName: 'Doe',
-    SLTEmail: 'John.Doe@utcreading.org.uk',
-    SLTphoneNumber: '+44 07478574865',
-    SchoolName: 'UTCO',
-    SLTPassword: 'cupcake78',
-    IsCoordinator: 'No',
-  },
+import {
+  CloseCircleTwoTone,
+  CheckCircleTwoTone,
+} from '@ant-design/icons';
 
-];
+import { AddSLTModal } from '@components';
 
-const SLTTable = () => {
-  const [searchText, setSearchText] = useState('');
-  const [searchColumn, setSearchColumn] = useState('');
-  const searchInput = useRef(null);
-
-  const onChange = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
-  };
-
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchColumn(dataIndex);
-  };
-
-  const handleReset = (clearFilters) => {
-    clearFilters();
-    setSearchText('');
-  };
-
-  const getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({
-      setSelectedKeys, selectedKeys, confirm, clearFilters,
-    }) => (
-      <div style={{ padding: 8 }}>
-        <Input
-          ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
-          value={selectedKeys[0]}
-          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{ marginBottom: 8, display: 'block' }}
-        />
-        <Space>
-          <Button
-            type="primary"
-            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
-            size="small"
-            style={{ width: 90 }}
-          >
-            Search
-          </Button>
-          <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
-            Reset
-          </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={() => {
-              confirm({ closeDropdown: false });
-              setSearchText(selectedKeys[0]);
-              setSearchColumn(dataIndex);
-            }}
-          >
-            Filter
-          </Button>
-        </Space>
-      </div>
-    ),
-    filterIcon: (filtered) => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
-    onFilter: (value, record) => (record[dataIndex]
-      ? record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
-      : ''),
-    render: (text) => (searchColumn === dataIndex ? (
-      <Highlighter
-        highlightStyle={{ backgroundColor: '#bdf6ff', padding: 0 }}
-        searchWords={[searchText]}
-        autoEscape
-        textToHighlight={text ? text.toString() : ''}
-      />
-    ) : (
-      text
-    )),
-  });
-
-  const [selectedRowKeys, setSelectedRowKeys] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const start = (e) => {
-    setLoading(true);
-
-    setTimeout(() => {
-      setSelectedRowKeys([]);
-      setLoading(false);
-      message.success('Deleted Successfully');
-    }, 1000);
-  };
-
-  const onSelectChange = selectedRowKeys => {
-    console.log('selectedRowKeys changed:  ', selectedRowKeys);
-    setSelectedRowKeys(selectedRowKeys)
-  };
-
+const SLTTable = ({ data }) => {
   const columns = [
     {
       title: 'First Name',
-      dataIndex: 'SLTFirstName',
-      ...getColumnSearchProps('SLTFirstName'),
+      dataIndex: 'firstname',
+      key: 'sltFirstname',
+      isSearchable: true,
     },
     {
       title: 'Last Name',
-      dataIndex: 'SLTLastName',
-      ...getColumnSearchProps('SLTLastName'),
+      dataIndex: 'lastname',
+      key: 'sltLastname',
+      isSearchable: true,
     },
     {
       title: 'Email',
-      dataIndex: 'SLTEmail',
-      ...getColumnSearchProps('SLTEmail'),
+      dataIndex: 'email',
+      key: 'sltEmail',
+      isSearchable: true,
     },
+    /*
     {
       title: 'Phone',
-      dataIndex: 'SLTphoneNumber',
+      dataIndex: 'phone',
+      key: 'sltPhone',
     },
+    */
     {
       title: 'School',
-      dataIndex: 'SchoolName',
+      dataIndex: 'schoolId',
+      key: 'sltSchool',
       filters: [
         {
           text: 'UTCR',
@@ -179,11 +74,19 @@ const SLTTable = () => {
           value: 'BTS',
         },
       ],
-      onFilter: (value, record) => record.SchoolName.indexOf(value) === 0,
+      onFilter: (value, record) => record.school.indexOf(value) === 0,
     },
     {
       title: 'Coordinator',
-      dataIndex: 'IsCoordinator',
+      dataIndex: 'coordinator',
+      key: 'sltIsCoordinator',
+      render: (_, record) => (
+        <div className="">
+          {record.coordinator
+            ? <CheckCircleTwoTone className="text-xl" />
+            : <CloseCircleTwoTone className="text-xl" /> }
+        </div>
+      ),
       filters: [
         {
           text: 'Yes',
@@ -194,55 +97,20 @@ const SLTTable = () => {
           value: 'No',
         },
       ],
-      onFilter: (value, record) => record.SchoolName.indexOf(value) === 0,
+      onFilter: (value, record) => record.coordinator.indexOf(value) === 0,
     },
   ];
 
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange,
-  };
-
-  const hasSelected = selectedRowKeys.length > 0;
-
-  function confirm(e) {
-    console.log(e);
-    message.success('Click on Yes');
-  }
-
-  function cancel(e) {
-    console.log(e);
-    message.error('Cancelled');
-  }
-
   return (
     <>
-    <div style={{ marginBottom: 5 }}>
+      <div className="mb-1" >
         <Row gutter={[16, 16]}>
           <Col lg={2}>
             <AddSLTModal />
           </Col>
-          <Col lg={2}>
-            <Popconfirm
-              title="Are you sure to delete this item?"
-              onConfirm={start}
-              onCancel={cancel}
-              okText="Yes"
-              cancelText="No"
-              loading={loading}
-            >
-              <Button type="primary" disabled={!hasSelected} danger>
-                Delete
-              </Button>
-              <span style={{ marginLeft: 2 }}>
-                {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-              </span>
-            </Popconfirm>
-
-          </Col>
         </Row>
       </div>
-      <Table rowSelection={rowSelection} columns={columns} dataSource={data} className="styles.thead" />
+      <Table columns={columns} data={data} />
     </>
   );
 };

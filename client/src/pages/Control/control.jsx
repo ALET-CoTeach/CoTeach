@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Layout, Collapse, Tabs } from 'antd';
+import { Layout, Tabs } from 'antd';
+
+import apiHooks from '@services/hooks';
 
 // tables
 import {
-  AddAdminModal,
-  AddCompanyModal,
-  AddEmployerModal,
-  AddSchoolModal,
-  AddSLTModal,
-  AddTeacherModal,
-
   AdminTable,
   CompanyTable,
   EmployerTable,
@@ -20,21 +15,23 @@ import {
 } from '@components';
 
 const { Content, Footer } = Layout;
-
 const { TabPane } = Tabs;
 
 const Control = () => {
-  const callback = (key) => {
-    console.log(key);
-  };
+  const { data: teacherData } = apiHooks.useGetTeachersQuery();
+  const { data: employerData } = apiHooks.useGetEmployersQuery();
+  const { data: sltData } = apiHooks.useGetSltsQuery();
+  const { data: schoolData } = apiHooks.useGetSchoolsQuery();
+  const { data: companyData } = apiHooks.useGetCompaniesQuery();
+  console.log(companyData)
 
   return (
-    <Layout style={{ paddingTop: 45 }}>
-      <Layout className="site-layout" style={{height: '100vh'}}>
+    <Layout className="pt-5">
+      <Layout className="site-layout">
         <Content className="addLesson-content">
           <div className="site-layout-background">
-            <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Admin Control Tables</h1>
-            <Tabs defaultActiveKey="1" onChange={callback} centered size="large">
+            <h1 className="text-center HeadingGrey mt-10" >Admin Control Tables</h1>
+            <Tabs defaultActiveKey="1" centered size="large">
               <TabPane tab="Admins" key="1">
                 <div style={{ margin: "1%" }}>
                   <AdminTable />
@@ -42,27 +39,27 @@ const Control = () => {
               </TabPane>
               <TabPane tab="SLT" key="2">
                 <div style={{ margin: "1%" }}>
-                  <SLTTable />
+                  <SLTTable data={sltData} />
                 </div>
               </TabPane>
               <TabPane tab="Teachers" key="3">
                 <div style={{ margin: "1%" }}>
-                  <TeacherTable />
+                  <TeacherTable data={teacherData} />
                 </div>
               </TabPane>
               <TabPane tab="Employers" key="4">
                 <div style={{ margin: "1%" }}>
-                  <EmployerTable />
+                  <EmployerTable data={employerData} />
                 </div>
               </TabPane>
               <TabPane tab="Schools" key="5">
                 <div style={{ margin: "1%" }}>
-                  <SchoolTable />
+                  <SchoolTable data={schoolData} />
                 </div>
               </TabPane>
               <TabPane tab="Companies" key="6">
                 <div style={{ margin: "1%" }}>
-                  <CompanyTable />
+                  <CompanyTable data={companyData} />
                 </div>
               </TabPane>
             </Tabs>
