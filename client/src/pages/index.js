@@ -1,6 +1,7 @@
 import About from './About/about';
 import Activity from './Activity/activity';
 import ActivityBookings from './ActivityBookings/activity-bookings';
+import AdminSignIn from './Admin/signin';
 import Control from './Control/control';
 import CreatePost from './CreatePost/create-post';
 import Dashboard from './Dashboard/dashboard';
@@ -15,6 +16,7 @@ export {
   About,
   Activity,
   ActivityBookings,
+  AdminSignIn,
   Control,
   CreatePost,
   Dashboard,

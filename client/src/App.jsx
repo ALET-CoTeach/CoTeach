@@ -4,6 +4,7 @@ import {
   About,
   Activity,
   ActivityBookings,
+  AdminSignIn,
   Control,
   CreatePost,
   Dashboard,
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/dashboard" exact element={<Dashboard />} />
             <Route path="/about" exact element={<About />} />
             <Route path="/signin" exact element={<SignIn />} />
+            <Route path="/admin" exact element={<AdminSignIn />} />
             <Route path="/register" exact element={<Register />} />
             <Route path="/statistics" exact element={<Statistics />} />
             <Route path="/schools" exact element={<Profile type="schools" />} />
