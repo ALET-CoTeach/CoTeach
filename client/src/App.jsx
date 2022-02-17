@@ -48,7 +48,6 @@ const App = () => {
             <Route path="/organisations" exact element={<Profile type="orgs" />} />
             <Route path="/activitybookings" exact element={<ActivityBookings />} />
             <Route path="/activity/:id" exact element={<Activity />} />
-            <Route path="/landingpage" exact element={<LandingPage />} />
             <Route path="/createpost" exact element={<CreatePost />} />
             <Route path="/reviewpost" exact element={<ReviewPost />} />
             <Route path="/control" exact element={<Control />} />
