@@ -15,6 +15,27 @@ body {
     background-image: url('../../assets/Login-bckg.svg');
 }
 
+.HeadingBlue {
+    font-size: 3rem;
+    color: #29245C;
+}
+
+.HeadingGrey {
+    font-size: 2rem;
+    color: #6e6e6e;
+    font-weight: 200;
+}
+
+.SubHeadingGrey {
+    font-size: 150%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #6e6e6e;
+    font-weight: 200;
+}
+
+hr {
+    border-top: 2px dashed #8d8f8e;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -64,6 +85,7 @@ code {
 .steps-action {
   margin-top: 24px;
 }
+
 [data-theme="dark"] .steps-content {
   margin-top: 16px;
   border: 1px dashed #303030;
@@ -75,3 +97,18 @@ code {
 .bookedtable{
   background-color: lightskyblue;
 }
+
+.ant-table-thead > tr > th{
+    color: white;
+    background-color: #29245C;
+}
+
+.ant-table-thead > tr.ant-table-thead-level-1:hover > th {
+    background-color: unset;
+}
+
+.ant-table-thead > tr :hover{
+    color: black;
+    background-color: #f8f4f4;
+}
+

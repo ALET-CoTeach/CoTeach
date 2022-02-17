@@ -1,5 +1,4 @@
 import React from 'react';
-import './register.css';
 
 import {
   Card, Image, Form, Input, Button, Checkbox, Radio,
@@ -16,7 +15,7 @@ const Register = () => (
   <div className="LoginBody">
     <div className="cardPadding">
       <Card style={{ width: '40%', height: '70%', boxShadow: '5px 8px 24px 5px rgba(0, 0, 0, 0.2)' }}>
-        <h1 className="centerText">CoTeach Register</h1>
+        <h1 className="text-center">CoTeach Register</h1>
         {/* <Image
                             width="30%"
                             src="https://image.flaticon.com/icons/png/512/481/481078.png"

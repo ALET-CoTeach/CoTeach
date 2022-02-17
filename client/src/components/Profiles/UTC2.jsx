@@ -94,7 +94,7 @@ const UTCProfilesTwo = () => {
             <div className="site-layout-background" style={{ margin:"1%" }}>
 
               <div>
-                <h1 className="centerText HeadingGrey" style={{ marginBottom: 20}}>School Information</h1>
+                <h1 className="text-center HeadingGrey" style={{ marginBottom: 20}}>School Information</h1>
               </div>
 
               <div>
@@ -113,7 +113,7 @@ const UTCProfilesTwo = () => {
                     renderItem={(item) => (
                       <List.Item>
                         <Card
-                          className="centerText"
+                          className="text-center"
                           title={item.title}
                           key={item.id}
                           size="100%"

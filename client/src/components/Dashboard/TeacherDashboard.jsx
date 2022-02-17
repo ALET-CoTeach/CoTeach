@@ -23,13 +23,13 @@ const TeacherDashboard = () => (
             <Row gutter={[16, 16]}>
               <Col lg={24}>
                 <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                  <h1 className="SubHeadingGrey centerText"><NavLink to="/activitybookings">Upcoming Activities</NavLink></h1>
+                  <h1 className="SubHeadingGrey text-center"><NavLink to="/activitybookings">Upcoming Activities</NavLink></h1>
                   <BookedActivities />
                 </Card>
               </Col>
               <Col lg={24}>
                 {/* <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                  <h1 className="SubHeadingGrey centerText"><NavLink to="/postcreation">Pending Posts List</NavLink></h1>
+                  <h1 className="SubHeadingGrey text-center"><NavLink to="/postcreation">Pending Posts List</NavLink></h1>
                   <ProgressFluid percent={0.69} />
                 </Card> */}
               </Col>
@@ -46,7 +46,7 @@ const TeacherDashboard = () => (
                       </Col>
 
                       <Col lg={20}>
-                          
+
                           <Progress
                           percent={80}
                           strokeColor={{
@@ -64,12 +64,12 @@ const TeacherDashboard = () => (
 
                     <Row>
                       <Col lg={16}>
-                        <h1 className="SubHeadingGrey centerText headerPadding">Student&apos;s Comments</h1>
+                        <h1 className="SubHeadingGrey text-center headerPadding">Student&apos;s Comments</h1>
                         <StudentFeedback />
                       </Col>
 
                       <Col lg={8}>
-                        <h1 className="SubHeadingGrey centerText">Department Activity</h1>
+                        <h1 className="SubHeadingGrey text-center">Department Activity</h1>
                         <DepartmentStatsGraph />
                       </Col>
                     </Row>
@@ -77,7 +77,7 @@ const TeacherDashboard = () => (
                 </Col>
                 <Col lg={24}>
                   <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                    <h1 className="SubHeadingGrey centerText" style={{ marginBottom: 10}}>Department Booking Activity</h1>
+                    <h1 className="SubHeadingGrey text-center" style={{ marginBottom: 10}}>Department Booking Activity</h1>
                     <DepartmentBookingActivies />
                   </Card>
                 </Col>

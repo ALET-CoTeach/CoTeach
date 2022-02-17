@@ -48,7 +48,7 @@ const Dashboard = () => {
       <Layout className="site-layout">
         <Content className="addLesson-content">
           <div className="site-layout-background" style={{ paddingTop: "1%" }}>
-            <h1 className="centerText HeadingGrey" style={{ marginBottom: 20}}>Dashboard</h1>
+            <h1 className="text-center HeadingGrey" style={{ marginBottom: 20}}>Dashboard</h1>
             {dashboard}
           </div>
         </Content>

@@ -192,7 +192,7 @@ const ActivityBookings = () => {
       <Layout className="site-layout min-h-screen">
         <Content className="activityBooking-content">
           <div className="site-layout-background">
-            <h1 className="centerText HeadingGrey" style={{ paddingTop: '1%' }}>Requests</h1>
+            <h1 className="text-center HeadingGrey" style={{ paddingTop: '1%' }}>Requests</h1>
             <Collapse bordered={false} defaultActiveKey={['1', '2', '3']} ghost>
               {panels}
             </Collapse>

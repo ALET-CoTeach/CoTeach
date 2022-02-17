@@ -6,8 +6,6 @@ import {
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 
-import './table.css';
-
 const CustomTable = ({ isLoading, data, columns, hasCheckbox  }) => {
   const [searchText, setSearchText] = useState('');
   const [searchColumn, setSearchColumn] = useState('');

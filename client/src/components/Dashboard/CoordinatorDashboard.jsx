@@ -18,13 +18,13 @@ const CoordinatorDashboard = () => (
           <Row gutter={[16, 16]}>
             <Col lg={24}>
               <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                <h1 className="SubHeadingGrey centerText"><a href="/CoordinatorEntries">Upcoming School Activities</a></h1>
+                <h1 className="SubHeadingGrey text-center"><a href="/CoordinatorEntries">Upcoming School Activities</a></h1>
                 <BookedActivities />
               </Card>
             </Col>
             <Col lg={24}>
               <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                <h1 className="SubHeadingGrey centerText"><a href="/CoordinatorPostVerification">Pending Posts Verification</a></h1>
+                <h1 className="SubHeadingGrey text-center"><a href="/CoordinatorPostVerification">Pending Posts Verification</a></h1>
                 <ProgressFluid percent={0.69} />
               </Card>
             </Col>
@@ -35,13 +35,13 @@ const CoordinatorDashboard = () => (
             <Row gutter={[16, 24]}>
               <Col lg={24}>
                 <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                  <h1 className="SubHeadingGrey centerText">Overall School Statistics</h1>
+                  <h1 className="SubHeadingGrey text-center">Overall School Statistics</h1>
                   <DashboardSchoolStats />
                 </Card>
               </Col>
               <Col lg={24}>
                 <Card style={{ boxShadow: '2px 4px 6px 2px rgba(0, 0, 0, 0.2)' }}>
-                  <h1 className="SubHeadingGrey centerText">Overall Student Feedback</h1>
+                  <h1 className="SubHeadingGrey text-center">Overall Student Feedback</h1>
                   <StudentFeedback />
                 </Card>
               </Col>

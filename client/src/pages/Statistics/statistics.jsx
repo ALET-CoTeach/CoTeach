@@ -6,7 +6,6 @@ import {
 } from 'antd';
 import { ArrowUpOutlined, ArrowDownOutlined, LikeOutlined } from '@ant-design/icons';
 import { StudentFeedback } from '@components';
-import styles from './statistics.css';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -16,7 +15,7 @@ const Statistics = () => (
       <Content className="addLesson-content">
         <div className="site-layout-background">
           <div style={{ padding: '0% 5% 100%' }}>
-            <h1 className="centerText HeadingGrey" style={{ marginBottom: 20, marginTop: 20}}>Statistics</h1>
+            <h1 className="text-center HeadingGrey" style={{ marginBottom: 20, marginTop: 20}}>Statistics</h1>
             <div className="site-statistic-demo-card">
               <Row gutter={16}>
                 <Col span={6}>
@@ -101,7 +100,7 @@ const Statistics = () => (
           </div>
         </div>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>ALET CoTeach 2021</Footer>
+      <Footer className="text-center">ALET CoTeach 2021</Footer>
     </Layout>
   </Layout>
 );
