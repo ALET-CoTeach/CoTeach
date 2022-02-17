@@ -18,14 +18,9 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const [current, setCurrent] = useState('home');
 
-  const handleClick = (e) => {
-    console.log('click', e);
-    setCurrent(e.key);
-  };
-
   return (
     <>
-      <Menu className="navbar" onClick={handleClick} selectedKeys={[current]} mode="horizontal" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+      <Menu className="navbar" selectedKeys={[current]} mode="horizontal" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
         <Menu.Item key="home" icon={<HomeOutlined />}>
           <NavLink to="/">
             Home
