@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-  Card, Image, Form, Input, Button, Checkbox, Radio, Row, Col, Collapse, Statistic,
+  Card, Button, Row, Col, Collapse,
 } from 'antd';
 
-import './landing-page.css';
 import CoTeachWords from '@assets/CoTeachWords.svg';
 import CoTeachMotto from '@assets/CoTeachMotto.svg';
 import { LinkedinOutlined, FacebookOutlined } from '@ant-design/icons';
@@ -11,17 +10,12 @@ import { LinkedinOutlined, FacebookOutlined } from '@ant-design/icons';
 const { Panel } = Collapse;
 
 const LandingPage = () => (
-  <div className="LandingBody ">
-
-    <div className="wrapper">
-      <div className="FAQMargin">
-        <Row gutter={[8, 48]} type="flex" align="bottom">
-          <Col
-            lg={1}
-            sm={1}
-          />
-          <Col lg={8} sm={24} xs={24}>
-            <div className="coTeachPadding">
+  <>
+    <div className="wrapper LandingBody bg-cover bg-no-repeat">
+      <div className="">
+        <Row gutter={[8, 48]} type="flex" align="middle">
+          <Col offset={2} lg={8} sm={24} xs={24}>
+            <div className="pt-10 my-10">
               <Row gutter={[8, 24]} type="flex">
                 <Col lg={24} sm={24}>
                   <img src={CoTeachWords} width="100%" />
@@ -32,8 +26,8 @@ const LandingPage = () => (
                 </Col>
 
                 <Col lg={24} sm={24}>
-                  <p>
-                    <i>
+                  <p className="text-white dark:text-slate-400">
+                    <em>
                       ALET is dedicated to providing a
                       learning journey for our students
                       that creates rich opportunities to
@@ -45,7 +39,7 @@ const LandingPage = () => (
                       partners to support our students,
                       and to build skills pipelines in the
                       Thames Valley and beyond.
-                    </i>
+                    </em>
                   </p>
                 </Col>
 
@@ -75,30 +69,19 @@ const LandingPage = () => (
           <Col md={5} />
           <Col md={4} />
         </Row>
-
       </div>
 
-      <div className="landingGaps" />
-
-      <div className="FAQMargin">
+      <div className=" mt-20">
         <Row gutter={[8, 48]} type="flex">
-          <Col
-            lg={0}
-            sm={1}
-          />
-          <Col lg={24} sm={24} xs={24}>
-            <div className="coTeachPadding">
+          <Col>
+            <div>
               <Card style={{ boxShadow: '5px 8px 24px 5px rgba(0, 0, 0, 0.2)' }}>
-
                 <Row>
-                  <Col lg={6} />
-
-                  <Col lg={12}>
-
+                  <Col lg={12} offset={6}>
                     <Card
                       bordered={false}
                     >
-                      <h1 className="HeadingBlue"><b>Welcome to CoTeach!</b></h1>
+                      <h1 className="HeadingBlue">Welcome to CoTeach!</h1>
                       <hr />
 
                       <p>
@@ -118,45 +101,28 @@ const LandingPage = () => (
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
                         anim id est laborum.
                       </p>
-
                     </Card>
-
                   </Col>
-
                   <Col lg={6} />
-
                 </Row>
-
               </Card>
             </div>
           </Col>
-          <Col lg={0} />
-          {/* <Col md={5}></Col>
-                            <Col md={4}></Col> */}
         </Row>
       </div>
 
-      <div className="landingGaps" />
 
-      <div className="FAQMargin">
+      <div className=" mt-20">
         <Row gutter={[8, 48]} type="flex">
-          <Col
-            lg={0}
-            sm={1}
-          />
-          <Col lg={24} sm={24} xs={24}>
-            <div className="coTeachPadding">
+          <Col>
+            <div>
               <Card style={{ boxShadow: '5px 8px 24px 5px rgba(0, 0, 0, 0.2)' }}>
-
                 <Row>
-                  <Col lg={6} />
-
-                  <Col lg={12}>
-
+                  <Col lg={12} offset={6}>
                     <Card
                       bordered={false}
                     >
-                      <h1 className="HeadingBlue"><b>Our Vision and Mission</b></h1>
+                      <h1 className="HeadingBlue">Our Vision and Mission</h1>
                       <hr />
 
                       <p>
@@ -173,30 +139,17 @@ const LandingPage = () => (
                         Thames Valley and beyond.
                       </p>
                       <br />
-                      <p>
-                        
-                      </p>
-
                     </Card>
-
                   </Col>
-
                   <Col lg={6} />
-
                 </Row>
-
               </Card>
             </div>
           </Col>
-          <Col lg={0} />
-          {/* <Col md={5}></Col>
-                            <Col md={4}></Col> */}
         </Row>
       </div>
 
-      <div className="landingGaps" />
-
-      <div className="FAQMargin">
+      <div className="mt-20">
         <Row gutter={[8, 48]} type="flex">
           <Col
             lg={0}
@@ -214,7 +167,7 @@ const LandingPage = () => (
                     <Card
                       bordered={false}
                     >
-                      <h1>FAQs</h1>
+                      <h1 className="HeadingBlue">FAQs</h1>
 
                       <Collapse
                         accordion
@@ -274,13 +227,10 @@ const LandingPage = () => (
               </Card>
             </div>
           </Col>
-          <Col lg={0} />
-          {/* <Col md={5}></Col>
-                            <Col md={4}></Col> */}
         </Row>
       </div>
     </div>
-  </div>
+  </>
 );
 
 export default LandingPage;
