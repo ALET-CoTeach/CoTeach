@@ -214,9 +214,9 @@ const AllAvailableActivities = ({ data }) => {
       key: 'id',
       render: (_, record) => (
         <>
-          <NavLink to={`/activity/${record._id}`} >
+          <NavLink to={{ pathname: `/activity/${record._id}`, state: record }} >
             <Button>
-            View
+              View
             </Button>
           </NavLink>
         </>

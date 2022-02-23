@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './dashboard.css';
 
 import { Layout } from 'antd';
 

@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import {
   Layout, Collapse, Drawer, List, Avatar, Divider, Col, Row, Card,
 } from 'antd';
-import './CoordinatorProfile.css';
-
 
 import UTCReadingBuilding from '@assets/SchoolPhotos/utc-reading.jpg';
 import UTCSwindonBuidling from '@assets/SchoolPhotos/utc-swindon-building.jpg';
